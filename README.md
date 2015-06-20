@@ -11,3 +11,7 @@ Application Features
 - [ ] Data visualisations to show the results of the quizzes
 
 More features will no doubt be added as time goes on.
+
+Installation
+------------
+Simply clone the repository and start up a local server. Really couldn't be simpler.

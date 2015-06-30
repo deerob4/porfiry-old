@@ -19,40 +19,45 @@ A number of interviews were held with staff at the school. Three form tutors wer
 An online questionnaire was created for students of the school to fill in, detailing their opinion on form times, how it could be improved through the use of quizzes.
 
 \subsubsection{Questions}
-The following questions were asked on the questionnaire:\\
+The following questions were asked on the questionnaire:
 
-\begin{enumerate}
-	\item How satisfied are you with your current form time experience? 1 2 3 4\\
-	\item ``My form times are always well structured.'' How far do you agree or disagree with this statement? 1 2 3 4 5\\
-	\item Out of the following activities you selected, which do you enjoy the most?
-				\begin{itemize}
-					\item Silent reading
-					\item Knowledge quiz
-					\item Group discussion
-					\item Board games
-					\item Physical activities
-					\item Other\\
-				\end{itemize}
-	\item Approximately how often do quizzes feature in your form times? 1 2 3 4\\
-	\item ``My form times would be improved if we did quizzes more often.'' How far do you agree or disagree with this statement? 1 2 3 4\\
-	\item ``I find that quizzes improve the relationship between me and the rest of my form'' How far do you agree or disagree with this statement? 1 2 3 4\\
-	\item Which topics have you been given quizzes on? Select all that apply.
-				\begin{itemize}
-					\item General knowledge
-					\item Media
-					\item Sports
-					\item History
-					\item Literature
-					\item Relationships
-					\item Brainteasers
-					\item Other\\
-				\end{itemize}
-	\item To what extent do you interact with other forms in your year during form time? 1 2 3 4\\
-	\item Do you believe form times would be improved by interaction with other forms? Yes No\\
-	\item If you wish, please expand on your answer to the previous question.
-\end{enumerate}
+\noindent\fbox{%
+    \parbox{\textwidth}{%
+        \begin{enumerate}[leftmargin=0cm,itemindent=.5cm,labelwidth=\itemindent,labelsep=0cm,align=left]
+					\item How satisfied are you with your current form time experience? 1 2 3 4\\
+					\item ``My form times are always well structured.'' How far do you agree or disagree with this statement? 1 2 3 4 5\\
+					\item Out of the following activities you selected, which do you enjoy the most?
+								\begin{itemize}
+									\item Silent reading
+									\item Knowledge quiz
+									\item Group discussion
+									\item Board games
+									\item Physical activities
+									\item Other\\
+								\end{itemize}
+					\item Approximately how often do quizzes feature in your form times? 1 2 3 4\\
+					\item ``My form times would be improved if we did quizzes more often.'' How far do you agree or disagree with this statement? 1 2 3 4\\
+					\item ``I find that quizzes improve the relationship between me and the rest of my form'' How far do you agree or disagree with this statement? 1 2 3 4\\
+					\item Which topics have you been given quizzes on? Select all that apply.
+								\begin{itemize}
+									\item General knowledge
+									\item Media
+									\item Sports
+									\item History
+									\item Literature
+									\item Relationships
+									\item Brainteasers
+									\item Other\\
+								\end{itemize}
+					\item To what extent do you interact with other forms in your year during form time? 1 2 3 4\\
+					\item Do you believe form times would be improved by interaction with other forms? Yes No\\
+					\item If you wish, please expand on your answer to the previous question.
+				\end{enumerate}
+    }%
+}
 
 \subsubsection{Results}
+The following results were collected after the quiz had been live for 10 days. They were automatically generated using the 
 
 \subsection{Observations}
 Having been a member of the school community for over five years, I am well placed to provide an observation on how the school currently goes about creating, setting and analysing quizzes used in form times. Currently, no formal system is in place; an ad-hoc system is used, following this general pattern:
@@ -98,6 +103,20 @@ Useful though these features are,
 \subsection{Justification of Methods}
 
 \subsection{IPSO Chart}
+This IPSO chart describes the inputs, outputs, storage locations and general processes that are associated with the system.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{1}{|c|}{{\bf Inputs}}                                                                                                                              & \multicolumn{1}{c|}{{\bf Processes}}                                                                                                                                                                                                                                                                         \\ \hline
+\begin{tabular}[c]{@{}l@{}}Full name\\ Password\\ \\ Form name\\ \\ Quiz title\\ Quiz questions\\ Quiz answers\\ Forms the quiz should be sent to.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Create HOY accounts from inputs\\ Create form group accounts\\ \\ Create and store quizzes\\ \\ Allow quizzes to be answered by\\ forms and store answers.\\ \\ Prevent quizzes from starting unless\\ all forms have joined.\\ \\ Mark quizzes and analyse results.\end{tabular} \\ \hline
+\multicolumn{1}{|c|}{{\bf Storage}}                                                                                                                             & \multicolumn{1}{c|}{{\bf Outputs}}                                                                                                                                                                                                                                                                           \\ \hline
+\begin{tabular}[c]{@{}l@{}}Store user accounts\\ Store individual quizzes with answers.\\ Store mark for quizzes.\\ Store analysis of results.\end{tabular}     & \begin{tabular}[c]{@{}l@{}}Quiz containing questions and answers.\\ Analysis of quiz results.\end{tabular}                                                                                                                                                                                                   \\ \hline
+\end{tabular}
+\caption{IPSO Chart}
+\label{my-label}
+\end{table}
 
 \subsection{Limitations of Current System}
 There are evidently a large number of issues with the above method. Firstly, distributing the quizzes via a word-processed document is not a particularly efficient method. It results in the network drive being cluttered with a variety of documents, perhaps with a non-existent naming scheme. This makes it harder for the form tutors to find the correct quiz for the week, slowing the whole process down. A more effective solution would be to have everything in it's own self contained system, with its own dedicated quiz screen, which points out the correct quiz to the tutors.

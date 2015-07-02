@@ -1,25 +1,51 @@
+% When thinking of an objective, consider three areasL
+% Why is the feature being implemented?
+% Who is the feature for?
+% What does the feature do?
+
 \section{Objectives}
-There are a number of features that the application should include, and goals that should be met. They are listed below.
+They are based on research gathered in the interviews, observations and questionnaires that were carried out on the school, and so present an accurate picture of what the school believes would aid them the most. Certain additional features have been added, as they would increase the utility of the system to even greater heights. If, at the end of development, these features have not been implemented, it would be impossible to refer to the system as a real success.
 
 \subsection{Database Functionality}
-Many of the objectives for the application relate to database usage. They are all listed here for convenience. \textit{The acronym \textbf{CRUD} stands for create, read, update and delete; this refers to the four standard database operations.}
+Many of the objectives for the application relate to database usage. 
 
-\subsubsection{CRUD User Details}
-The application should include the ability to create, access, update and delete user details in a database. The application should contain the concept of two types of users: heads of years, who act as administrators of sorts, with the ability to create quizzes and send them out to form groups; and individual form groups themselves, who can receive quizzes sent down from heads of years.
+\textit{\textbf{Note:} The acronym }CRUD \textit{stands for create, read, update and delete; this refers to the four standard database operations.}
+
+\subsubsection{CRUD Iser Details}
+The application should include the ability to create, access, update and delete user details in a database. The application should contain the concept of two types of users: heads of years, who act as administrators of sorts, with the ability to create quizzes and send them out to form groups; and individual form groups themselves, who can receive quizzes sent down from heads of years. They should also be able to create quizzes themselves, but should not be able to broadcast these to other form groups.
 
 \subsubsection{CRUD Quiz Details}
 The application should include the ability to create, access, update and delete quizzes in a database. Each quiz should contain questions and answers, stored in the database using a system of foreign keys. Each of these elements should be individually editable.
 
 \subsection{Quiz Creation Functionality}
-Other objectives center around actually creating the quiz. They are all listed here for convenience.
+Other objectives center around the part of the application that allows users to actually create their quizzes. This functionality should exist for both types of users, but should be expanded for heads of year, owing to their more administrative roles.
 
-\subsubsection{Add Multiple Question Types} 
-The application should feature the ability to add questions to the quiz of the following types:
+\subsubsection{Create Quizzes with Multiple Questions} 
+A graphical user interface should be provided that allows users to construct a quiz. The quiz should have a title, and should contain within it a number of questions, each with an answer, and each provided by the user. Multiple question types should be catered for, to ensure that users are able to full express their quiz in the system. These question types should be:\\
 
 \begin{itemize}
-\item Multiple choice
-\item Select multiple answers
-\item Type in custom answers
+\item Multiple choice - where the user is presented with a question, and multiple answers are provided, only one of which is correct. An example of this would be:
+
+In what year did World War 2 begin?\\
+A. 1933\\
+B. 1940\\
+C. 1939\\
+D. 1945
+
+\item Select multiple answers - where the user is presented with a question that has multiple correct answers, and has to select all the correct ones. An example of this would be:
+
+Which of the following are not books by Charles Dickens?\\
+A. Bleak House\\
+B. Crime and Punishment\\
+C. The Idiot
+
+\item Type in custom answers - where the user is presented with a question, but is not given any optional answers; they mus type in the answer themselves. An example of this would be:
+
+What type of language is JavaScript?\\
+
+------------------------------------
+
+The correct answer to this question is \textit{programming}, and this would be stored along with the question. If the user were to type in an incorrect answer, such as \textit{scripting}, they would not get the question right, because JavaScript is not, never has been, and never will be, a programming language; indeed, Python is more a scripting language than JavaScript.\\
 \end{itemize}
 
-This way, users should be able to create any sort of question they wish. The quizzes should also have the ability to add 
+This way, users should be able to create any sort of question they wish. The quizzes should also have the ability to add pictures to questions, making it possible to ask such questions such as ``which ruthless German dictator is being portrayed in this photograph?''

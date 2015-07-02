@@ -24,3 +24,8 @@
 \BOOKMARK [2][-]{subsection.3.1}{Broad\040Aims}{section.3}% 24
 \BOOKMARK [2][-]{subsection.3.2}{Possible\040Limitations}{section.3}% 25
 \BOOKMARK [1][-]{section.4}{Objectives}{part.1}% 26
+\BOOKMARK [2][-]{subsection.4.1}{Database\040Functionality}{section.4}% 27
+\BOOKMARK [3][-]{subsubsection.4.1.1}{CRUD\040Iser\040Details}{subsection.4.1}% 28
+\BOOKMARK [3][-]{subsubsection.4.1.2}{CRUD\040Quiz\040Details}{subsection.4.1}% 29
+\BOOKMARK [2][-]{subsection.4.2}{Quiz\040Creation\040Functionality}{section.4}% 30
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Create\040Quizzes\040with\040Multiple\040Questions}{subsection.4.2}% 31

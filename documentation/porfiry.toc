@@ -23,4 +23,9 @@
 \contentsline {section}{\numberline {3}Problem Definition}{10}{section.3}
 \contentsline {subsection}{\numberline {3.1}Broad Aims}{10}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Possible Limitations}{10}{subsection.3.2}
-\contentsline {section}{\numberline {4}Objectives}{10}{section.4}
+\contentsline {section}{\numberline {4}Objectives}{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}Database Functionality}{11}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}CRUD Iser Details}{11}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}CRUD Quiz Details}{12}{subsubsection.4.1.2}
+\contentsline {subsection}{\numberline {4.2}Quiz Creation Functionality}{12}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Create Quizzes with Multiple Questions}{12}{subsubsection.4.2.1}

@@ -1,6 +1,6 @@
 Porfiry
 =======
-Porfiry is a real-time quiz application designed for use in schools. It is written in JavaScript, or maybe PHP, using an as yet unspecified framework, with a Firebase backend. This is a project for my A2 Computing coursework, and is designed for use in The Priory School.
+Porfiry is a real-time quiz application designed for use in schools. It is written in JavaScript, or maybe PHP, or maybe - but probably not - Meteor, using an as yet unspecified framework, with a Firebase backend. This is a project for my A2 Computing coursework, and is designed for use in The Priory School.
 
 Application Features
 ---------------------

@@ -12,6 +12,8 @@
 \contentsline {subsubsection}{\numberline {2.1.5}Michael Barratt}{16}{subsubsection.2.1.5}
 \contentsline {subsection}{\numberline {2.2}Observations}{16}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Document Inspections}{17}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Weekly Email}{17}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Weekly Quiz}{18}{subsubsection.2.3.2}
 \contentsline {subsection}{\numberline {2.4}Similar Systems}{19}{subsection.2.4}
 \contentsline {subsubsection}{\numberline {2.4.1}Quiz Creation Websites}{19}{subsubsection.2.4.1}
 \contentsline {subsubsection}{\numberline {2.4.2}Quiz Creation Software Packages}{19}{subsubsection.2.4.2}

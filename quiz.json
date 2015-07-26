@@ -1,0 +1,39 @@
+{
+	"title": "Summer Term House Quiz",
+	"start": 1467812700,
+	"question_intervals": 10000,
+	"houses_involved": ["A", "B", "C", "D", "H", "W"],
+	"realtime_graphics": true,
+	"interval_length": 300000,
+	"categories": {
+		"history": [
+			{
+				"title": "Who killed JFK?",
+				"answers": [
+					{"text": "Bill Osmond", "correct": false},
+					{"text": "Lee Harvey Oswald", "correct": true},
+					{"text": "Henry Kissinger", "correct": false}
+				]
+			},
+			{
+				"title": "Who was the last wife of Henry VIII?",
+				"answers": [
+					{"text": "Bill Osmond", "correct": false},
+					{"text": "Lee Harvey Oswald", "correct": true},
+					{"text": "Henry Kissinger", "correct": false}
+				]
+			}
+		],
+		"sport": [
+			{
+				"title": "Who won the 1966 world cup?",
+				"answers": [
+					{"text": "England", "correct": false},
+					{"text": "England", "correct": false},
+					{"text": "England", "correct": false},
+					{"text": "England", "correct": false}
+				]
+			}
+		]
+	}
+}

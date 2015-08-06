@@ -4,66 +4,54 @@
 % What does the feature do?
 
 \section{Objectives}
-They are based on research gathered in the interviews, observations and questionnaires that were carried out on the school, and so present an accurate picture of what the school believes would aid them the most. Certain additional features have been added, as they would increase the utility of the system to even greater heights. If, at the end of development, these features have not been implemented, it would be impossible to refer to the system as a real success.
-
-\subsection{Database Functionality}
-Many of the objectives for the application relate to database usage. 
-
-\textit{\textbf{Note:} The acronym }CRUD \textit{stands for create, read, update and delete; this refers to the four standard database operations.}
-
-\subsubsection{CRUD Iser Details}
-The application should include the ability to create, access, update and delete user details in a database. The application should contain the concept of two types of users: heads of years, who act as administrators of sorts, with the ability to create quizzes and send them out to form groups; and individual form groups themselves, who can receive quizzes sent down from heads of years. They should also be able to create quizzes themselves, but should not be able to broadcast these to other form groups.
-
-\subsubsection{CRUD Quiz Details}
-The application should include the ability to create, access, update and delete quizzes in a database. Each quiz should contain questions and answers, stored in the database using a system of foreign keys. Each of these elements should be individually editable.
-
-\subsection{Quiz Creation Functionality}
-Other objectives center around the part of the application that allows users to actually create their quizzes. This functionality should exist for both types of users, but should be expanded for heads of year, owing to their more administrative roles.
-
-\subsubsection{Create Quizzes with Multiple Questions} 
-A graphical user interface should be provided that allows users to construct a quiz. The quiz should have a title, and should contain within it a number of questions, each with an answer, and each provided by the user. Multiple question types should be catered for, to ensure that users are able to full express their quiz in the system. These question types should be:\\
+The following objectives are based on research gathered in the interviews, observations and questionnaires that were carried out on the school, and so present an accurate picture of the features the school would find most desirable. Certain additional features have been added, as they would increase the utility of the system to even greater heights. If, at the end of development, these features have not been implemented, it would be impossible to refer to the system as a real success. The system must:\\
 
 \begin{itemize}
-\item Multiple choice - where the user is presented with a question, and multiple answers are provided, only one of which is correct. An example of this would be:
+	\item Provide staff with an attractive user interface with which they can create, update and delete quizzes. 
 
-In what year did World War 2 begin?\\
-A. 1933\\
-B. 1940\\
-C. 1939\\
-D. 1945
+		\begin{itemize}
+			\item Quizzes should allow for an unlimited number of multiple choice questions to be included, each of which should contain four possible answers - one of which is correct.
 
-\item Select multiple answers - where the user is presented with a question that has multiple correct answers, and has to select all the correct ones. An example of this would be:
+			\item Staff should be able to set how long they want to give students to answer the question, before the quiz moves on.
 
-Which of the following are not books by Charles Dickens?\\
-A. Bleak House\\
-B. Crime and Punishment\\
-C. The Idiot
+			\item Staff should have the ability to define an unlimited number of categories for the quiz, such as ``history'' or ``sport''; questions should be able to be placed in one of these categories.
 
-\item Type in custom answers - where the user is presented with a question, but is not given any optional answers; they mus type in the answer themselves. An example of this would be:
+			\item Staff should be able to specify a date and time when exactly a quiz should begin.
+		\end{itemize}
 
-What type of language is JavaScript?\\
+	\item Allow students of the school to answer the quiz in real time and compete against one another.
 
-------------------------------------
+		\begin{itemize}
+			\item The system should support up to 1000 concurrent students partaking in the quiz without failing.
 
-The correct answer to this question is \textit{programming}, and this would be stored along with the question. If the user were to type in an incorrect answer, such as \textit{scripting}, they would not get the question right, because JavaScript is not, never has been, and never will be, a scripting language; indeed, Python is more a scripting language than JavaScript.\\
+			\item The quiz should begin at the specified time no matter how many users are connected. A five minute grace period should be given to take into account valid excuses for lateness.
+
+			\item The students should be presented with a clear and attractive interface that displays the current category, the question, and the possible answers. It should show the remaining time that students have to choose an answer.
+
+			\item When the time has elapsed for a question, the system should highlight the correct answer, and then immediately move onto the next question.
+
+			\item Staff should have the ability to define an unlimited number of categories for the quiz, such as ``history'' or ``sport''; questions should be able to be placed in one of these categories.
+
+			\item All of the above should take place simultaneously, on every individual screen.
+		\end{itemize}
+
+	\item Display a real time visualisation of how other participants in the quiz are answering.
+
+		\begin{itemize}
+			\item During the quiz, a pull out section should be available that displays how 
+
+			\item The quiz should begin at the specified time no matter how many users are connected. A five minute grace period should be given to take into account valid excuses for lateness.
+
+			\item The students should be presented with a clear and attractive interface that displays the current category, the question, and the possible answers. It should show the remaining time that students have to choose an answer.
+
+			\item When the time has elapsed for a question, the system should highlight the correct answer, and then immediately move onto the next question.
+
+			\item Staff should have the ability to define an unlimited number of categories for the quiz, such as ``history'' or ``sport''; questions should be able to be placed in one of these categories.
+
+			\item All of the above should take place simultaneously, on every individual screen.
+		\end{itemize}
+
+	\item Work effectively across a range of different devices and display types. The school plans to use the system across tablets and desktop computers. No matter which device a user is using, all aspects of the system should be available and fully functional.
+
+	\item Theme itself to match the house colours of the logged in user. For example, the interface should be orange for those who belong to Baxter, green for Clive, blue for Acton, and so on.
 \end{itemize}
-
-This way, users should be able to create any sort of question they wish. The quizzes should also have the ability to add pictures to questions, making it possible to ask such questions such as ``which ruthless German dictator is being depicted in this photograph?''
-
-\subsubsection{Allow Quizzes to be Targeted to Different Forms}
-The quizzes created by a head of year should be able to be sent to different forms. Upon logging into the application, form groups should be able to see the quizzes they have been sent, allowing them to play them. This way, form groups can easily view the quizzes they have been assigned, and other form groups do not receive quizzes they have no business playing. Heads of year should only be able to send quizzes to form groups they have control over: the head of Year 8 should be able to send quizzes to 8A, 8B, 8C, 8D and 8W, but not to the same Year 9 forms.
-
-\subsubsection{Schedule Quizzes with Notifications}
-These quizzes should be able to be scheduled - the head of year could create a quiz on Monday, and set it to only appear on Friday of the same week. The day a quiz is due to be answered, the appropriate form groups should be sent an email, reminding them that they should do the quiz in the form time.
-% interactive buddy
-
-\subsection{Quiz Answering Functionality}
-Further objectives center around the section of the application that allows users to answer the quizzes. This functionality should exist for both types of users.;
-
-\subsubsection{Prevent Quiz from Starting Until all Forms Available}
-When quizzes are scheduled, and a number of forms have been invited to participate, the quiz should not begin until all forms have connected to the application. 
-
-
-
-
-

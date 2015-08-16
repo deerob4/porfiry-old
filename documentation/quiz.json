@@ -1,0 +1,113 @@
+{
+	"title": "Summer Term House Quiz",
+	"start": 1467812700,
+	"question_intervals": 10000,
+	"houses_involved": ["A", "B", "C", "D", "H", "W"],
+	"realtime_graphics": true,
+	"interval_length": 300000,
+	"categories": {
+		"history": [
+			{
+				"title": "Who killed JFK?",
+				"answers": [
+					{"text": "Bill Osmond", "correct": false},
+					{"text": "Lee Harvey Oswald", "correct": true},
+					{"text": "Henry Kissinger", "correct": false}
+				]
+			},
+			{
+				"title": "Who was the last wife of Henry VIII?",
+				"answers": [
+					{"text": "Bill Osmond", "correct": false},
+					{"text": "Lee Harvey Oswald", "correct": true},
+					{"text": "Henry Kissinger", "correct": false}
+				]
+			}
+		],
+		"sport": [
+			{
+				"title": "Who won the 1966 world cup?",
+				"answers": [
+					{"text": "England", "correct": false},
+					{"text": "England", "correct": false},
+					{"text": "England", "correct": false},
+					{"text": "England", "correct": false}
+				]
+			}
+		]
+	}
+}
+
+/*
+Want the winner overall - the house that got the most points, resulting from all the forms working together.
+Want the winner within each house - which year group got the most points.
+*/
+"forms": [
+	{ house: "A", year: 7 },
+	{ house: "A", year: 8 },
+	{ house: "A", year: 9 },
+	{ house: "A", year: 10 },
+	{ house: "A", year: 11 },
+	{ house: "B", year: 7 },
+	{ house: "B", year: 8 },
+	{ house: "B", year: 9 },
+	{ house: "B", year: 10 },
+	{ house: "B", year: 11 },
+	{ house: "C", year: 7 },
+	{ house: "C", year: 8 },
+	{ house: "C", year: 9 },
+	{ house: "C", year: 10 },
+	{ house: "C", year: 11 },
+	{ house: "D", year: 7 },
+	{ house: "D", year: 8 },
+	{ house: "D", year: 9 },
+	{ house: "D", year: 10 },
+	{ house: "D", year: 11 },
+	{ house: "H", year: 7 },
+	{ house: "H", year: 8 },
+	{ house: "H", year: 9 },
+	{ house: "H", year: 10 },
+	{ house: "H", year: 11 },
+	{ house: "W", year: 7 },
+	{ house: "W", year: 8 },
+	{ house: "W", year: 9 },
+	{ house: "W", year: 10 },
+	{ house: "W", year: 11 }
+]
+
+"forms": [
+	{ "house": "A", "year": 7 },
+	{ "house": "B", "year": 7 },
+	{ "house": "C", "year": 7 },
+	{ "house": "D", "year": 7 },
+	{ "house": "H", "year": 7 },
+	{ "house": "W", "year": 7 },
+
+	{ "house": "A", "year": 8 },
+	{ "house": "B", "year": 8 },
+	{ "house": "C", "year": 8 },
+	{ "house": "D", "year": 8 },
+	{ "house": "H", "year": 8 },
+	{ "house": "W", "year": 8 },
+
+	{ "house": "A", "year": 9 },
+	{ "house": "B", "year": 9 },
+	{ "house": "C", "year": 9 },
+	{ "house": "D", "year": 9 },
+	{ "house": "H", "year": 9 },
+	{ "house": "W", "year": 9 },
+
+	{ "house": "A", "year": 10 },
+	{ "house": "B", "year": 10 },
+	{ "house": "C", "year": 10 },
+	{ "house": "D", "year": 10 },
+	{ "house": "H", "year": 10 },
+	{ "house": "W", "year": 10 },
+
+	{ "house": "A", "year": 11 },
+	{ "house": "B", "year": 11 },
+	{ "house": "C", "year": 11 },
+	{ "house": "D", "year": 11 },
+	{ "house": "H", "year": 11 },
+	{ "house": "W", "year": 11 },
+]

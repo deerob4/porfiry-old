@@ -46,12 +46,12 @@ class Button extends Component {
     this.showMessage = this.showMessage.bind(this);
   }
 
-  static defaultProps = { 
+  static defaultProps = {
     text: 'Hello world!',
     message: 'Isn\'t it a lovely world?'
   }
 
-  static propTypes = { 
+  static propTypes = {
     text: PropTypes.string,
     message: PropTypes.string
   }
@@ -77,7 +77,7 @@ export class App extends Component {
   }
 
   render() {
-    let buttons = ['Keir', 'Jay', 'Hugo', 'Joe', 'Mike'].map(friend => 
+    let buttons = ['Keir', 'Jay', 'Hugo', 'Joe', 'Mike'].map(friend =>
       <Button key={friend} text={friend} />
     );
     return (

@@ -1,6 +1,46 @@
 \subsubsection{Quiz Structure}
-Below is the structure that the actual quiz will take. Due to the similarities between object based databases, something that will serve the API and store the quiz; and the JSON format, which the data will eventually be transformed into in order to be consumed by the application, the structure listed below will be the same for both the database and the in-memory version of the quiz.
-A sample quiz is listed below, in order to showcase the structure of the program:
+Below is the structure that the actual quiz will take. Due to the similarities between object based databases, something that will serve the API and store the quiz; and the JSON format, which the data will eventually be transformed into in order to be consumed by the application, the structure listed below will be the same for both the database and the in-memory version of the quiz. The following displays the structure of the quiz, including the data types for each element.
+
+\begin{verbatim}
+{
+  title: String,
+  start: Data,
+  questionIntervals: Integer,
+  realtimeGraphics: Boolean,
+  intervalLength: Integer,
+  categories: Array<Object> [
+    name: String,
+    questions: Array<Object> [
+      {
+        title: String,
+        answers: Array<String> [
+          {
+            text: String,
+            correct: Boolean
+          },
+          {
+            text: String,
+            correct: Boolean
+          },
+          {
+            text: String,
+            correct: Boolean
+          },
+          {
+            text: String,
+            correct: Boolean
+          },
+        ]
+      }
+    ]
+    }
+  ]
+}
+\end{verbatim}
+
+As can be seen, at the beginning of the structure lies some metadata pertaining to the quiz, such as when it is due to start and the title. This is then followed by a list of categories, each of which is named, each of which itself contains the questions and answers. This nested structure fits the idea of a quiz rather nicely. The categories array holds a series of objects, each of which have a \textit{title} attribute. Next to this title lies an array of questions - the nesting indicates that a question belongs to a category - each of is another object, themselves containing an array of answers.
+
+A sample quiz is listed below, in order to show how a real quiz might look.
 
 \begin{verbatim}
 {
@@ -108,4 +148,3 @@ A sample quiz is listed below, in order to showcase the structure of the program
 }
 \end{verbatim}
 
-As can be seen, at the beginning of the structure lies some metadata pertaining to the quiz, such as when it is due to start and the title. This is then followed by a list of categories, each of which is named, each of which itself contains the questions and answers. This nested structure fits the idea of a quiz rather nicely.

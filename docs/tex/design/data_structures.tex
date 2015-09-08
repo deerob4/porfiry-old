@@ -148,3 +148,16 @@ A sample quiz is listed below, in order to show how a real quiz might look.
 }
 \end{verbatim}
 
+\subsubsection{Quiz Packet}
+The following is the structure of the data packet that will be emitted when an answer is chosen. Due to the number of packets that will be sent in any one quiz - 22,5000 on a 25 question quiz containing 900 students - this structure is very small.
+
+\begin{verbatim}
+{
+  house: Character,
+  year: Integer,
+  questionId: Integer,
+  answer: Character
+}
+
+Normalising the data by splitting the \textit{house} and \textit{year} items allows for clever things to happen. 
+\end{verbatim}

@@ -1,0 +1,15 @@
+\section{API Endpoints}
+The following table is a plan of the API endpoints that will be used to receive some of the less volatile data, containing the HTTP method used to access the route, the route itself, any parameters used, and an explanation of what the endpoint will return.
+
+\begin{table}[]
+\centering
+\label{my-label}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{{\bf Method}} & \multicolumn{1}{c|}{{\bf Endpoint}} & \multicolumn{1}{c|}{{\bf Role}} \\ \hline
+GET                                & /api/quizzes                                                       & Return all the quizzes.         \\ \hline
+GET                                & /api/quizzes/:id                                & Return a specific quiz.         \\ \hline
+POST                               & /api/quizzes                                                       & Add a new quiz.                 \\ \hline
+PUT                                & /api/quizzes/:id                                & Update a specific quiz.         \\ \hline
+\end{tabular}
+\end{table}

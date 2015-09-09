@@ -1,171 +1,45 @@
-\subsubsection{Quiz Structure}
-Below is the structure that the actual quiz will take. Due to the similarities between object based databases, something that will serve the API and store the quiz; and the JSON format, which the data will eventually be transformed into in order to be consumed by the application, the structure listed below will be the same for both the database and the in-memory version of the quiz. The following displays the structure of the quiz, including the data types for each element.
+\section{Data Structures}
+This section contains designs for the different data structures that will be used throughout the system. Due to the similarities between the format by which the data will be stored in the object-based database and JSON, the same structure has been used; the system can reuse them in several places.
 
-\begin{verbatim}
+\subsection{Quiz Structure}
+Below is the structure that the actual quiz will take. The following displays the schema for the quiz, including the data types for each element.
+
+\begin{Verbatim}[fontsize=\small]
 {
   title: String,
   start: Data,
   questionIntervals: Integer,
-  realtimeGraphics: Boolean,
   intervalLength: Integer,
-  categories: Array<Object> [
-    name: String,
-    questions: Array<Object> [
-      {
-        title: String,
-        answers: Array<String> [
-          {
-            text: String,
-            correct: Boolean
-          },
-          {
-            text: String,
-            correct: Boolean
-          },
-          {
-            text: String,
-            correct: Boolean
-          },
-          {
-            text: String,
-            correct: Boolean
-          },
-        ]
-      }
-    ]
+  categories: [
+    {
+      title: String,
+      questions: [
+        {
+          title: String,
+          answers: [
+            { text: String, correct: Boolean },
+            { text: String, correct: Boolean },
+            { text: String, correct: Boolean },
+            { text: String, correct: Boolean }
+          ]
+        }
+      ]
     }
   ]
 }
-\end{verbatim}
+\end{Verbatim}
 
 As can be seen, at the beginning of the structure lies some metadata pertaining to the quiz, such as when it is due to start and the title. This is then followed by a list of categories, each of which is named, each of which itself contains the questions and answers. This nested structure fits the idea of a quiz rather nicely. The categories array holds a series of objects, each of which have a \textit{title} attribute. Next to this title lies an array of questions - the nesting indicates that a question belongs to a category - each of is another object, themselves containing an array of answers.
 
-A sample quiz is listed below, in order to show how a real quiz might look.
-
-\begin{verbatim}
-{
-  title: 'Summer Term House Quiz',
-  start: new Date(),
-  questionIntervals: 10000,
-  realtimeGraphics: true,
-  intervalLength: 300000,
-  categories: [
-  	{
-  		name: 'History',
-  		questions: [
-  			{
-  			  title: 'Who killed JFK?',
-  			  answers: [
-  			    { text: 'Bill Osmond', correct: false },
-  			    { text: 'Lee Harvey Oswald', correct: true },
-  			    { text: 'Henry Kissinger', correct: false }
-  			  ]
-  			},
-  			{
-  			  title: 'Who was the British Prime Minister in 1916?',
-  			  answers: [
-  			    { text: 'David Lloyd George', correct: true },
-  			    { text: 'Lee Harvey Oswald', correct: false },
-  			    { text: 'Lord Liverpool', correct: false }
-  			  ]
-  			},
-  			{
-  			  title: 'In the Napoleonic Wars, which battle took place immediately prior to Borodino?',
-  			  answers: [
-  			    { text: 'Austerlitz', correct: false },
-  			    { text: 'Waterloo', correct: false },
-  			    { text: 'Shevardino', correct: true },
-  			    { text: 'Smolensk', correct: false }
-  			  ]
-  			}
-  		]
-  	},
-  	{
-  		name: 'Sport',
-  		questions: [
-  			{
-  			  title: 'Who won the 1966 world cup?',
-  			  answers: [
-  			    { text: 'England', correct: true },
-  			    { text: 'Wales', correct: false },
-  			    { text: 'Scotland', correct: false },
-  			    { text: 'Uzbekistan', correct: false }
-  			  ]
-  			},
-  			{
-  			  title: 'In which of England\'s national parks does the sport of fell running take place?',
-  			  answers: [
-  			    { text: 'Dartmoor', correct: false },
-  			    { text: 'The Lake District', correct: true },
-  			    { text: 'The Yorkshire Dales', correct: false },
-  			    { text: 'Snowdonia', correct: false }
-  			  ]
-  			},
-  			{
-  			  title: 'Which city hosted the 1924 Summer Olympics?',
-  			  answers: [
-  			    { text: 'Brussels', correct: false },
-  			    { text: 'Orelans', correct: false },
-  			    { text: 'Madrid', correct: false },
-  			    { text: 'Paris', correct: true }
-  			  ]
-  			}
-  		]
-  	},
-  	{
-  		name: 'Literature',
-  		questions: [
-  			{
-  			  title: 'Who serves as the main character in "Crime and Punishment"?',
-  			  answers: [
-  			    { text: 'Raskolnikov', correct: true },
-  			    { text: 'Razumikhin', correct: false },
-  			    { text: 'Porifry Petrovich', correct: false },
-  			    { text: 'Svidrigailov', correct: false }
-  			  ]
-  			},
-  			{
-  			  title: 'Which literary genre does "Ulysses" belong to?',
-  			  answers: [
-  			    { text: 'Modernist', correct: true },
-  			    { text: 'Post-modernist', correct: false },
-  			    { text: 'Romance', correct: false },
-  			    { text: 'Thriller', correct: false }
-  			  ]
-  			},
-  			{
-  			  title: 'Which was the final book in C.S Lewis\' "The Chronicles of Narnia"?',
-  			  answers: [
-  			    { text: 'The Lion, The Witch, and the Wardrobe', correct: false },
-  			    { text: 'The Last Battle', correct: true },
-  			    { text: 'The Silver Chair', correct: false },
-  			    { text: 'Prince Caspian', correct: false }
-  			  ]
-  			}
-  		]
-  	}
-  ]
-}
-\end{verbatim}
-
-\subsubsection{Quiz Packet}
+\subsection{Answer Packet}b
 The following is the structure of the data packet that will be emitted when an answer is chosen. Due to the number of packets that will be sent in any one quiz - 22,5000 on a 25 question quiz containing 900 students - this structure is very small.
 
-\begin{verbatim}
+\begin{Verbatim}[fontsize=\small]
 {
   house: Character,
   year: Integer,
-  questionId: Integer,
+  questionID: Integer,
   answer: Character
 }
-
-Normalising the data by splitting the \textit{house} and \textit{year} items allows for clever things to happen. 
-\end{verbatim}
-
-\subsubsection{Form Group}
-\begin{verbatim}
-{
-  house: Character,
-  year: Integer,
-}
-\end{verbatim}
+\end{Verbatim}
+By splitting the \textit{house} and \textit{year} items, normalisation is achieved. This approach means that the form and house can be treated seperately - but computed as one value when needed - allowing for more complicated statistics to be gathered.

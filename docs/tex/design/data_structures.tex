@@ -66,6 +66,9 @@ correct & Boolean & 1 & Presence check \\ \hline
 \end{table}
 
 
+\subsubsection{Individual Quiz Object}
+By combining the above schemas, one ends up with a whole quiz, containing the different areas of the object combined into one. This structure will look like this:
+
 \begin{Verbatim}[fontsize=\small]
 {
   title: String,
@@ -93,6 +96,7 @@ correct & Boolean & 1 & Presence check \\ \hline
 
 As can be seen, at the beginning of the structure lies some metadata pertaining to the quiz, such as when it is due to start and the title. This is then followed by a list of categories, each of which is named, each of which itself contains the questions and answers. This nested structure fits the idea of a quiz rather nicely. The categories array holds a series of objects, each of which have a \textit{title} attribute. Next to this title lies an array of questions - the nesting indicates that a question belongs to a category - each of is another object, themselves containing an array of answers.
 
+\subsubsection{Example Quiz}
 An example quiz has been included below in order to give the reader an impression of how a real quiz might look in the database:
 
 \begin{verbatim}
@@ -200,8 +204,6 @@ An example quiz has been included below in order to give the reader an impressio
   ]
 }
 \end{verbatim}
-
-It should be noted that due to the nested structure of an object based database, each quiz is stored as its own individual, whole entity - there are no individual tables involved, and there is no concept of a foreign key to create relationships between entities. Additionally, there is no need to give each item its own individual ID; this is added automatically by the database, and is used for internal schema tracking.
 
 \subsection{Answer Packet}
 The following is the structure of the data packet that will be emitted when an answer is chosen. Due to the number of packets that will be sent in any one quiz - 22,5000 on a 25 question quiz containing 900 students - this structure is very small.

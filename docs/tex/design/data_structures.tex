@@ -1,8 +1,70 @@
 \section{Data Structures}
 This section contains designs for the different data structures that will be used throughout the system. Due to the similarities between the format by which the data will be stored in the object-based database and JSON, the same structure has been used; the system can reuse them in several places.
 
+\textit{\textbf{Important note on object based databases:} Due to the ease with which a quiz fits a nested structure, an object based, or NoSQL database, will be used. This type of database differs from a standard relational database in that it does not make use of tables; instead, all information pertaining to an entity is stored in a single object. This lack of traditional relationships causes issues when attempting to create things like ERD diagrams. Whilst NoSQL databases are traditionally schemaless, modelling tools will be used in this project in order to better suit the course specification. }
+
 \subsection{Quiz Structure}
 Below is the structure that the actual quiz will take. The following displays the schema for the quiz, including the data types for each element.
+
+\subsubsection{Quiz (Level 0)}
+This is the data dictionary / schema for the main quiz. It will be the base level of the quiz object, containing the meta-data, and a link to the categories schema.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field Name}} & \multicolumn{1}{c|}{{\bf Data Type}} & \multicolumn{1}{c|}{{\bf Length}} & \multicolumn{1}{c|}{{\bf Validation}} \\ \hline
+title                                  & string                               & variable                          & Presence check                        \\ \hline
+startTime                              & datetime                             & variable                          & After current date                    \\ \hline
+questionLength                         & integer                              & variable                          & Greater than 0                        \\ \hline
+intervalLength                         & integer                              & variable                          & Greater than 0                        \\ \hline
+categories                             & Array<schema>                               & variable                          & Presence check                        \\ \hline
+\end{tabular}
+\caption{Quiz Schema (Level 0)}
+\end{table}
+
+\subsubsection{Categories (Level 1)}
+This is the data dictionary / schema for the quiz categories. It will be the first level of the quiz object, containing the category name and a link to the questions schema.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field Name}} & \multicolumn{1}{c|}{{\bf Data Type}} & \multicolumn{1}{c|}{{\bf Length}} & \multicolumn{1}{c|}{{\bf Validation}} \\ \hline
+title & string & variable & Presence check \\ \hline
+questions & Array<schema> & variable & Presence check \\ \hline
+\end{tabular}
+\caption{Categories Schema (Level 1)}
+\end{table}
+
+\subsubsection{Questions (Level 2)}
+This is the data dictionary / schema for the questions. It will be the second level of the quiz object, containing the individual questions and a link to the answers schema.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field Name}} & \multicolumn{1}{c|}{{\bf Data Type}} & \multicolumn{1}{c|}{{\bf Length}} & \multicolumn{1}{c|}{{\bf Validation}} \\ \hline
+title & string & variable & Presence check \\ \hline
+answers & Array<schema> & variable & Presence check \\ \hline
+\end{tabular}
+\caption{Questions (Level 2)}
+\end{table}
+
+\subsubsection{Answers (Level 3)}
+This is the data dictionary / schema for the questions. It will be the third and final level of the quiz object, containing the individual answers to a question.
+
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{{\bf Field Name}} & \multicolumn{1}{c|}{{\bf Data Type}} & \multicolumn{1}{c|}{{\bf Length}} & \multicolumn{1}{c|}{{\bf Validation}} \\ \hline
+text & string & variable & Presence check \\ \hline
+correct & Boolean & 1 & Presence check \\ \hline
+\end{tabular}
+\caption{Answers (Level 3)}
+\end{table}
+
 
 \begin{Verbatim}[fontsize=\small]
 {
@@ -31,7 +93,117 @@ Below is the structure that the actual quiz will take. The following displays th
 
 As can be seen, at the beginning of the structure lies some metadata pertaining to the quiz, such as when it is due to start and the title. This is then followed by a list of categories, each of which is named, each of which itself contains the questions and answers. This nested structure fits the idea of a quiz rather nicely. The categories array holds a series of objects, each of which have a \textit{title} attribute. Next to this title lies an array of questions - the nesting indicates that a question belongs to a category - each of is another object, themselves containing an array of answers.
 
-\subsection{Answer Packet}b
+An example quiz has been included below in order to give the reader an impression of how a real quiz might look in the database:
+
+\begin{verbatim}
+{
+  title: 'Summer Term House Quiz',
+  start: new Date(),
+  questionIntervals: 10000,
+  realtimeGraphics: true,
+  intervalLength: 300000,
+  categories: [
+  	{
+  		name: 'History',
+  		questions: [
+  			{
+  			  title: 'Who killed JFK?',
+  			  answers: [
+  			    { text: 'Bill Osmond', correct: false },
+  			    { text: 'Lee Harvey Oswald', correct: true },
+  			    { text: 'Henry Kissinger', correct: false }
+  			  ]
+  			},
+  			{
+  			  title: 'Who was the British Prime Minister in 1916?',
+  			  answers: [
+  			    { text: 'David Lloyd George', correct: true },
+  			    { text: 'Lee Harvey Oswald', correct: false },
+  			    { text: 'Lord Liverpool', correct: false }
+  			  ]
+  			},
+  			{
+  			  title: 'In the Napoleonic Wars, which battle took place immediately prior to Borodino?',
+  			  answers: [
+  			    { text: 'Austerlitz', correct: false },
+  			    { text: 'Waterloo', correct: false },
+  			    { text: 'Shevardino', correct: true },
+  			    { text: 'Smolensk', correct: false }
+  			  ]
+  			}
+  		]
+  	},
+  	{
+  		name: 'Sport',
+  		questions: [
+  			{
+  			  title: 'Who won the 1966 world cup?',
+  			  answers: [
+  			    { text: 'England', correct: true },
+  			    { text: 'Wales', correct: false },
+  			    { text: 'Scotland', correct: false },
+  			    { text: 'Uzbekistan', correct: false }
+  			  ]
+  			},
+  			{
+  			  title: 'In which of England\'s national parks does the sport of fell running take place?',
+  			  answers: [
+  			    { text: 'Dartmoor', correct: false },
+  			    { text: 'The Lake District', correct: true },
+  			    { text: 'The Yorkshire Dales', correct: false },
+  			    { text: 'Snowdonia', correct: false }
+  			  ]
+  			},
+  			{
+  			  title: 'Which city hosted the 1924 Summer Olympics?',
+  			  answers: [
+  			    { text: 'Brussels', correct: false },
+  			    { text: 'Orelans', correct: false },
+  			    { text: 'Madrid', correct: false },
+  			    { text: 'Paris', correct: true }
+  			  ]
+  			}
+  		]
+  	},
+  	{
+  		name: 'Literature',
+  		questions: [
+  			{
+  			  title: 'Who serves as the main character in "Crime and Punishment"?',
+  			  answers: [
+  			    { text: 'Raskolnikov', correct: true },
+  			    { text: 'Razumikhin', correct: false },
+  			    { text: 'Porifry Petrovich', correct: false },
+  			    { text: 'Svidrigailov', correct: false }
+  			  ]
+  			},
+  			{
+  			  title: 'Which literary genre does "Ulysses" belong to?',
+  			  answers: [
+  			    { text: 'Modernist', correct: true },
+  			    { text: 'Post-modernist', correct: false },
+  			    { text: 'Romance', correct: false },
+  			    { text: 'Thriller', correct: false }
+  			  ]
+  			},
+  			{
+  			  title: 'Which was the final book in C.S Lewis\' "The Chronicles of Narnia"?',
+  			  answers: [
+  			    { text: 'The Lion, The Witch, and the Wardrobe', correct: false },
+  			    { text: 'The Last Battle', correct: true },
+  			    { text: 'The Silver Chair', correct: false },
+  			    { text: 'Prince Caspian', correct: false }
+  			  ]
+  			}
+  		]
+  	}
+  ]
+}
+\end{verbatim}
+
+It should be noted that due to the nested structure of an object based database, each quiz is stored as its own individual, whole entity - there are no individual tables involved, and there is no concept of a foreign key to create relationships between entities. Additionally, there is no need to give each item its own individual ID; this is added automatically by the database, and is used for internal schema tracking.
+
+\subsection{Answer Packet}
 The following is the structure of the data packet that will be emitted when an answer is chosen. Due to the number of packets that will be sent in any one quiz - 22,5000 on a 25 question quiz containing 900 students - this structure is very small.
 
 \begin{Verbatim}[fontsize=\small]

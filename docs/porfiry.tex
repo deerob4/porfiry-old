@@ -5,6 +5,7 @@
 \usepackage{parskip}
 \usepackage{fancyhdr}
 \usepackage{nopageno}
+\usepackage{fontspec}
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{color}
@@ -26,9 +27,18 @@
 \definecolor{uiyellow}{RGB}{240,173,78}
 \definecolor{uiblue}{RGB}{91,192,222}
 
+\definecolor{specialblue}{RGB}{128,176,255}
+\definecolor{specialorange}{RGB}{255,188,142}
+\definecolor{specialgreen}{RGB}{189,255,141}
+\definecolor{specialred}{RGB}{249,119,117}
+\definecolor{specialpurple}{RGB}{155,118,242}
+\definecolor{specialyellow}{RGB}{244,216,112}
+
 \definecolor{lightgray}{rgb}{.9,.9,.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\newfontfamily\dosis{Dosis-Bold}
 
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, let, const, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, String, Number, Boolean, Object, Array, Date},

@@ -25,3 +25,13 @@ process get (entity) {
   else return JSON
 }
 \end{verbatim}
+
+\subsubsection{View Single Entity}
+This function will return a single entity of a specified type in a JSON file.
+\begin{verbatim}
+process get (entity, id) {
+  call database find query for entity using ID
+  if error occurs, return error
+  else return JSON
+}
+\end{verbatim}

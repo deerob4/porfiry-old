@@ -7,11 +7,21 @@ Though a relatively small section of the application, the API nevertheless serve
 \subsubsection{Create Entity}
 This function will save an entity to the database.
 \begin{verbatim}
-process save (entity, request) {
+process post (entity, request) {
   create new instance of entity
   set properties of entity to request properties
   call database save function
   if error occurs, return error
   else return "Entity created!"
+}
+\end{verbatim}
+
+\subsubsection{View Entities}
+This function will return all entities of a specified type in a JSON file.
+\begin{verbatim}
+process get (entity) {
+  call database find query for entity
+  if error occurs, return error
+  else return JSON
 }
 \end{verbatim}

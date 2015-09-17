@@ -1,0 +1,7 @@
+\section{Process Design}
+This section features pseudocode for the vast array of processes that will be used throughout the system. Due to the functional paradigm with which the application will be programmed, many of these processes (referred to hereafter as functions) will be used multiple times, and combined with other functions. To aid in readability, pseudocode for each function will be listed only once.
+
+\subsection{API Functions}
+Though a relatively small section of the application, the API nevertheless serves a vital role. Reading and writing from the database, the API routes will return the raw data for the quiz.
+
+\subsubsection{Create Entity}

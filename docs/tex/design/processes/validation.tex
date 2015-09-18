@@ -1,0 +1,39 @@
+\subsection{Validation}
+Validation will be used on every input throughout the system. This section lists the psuedocode that will power the different validation functions.
+
+\subsubsection{Presence Check}
+This function will return true if a field contains a value.
+\begin{verbatim}
+process presenceCheck (field) {
+  if (field.length) {
+    return true
+  } else {
+    return "A value must be entered."
+  }
+}
+\end{verbatim}
+
+\subsubsection{Range Check}
+This function will return true if a field's value is greater than a specified value.
+\begin{verbatim}
+process rangeCheck (field, max)
+  if (field.body > max) {
+    return true
+  } else {
+    return "Value must be greater than 0."
+  }
+}
+\end{verbatim}
+
+\subsubsection{Date Check}
+This function will return true if a field's date is before the current date.
+\begin{verbatim}
+process validDate (field) {
+  set currentDate = the current date
+  if (field.date before currentDate) {
+    return "Date must be after current date."
+  } else {
+    return true
+  }
+}
+\end{verbatim}

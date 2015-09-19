@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{courier}
 \usepackage{fancyvrb}
 
 \hypersetup{
@@ -39,11 +40,12 @@
 \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
 
 \newfontfamily\dosis{Dosis-Bold}
+\setmonofont{Office Code Pro}
 
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, let, const, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, String, Number, Boolean, Object, Array, Date},
   keywordstyle=\color{blue}\bfseries,
-  ndkeywords={class, export, boolean, throw, implements, import, this, default},
+  ndkeywords={class, export, boolean, throw, implements, import, this, default, from},
   ndkeywordstyle=\color{darkgray}\bfseries,
   identifierstyle=\color{black},
   sensitive=false,
@@ -57,7 +59,7 @@
 
 \lstset{
    language=JavaScript,
-   backgroundcolor=\color{lightgray},
+   backgroundcolor=\color{backcolour},
    extendedchars=true,
    basicstyle=\footnotesize\ttfamily,
    showstringspaces=false,

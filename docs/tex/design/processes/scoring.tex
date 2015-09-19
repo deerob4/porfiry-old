@@ -1,0 +1,23 @@
+\subsection{Scoring}
+Much of the application will
+
+\subsubsection{Calculate House Points}
+This function will calculate the number of house points that an answer packet generates, and then compute an up to date list of the current score for either each year or house.
+\begin{verbatim}
+process housePoints(packet, correct, keys, prop, state = {}) {
+  if state is empty {
+    loop through each key
+    set state[key] = 0
+  }
+
+  if answer is correct and peek is false {
+    set score = 1
+  } else if answer is correct and peek is true {
+    set score = 0.5
+  } else set score = 0
+
+  return clone of state
+  set packet[prop] to state[packet[prop]] add score
+}
+\end{verbatim}
+By taking a property value as an argument, the function can be used to calculate house points for any specified group, making it more versatile. Additionally, by only computing the most recent state for a single answer packet, and using the previous state as a starting point, it becomes easier to apply the function in the real time scenario it will be used in - an average of 22,500 calls per quiz, many happening at once.

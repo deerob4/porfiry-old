@@ -23,7 +23,6 @@
     "no-var": 2,
     "eol-last": 2,
     "eqeqeq": 2,
-    "no-undef": 2,
     "no-invalid-this": 2,
     "yoda": 1,
     "default-case": 2,

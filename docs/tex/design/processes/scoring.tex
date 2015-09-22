@@ -21,3 +21,18 @@ process housePoints(packet, correct, keys, prop, state = {}) {
 }
 \end{verbatim}
 By taking a property value as an argument, the function can be used to calculate house points for any specified group, making it more versatile. Additionally, by only computing the most recent state for a single answer packet, and using the previous state as a starting point, it becomes easier to apply the function in the real time scenario it will be used in - an average of 22,500 calls per quiz, many happening at once.
+
+\subsubsection{Most Common Answer}
+This function will work out the most common answers for each question at any one point in the quiz. It works in much the same way as the function for calculating house points, but the appending operations differ so a new function is needed.
+\begin{verbatim}
+process commonAnswer(packet, keys, state) {
+  if state is empty {
+    loop through each key
+    set state[key] = 0
+  }
+  
+  return Object.assign({}, state, {
+    [state[packet.answer]]: 
+  })
+}
+\end{verbatim}

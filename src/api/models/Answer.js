@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export let answerSchema = new mongoose.Schema({
+const answerSchema = new mongoose.Schema({
   text: String,
   correct: Boolean
 });

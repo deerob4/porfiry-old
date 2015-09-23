@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-let formSchema = new mongoose.Schema({
+const formSchema = new mongoose.Schema({
   house: String,
   year: Number,
 });

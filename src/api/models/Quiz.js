@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
-
 import categorySchema from './Category';
 
-let quizSchema = new mongoose.Schema({
+const quizSchema = new mongoose.Schema({
   title: String,
   start: Date,
   questionIntervals: Number,

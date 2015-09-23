@@ -33,6 +33,7 @@ app.get('/', (req, res) => {
 // Set the /api endpoint to the route logic in apiRoutes.
 app.use('/api', apiRoutes);
 
+// Begin the server; listen on the defined port.
 app.listen(app.get('port'), 'localhost', err => {
   if (err) throw err;
   console.log('Listening on port ' + app.get('port'));

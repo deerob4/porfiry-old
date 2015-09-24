@@ -1,35 +1,30 @@
-import mostCommon from './mostCommon';
-import { HOUSES, YEAR_GROUPS } from '../constants/globals';
+import maxKey from 'utils/maxKey';
+import isEmpty from 'lodash/lang/isEmpty';
 
-/**
- * Calculates the most common answers in each form.
- * 
- * @param  {Object} answers
- * @return {Object} Most common answers.
- */
-//  join :: Object -> Object
-function generateAnswerStatistics(answers) {
-  let quizAnswers = {};
+function answerStatistics(packet, keys, prop, state = {}) {
+  const innerTree = {
+    mostCommon: undefined,
+    answerFreqs: { A: 0, B: 0,  C: 0, D: 0 }
+  };
 
-  HOUSES.map(house => {
-    YEAR_GROUPS.map(year => {
-      // Set the house property on the quizAnswers var either to
-      // itself from previous passes or an empty object.
-      quizAnswers[house] = quizAnswers[house] || {};
-      // Return the most common answer in each form.
-      quizAnswers[house][year] = mostCommon(answers.filter(answer =>
-        answer.house === house[0] && answer.year === year
-      ).reduce((answers, request) => [...answers, request.answer])); // Flatten the array to just the values.
+  // If no state object is passed, loop through the keys and set each
+  // one to innerTree.
+  isEmpty(state) ? keys.forEach(key => state[key] = innerTree) : 0;
 
-      if (year === 11) {
-        // Get all the values that have just been generated.
-        let results = Object.keys(quizAnswers[house]).map(k => quizAnswers[house][k]);
-        quizAnswers[house]['mode'] = mostCommon(results);
-      }
-    });
+  // Return a clone of the previous state, but set the answer frequency
+  // for the answer the user chose, in their house, to itself + 1.
+  const newState = Object.assign({}, state, {
+    [packet[prop]]: Object.assign({}, state[packet[prop]], {
+      answerFreqs: Object.assign({}, state[packet[prop]].answerFreqs, {
+        [packet.answer]: state[packet[prop]].answerFreqs[packet.answer] + 1
+      })
+    })
   });
 
-  return quizAnswers;
+  // Set the mostCommon property for the packet's house to freq max.
+  newState[packet[prop]].mostCommon = maxKey(newState[packet[prop]].answerFreqs);
+
+  return newState;
 }
 
-export default generateAnswerStatistics;
+export default answerStatistics;

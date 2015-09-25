@@ -32,6 +32,17 @@ function highest(object) {
 }
 \end{verbatim}
 
+\subsubsection{Correct Answer}
+Returns true if the user chooses the correct answer.
+\begin{verbatim}
+function isCorrect(packet, correctAnswer) {
+  if packet.answer = correctAnswer {
+    Highlight box green.
+  }
+  otherwise highlight box red.
+}
+\end{verbatim}
+
 \subsubsection{Most Common Answer}
 This function will work out the most common answers for each question at any one point in the quiz. It works in much the same way as the function for calculating house points, but the appending operations differ so a new function is needed.
 \begin{verbatim}

@@ -7,3 +7,22 @@ Express startTime as a quantity of hours, minutes and seconds.
 Display this on the screen.
 When the countdown has elapsed, begin the quiz.
 \end{verbatim}
+
+\subsubsection{Calculate Colour Palette}
+This function will calculate a themed colour palette for the system, depending on the user's house.
+\begin{verbatim}
+function randomColours(house) {
+  if (house = 'acton') set hue to blue
+  if (house = 'baxter') set hue to orange
+  if (house = 'clive') set hue to green
+  if (house = 'darwin') set hue to purple
+  if (house = 'houseman') set hue to red
+  if (house = 'webb') set hue to yellow
+  
+  generate 10 random colours based on hue
+  modify luminance for each one based on factors as yet unknown.
+  
+  return colours
+  
+}
+\end{verbatim}

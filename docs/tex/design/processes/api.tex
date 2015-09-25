@@ -19,7 +19,7 @@ This function will return all entities of a specified type in a JSON file.
 process get (entity) {
   call database find query for entity
   if error occurs, return error
-  else return JSON
+  else return JSON of entities
 }
 \end{verbatim}
 
@@ -29,6 +29,26 @@ This function will return a single entity of a specified type in a JSON file.
 process get (entity, id) {
   call database find query for entity using ID
   if error occurs, return error
-  else return JSON
+  else return JSON of entity
+}
+\end{verbatim}
+
+\subsubsection{Update single entity}
+This function will update a single entity in a database.
+\begin{verbatim}
+process put (entity, id, props) {
+  call database find query for entity using ID
+  go through new properties and assign to the entity.
+  return JSON of entity
+}
+\end{verbatim}
+
+\subsubsection{Delete single entity}
+This function will delete entity in a database.
+\begin{verbatim}
+process delete (entity, id) {
+  call database find query for entity using ID
+  delete entity from database
+  return "entity has been deleted!"
 }
 \end{verbatim}

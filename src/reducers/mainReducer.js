@@ -14,7 +14,8 @@ function colours(state = {}, action) {
   switch (action.type) {
     case CHANGE_COLOURS:
       return Object.assign({}, state, {
-        colours: action.colours
+        main: action.colours.main,
+        secondary: action.colours.secondary
       });
     default:
       return state;

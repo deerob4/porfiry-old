@@ -1,7 +1,4 @@
 import { combineReducers } from 'redux';
-import creatorReducer from 'creatorReducer';
+import * as reducers from './reducers';
 
-return combineReducers(
-  creatorReducer
-);
-
+return combineReducers(reducers);

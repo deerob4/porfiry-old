@@ -10,6 +10,4 @@ function house(state, action) {
   }
 }
 
-export default combineReducers({
-  house
-});
+export default { house };

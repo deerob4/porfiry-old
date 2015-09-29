@@ -10,4 +10,15 @@ function house(state, action) {
   }
 }
 
-export default { house };
+function colours(state = {}, action) {
+  switch (action.type) {
+    case CHANGE_COLOURS:
+      return Object.assign({}, state, {
+        colours: action.colours
+      });
+    default:
+      return state;
+  }
+}
+
+export default { house, colours };

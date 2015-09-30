@@ -1,5 +1,5 @@
 let quiz = {
-  title: 'Summer Term House Quiz',
+  title: 'Test Quiz',
   start: new Date(),
   questionIntervals: 10000,
   realtimeGraphics: true,
@@ -101,9 +101,5 @@ let quiz = {
   	}
   ]
 };
-
-let sportQuestions = quiz.categories.filter(category => category.name === 'Sport');
-
-console.log(sportQuestions[0].questions);
 
 export default quiz;

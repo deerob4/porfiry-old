@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 function generatePackets(n) {
   const answers = ['a', 'b', 'c', 'd'];
@@ -21,3 +21,5 @@ function generatePackets(n) {
 
   return quizAnswers;
 }
+
+export default generatePackets;

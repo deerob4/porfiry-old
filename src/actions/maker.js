@@ -12,8 +12,8 @@ export function deleteCategory(id) {
   return { type: types.DELETE_CATEGORY, id };
 }
 
-export function addQuestion(body) {
-  return { type: types.ADD_QUESTION, body };
+export function addQuestion(categoryId, body) {
+  return { type: types.ADD_QUESTION, categoryId, body };
 }
 
 export function editQuestion(id, body) {
@@ -24,12 +24,12 @@ export function deleteQuestion(id) {
   return { type: types.DELETE_QUESTION, id };
 }
 
-export function addAnswer(body) {
-  return { type: types.ADD_ANSWER, body };
+export function addAnswer(questionId, body, correct) {
+  return { type: types.ADD_ANSWER, questionId, body, correct };
 }
 
-export function editAnswer(id, body) {
-  return { type: types.EDIT_ANSWER, id, body };
+export function editAnswer(id, body, correct) {
+  return { type: types.EDIT_ANSWER, id, body, correct };
 }
 
 export function deleteAnswer(id) {

@@ -4,10 +4,10 @@ import nextBiggest from 'utils/nextBiggest';
 function categories(state = [], action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
-      return [{
+      return Object.assign({}, state, {
         id: nextBiggest(state),
         name: action.name
-      }, ...state ];
+      });
 
     case types.EDIT_CATEGORY:
       return state.map(category =>
@@ -24,31 +24,52 @@ function categories(state = [], action) {
   }
 }
 
-function questions(state = {}, action) {
+function questions(state = [], action) {
   switch (action.type) {
     case types.ADD_QUESTION:
-      return Object.assign({}, state, {
-        [action.id]: [{
-          id: nextBiggest(state[action.id]),
-          body: action.body
-        }, ...state[action.id]]
-      });
+      return [{
+        body: action.body,
+        id: nextBiggest(state),
+        categoryId: action.categoryId
+      }, ...state];
 
     case types.EDIT_QUESTION:
-      return Object.assign({}, state, {
-        [action.id]: state[action.id].map(question =>
-          question.id === action.id ?
-            Object.assign({}, question, { body: action.body }) :
-            question
-        )
-      });
+      return state.map(question =>
+        question.id === action.id ?
+          Object.assign({}, question, { body: action.body }) :
+          question
+      );
 
     case types.DELETE_QUESTION:
-      return Object.assign({}, state, {
-        [action.id]: state[action.id].filter(question =>
-          question.id !== action.id
-        )
-      });
+      return state.filter(x => x.id !== action.id);
+
+    default:
+      return state;
+  }
+}
+
+function answers(state = [], action) {
+  switch (action.type) {
+    case types.ADD_ANSWER:
+      return [{
+        body: action.body,
+        correct: action.correct,
+        id: nextBiggest(state),
+        questionId: action.questionId
+      }, ...state];
+
+    case types.EDIT_ANSWER:
+      return state.map(answer =>
+        answer.id === action.id ?
+          Object.assign({}, answer, {
+            body: action.body,
+            correct: action.correct
+          }) :
+          answer
+      );
+
+    case types.DELETE_ANSWER:
+      return state.filter(x => x.id !== action.id);
 
     default:
       return state;

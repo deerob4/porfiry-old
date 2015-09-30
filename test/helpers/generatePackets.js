@@ -1,3 +1,5 @@
+'use strict'
+
 function generatePackets(n) {
   const answers = ['a', 'b', 'c', 'd'];
   const houses = ['A', 'B', 'C', 'D', 'H', 'W'];
@@ -19,5 +21,3 @@ function generatePackets(n) {
 
   return quizAnswers;
 }
-
-export default generatePackets;

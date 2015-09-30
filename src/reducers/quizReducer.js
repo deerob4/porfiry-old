@@ -1,7 +1,7 @@
 import * as types from 'constants/MakerActions';
 import nextBiggest from 'utils/nextBiggest';
 
-function categories(state = [], action) {
+export function categories(state = [], action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
       return Object.assign({}, state, {
@@ -24,7 +24,7 @@ function categories(state = [], action) {
   }
 }
 
-function questions(state = [], action) {
+export function questions(state = [], action) {
   switch (action.type) {
     case types.ADD_QUESTION:
       return [{
@@ -48,7 +48,7 @@ function questions(state = [], action) {
   }
 }
 
-function answers(state = [], action) {
+export function answers(state = [], action) {
   switch (action.type) {
     case types.ADD_ANSWER:
       return [{

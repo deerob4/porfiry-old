@@ -4,15 +4,16 @@ import nextBiggest from 'utils/nextBiggest';
 export function categories(state = [], action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         id: nextBiggest(state),
         name: action.name
-      });
+      };
 
     case types.EDIT_CATEGORY:
       return state.map(category =>
         category.id === action.id ?
-          Object.assign({}, category, { name: action.name }) :
+          { ...category, name: action.name } :
           category
       );
 
@@ -36,7 +37,7 @@ export function questions(state = [], action) {
     case types.EDIT_QUESTION:
       return state.map(question =>
         question.id === action.id ?
-          Object.assign({}, question, { body: action.body }) :
+          { ...question, body: action.body } :
           question
       );
 
@@ -61,10 +62,7 @@ export function answers(state = [], action) {
     case types.EDIT_ANSWER:
       return state.map(answer =>
         answer.id === action.id ?
-          Object.assign({}, answer, {
-            body: action.body,
-            correct: action.correct
-          }) :
+          { ...answer, body: action.body, correct: action.correct } :
           answer
       );
 

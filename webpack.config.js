@@ -12,6 +12,19 @@ let config = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
+  resolve: {
+    alias: {
+      actions: path.resolve('./src/', 'actions'),
+      components: path.resolve('./src/', 'components'),
+      constants: path.resolve('./src/', 'constants'),
+      containers: path.resolve('./src/', 'containers'),
+      libs: path.resolve('./src/', 'libs'),
+      reducers: path.resolve('./src/', 'reducers'),
+      store: path.resolve('./src/', 'store'),
+      styles: path.resolve('./src/', 'styles'),
+      utils: path.resolve('./src/', 'utils')
+    }
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
@@ -20,7 +33,7 @@ let config = {
     preLoaders: [{
       test: /\.js$/,
       loaders: ['eslint-loader'],
-      exclude: /node_modules/,
+      exclude: /node_modules/
     }],
     loaders: [
       {

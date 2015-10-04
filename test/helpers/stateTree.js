@@ -1,7 +1,28 @@
 {
   route: '/maker',
   house: 'Acton',
-  colours: {},
+  colours: {
+    button: {
+      border: '#fff',
+      text: '#fff',
+      background: '#fff'
+    },
+    select: {
+      border: '#fff',
+      text: '#fff',
+      background: '#fff'
+    },
+    answer: {
+      border: '#fff',
+      text: '#fff',
+      background: '#fff',
+      icon: '#fff'
+    },
+    text: {
+      primary: '#fff',
+      secondary: '#fff'
+    }
+  },
   quiz: {
     categories: [
       {

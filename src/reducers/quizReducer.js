@@ -50,7 +50,7 @@ function questions(state = [], action) {
   }
 }
 
-function answers(state = [], action) {
+function answers(state = {}, action) {
   switch (action.type) {
     case types.ADD_ANSWER:
       return [{

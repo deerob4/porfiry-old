@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 app.use('/api', apiRoutes);
 
 // Begin the server; listen on the defined port.
-app.listen(app.get('port'), 'localhost', err => {
+app.listen(config.defaultPort, 'localhost', err => {
   if (err) throw err;
   console.log('Listening on port ' + config.defaultPort);
 });

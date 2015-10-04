@@ -2,15 +2,16 @@ import randomColour from 'randomcolor';
 import luminance from 'utils/luminance';
 
 function colourScheme(luminosity, hue) {
-  console.log(hue);
+  // Generate mainColour background colours for elements.
+  let mainColour = randomColour({ luminosity, hue });
 
-  // Generate main background colours for elements.
-  const [
-    buttonBackground,
-    selectBackground,
-    answerBackground,
-    primaryText
-  ] = randomColour({ luminosity, hue, count: 4 });
+  if (hue === 'yellow') {
+    mainColour = luminance(mainColour, -0.08);
+  }
+
+  const buttonBackground = luminance(mainColour, 0.3);
+  const selectBackground = luminance(mainColour, 0.1);
+  const answerBackground = luminance(mainColour, 0.2);
 
   return {
     button: {
@@ -30,8 +31,8 @@ function colourScheme(luminosity, hue) {
       icon: luminance(answerBackground, -0.4)
     },
     text: {
-      primary: primaryText,
-      secondary: luminance(primaryText, -0.2)
+      primary: mainColour,
+      secondary: luminance(mainColour, -0.1)
     }
   };
 }

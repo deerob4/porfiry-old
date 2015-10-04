@@ -1,7 +1,8 @@
 import * as types from 'constants/MakerActions';
 import nextBiggest from 'utils/nextBiggest';
+import { combineReducers } from 'redux';
 
-export function categories(state = [], action) {
+function categories(state = [], action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
       return {
@@ -25,7 +26,7 @@ export function categories(state = [], action) {
   }
 }
 
-export function questions(state = [], action) {
+function questions(state = [], action) {
   switch (action.type) {
     case types.ADD_QUESTION:
       return [{
@@ -49,7 +50,7 @@ export function questions(state = [], action) {
   }
 }
 
-export function answers(state = [], action) {
+function answers(state = [], action) {
   switch (action.type) {
     case types.ADD_ANSWER:
       return [{
@@ -73,3 +74,9 @@ export function answers(state = [], action) {
       return state;
   }
 }
+
+export default combineReducers({
+  categories,
+  questions,
+  answers
+});

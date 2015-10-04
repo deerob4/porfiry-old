@@ -1,25 +1,83 @@
 h1 {
   font-family: 'Dosis', sans-serif;
   margin-bottom: 5px;
-  font-size: 45px;
+  font-size: 70px;
+  text-align: center;
+   text-rendering: optimizeLegibility;
+}
+
+p {
+  font-family: Dosis, sans-serif;
+  font-size: 26px;
+  text-align: center;
 }
 
 select {
-  width: 455px;
-  height: 52px;
+  width: 515px;
+  height: 55px;
   border-radius: 4px;
-  border: 3px solid #ccae95;
-  background-color: #ffdaba;
+  border: 3px solid;
   font-family: 'Dosis';
-  color: '#e6c4a7';
   font-size: 20px;
   padding: 10px;
-  margin-bottom: 10px;
-  margin-top: 6px
+  margin: 6px 0 10px 0;
+  transition: all 0.2s ease;
 }
 
-label {
-  font-family: 'Dosis', sans-serif;
-  font-size: 20px;
-  padding-bottom: 10px;
+form {
+  width: 515px;
+  margin: 0 auto;
+}
+
+.button {
+  border-radius: 4px;
+  border: 3px solid;
+  font-family: 'Dosis';
+  font-size: 25px;
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+  width: 200px;
+  display: inline-block;
+  height: 60px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  margin-left: 140px;
+  transition: all 0.2s ease;
+}
+
+select:hover {
+  transform: scale(1.03);
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.button:active .select:active {
+  transform: scale(0.6) !important;
+}
+
+.loginForm {
+  width: 100%;
+  height: 400px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.rotate {
+  -webkit-animation: rotation 8s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+  25% {
+    -webkit-transform: rotate(-2deg);
+  }
+  75% {
+    -webkit-transform: rotate(2deg);
+  }
 }

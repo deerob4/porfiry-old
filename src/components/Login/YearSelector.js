@@ -8,19 +8,15 @@ class HouseSelector extends Component {
   }
 
   render() {
-    const labelStyle = { color: this.props.colours.text.secondary };
-    const selectStyle = this.props.colours.select;
+    const selectStyle = this.props.colours;
 
     return (
-      <div>
-        <label style={labelStyle}> I'm in year...</label>
-        <br />
-        <select style={selectStyle} onChange={this.props.changeYear}>
-          {this.props.years.map(year =>
-            <option key={year} value={year}>{year}</option>
-          )}
-        </select>
-      </div>
+      <select style={selectStyle} onChange={this.props.changeYear}>
+        <option value="" disabled selected>And I'm in year...</option>
+        {this.props.years.map(year =>
+          <option key={year} value={year}>Year {year}</option>
+        )}
+      </select>
     );
   }
 }

@@ -3,13 +3,13 @@ import luminance from 'utils/luminance';
 
 function colourScheme(luminosity, hue) {
   // Generate mainColour background colours for elements.
-  let mainColour = randomColour({ luminosity, hue });
+  let mainColour = randomColour({ hue });
 
   if (hue === 'yellow') {
     mainColour = luminance(mainColour, -0.08);
   }
 
-  const buttonBackground = luminance(mainColour, 0.3);
+  const buttonBackground = luminance(mainColour, 0.25);
   const selectBackground = luminance(mainColour, 0.1);
   const answerBackground = luminance(mainColour, 0.2);
 

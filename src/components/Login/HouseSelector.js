@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Select, Option, Placeholder } from 'belle';
+import capitalise from 'lodash/string/capitalize';
 
 class HouseSelector extends Component {
   static propTypes = {
@@ -8,19 +8,15 @@ class HouseSelector extends Component {
   }
 
   render() {
-    const labelStyle = { color: this.props.colours.text.secondary };
-    const selectStyle = this.props.colours.select;
+    const selectStyle = this.props.colours;
 
     return (
-      <div>
-        <label style={labelStyle}>And I belong to...</label>
-        <br />
-        <select style={selectStyle} onChange={this.props.changeHouse}>
-          {this.props.houses.map(house =>
-            <option key={house} value={house.toLowerCase()}>{house}</option>
-          )}
-        </select>
-      </div>
+      <select style={selectStyle} onChange={this.props.changeHouse}>
+        <option value="" disabled selected>I belong to...</option>
+        {this.props.houses.map(house =>
+          <option key={house} value={house}>{capitalise(house)}</option>
+        )}
+      </select>
     );
   }
 }

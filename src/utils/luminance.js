@@ -15,6 +15,6 @@ function luminance(hex, lum) {
   }
 
   return rgb;
-};
+}
 
 export default luminance;

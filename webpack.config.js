@@ -43,7 +43,7 @@ let config = {
       },
       {
         test: /\.css$/,
-        loaders: 'style!css',
+        loaders: ['style', 'css'],
         include: path.join(__dirname, 'src')
       }
     ]

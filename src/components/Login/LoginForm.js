@@ -4,7 +4,8 @@ import YearSelector from './YearSelector';
 
 class LoginForm extends Component {
   static propTypes = {
-    changeColours: PropTypes.func.isRequired,
+    changeHouse: PropTypes.func.isRequired,
+    changeYear: PropTypes.func.isRequired,
     houses: PropTypes.array.isRequired,
     years: PropTypes.array.isRequired
   }
@@ -14,14 +15,19 @@ class LoginForm extends Component {
   }
 
   render() {
+    const style = { color: this.props.colours.text.primary };
+
     return (
       <div>
-        <h1>Priory School House Quiz</h1>
+        <h1 style={style}>Priory School House Quiz</h1>
         <form>
-          <YearSelector years={this.props.years} />
-          <HouseSelector changeColours={this.props.changeColours}
-              houses={this.props.houses}
-          />
+          <YearSelector colours={this.props.colours}
+                        changeYear={this.props.changeYear}
+                        years={this.props.years} />
+          <br />
+          <HouseSelector colours={this.props.colours}
+                         changeHouse={this.props.changeHouse}
+                         houses={this.props.houses} />
         </form>
       </div>
     );

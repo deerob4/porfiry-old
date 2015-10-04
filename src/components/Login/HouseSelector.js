@@ -3,21 +3,28 @@ import { Select, Option, Placeholder } from 'belle';
 
 class HouseSelector extends Component {
   static propTypes = {
-    changeColours: PropTypes.func.isRequired,
+    changeHouse: PropTypes.func.isRequired,
     houses: PropTypes.array.isRequired
   }
 
   render() {
+    const labelStyle = { color: this.props.colours.text.secondary };
+    const selectStyle = this.props.colours.select;
+
     return (
-      <Select onUpdate={this.props.changeColours}>
-        <Placeholder>And I belong to...</Placeholder>
-        {this.props.houses.map(house =>
-          <Option key={house} value={house.toLowerCase()}>{house}</Option>
-        )}
-      </Select>
+      <div>
+        <label style={labelStyle}>And I belong to...</label>
+        <br />
+        <select style={selectStyle} onChange={this.props.changeHouse}>
+          {this.props.houses.map(house =>
+            <option key={house} value={house.toLowerCase()}>{house}</option>
+          )}
+        </select>
+      </div>
     );
   }
 }
 
 export default HouseSelector;
 
+// <Placeholder>And I belong to...</Placeholder>

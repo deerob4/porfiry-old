@@ -1,0 +1,25 @@
+h1 {
+  font-family: 'Dosis', sans-serif;
+  margin-bottom: 5px;
+  font-size: 45px;
+}
+
+select {
+  width: 455px;
+  height: 52px;
+  border-radius: 4px;
+  border: 3px solid #ccae95;
+  background-color: #ffdaba;
+  font-family: 'Dosis';
+  color: '#e6c4a7';
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 6px
+}
+
+label {
+  font-family: 'Dosis', sans-serif;
+  font-size: 20px;
+  padding-bottom: 10px;
+}

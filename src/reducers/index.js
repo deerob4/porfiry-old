@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import quiz from './quizReducer';
-import { house, colours } from './globalReducer';
+import { user, colours } from './loginReducer';
 
 const rootReducer = combineReducers({
-  house,
+  user,
   quiz,
   colours
 });

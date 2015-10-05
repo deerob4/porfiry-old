@@ -37,7 +37,6 @@
     "webpack-hot-middleware": "^2.3.0"
   },
   "dependencies": {
-    "belle": "^1.2.2",
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "history": "^1.11.1",

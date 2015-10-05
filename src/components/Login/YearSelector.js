@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Select, Option, Placeholder } from 'belle';
 
 class HouseSelector extends Component {
   static propTypes = {

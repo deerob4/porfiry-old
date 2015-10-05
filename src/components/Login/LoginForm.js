@@ -21,12 +21,12 @@ class LoginForm extends Component {
     const secondary = { color: this.props.colours.text.secondary };
 
     return (
-      <div className="loginForm">
-        <div className="animated zoomInDown">
+      <div className="loginForm rotate">
+        <div className="animated bounceInDown">
           <h1 style={primary}>Priory School Quiz</h1>
           <p style={secondary}>Hello! Choose your house and year to get started!</p>
         </div>
-        <form className="animated zoomInUp">
+        <form className="animated bounceInUp">
           <HouseSelector colours={this.props.colours.select}
                          changeHouse={this.props.changeHouse}
                          houses={this.props.houses} />

@@ -3,11 +3,10 @@ import luminance from 'utils/luminance';
 
 function colourScheme(luminosity, hue) {
   // Generate mainColour background colours for elements.
-  let mainColour = randomColour({ hue });
-
-  if (hue === 'yellow') {
-    mainColour = luminance(mainColour, -0.08);
-  }
+  const mainColour = luminance(
+    randomColour({ luminosity, hue, seed: 1000 }),
+    -0.1
+  );
 
   const buttonBackground = luminance(mainColour, 0.25);
   const selectBackground = luminance(mainColour, 0.1);

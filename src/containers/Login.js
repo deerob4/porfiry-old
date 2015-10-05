@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import LoginForm from 'components/Login/LoginForm';
 import colourScheme from 'libs/colourScheme';
 import { changeColours, changeHouse, changeYear } from 'actions/login';
-import choice from 'utils/choice';
+import sample from 'lodash/collection/sample';
 
 import 'styles/main.css';
 
@@ -21,7 +21,7 @@ class Login extends Component {
 
     // Choose a random house and generate
     // an initial set of colours.
-    let house = choice(houses);
+    let house = sample(houses);
     this.props.dispatch(changeHouse(house));
     this.changeColours(house);
   }
@@ -89,9 +89,7 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    quiz: state.quiz,
     colours: state.colours,
-    house: state.house,
     user: state.user
   };
 }

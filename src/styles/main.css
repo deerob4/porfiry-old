@@ -54,7 +54,7 @@ select:hover {
   transform: scale(1.1);
 }
 
-.button:active .select:active {
+.button:active {
   transform: scale(0.6) !important;
 }
 
@@ -70,14 +70,14 @@ select:hover {
 }
 
 .rotate {
-  -webkit-animation: rotation 8s infinite linear;
+  -webkit-animation: rotation 10s infinite linear;
 }
 
 @-webkit-keyframes rotation {
   25% {
-    -webkit-transform: rotate(-2deg);
+    -webkit-transform: rotate(-1.5deg);
   }
   75% {
-    -webkit-transform: rotate(2deg);
+    -webkit-transform: rotate(1.5deg);
   }
 }

@@ -5,7 +5,8 @@ function housePoints(packet, correct, keys, prop, state = {}) {
   // creating an object where each key is a prop, set to 0.
   isEmpty(state) ? keys.forEach(key => state[key] = 0) : null;
 
-  return Object.assign({}, state, {
+  return {
+    ...state,
     [packet[prop]]: state[packet[prop]] += (
       // If the answer is correct and they didn't peek.
       packet.answer === correct && packet.peek === false ? 1 :

@@ -8,7 +8,7 @@ import config from './config';
 import apiRoutes from './src/api/index';
 
 // Begin connection to database.
-mongoose.connect(`mongodb://localhost:27017/${config.database}`);
+// mongoose.connect(`mongodb://localhost:27017/${config.database}`);
 
 let app = express();
 let compiler = webpack(webpackConfig);
@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 app.use('/api', apiRoutes);
 
 // Begin the server; listen on the defined port.
-app.listen(config.defaultPort, 'localhost', err => {
+app.listen(config.defaultPort, '0.0.0.0', err => {
   if (err) throw err;
   console.log('Listening on port ' + config.defaultPort);
 });

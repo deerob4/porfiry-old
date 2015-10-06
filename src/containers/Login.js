@@ -14,10 +14,15 @@ class Login extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      validationClass: 'animated'
+    }
+    
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.changeColours = this.changeColours.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
+    this.loadCreator = this.loadCreator.bind(this);
 
     // Choose a random house and generate
     // an initial set of colours.
@@ -61,6 +66,13 @@ class Login extends Component {
   isQuizReady() {
     return false;
   }
+  
+  loadCreator() {
+    if (!this.props.user.house && !this.props.user.year) {
+      alert('no')
+      this.setState({ validationClass: 'animated shake' });
+    }
+  }
 
   render() {
     const years = [7, 8, 9, 10, 11];
@@ -77,10 +89,11 @@ class Login extends Component {
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}
                      colours={this.props.colours}
+                     validationClass={this.state.validationClass}
+                     loadCreator={this.loadCreator}
                      isQuizReady={this.isQuizReady}
                      houses={houses}
-                     years={years}
-          />
+                     years={years} />
         </div>
       </div>
     );

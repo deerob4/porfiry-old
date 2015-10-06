@@ -112,10 +112,10 @@ select:hover
 {
   25%
   {
-    -webkit-transform: rotate(-1.5deg);
+    -webkit-transform: rotate(-1.2deg);
   }
   75%
   {
-    -webkit-transform: rotate(1.5deg);
+    -webkit-transform: rotate(1.2deg);
   }
 }

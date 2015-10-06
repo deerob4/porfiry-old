@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as types from 'constants/LoginActions';
 
-function house(state = 'acton', action) {
+function house(state = '', action) {
   switch (action.type) {
     case types.CHANGE_HOUSE:
       return action.house;
@@ -10,7 +10,7 @@ function house(state = 'acton', action) {
   }
 }
 
-function year(state = 7, action) {
+function year(state = '', action) {
   switch (action.type) {
     case types.CHANGE_YEAR:
       return action.year;

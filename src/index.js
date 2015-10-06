@@ -26,7 +26,6 @@ React.render(
   document.getElementById('root')
 );
 
-
-  // <DebugPanel top right bottom>
-  //   <DevTools store={store} monitor={LogMonitor} />
-  // </DebugPanel>
+// <DebugPanel top right bottom>
+//       <DevTools store={store} monitor={LogMonitor} />
+//     </DebugPanel>

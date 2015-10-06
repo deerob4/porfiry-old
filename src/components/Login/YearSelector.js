@@ -7,11 +7,12 @@ class HouseSelector extends Component {
   }
 
   render() {
+    const message = 'And I\'m in year...';
     const selectStyle = this.props.colours;
-
+    
     return (
       <select style={selectStyle} onChange={this.props.changeYear}>
-        <option value="" disabled selected>And I'm in year...</option>
+        <option value="" disabled selected>{message}</option>
         {this.props.years.map(year =>
           <option key={year} value={year}>Year {year}</option>
         )}

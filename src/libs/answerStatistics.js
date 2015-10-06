@@ -13,13 +13,16 @@ function answerStatistics(packet, keys, prop, state = {}) {
 
   // Return a clone of the previous state, but set the answer frequency
   // for the answer the user chose, in their house, to itself + 1.
-  const newState = Object.assign({}, state, {
-    [packet[prop]]: Object.assign({}, state[packet[prop]], {
-      answerFreqs: Object.assign({}, state[packet[prop]].answerFreqs, {
+  const newState = {
+    ...state,
+    [packet[prop]]: {
+      ...state[packet[prop]],
+      answerFreqs: {
+        ...state[packet[prop]].answerFreqs,
         [packet.answer]: state[packet[prop]].answerFreqs[packet.answer] + 1
-      })
-    })
-  });
+      }
+    }
+  };
 
   // Set the mostCommon property for the packet's house to freq max.
   newState[packet[prop]].mostCommon = maxKey(newState[packet[prop]].answerFreqs);

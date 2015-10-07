@@ -23,9 +23,8 @@ class LoginContainer extends Component {
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.changeColours = this.changeColours.bind(this);
-    this.isQuizReady = this.isQuizReady.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
-    this.loadCreator = this.loadCreator.bind(this);
+    this.isQuizReady = this.isQuizReady.bind(this);
 
     // Generate an initial set of colours.
     this.changeColours(sample(houses));

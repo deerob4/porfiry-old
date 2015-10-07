@@ -28,9 +28,9 @@ class LoginForm extends Component {
           <h1 style={style}>Priory School Quiz</h1>
           <p style={style}>Hello! Choose your house and year to get started!</p>
         </div>
-
         <form className="animated bounceInUp">
           <HouseSelector colours={this.props.colours.select}
+                         validation={this.props.houseValidation}
                          changeHouse={this.props.changeHouse}
                          houseValidation={this.props.houseValidation}
                          houses={this.props.houses} />
@@ -38,6 +38,7 @@ class LoginForm extends Component {
           <br />
 
           <YearSelector colours={this.props.colours.select}
+                        validation={this.props.yearValidation}
                         changeYear={this.props.changeYear}
                         yearValidation={this.props.yearValidation}
                         years={this.props.years} />

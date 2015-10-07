@@ -25,6 +25,7 @@ class LoginContainer extends Component {
     this.changeColours = this.changeColours.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
+    this.loadCreator = this.loadCreator.bind(this);
 
     // Generate an initial set of colours.
     this.changeColours(sample(houses));
@@ -94,6 +95,8 @@ class LoginContainer extends Component {
                      houseValidation={this.state.houseValidation}
                      yearValidation={this.state.yearValidation}
                      colours={this.props.colours}
+                     validationClass={this.state.validationClass}
+                     loadCreator={this.loadCreator}
                      isQuizReady={this.isQuizReady}
                      houses={houses}
                      years={years} />

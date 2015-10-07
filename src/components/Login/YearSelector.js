@@ -8,11 +8,13 @@ class HouseSelector extends Component {
   }
 
   render() {
+    const message = 'And I\'m in year...';
+
     return (
       <select style={this.props.colours}
               className={this.props.yearValidation}
               onChange={this.props.changeYear}>
-        <option value="" disabled selected>And I'm in year...</option>
+        <option value="" disabled selected>{message}</option>
         {this.props.years.map(year =>
           <option key={year} value={year}>Year {year}</option>
         )}

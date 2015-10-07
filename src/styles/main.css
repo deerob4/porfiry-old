@@ -76,24 +76,6 @@ select:hover
   margin: auto;
 }
 
-.rotate
-{
-  -webkit-animation: rotation 10s infinite linear;
-     -moz-animation: rotation 10s infinite linear;
-}
-
-@-webkit-keyframes rotation
-{
-  25%
-  {
-    -webkit-transform: rotate(-1.3deg);
-  }
-  75%
-  {
-    -webkit-transform: rotate(1.3deg);
-  }
-}
-
 .button
 {
   font-family: 'Dosis';

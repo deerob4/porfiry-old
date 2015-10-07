@@ -9,21 +9,25 @@ import sample from 'lodash/collection/sample';
 import 'styles/main.css';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
+const years = [7, 8, 9, 10, 11];
 
-class Login extends Component {
+class LoginContainer extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      houseValidation: '',
+      yearValidation: ''
+    };
 
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.changeColours = this.changeColours.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
+    this.validateLogin = this.validateLogin.bind(this);
 
-    // Choose a random house and generate
-    // an initial set of colours.
-    let house = sample(houses);
-    this.props.dispatch(changeHouse(house));
-    this.changeColours(house);
+    // Generate an initial set of colours.
+    this.changeColours(sample(houses));
   }
 
   changeYear(e) {
@@ -38,7 +42,6 @@ class Login extends Component {
   }
 
   changeColours(house) {
-    // Maps each house to it's colour.
     const colourMappings = {
       acton: 'blue',
       baxter: 'orange',
@@ -51,11 +54,24 @@ class Login extends Component {
     // Generate a new colour scheme and dispatch
     // it to the state tree.
     this.props.dispatch(changeColours(
-      colourScheme(
-        'light',
-        colourMappings[house]
-      )
+      colourScheme('light', colourMappings[house])
     ));
+  }
+
+  validateLogin() {
+    if (!this.props.user.house) {
+      // Set the animation class to pass to component.
+      this.setState({ houseValidation: 'animated shake' });
+      // Remove the class so the animation can be replayed.
+      setTimeout(() => this.setState({ houseValidation: '' }), 850);
+    }
+
+    if (!this.props.user.year) {
+      // Set the animation class to pass to component.
+      this.setState({ yearValidation: 'animated shake'});
+      // Remove the class so the animation can be replayed.
+      setTimeout(() => this.setState({ yearValidation: '' }), 850);
+    }
   }
 
   isQuizReady() {
@@ -63,8 +79,6 @@ class Login extends Component {
   }
 
   render() {
-    const years = [7, 8, 9, 10, 11];
-
     const style = {
       height: window.innerHeight + 'px',
       width: '100%',
@@ -76,11 +90,13 @@ class Login extends Component {
         <div className="container">
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}
+                     validateLogin={this.validateLogin}
+                     houseValidation={this.state.houseValidation}
+                     yearValidation={this.state.yearValidation}
                      colours={this.props.colours}
                      isQuizReady={this.isQuizReady}
                      houses={houses}
-                     years={years}
-          />
+                     years={years} />
         </div>
       </div>
     );
@@ -96,4 +112,4 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps
-)(Login);
+)(LoginContainer);

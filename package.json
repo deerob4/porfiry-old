@@ -37,8 +37,11 @@
     "webpack-hot-middleware": "^2.3.0"
   },
   "dependencies": {
+    "animate.css": "^3.4.0",
     "body-parser": "^1.13.3",
+    "bootstrap": "^3.3.5",
     "express": "^4.13.3",
+    "fastclick": "^1.0.6",
     "history": "^1.11.1",
     "lodash": "^3.10.1",
     "mongoose": "^4.0.8",

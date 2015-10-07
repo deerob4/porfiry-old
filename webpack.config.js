@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 let config = {
   devtool: 'eval',
@@ -27,7 +28,10 @@ let config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('app.css', {
+      allChunks: true
+    })
   ],
   module: {
     preLoaders: [{
@@ -44,7 +48,7 @@ let config = {
       {
         test: /\.css$/,
         loaders: ['style', 'css', 'autoprefixer'],
-        include: path.join(__dirname, 'src')
+        include: path.join(__dirname)
       }
     ]
   }

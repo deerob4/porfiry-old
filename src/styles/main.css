@@ -6,10 +6,10 @@ body
 h1
 {
   font-family: 'Dosis', sans-serif;
-  font-size: 70px;
+  font-size: 70px !important;
   font-weight: 600;
 
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 
   text-align: center;
 
@@ -28,18 +28,25 @@ p
 select
 {
   font-family: 'Dosis';
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 600 !important;
 
   width: 515px;
   height: 55px;
   margin: 6px 0 10px 0;
-  padding: 10px;
+  padding-left: 12px;
 
   transition: all .2s ease;
 
   border: 3px solid;
   border-radius: 4px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+option {
+  font-weight: 600 !important;
 }
 
 form
@@ -48,45 +55,12 @@ form
   margin: 0 auto;
 }
 
-.button
-{
-  font-family: 'Dosis';
-  font-size: 25px;
-  font-weight: 600;
 
-  display: inline-block;
-
-  width: 200px;
-  height: 60px;
-  margin-top: 6px;
-  margin-bottom: 10px;
-  margin-left: 140px;
-  padding: 8px;
-
-  cursor: pointer;
-  transition: all .2s ease;
-  text-align: center;
-
-  border: 3px solid;
-  border-radius: 4px;
-}
 
 select:hover
 {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
-}
-
-.button:hover
-{
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
-
-.button:active
-{
-  -webkit-transform: scale(.6) !important;
-          transform: scale(.6) !important;
 }
 
 .loginForm
@@ -112,10 +86,47 @@ select:hover
 {
   25%
   {
-    -webkit-transform: rotate(-1.5deg);
+    -webkit-transform: rotate(-1.3deg);
   }
   75%
   {
-    -webkit-transform: rotate(1.5deg);
+    -webkit-transform: rotate(1.3deg);
   }
 }
+
+.button
+{
+  font-family: 'Dosis';
+  font-size: 25px;
+  font-weight: 600;
+
+  display: inline-block;
+
+  width: 200px;
+  height: 60px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  margin-left: 140px;
+  padding: 8px;
+
+  cursor: pointer;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+  text-align: center;
+
+  border: 3px solid;
+  border-radius: 4px;
+}
+
+.button:hover
+{
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.button:active
+{
+  -webkit-transform: scale(.6) !important;
+          transform: scale(.6) !important;
+}
+

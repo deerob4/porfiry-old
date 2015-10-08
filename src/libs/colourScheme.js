@@ -5,7 +5,7 @@ function colourScheme(luminosity, hue) {
   // Generate mainColour background colours for elements.
   const mainColour = luminance(
     randomColour({ luminosity, hue, seed: 1000 }),
-    -0.1
+    -0.2
   );
 
   const buttonBackground = luminance(mainColour, 0.25);

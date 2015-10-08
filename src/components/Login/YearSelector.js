@@ -24,4 +24,3 @@ class HouseSelector extends Component {
 }
 
 export default HouseSelector;
-

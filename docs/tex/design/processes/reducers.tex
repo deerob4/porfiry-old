@@ -1,0 +1,76 @@
+\subsection{Reducers}
+These processes will be used to manage the internal state of the application, storing information that the individual components need to function properly.
+
+\subsubsection{Login Reducer}
+This reducer will control the functions on the login screen, managing common state like the house and year of the user and the themed colours for the application.
+\begin{verbatim}
+process house(state = blank, action) {
+  if (action = change house) {
+    return the action's house
+  }
+}
+
+process year(state = blank, action) {
+  if (action = change year) {
+    return the action's year
+  }
+}
+
+process colours(state = empty object, action) {
+  if (action = change colours) {
+    return the state combined with the
+    action's colours - should overwrite
+  }
+}
+\end{verbatim}
+
+\subsubsection{Quiz Reducer}
+\begin{verbatim}
+process categories(state = empty array, action) {
+  if (action = add category) {
+    return new object combining current
+    state and keys id and name set to the
+    action properties
+  }
+  if (action = edit category) {
+    map over each category in the array
+    if category id = action.id replace the category name
+    else add the category untouched
+  }
+  if (action = delete category) {
+    filter out categories where category id = action id
+  }
+}
+
+process questions(state = empty array, action) {
+  if (action = add question) {
+    return new object combining current
+    state keys, id, name and category id set to the
+    action properties
+  }
+  if (action = edit question) {
+    map over each question in the array
+    if question id = action.id replace the question body
+    else add the question untouched
+  }
+  if (action = delete question) {
+    filter out questions where question id = action id
+  }
+}
+
+process answers(state = empty object, action) {
+  if (action = add answer) {
+    return new object combining current
+    state keys, id, name, correct and question id set
+    to the action properties
+  }
+  if (action = edit answer) {
+    map over each answer in the array
+    if answer id = action.id replace the answer name and
+    correct keys else add the answer untouched
+  }
+  if (action = delete answer) {
+    filter out answers where answer id = action id
+  }
+}
+\end{verbatim}

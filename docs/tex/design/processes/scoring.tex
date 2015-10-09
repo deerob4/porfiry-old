@@ -40,10 +40,9 @@ process highest(object) {
 Using an answer packet, returns true if the user chose the correct answer.
 \begin{verbatim}
 process isCorrect(packet, correctAnswer) {
-  if packet.answer = correctAnswer {
-    Highlight box green.
-  }
-  otherwise highlight box red.
+  if packet.answer = correctAnswer then
+    highlight box green.
+  else highlight box red.
 }
 \end{verbatim}
 

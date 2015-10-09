@@ -55,11 +55,19 @@ process maxKey(object) {
 Using the answere packet, this function will work out the most common answers for each question at any one point in the quiz. It works in much the same way as the function for calculating house points, but the appending operations differ so a new function is needed.
 \begin{verbatim}
 process commonAnswer(packet, keys, state) {
-  set variable ``inner'' to object containing ``mode'' set to undefined and each house, set to 0
-  if the ``state'' is empty, extend ``state'' with ``inner''
-  set ``newState'' to a clone of ``state'', but set the answer frequency for the house the user chose
-  to itself + 1
-  set the ``mode'' property on ``newState'' to the maximum keys of house freqs.
-  return ``newState''
+  set variable innerTree to object containing keys: {
+    mode: undefined,
+    array with houses: 0
+  }
+
+  if the state is empty, set state to innerTree
+
+  set newState to a clone of state, but set the answer
+  frequency for the house the user chose to itself + 1
+
+  set the mode property on newState to the largest
+  value out of the house frequencies
+
+  return newState
 }
 \end{verbatim}

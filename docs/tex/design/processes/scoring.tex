@@ -25,17 +25,21 @@ By taking a property value as an argument, the function can be used to calculate
 \subsubsection{Highest Value in Object}
 This function will calculate the highest value in a given object. It will be used in the most common answer function, displayed below.
 \begin{verbatim}
-function highest(object) {
+process highest(object) {
   set variable keys to array of object keys
-  set variable vals to map over object using keys variable for an array of object values
+
+  set variable vals to map over object using
+  keys variable for an array of object values
+
   call max function from standard library on variable vals
+  to get the highest value
 }
 \end{verbatim}
 
 \subsubsection{Correct Answer}
 Using an answer packet, returns true if the user chose the correct answer.
 \begin{verbatim}
-function isCorrect(packet, correctAnswer) {
+process isCorrect(packet, correctAnswer) {
   if packet.answer = correctAnswer {
     Highlight box green.
   }
@@ -47,7 +51,7 @@ function isCorrect(packet, correctAnswer) {
 This function will take an object where every key is a number. It will return the key of the highest number.
 process maxKey(object) {
   perform reduce on object ->
-  if obj[a] > obj[b] return a
+  if obj[a] > obj[b] then return a
   else return b
 }
 

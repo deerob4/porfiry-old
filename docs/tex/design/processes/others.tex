@@ -11,18 +11,20 @@ When the countdown has elapsed, begin the quiz.
 \subsubsection{Calculate Colour Palette}
 This function will calculate a themed colour palette for the system, depending on the user's house.
 \begin{verbatim}
-function randomColours(house) {
+process randomColours(house) {
   if (house = 'acton') set hue to blue
   if (house = 'baxter') set hue to orange
   if (house = 'clive') set hue to green
   if (house = 'darwin') set hue to purple
   if (house = 'houseman') set hue to red
   if (house = 'webb') set hue to yellow
-  
+
   generate 10 random colours based on hue
-  modify luminance for each one based on complementing factors, by a random number between 0.1 - 0.5
-  
+
+  modify luminance for each one based on complementing
+  factors, by a random number between 0.1 - 0.5
+
   return set of colours
-  
+
 }
 \end{verbatim}

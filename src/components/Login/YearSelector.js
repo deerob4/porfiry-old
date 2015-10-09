@@ -14,10 +14,13 @@ class HouseSelector extends Component {
       <select style={this.props.colours}
               className={this.props.yearValidation}
               onChange={this.props.changeYear}>
+
         <option value="" disabled selected>{message}</option>
+
         {this.props.years.map(year =>
           <option key={year} value={year}>Year {year}</option>
         )}
+
       </select>
     );
   }

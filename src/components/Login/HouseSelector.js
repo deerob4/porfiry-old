@@ -15,10 +15,13 @@ class HouseSelector extends Component {
       <select style={selectStyle}
               className={this.props.houseValidation}
               onChange={this.props.changeHouse}>
+
         <option value="" disabled selected>I belong to...</option>
+
         {this.props.houses.map(house =>
           <option key={house} value={house}>{capitalise(house)}</option>
         )}
+
       </select>
     );
   }

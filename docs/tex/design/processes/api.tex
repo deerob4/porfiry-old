@@ -4,7 +4,7 @@ Though a relatively small section of the application, the API nevertheless serve
 \subsubsection{Create Entity}
 This function will save an entity to the database.
 \begin{verbatim}
-process post (entity, request) {
+process POST (entity, request) {
   create new instance of entity
   set properties of entity to request properties
   call database save function
@@ -16,7 +16,7 @@ process post (entity, request) {
 \subsubsection{View Entities}
 This function will return all entities of a specified type in a JSON file.
 \begin{verbatim}
-process get (entity) {
+process GET (entity) {
   call database find query for entity
   if error occurs, return error
   else return JSON of entities
@@ -26,7 +26,7 @@ process get (entity) {
 \subsubsection{View Single Entity}
 This function will return a single entity of a specified type in a JSON file.
 \begin{verbatim}
-process get (entity, id) {
+process GET (entity, id) {
   call database find query for entity using ID
   if error occurs, return error
   else return JSON of entity
@@ -36,7 +36,7 @@ process get (entity, id) {
 \subsubsection{Update single entity}
 This function will update a single entity in a database.
 \begin{verbatim}
-process put (entity, id, props) {
+process PUT (entity, id, props) {
   call database find query for entity using ID
   go through new properties and assign to the entity.
   return JSON of entity
@@ -46,7 +46,7 @@ process put (entity, id, props) {
 \subsubsection{Delete single entity}
 This function will delete entity in a database.
 \begin{verbatim}
-process delete (entity, id) {
+process DELETE (entity, id) {
   call database find query for entity using ID
   delete entity from database
   return "entity has been deleted!"

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class PlayQuiz extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
+
   render() {
     return (
       <div>
@@ -10,4 +17,13 @@ class PlayQuiz extends Component {
   }
 }
 
-export default PlayQuiz;
+function mapStateToProps(state) {
+  return {
+    colours: state.colours,
+    user: state.user
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(PlayQuiz);

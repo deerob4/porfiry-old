@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { Route, Router } from 'react-router';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import LoginContainer from 'containers/LoginContainer';
+import CreateQuizContainer from 'containers/CreateQuizContainer';
 import PlayQuiz from 'containers/PlayQuiz';
 
 import '../node_modules/animate.css/animate.min.css';
@@ -17,17 +18,16 @@ React.render(
     <Provider store={store}>
       {() =>
         <Router history={history}>
-          <Route path="/" component={LoginContainer}>
-            <Route path="create" component={LoginContainer} />
-            <Route path="play" component={PlayQuiz} />
-          </Route>
+          <Route path="/" component={LoginContainer} />
+          <Route path="create" component={CreateQuizContainer} />
+          <Route path="play" component={PlayQuiz} />
         </Router>
       }
     </Provider>
+    <DebugPanel top right bottom>
+      <DevTools store={store} monitor={LogMonitor} />
+    </DebugPanel>
   </div>,
   document.getElementById('root')
 );
 
-// <DebugPanel top right bottom>
-//       <DevTools store={store} monitor={LogMonitor} />
-//     </DebugPanel>

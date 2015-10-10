@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import LoginForm from 'components/Login/LoginForm';
 import colourScheme from 'libs/colourScheme';
 import { changeColours, changeHouse, changeYear } from 'actions/login';
@@ -71,6 +70,11 @@ class LoginContainer extends Component {
       this.setState({ yearValidation: 'animated shake'});
       // Remove the class so the animation can be replayed.
       setTimeout(() => this.setState({ yearValidation: '' }), 850);
+    }
+
+    if (this.props.user.year && this.props.user.house) {
+      // Transition to the quiz create section
+      this.props.history.pushState('create', '/create');
     }
   }
 

@@ -8,7 +8,7 @@ class Button extends Component {
 
   render() {
     return (
-      <div className="acton-button"
+      <div className={`button ${this.props.house}-button`}
            onClick={this.props.clickEvent}>
            {this.props.text}
       </div>

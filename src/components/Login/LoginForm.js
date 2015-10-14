@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import HouseSelector from './HouseSelector';
-import YearSelector from './YearSelector';
 import Button from 'components/Button';
+import Select from 'components/Select';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -20,38 +19,38 @@ class LoginForm extends Component {
   }
 
   render() {
-    const style = { color: this.props.colours.text.secondary };
+    const style = { color: '#000' };
 
     return (
       <div className="loginForm">
         <div className="animated bounceInDown">
-          <h1 style={style}>Priory School Quiz</h1>
-          <p style={style}>Hello! Choose your house and year to get started!</p>
+          <h1 className={`centre h1-${this.props.house}`}>Priory School Quiz</h1>
+          <p className={`centre h1-${this.props.house}`}>
+            Hello! Choose your house and year to get started!
+          </p>
         </div>
+
         <form className="animated bounceInUp">
-          <HouseSelector colours={this.props.colours.select}
-                         validation={this.props.houseValidation}
-                         changeHouse={this.props.changeHouse}
-                         houseValidation={this.props.houseValidation}
-                         houses={this.props.houses} />
+          <Select changeEvent={this.props.changeHouse}
+                  customClass={this.props.houseValidation}
+                  house={this.props.house}
+                  options={this.props.houses}
+                  placeholder="I belong to..." />
 
-          <br />
-
-          <YearSelector colours={this.props.colours.select}
-                        validation={this.props.yearValidation}
-                        changeYear={this.props.changeYear}
-                        yearValidation={this.props.yearValidation}
-                        years={this.props.years} />
-          <br />
+          <Select changeEvent={this.props.changeYear}
+                  customClass={this.props.yearValidation}
+                  house={this.props.house}
+                  options={this.props.years}
+                  placeholder="And I'm in year..."
+                  prefix="Year" />
 
           {this.props.isQuizReady() ?
             // If there is a quiz scheduled in the next 30 minutes, display a
             // button to join the room. Otherwise show button to create a quiz.
-            <Button text="Join the quiz!"
-                    colours={this.props.colours.button}  /> :
+            <Button text="Join the quiz!" /> :
 
             <Button text="Create a quiz!"
-                    colours={this.props.colours.button}
+                    house={this.props.house}
                     clickEvent={this.props.validateLogin} />
           }
         </form>

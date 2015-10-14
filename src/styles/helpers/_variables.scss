@@ -2,14 +2,9 @@
 $font-stack: Dosis, sans-serif;
 
 // Base house colour variables
-$acton: #8ad5f8;
-$baxter:#f3bc79;
-$clive: #5eb7bf;
-$darwin: #a37ac2;
-$houseman: #c66e6d;
-
-$houses: (acton, $acton), 
-         (baxter, $baxter), 
-         (clive, $clive),
-         (darwin, $darwin), 
-         (houseman, $houseman);
+$houses: (acton, #6eaac6),
+         (baxter, #c29661),
+         (clive, #5eb7bf),
+         (darwin, #a37ac2),
+         (houseman, #c66e6d),
+         (webb, #c6b15e);

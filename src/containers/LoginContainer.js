@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from 'components/Login/LoginForm';
-import colourScheme from 'libs/colourScheme';
-import { changeColours, changeHouse, changeYear } from 'actions/login';
-import sample from 'lodash/collection/sample';
-
-// import 'styles/main.css';
+import { changeHouse, changeYear } from 'actions/login';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
 const years = [7, 8, 9, 10, 11];
@@ -21,12 +17,8 @@ class LoginContainer extends Component {
 
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
-    this.changeColours = this.changeColours.bind(this);
     this.validateLogin = this.validateLogin.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
-
-    // Generate an initial set of colours.
-    this.changeColours(sample(houses));
   }
 
   changeYear(e) {
@@ -37,24 +29,6 @@ class LoginContainer extends Component {
   changeHouse(e) {
     const house = e.target.value;
     this.props.dispatch(changeHouse(house));
-    this.changeColours(house);
-  }
-
-  changeColours(house) {
-    const colourMappings = {
-      acton: 'blue',
-      baxter: 'orange',
-      clive: 'green',
-      darwin: 'purple',
-      houseman: 'red',
-      webb: 'yellow'
-    };
-
-    // Generate a new colour scheme and dispatch
-    // it to the state tree.
-    this.props.dispatch(changeColours(
-      colourScheme('light', colourMappings[house])
-    ));
   }
 
   validateLogin() {
@@ -83,13 +57,20 @@ class LoginContainer extends Component {
   }
 
   render() {
+    const backgroundMap = {
+      'acton': '#8dd6f8',
+      'baxter': '#f8c07d',
+      'clive': '#78ecf6',
+      'darwin': '#cd99f5',
+      'houseman': '#f88e8c',
+      'webb': '#fae07c'
+    };
+
     const style = {
       height: window.innerHeight + 'px',
       width: '100%',
-      backgroundColor: this.props.colours.button.backgroundColor
+      backgroundColor: backgroundMap[this.props.user.house]
     };
-
-
 
     return (
       <div style={style}>
@@ -99,9 +80,7 @@ class LoginContainer extends Component {
                      validateLogin={this.validateLogin}
                      houseValidation={this.state.houseValidation}
                      yearValidation={this.state.yearValidation}
-                     colours={this.props.colours}
-                     validationClass={this.state.validationClass}
-                     loadCreator={this.loadCreator}
+                     house={this.props.user.house}
                      isQuizReady={this.isQuizReady}
                      houses={houses}
                      years={years} />

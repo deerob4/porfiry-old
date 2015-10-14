@@ -1,0 +1,22 @@
+h1 {
+  font-family: $font-stack;
+  font-size: 70px;
+  margin-bottom: 5px
+}
+
+p {
+  font-family: $font-stack;
+  font-size: 26px;
+}
+
+.centre {
+  text-align: center;
+}
+
+@include house-typography(h1);
+
+form
+{
+  width: 515px;
+  margin: 0 auto;
+}

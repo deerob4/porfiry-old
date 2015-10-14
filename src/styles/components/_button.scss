@@ -1,31 +1,32 @@
 .button {
   font-family: $font-stack;
   font-size: 25px;
-  
+
   display: inline-block;
-  
-  width: 200px;
-  height: 60px;
+
   margin: 6px 0 10px 140px;
   padding: 8px;
-  
+
   cursor: pointer;
   text-align: center;
+
   border: 3px solid;
   border-radius: 4px;
+
+  transition: all 0.2s ease;
+  -webkit-transition: all 0.2s ease;
+
+  @include size(200px, 60px);
 }
 
-// Loop over each house and generate classes with 
-// the appropriate colours.
-@each $name, $colour in $houses {
-  .#{$name}-button {
-    @extend .button;
-    background-color: $colour;
-    border-color: desaturate(darken($colour, 16), 
-      saturation($colour) / 2
-    );
-    color: desaturate(darken($colour, 16), 
-      saturation($colour) / 2
-    );
-  }
+@include house-colours('button');
+
+.button:active {
+  transform: scale(0.6) !important;
+  -webkit-transform: scale(0.6) !important;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
 }

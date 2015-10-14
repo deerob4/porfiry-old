@@ -31,9 +31,6 @@ select
   font-size: 22px;
   font-weight: 600 !important;
 
-  width: 515px;
-  height: 55px;
-  margin: 6px 0 10px 0;
   padding-left: 12px;
 
   transition: all .2s ease;
@@ -43,6 +40,17 @@ select
 
   -webkit-appearance: none;
   -moz-appearance: none;
+}
+
+.select-login {
+  width: 515px;
+  height: 55px;
+  margin: 6px 0 10px 0;
+}
+
+.select-create {
+  width: 100%;
+  height: 60px;
 }
 
 option {
@@ -55,9 +63,7 @@ form
   margin: 0 auto;
 }
 
-
-
-select:hover
+.select-login:hover
 {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
@@ -100,11 +106,11 @@ select:hover
   border-radius: 4px;
 }
 
-.button:hover
+/*.button:hover
 {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-}
+}*/
 
 .button:active
 {

@@ -9,11 +9,11 @@ class HouseSelector extends Component {
   }
 
   render() {
-    const selectStyle = this.props.colours;
+    const className = `${this.props.houseValidation} select-login`;
 
     return (
-      <select style={selectStyle}
-              className={this.props.houseValidation}
+      <select style={this.props.colours}
+              className={className}
               onChange={this.props.changeHouse}>
 
         <option value="" disabled selected>I belong to...</option>
@@ -28,5 +28,3 @@ class HouseSelector extends Component {
 }
 
 export default HouseSelector;
-
-// <Placeholder>And I belong to...</Placeholder>

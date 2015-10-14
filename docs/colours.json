@@ -1,0 +1,112 @@
+{
+  "acton": {
+    "answers": {
+      "backgroundColor": "#84ccee",
+      "borderColor": "#6aa3be",
+      "color": "#6aa3be",
+      "icon": "#4f7a8f"
+    },
+    "button": {
+      "backgroundColor": "#8ad5f8",
+      "borderColor": "#6eaac6",
+      "color": "#6eaac6"
+    },
+    "select": {
+      "backgroundColor": "#79bbda",
+      "borderColor": "#6196ae",
+      "color": "#6196ae"
+    },
+    "text": {
+      "primary": "#6eaac6",
+      "secondary": "#6399b2"
+    }
+  },
+  "baxter": {
+    "answers": {
+      "backgroundColor": "#e9b474",
+      "borderColor": "#ba905d",
+      "color": "#ba905d",
+      "icon": "#8c6c46"
+    },
+    "button": {
+      "backgroundColor": "#f3bc79",
+      "borderColor": "#c29661",
+      "color": "#c29661"
+    },
+    "select": {
+      "backgroundColor": "#d5a56b",
+      "borderColor": "#aa8456",
+      "color": "#aa8456"
+    },
+    "text": {
+      "primary": "#c29661",
+      "secondary": "#af8757"
+    }
+  },
+  "clive": {
+    "answers": {
+      "backgroundColor": "#71dce5",
+      "borderColor": "#5ab0b7",
+      "color": "#5ab0b7",
+      "icon": "#448489"
+    }
+    "button": {
+      "backgroundColor": "#71dce5",
+      "borderColor": "#5eb7bf",
+      "color": "#5eb7bf"
+    },
+    "select": {
+      "backgroundColor": "#67c9d2",
+      "borderColor": "#52a1a8",
+      "color": "#52a1a8"
+    },
+    "text": {
+      "primary": "#5eb7bf",
+      "secondary": "#55a5ac"
+    }
+  },
+  "darwin": {
+    "answers": {
+      "backgroundColor": "#c492e9",
+      "borderColor": "#9d75ba",
+      "color": "#9d75ba",
+      "icon": "#76588c"
+    },
+    "button": {
+      "backgroundColor": "#cc99f3",
+      "borderColor": "#a37ac2",
+      "color": "#a37ac2"
+    },
+    "select": {
+      "backgroundColor": "#b386d5",
+      "borderColor": "#8f6baa",
+      "color": "#8f6baa"
+    },
+    "text": {
+      "primary": "#a37ac2",
+      "secondary": "#936eaf"
+    }
+  },
+  "houseman": {
+    "answers": {
+      "backgroundColor": "#ee8483",
+      "borderColor": "#be6a69",
+      "color": "#be6a69",
+      "icon": "#8f4f4f"
+    },
+    "button": {
+      "backgroundColor": "#f88a88",
+      "borderColor": "#c66e6d",
+      "color": "#c66e6d"
+    },
+    "select": {
+      "backgroundColor": "#da7978",
+      "borderColor": "#ae6160",
+      "color": "#ae6160"
+    },
+    "text": {
+      "primary": "#c66e6d",
+      "secondary": "#b26362"
+    }
+  }
+}

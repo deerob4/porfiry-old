@@ -1,8 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
-// import 'styles/button.css';
 
-// @CSSModules(styles)
 class Button extends Component {
   static propTypes = {
     clickEvent: PropTypes.func.isRequired,

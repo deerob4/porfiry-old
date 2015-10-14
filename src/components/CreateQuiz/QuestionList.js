@@ -14,7 +14,10 @@ class QuestionList extends Component {
   render() {
     return (
       <select style={this.props.colours}
+              className="select-create"
               onChange={this.props.changeQuestion}>
+
+      <option value="" disabled selected>Select a question to edit...</option>
 
         {this.props.questions.map(question =>
           <option key={question.id}

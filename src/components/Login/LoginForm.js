@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import HouseSelector from './HouseSelector';
 import YearSelector from './YearSelector';
-import Button from './Button';
+import Button from 'components/Button';
 
 class LoginForm extends Component {
   static propTypes = {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import QuestionList from 'components/CreateQuiz/QuestionList';
 import { Link } from 'react-router';
 import * as actions from 'actions/maker';
+import Button from 'components/Button';
 
 class CreateQuizContainer extends Component {
   constructor(props) {
@@ -25,11 +26,28 @@ class CreateQuizContainer extends Component {
   }
 
   render() {
+    const questions = [
+      { id: 1, body: 'Who killed JFK?' },
+      { id: 2, body: 'What year did World War 1 end?' },
+      { id: 3, body: 'Who played the Eighth Doctor?' },
+      { id: 4, body: 'Who wrote War and Peace?' },
+      { id: 5, body: 'Who was the English monarch in 1274?' }
+    ];
+
+    const style = {
+      height: window.innerHeight + 'px',
+      width: '100%',
+      backgroundColor: this.props.colours.button.backgroundColor
+    };
+
     return (
-      <div>
-        <p>Your are in {this.props.user.house} and Year {this.props.user.year}</p>
-        <QuestionList colours={this.props.colours.select} questions={[10, 20]} />
-        <Link to="/create">Create quiz!</Link>
+      <div style={style}>
+        <QuestionList colours={this.props.colours.select} questions={questions} />
+        <h1>Who killed JFK?</h1>
+        <Button text="Add a category" colours={this.props.colours.button} />
+        <Button text="Delete a category" colours={this.props.colours.button} />
+        <Button text="Add a question" colours={this.props.colours.button} />
+        <Button text="Delete a question" colours={this.props.colours.button} />
       </div>
     );
   }

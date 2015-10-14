@@ -9,10 +9,11 @@ class HouseSelector extends Component {
 
   render() {
     const message = 'And I\'m in year...';
+    const className = `${this.props.yearValidation} select-login`;
 
     return (
       <select style={this.props.colours}
-              className={this.props.yearValidation}
+              className={className}
               onChange={this.props.changeYear}>
 
         <option value="" disabled selected>{message}</option>

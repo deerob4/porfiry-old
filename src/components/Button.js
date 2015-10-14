@@ -8,9 +8,8 @@ class Button extends Component {
 
   render() {
     return (
-      <div className="button"
-           onClick={this.props.clickEvent}
-           style={this.props.colours}>
+      <div className="acton-button"
+           onClick={this.props.clickEvent}>
            {this.props.text}
       </div>
     );

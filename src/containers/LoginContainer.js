@@ -5,7 +5,7 @@ import colourScheme from 'libs/colourScheme';
 import { changeColours, changeHouse, changeYear } from 'actions/login';
 import sample from 'lodash/collection/sample';
 
-import 'styles/main.css';
+// import 'styles/main.css';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
 const years = [7, 8, 9, 10, 11];

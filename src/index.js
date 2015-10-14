@@ -9,6 +9,7 @@ import CreateQuizContainer from 'containers/CreateQuizContainer';
 import PlayQuiz from 'containers/PlayQuiz';
 
 import '../node_modules/animate.css/animate.min.css';
+import '!style!css!sass!styles/porfiry.scss';
 
 const store = configureStore();
 const history = createBrowserHistory();

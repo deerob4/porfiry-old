@@ -1,5 +1,3 @@
-/* $font-stack: Dosis, sans-serif; */
-
 .button {
   font-family: $font-stack;
   font-size: 25px;
@@ -17,11 +15,17 @@
   border-radius: 4px;
 }
 
-// Loop over each house and generate the classes.
-@each $houseName, $houseColour in $houses {
-  .#{$houseName}-button {
-    @extends .button;
-    background-color: lighten($houseColour, 10);
-    border-color: lighten($houseColour, )
+// Loop over each house and generate classes with 
+// the appropriate colours.
+@each $name, $colour in $houses {
+  .#{$name}-button {
+    @extend .button;
+    background-color: $colour;
+    border-color: desaturate(darken($colour, 16), 
+      saturation($colour) / 2
+    );
+    color: desaturate(darken($colour, 16), 
+      saturation($colour) / 2
+    );
   }
 }

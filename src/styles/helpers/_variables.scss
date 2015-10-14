@@ -1,0 +1,15 @@
+// Typography variables
+$font-stack: Dosis, sans-serif;
+
+// Base house colour variables
+$acton: rgb(110,170,198);
+$baxter: rgb(194,150,97);
+$clive: rgb(94,183,191);
+$darwin: rgb(163,122,194);
+$houseman: rgb(198,110,109);
+
+$houses: (acton, $acton), 
+         (baxter, $baxter), 
+         (clive, $clive),
+         (darwin, $darwin), 
+         (houseman, $houseman);

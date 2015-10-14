@@ -8,7 +8,7 @@ import config from './config';
 import apiRoutes from './src/api/index';
 
 // Begin connection to database.
-mongoose.connect(`mongodb://localhost:27017/${config.database}`);
+// mongoose.connect(`mongodb://localhost:27017/${config.database}`);
 
 let app = express();
 let compiler = webpack(webpackConfig);

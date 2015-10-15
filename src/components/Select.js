@@ -5,7 +5,7 @@ import trim from 'lodash/string/trim';
 class Select extends Component {
   static propTypes = {
     changeEvent: PropTypes.func.isRequired,
-    customClass: PropTypes.string.isRequired,
+    customClass: PropTypes.string,
     house: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     placeholder: PropTypes.string.isRequired,

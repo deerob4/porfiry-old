@@ -14,16 +14,16 @@
   }
 }
 
-@mixin house-bg($colour, $property: background-color) {
+@mixin house-bg($colour, $intensity, $property: background-color) {
   #{$property}: lighten(
-    saturate($colour, 45), 16
+    saturate($colour, 45), $intensity
   );
 }
 
-@mixin house-colours($element) {
+@mixin house-colours($element, $intensity: 16) {
   @each $houseName, $houseColour in $houses {
     .#{$houseName + '-' + $element} {
-      @include house-bg($houseColour);
+      @include house-bg($houseColour, $intensity);
       border-color: $houseColour;
       color: $houseColour;
     }
@@ -34,6 +34,14 @@
   @each $houseName, $houseColour in $houses {
     .#{$element + '-' + $houseName} {
       color: $houseColour;
+    }
+  }
+}
+
+@mixin house-arrows {
+  @each $houseName, $houseColour in $houses {
+    .#{$houseName + '-select-arrow i'} {
+      border-top: 7px solid $houseColour;
     }
   }
 }

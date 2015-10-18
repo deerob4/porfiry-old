@@ -27,7 +27,7 @@ let config = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     preLoaders: [{
@@ -43,9 +43,7 @@ let config = {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css', 'sass'],
-        include: path.join(__dirname)
-      }
+        loaders: ['style', 'css', 'autoprefixer', 'sass'] }
     ]
   }
 };

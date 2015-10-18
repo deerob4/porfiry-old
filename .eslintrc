@@ -29,7 +29,7 @@
     "default-case": 2,
     "quotes": [2, "single"],
     "jsx-quotes": [2, "prefer-double"],
-    "react/jsx-boolean-value": 1,
+    "react/jsx-boolean-value": [1, "always"],
     "react/jsx-curly-spacing": 1,
     "react/jsx-no-duplicate-props": 1,
     "react/jsx-no-undef": 1,

@@ -4,6 +4,13 @@ h1 {
   margin-bottom: 5px
 }
 
+h2 {
+  font-family: $font-stack;
+  font-size: 50px;
+  margin-bottom: 25px
+;  // margin-bottom: 5px
+}
+
 p {
   font-family: $font-stack;
   font-size: 26px;
@@ -14,6 +21,7 @@ p {
 }
 
 @include house-typography(h1);
+@include house-typography(h2);
 
 form
 {

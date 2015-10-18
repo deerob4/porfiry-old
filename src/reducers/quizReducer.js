@@ -2,7 +2,63 @@ import * as types from 'constants/MakerActions';
 import nextBiggest from 'utils/nextBiggest';
 import { combineReducers } from 'redux';
 
-function categories(state = [], action) {
+const defaultState = {
+  categories: [
+    { id: 0, name: 'Literature' }
+  ],
+  questions: [
+    { id: 0, categoryId: 0, body: 'Who was Henry VIII\'s first wife?' },
+    { id: 1, categoryId: 0, body: 'Who played the Eigth Doctor?' }
+  ],
+  answers: {
+    0: [
+      {
+        id: 0,
+        body: 'Ann Boleyn',
+        correct: false
+      },
+      {
+        id: 1,
+        body: 'Jane Seymour',
+        correct: false
+      },
+      {
+        id: 2,
+        body: 'Catherine of Aragon',
+        correct: true
+      },
+      {
+        id: 4,
+        body: 'Keir Merchant',
+        correct: false
+      }
+    ],
+    1: [
+      {
+        id: 0,
+        body: 'Paul Mcgann',
+        correct: true
+      },
+      {
+        id: 1,
+        body: 'David Tennant',
+        correct: false
+      },
+      {
+        id: 2,
+        body: 'Tom Baker',
+        correct: false
+      },
+      {
+        id: 3,
+        body: 'Keir Merchant',
+        correct: false
+      }
+    ]
+  }
+};
+
+function categories(state = defaultState.categories, action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
       return {
@@ -26,7 +82,7 @@ function categories(state = [], action) {
   }
 }
 
-function questions(state = [], action) {
+function questions(state = defaultState.questions, action) {
   switch (action.type) {
     case types.ADD_QUESTION:
       return [{
@@ -50,7 +106,7 @@ function questions(state = [], action) {
   }
 }
 
-function answers(state = {}, action) {
+function answers(state = defaultState.answers, action) {
   switch (action.type) {
     case types.ADD_ANSWER:
       return [{

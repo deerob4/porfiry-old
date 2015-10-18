@@ -24,7 +24,9 @@ class LoginForm extends Component {
     return (
       <div className="loginForm">
         <div className="animated bounceInDown">
-          <h1 className={`centre h1-${this.props.house}`}>Priory School Quiz</h1>
+          <h1 className={`centre h1-${this.props.house}`}>
+            Priory School Quiz
+          </h1>
           <p className={`centre h1-${this.props.house}`}>
             Hello! Choose your house and year to get started!
           </p>
@@ -32,13 +34,13 @@ class LoginForm extends Component {
 
         <form className="animated bounceInUp">
           <Select changeEvent={this.props.changeHouse}
-                  customClass={this.props.houseValidation}
+                  customClass={this.props.houseValidation + 'hover'}
                   house={this.props.house}
                   options={this.props.houses}
                   placeholder="I belong to..." />
 
           <Select changeEvent={this.props.changeYear}
-                  customClass={this.props.yearValidation}
+                  customClass={this.props.yearValidation + 'hover'}
                   house={this.props.house}
                   options={this.props.years}
                   placeholder="And I'm in year..."
@@ -47,9 +49,11 @@ class LoginForm extends Component {
           {this.props.isQuizReady() ?
             // If there is a quiz scheduled in the next 30 minutes, display a
             // button to join the room. Otherwise show button to create a quiz.
-            <Button text="Join the quiz!" /> :
+            <Button customClass="login-button"
+                    text="Join the quiz!" /> :
 
-            <Button text="Create a quiz!"
+            <Button customClass="login-button"
+                    text="Create a quiz!"
                     house={this.props.house}
                     clickEvent={this.props.validateLogin} />
           }

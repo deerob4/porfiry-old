@@ -12,7 +12,35 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
 
+  transition: all 0.2s ease;
+
   @include size(512px, 55px);
+
+  &.hover:hover {
+    transform: scale(1.03);
+    // -webkit-transform: scale(1.03);
+  }
 }
 
-@include house-colours('select')
+.select-arrow {
+  margin-left: -35px;
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
+@include house-arrows;
+
+.select-arrow i {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  display: block;
+}
+
+.select-full {
+  margin: 0;
+  @include size(100%, 60px);
+}
+
+@include house-colours('select', 20);

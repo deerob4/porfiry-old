@@ -4,7 +4,6 @@
 
   display: inline-block;
 
-  margin: 6px 0 10px 140px;
   padding: 8px;
 
   cursor: pointer;
@@ -19,14 +18,27 @@
   @include size(200px, 60px);
 }
 
-@include house-colours('button');
+@include house-colours('button', 20);
 
 .button:active {
   transform: scale(0.6) !important;
   -webkit-transform: scale(0.6) !important;
 }
 
-.button:hover {
-  transform: scale(1.1);
-  -webkit-transform: scale(1.1);
+// .button:hover {
+//   transform: scale(1.1);
+//   -webkit-transform: scale(1.1);
+// }
+
+.login-button {
+  margin: 6px 0 10px 140px;
+}
+
+.button-group {
+  position: absolute;
+  bottom: 10px;
+}
+
+.create-quiz-button {
+  margin-right: 10px;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LoginForm from 'components/Login/LoginForm';
+import LoginForm from 'components/LoginForm';
+import backgroundStyle from 'utils/backgroundStyle';
 import { changeHouse, changeYear } from 'actions/login';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
@@ -57,23 +58,8 @@ class LoginContainer extends Component {
   }
 
   render() {
-    const backgroundMap = {
-      'acton': '#8dd6f8',
-      'baxter': '#f8c07d',
-      'clive': '#78ecf6',
-      'darwin': '#cd99f5',
-      'houseman': '#f88e8c',
-      'webb': '#fae07c'
-    };
-
-    const style = {
-      height: window.innerHeight + 'px',
-      width: '100%',
-      backgroundColor: backgroundMap[this.props.user.house]
-    };
-
     return (
-      <div style={style}>
+      <div style={backgroundStyle(this.props.user.house)}>
         <div className="container">
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}

@@ -1,0 +1,20 @@
+.answer {
+  font-family: $font-stack;
+  font-size: 28px;
+
+  border: 3px solid;
+  border-radius: 4px;
+  padding: 16px 0 10px 20px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  @include size(100%, 80px);
+}
+
+.letter {
+  padding-right: 15px
+}
+
+@include house-colours('answer', 19);
+@include house-colours('correct-answer', 22);

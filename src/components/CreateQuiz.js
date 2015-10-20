@@ -12,6 +12,7 @@ class CreateQuiz extends Component {
     currentQuestion: PropTypes.object.isRequired,
     editCategory: PropTypes.func.isRequired,
     house: PropTypes.string.isRequired,
+    markCorrect: PropTypes.func.isRequired,
     questions: PropTypes.array.isRequired
   }
 
@@ -37,8 +38,11 @@ class CreateQuiz extends Component {
               <Answer answer={answer.body}
                       correct={answer.correct}
                       house={this.props.house}
+                      id={answer.id}
+                      markCorrect={this.props.markCorrect}
                       letter={letters[i]}
-                      key={answer.id} />
+                      key={answer.id}
+                      questionId={this.props.currentQuestion.id} />
             ) : null
           }
         </div>
@@ -46,15 +50,15 @@ class CreateQuiz extends Component {
         <div className="button-group">
           <Button customClass="create-quiz-button"
                   text="Add a category"
-                  house={this.props.house} />,
+                  house={this.props.house} />
 
           <Button customClass="create-quiz-button"
                   text="Delete a category"
-                  house={this.props.house} />,
+                  house={this.props.house} />
 
           <Button customClass="create-quiz-button"
                   text="Add a question"
-                  house={this.props.house} />,
+                  house={this.props.house} />
 
           <Button customClass="create-quiz-button"
                   text="Delete a question"

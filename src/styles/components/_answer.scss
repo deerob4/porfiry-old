@@ -16,5 +16,11 @@
   padding-right: 15px
 }
 
+.answer-check {
+  // float: right;
+  margin-right: 20px;
+}
+
 @include house-colours('answer', 19);
 @include house-colours('correct-answer', 22);
+@include house-answer-checks;

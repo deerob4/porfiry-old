@@ -45,3 +45,11 @@
     }
   }
 }
+
+@mixin house-answer-checks {
+  @each $houseName, $houseColour in $houses {
+    .#{$houseName + '-correct-answer-check'} {
+      color: darken($houseColour, 10);
+    }
+  }
+}

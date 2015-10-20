@@ -25,11 +25,11 @@ React.render(
         </Router>
       }
     </Provider>
+    <DebugPanel top right bottom>
+      <DevTools store={store} monitor={LogMonitor} />
+    </DebugPanel>
   </div>,
   document.getElementById('root')
 );
 
-//<DebugPanel top right bottom>
-  //<DevTools store={store} monitor={LogMonitor} />
-//</DebugPanel>
 

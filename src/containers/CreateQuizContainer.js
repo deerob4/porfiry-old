@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions/maker';
-import find from 'lodash/collection/find';
 import backgroundStyle from 'utils/backgroundStyle';
 import CreateQuiz from 'components/CreateQuiz';
 
@@ -9,8 +8,10 @@ class CreateQuizContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.constructQuestion = this.constructQuestion.bind(this);
     this.addCategory = this.addCategory.bind(this);
     this.changeQuestion = this.changeQuestion.bind(this);
+    this.markCorrect = this.markCorrect.bind(this);
 
     this.state = {
       currentQuestion: {}
@@ -28,10 +29,12 @@ class CreateQuizContainer extends Component {
     this.props.dispatch(actions.editCategory(id, name));
   }
 
-  changeQuestion(e) {
-    // Question id.
-    const id = parseInt(e.target.value);
+  markCorrect(id, questionId, body, correct) {
+    this.props.dispatch(actions.editAnswer(id, questionId, body, correct));
+    this.constructQuestion(questionId);
+  }
 
+  constructQuestion(id) {
     // Constructs an object containing all the information
     // about a question, making it easier to pass to
     // child components.
@@ -41,9 +44,16 @@ class CreateQuizContainer extends Component {
         body: this.props.quiz.questions.filter(
           question => question.id === id
         )[0].body,
-        answers: this.props.quiz.answers[id]
+        answers: this.props.quiz.answers.filter(
+          answer => answer.questionId === id
+        )
       }
     });
+  }
+
+  changeQuestion(e) {
+    const id = parseInt(e.target.value);
+    this.constructQuestion(id);
   }
 
   render() {
@@ -54,6 +64,7 @@ class CreateQuizContainer extends Component {
                     currentQuestion={this.state.currentQuestion}
                     editCategory={this.editCategory}
                     house={this.props.user.house}
+                    markCorrect={this.markCorrect}
                     questions={this.props.quiz.questions} />
       </div>
     );

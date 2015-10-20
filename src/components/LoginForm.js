@@ -34,13 +34,13 @@ class LoginForm extends Component {
 
         <form className="animated bounceInUp">
           <Select changeEvent={this.props.changeHouse}
-                  customClass={this.props.houseValidation + 'hover'}
+                  customClass={`hover ${this.props.houseValidation}`}
                   house={this.props.house}
                   options={this.props.houses}
                   placeholder="I belong to..." />
 
           <Select changeEvent={this.props.changeYear}
-                  customClass={this.props.yearValidation + 'hover'}
+                  customClass={`hover ${this.props.yearValidation}`}
                   house={this.props.house}
                   options={this.props.years}
                   placeholder="And I'm in year..."

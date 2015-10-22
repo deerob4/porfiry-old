@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import isEmpty from 'lodash/lang/isEmpty';
 import Heading from 'components/Heading';
 import Button from 'components/Button';
 import Select from 'components/Select';
@@ -16,6 +15,11 @@ class CreateQuiz extends Component {
     questions: PropTypes.array.isRequired
   }
 
+  constructor(props) {
+    super(props);
+    this.state = { correctAnswer: undefined };
+  }
+
   render() {
     const letters = ['A', 'B', 'C', 'D'];
 
@@ -28,22 +32,23 @@ class CreateQuiz extends Component {
                 options={this.props.questions}
                 placeholder="Choose a question..." />
 
-        <Heading house={this.props.house}
-                 level="h2"
-                 text={this.props.currentQuestion.body} />
+        <h2 className={`h2-${this.props.house}`}
+            onClick={this.props.changeQuestion.bind(this, 0)}>
+          {this.props.currentQuestion.body}
+          <i className="fa fa-paw"></i>
+        </h2>
 
         <div className="answer-group">
-          {!isEmpty(this.props.currentQuestion) ?
-            this.props.currentQuestion.answers.map((answer, i) =>
-              <Answer answer={answer.body}
-                      correct={answer.correct}
-                      house={this.props.house}
-                      id={answer.id}
-                      markCorrect={this.props.markCorrect}
-                      letter={letters[i]}
-                      key={answer.id}
-                      questionId={this.props.currentQuestion.id} />
-            ) : null
+          {this.props.currentQuestion.answers.map((answer, i) =>
+            <Answer answer={answer.body}
+                    correct={answer.correct}
+                    house={this.props.house}
+                    id={answer.id}
+                    markCorrect={this.props.markCorrect}
+                    letter={letters[i]}
+                    key={answer.id}
+                    questionId={this.props.currentQuestion.id} />
+            )
           }
         </div>
 

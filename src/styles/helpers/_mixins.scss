@@ -46,10 +46,10 @@
   }
 }
 
-@mixin house-answer-checks {
+@mixin house-answer-checks($intensity: 10) {
   @each $houseName, $houseColour in $houses {
     .#{$houseName + '-correct-answer-check'} {
-      color: darken($houseColour, 10);
+      color: darken($houseColour, $intensity);
     }
   }
 }

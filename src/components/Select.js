@@ -13,10 +13,6 @@ class Select extends Component {
     prefix: PropTypes.string
   }
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const className = `${this.props.house}-select ${this.props.customClass}`;
 
@@ -42,7 +38,9 @@ class Select extends Component {
               </option>
           )}
         </select>
-        <div className={`select-arrow ${this.props.house}-select-arrow`}><i></i></div>
+        <div className={`select-arrow ${this.props.house}-select-arrow`}>
+          <i></i>
+        </div>
       </div>
     );
   }

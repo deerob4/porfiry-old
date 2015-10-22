@@ -11,11 +11,11 @@ const defaultState = {
     { id: 1, categoryId: 0, body: 'Who played the Eigth Doctor?' }
   ],
   answers: [
-    { id: 0, questionId: 0, body: 'Ann Boleyn', correct: false },
+    { id: 0, questionId: 0, body: 'Anne Boleyn', correct: false },
     { id: 1, questionId: 0, body: 'Jane Seymour', correct: false},
     { id: 2, questionId: 0, body: 'Catherine of Aragon', correct: true },
     { id: 3, questionId: 0, body: 'Keir Merchant', correct: false },
-    { id: 4, questionId: 1, body: 'Paul Mcgann', correct: true },
+    { id: 4, questionId: 1, body: 'Paul McGann', correct: true },
     { id: 5, questionId: 1, body: 'David Tennant', correct: false },
     { id: 6, questionId: 1, body: 'Tom Baker', correct: false },
     { id: 7, questionId: 1, body: 'Keir Merchant', correct: false }
@@ -71,7 +71,6 @@ function questions(state = defaultState.questions, action) {
 }
 
 function answers(state = defaultState.answers, action) {
-  console.log(action);
   switch (action.type) {
     case types.ADD_ANSWER:
       return [{
@@ -83,7 +82,9 @@ function answers(state = defaultState.answers, action) {
 
     case types.EDIT_ANSWER:
       return state.map(answer =>
-        answer.id === action.id
+        answer.id === action.id ?
+          { ...answer, body: action.body, correct: action.correct } :
+          answer
       );
 
     case types.DELETE_ANSWER:

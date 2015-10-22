@@ -1,26 +1,38 @@
-.answer {
+.answer
+{
   font-family: $font-stack;
   font-size: 28px;
 
-  border: 3px solid;
-  border-radius: 4px;
-  padding: 16px 0 10px 20px;
-
   margin-top: 20px;
   margin-bottom: 20px;
+  padding: 16px 0 10px 20px;
+
+  border: 3px solid;
+  border-radius: 4px;
 
   @include size(100%, 80px);
 }
 
-.letter {
-  padding-right: 15px
+.letter
+{
+  padding-right: 15px;
 }
 
-.answer-check {
-  // float: right;
-  margin-right: 20px;
+.answer-check
+{
+  font-size: 35px;
+
+  position: relative;
+  bottom: 17px;
+
+  float: right;
+
+  height: 76px;
+  padding: 12px 25px 0 25px;
+
+  // border-left: 3px solid #c66e6d;
 }
 
 @include house-colours('answer', 19);
-@include house-colours('correct-answer', 22);
-@include house-answer-checks;
+@include house-colours('correct-answer', 23);
+@include house-answer-checks(15);

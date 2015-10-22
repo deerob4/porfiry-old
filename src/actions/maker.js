@@ -28,8 +28,8 @@ export function addAnswer(questionId, body, correct) {
   return { type: types.ADD_ANSWER, questionId, body, correct };
 }
 
-export function editAnswer(id, questionId, body, correct) {
-  return { type: types.EDIT_ANSWER, id, questionId, body, correct };
+export function editAnswer(id, body, correct) {
+  return { type: types.EDIT_ANSWER, id, body, correct };
 }
 
 export function deleteAnswer(id) {

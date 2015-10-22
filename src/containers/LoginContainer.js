@@ -77,10 +77,7 @@ class LoginContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    colours: state.colours,
-    user: state.user
-  };
+  return { user: state.user };
 }
 
 export default connect(

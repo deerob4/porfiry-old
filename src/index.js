@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import configureStore from 'store/configureStore';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { Provider } from 'react-redux';
@@ -14,7 +15,7 @@ import '!style!css!sass!styles/porfiry.scss';
 const store = configureStore();
 const history = createBrowserHistory();
 
-React.render(
+ReactDOM.render(
   <div>
     <Provider store={store}>
       {() =>
@@ -25,11 +26,11 @@ React.render(
         </Router>
       }
     </Provider>
-    <DebugPanel top right bottom>
-      <DevTools store={store} monitor={LogMonitor} />
-    </DebugPanel>
   </div>,
   document.getElementById('root')
 );
 
+// <DebugPanel top={true} right={true} bottom={true}>
+      // <DevTools store={store} monitor={LogMonitor} />
+    // </DebugPanel>
 

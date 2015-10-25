@@ -10,6 +10,8 @@ class CreateQuizContainer extends Component {
     super(props);
 
     this.addCategory = this.addCategory.bind(this);
+    this.editAnswer = this.editAnswer.bind(this);
+    this.editQuestion = this.editQuestion.bind(this);
     this.changeQuestion = this.changeQuestion.bind(this);
     this.markCorrect = this.markCorrect.bind(this);
 
@@ -25,6 +27,10 @@ class CreateQuizContainer extends Component {
     const id = e.target.value.id;
     const name = e.target.value.name;
     this.props.dispatch(actions.editCategory(id, name));
+  }
+
+  editQuestion(id, body) {
+    this.props.dispatch(actions.editQuestion(id, body));
   }
 
   markCorrect(answerId, questionId, body, correct) {
@@ -49,6 +55,15 @@ class CreateQuizContainer extends Component {
     }
   }
 
+  editAnswer(id, body, correct) {
+    console.log(body);
+    this.props.dispatch(actions.editAnswer(
+      id,
+      body,
+      correct
+    ));
+  }
+
   changeQuestion(e) {
     // Check if the question is being changed manually or
     // by an override, such as adding a new question.
@@ -70,7 +85,9 @@ class CreateQuizContainer extends Component {
         <CreateQuiz addCategory={this.addCategory}
                     changeQuestion={this.changeQuestion}
                     currentQuestion={currentQuestion}
+                    editAnswer={this.editAnswer}
                     editCategory={this.editCategory}
+                    editQuestion={this.editQuestion}
                     house={this.props.user.house}
                     markCorrect={this.markCorrect}
                     questions={this.props.quiz.questions} />

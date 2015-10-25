@@ -2,23 +2,20 @@ import * as types from 'constants/MakerActions';
 import nextBiggest from 'utils/nextBiggest';
 import { combineReducers } from 'redux';
 
+// The default data that the quiz will show upon
+// initialisation.
 const defaultState = {
   categories: [
-    { id: 0, name: 'Literature' }
+    { id: 0, name: 'Default category' }
   ],
   questions: [
-    { id: 0, categoryId: 0, body: 'Who was Henry VIII\'s first wife?' },
-    { id: 1, categoryId: 0, body: 'Who played the Eigth Doctor?' }
+    { id: 0, categoryId: 0, body: 'I\'m the question title - tap to edit me!' }
   ],
   answers: [
-    { id: 0, questionId: 0, body: 'Anne Boleyn', correct: false },
-    { id: 1, questionId: 0, body: 'Jane Seymour', correct: false},
-    { id: 2, questionId: 0, body: 'Catherine of Aragon', correct: true },
-    { id: 3, questionId: 0, body: 'Keir Merchant', correct: false },
-    { id: 4, questionId: 1, body: 'Paul McGann', correct: true },
-    { id: 5, questionId: 1, body: 'David Tennant', correct: false },
-    { id: 6, questionId: 1, body: 'Tom Baker', correct: false },
-    { id: 7, questionId: 1, body: 'Keir Merchant', correct: false }
+    { id: 0, questionId: 0, body: 'I\'m the first possible answer!', correct: false },
+    { id: 1, questionId: 0, body: 'You can edit any of us by tapping our text.', correct: false},
+    { id: 2, questionId: 0, body: 'See that light? It means I\'m the right answer.', correct: true },
+    { id: 3, questionId: 0, body: 'It\'s no fun being fourth!', correct: false }
   ]
 };
 

@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import EditableText from 'components/EditableText';
 
 class Answer extends Component {
   static propTypes = {
     answer: PropTypes.string.isRequired,
     correct: PropTypes.bool.isRequired,
+    editAnswer: PropTypes.func.isRequired,
     house: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     letter: PropTypes.oneOf(
@@ -11,6 +13,20 @@ class Answer extends Component {
     ).isRequired,
     markCorrect: PropTypes.func.isRequired,
     questionId: PropTypes.number.isRequired
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.editAnswer = this.editAnswer.bind(this);
+  }
+
+  editAnswer(body) {
+    this.props.editAnswer(
+      this.props.id,
+      body,
+      this.props.correct
+    );
   }
 
   render() {
@@ -23,22 +39,33 @@ class Answer extends Component {
       `answer-check`;
 
     return (
-      <div className={className}>
-        <span className="letter">
-          {this.props.letter}.
-        </span>
-        {this.props.answer}
-        <span className={checkClass}
-              onClick={this.props.markCorrect.bind(
-                this,
-                parseInt(this.props.id),
-                parseInt(this.props.questionId),
-                this.props.answer,
-                !this.props.correct
-              )}>
-          <i className="fa fa-check-circle"></i>
-        </span>
-      </div>
+        <div className={className}>
+          <span className="letter">
+            {this.props.letter}.
+          </span>
+
+          <EditableText finishFunction={this.editAnswer}
+                        house={this.props.house}
+                        inputClass="answer-input"
+                        text={this.props.answer}
+                        textType="span" />
+
+          <span className={checkClass}
+                onClick={this.props.markCorrect.bind(
+                         this,
+                         parseInt(this.props.id),
+                         parseInt(this.props.questionId),
+                         this.props.answer,
+                         !this.props.correct)}>
+
+                <i className="fa fa-lightbulb-o"></i>
+          </span>
+
+          <span className="answer-edit"
+                onClick={this.beginEditing}>
+                <i className="fa fa-pencil"></i>
+          </span>
+        </div>
     );
   }
 }

@@ -1,0 +1,38 @@
+input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: dosis;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.question-input {
+  font-size: 50px;
+  width: 100%;
+  margin-bottom: -20px;
+  padding-left: 0;
+}
+
+.answer-input {
+  font-size: 28px;
+  // margin-left: 22px;
+  position: relative;
+  bottom: 6px;
+  padding-left: 0;
+  width: 75%;
+}
+
+.fa-pencil {
+  margin-left: 15px;
+  bottom: 4px;
+  position: relative;
+}
+
+.question-pencil {
+  font-size: 40px;
+}
+
+@include house-typography('input');
+@include house-input-placeholders(6);

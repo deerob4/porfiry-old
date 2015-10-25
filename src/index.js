@@ -18,13 +18,11 @@ const history = createBrowserHistory();
 ReactDOM.render(
   <div>
     <Provider store={store}>
-      {() =>
-        <Router history={history}>
-          <Route path="/" component={LoginContainer} />
-          <Route path="create" component={CreateQuizContainer} />
-          <Route path="play" component={PlayQuiz} />
-        </Router>
-      }
+      <Router history={history}>
+        <Route path="/" component={LoginContainer} />
+        <Route path="create" component={CreateQuizContainer} />
+        <Route path="play" component={PlayQuiz} />
+      </Router>
     </Provider>
   </div>,
   document.getElementById('root')

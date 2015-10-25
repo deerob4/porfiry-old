@@ -30,10 +30,10 @@
   }
 }
 
-@mixin house-typography($element) {
+@mixin house-typography($element, $intensity: 0) {
   @each $houseName, $houseColour in $houses {
     .#{$element + '-' + $houseName} {
-      color: $houseColour;
+      color: darken($houseColour, $intensity);
     }
   }
 }
@@ -50,6 +50,14 @@
   @each $houseName, $houseColour in $houses {
     .#{$houseName + '-correct-answer-check'} {
       color: darken($houseColour, $intensity);
+    }
+  }
+}
+
+@mixin house-input-placeholders($intensity: 3) {
+  @each $houseName, $houseColour in $houses {
+    .#{'input-' + $houseName}::-webkit-input-placeholder {
+      color: lighten($houseColour, $intensity);
     }
   }
 }

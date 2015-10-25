@@ -29,8 +29,16 @@
 
   height: 76px;
   padding: 12px 25px 0 25px;
+}
 
-  // border-left: 3px solid #c66e6d;
+.answer-edit
+{
+  position: absolute;
+  float: right;
+  font-size: 35px;
+  position: relative;
+  height: 76px;
+  bottom: 3px;
 }
 
 @include house-colours('answer', 19);

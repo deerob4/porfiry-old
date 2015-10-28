@@ -1,12 +1,12 @@
-import { createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import { devTools } from 'redux-devtools';
 import rootReducer from '../reducers';
+import persistState from 'redux-localstorage';
 
 function configureStore() {
   const store = compose(
     // To apply middleware later on, do:
-    // applyMiddleware(m1, m2, m3)
-    // reduxReactRouter({ createHistory }),
+    persistState('quiz', { key: 'quiz' }),
     devTools()
   )(createStore)(rootReducer);
 

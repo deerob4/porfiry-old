@@ -95,8 +95,8 @@ class CreateQuizContainer extends Component {
 
     // Ensure they don't try to mark the current answer.
     if (answerId !== currentlyCorrect.id) {
-      // Update the state tree to make the currently correct answer incorrect, so that
-      // only one answer at a time can be marked as correct.
+      // Update the state tree to make the currently correct answer incorrect,
+      // so only one answer at a time can be correct at a time.
       this.props.dispatch(actions.editAnswer(
         currentlyCorrect.id,
         currentlyCorrect.body,

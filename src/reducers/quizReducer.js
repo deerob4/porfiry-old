@@ -1,37 +1,50 @@
 import * as types from 'constants/MakerActions';
 import nextBiggest from 'utils/nextBiggest';
 import { combineReducers } from 'redux';
+import storage from 'utils/storage';
+
+let defaultState;
 
 // The default data that the quiz will show upon
-// initialisation.
-const defaultState = {
-  metadata: {
-    title: 'Priory School Quiz',
-    startTime: new Date(),
-    questionIntervals: 10000,
-    realtimeGraphics: true,
-    intervalLength: 300000
-  },
-  categories: [
-    { id: 0, body: 'Tutorial' },
-    { id: 1, body: 'Children\'s books' }
-  ],
-  questions: [
-    { id: 0, categoryId: 0, body: 'I\'m the question title - tap to edit me!' },
-    { id: 1, categoryId: 1, body: 'Where\'s Wallie?' }
-  ],
-  answers: [
-    { id: 0, questionId: 0, body: 'I\'m the first possible answer!', correct: false },
-    { id: 1, questionId: 0, body: 'You can edit any of us by tapping our text.', correct: false},
-    { id: 2, questionId: 0, body: 'See that light? It means I\'m the right answer.', correct: true },
-    { id: 3, questionId: 0, body: 'It\'s no fun being fourth!', correct: false },
+// initialisation. If they have already started a quiz,
+// load it from localStorage.
+if (localStorage.getItem('quiz')) {
+  // Parse quiz into readable object.
+  const quiz = JSON.parse(localStorage.getItem('quiz'));
+  // Deconstruct it into the variable.
+  defaultState = { ...quiz.quiz };
+} else {
+  // If this is their first quiz, use the following
+  // sample data - acts as a tutorial of sorts.
+  defaultState = {
+    metadata: {
+      title: 'Priory School Quiz',
+      startTime: new Date(),
+      questionIntervals: 10000,
+      realtimeGraphics: true,
+      intervalLength: 300000
+    },
+    categories: [
+      { id: 0, body: 'Tutorial' },
+      { id: 1, body: 'Children\'s books' }
+    ],
+    questions: [
+      { id: 0, categoryId: 0, body: 'I\'m the question title - tap to edit me!' },
+      { id: 1, categoryId: 1, body: 'Where\'s Wallie?' }
+    ],
+    answers: [
+      { id: 0, questionId: 0, body: 'I\'m the first possible answer!', correct: false },
+      { id: 1, questionId: 0, body: 'You can edit any of us by tapping our text.', correct: false},
+      { id: 2, questionId: 0, body: 'See that light? It means I\'m the right answer.', correct: true },
+      { id: 3, questionId: 0, body: 'It\'s no fun being fourth!', correct: false },
 
-    { id: 4, questionId: 1, body: '1940', correct: false },
-    { id: 5, questionId: 1, body: '1939', correct: false},
-    { id: 6, questionId: 1, body: '1811', correct: true },
-    { id: 7, questionId: 1, body: '1943', correct: false }
-  ]
-};
+      { id: 4, questionId: 1, body: '1940', correct: false },
+      { id: 5, questionId: 1, body: '1939', correct: false},
+      { id: 6, questionId: 1, body: '1811', correct: true },
+      { id: 7, questionId: 1, body: '1943', correct: false }
+    ]
+  };
+}
 
 function metadata(state = defaultState.metadata, action) {
   switch (action.type) {

@@ -30,5 +30,3 @@ ReactDOM.render(
 // <DebugPanel top={true} right={true} bottom={true}>
 //       <DevTools store={store} monitor={LogMonitor} />
 //     </DebugPanel>
-
-

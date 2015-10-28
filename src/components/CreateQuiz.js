@@ -79,7 +79,7 @@ class CreateQuiz extends Component {
     };
 
     const currentCategoryName = this.props.categories.filter(x => x.id === this.state.currentCategory)[0].body;
-    const currentCategoryLength = this.props.questions.filter(x => x.id === this.state.currentCategory).length;
+    const currentCategoryLength = this.props.questions.filter(x => x.categoryId === this.state.currentCategory).length;
 
     return (
       <div>
@@ -101,7 +101,8 @@ class CreateQuiz extends Component {
                   customClass="select-right select-half"
                   house={this.props.house}
                   innerClass="select-right select-half-parent"
-                  options={this.props.questions.filter(x => x.categoryId === this.state.currentCategory)}
+                  options={this.props.questions.filter(x => x.categoryId === this.state.currentCategory
+                  )}
                   placeholder="Choose a question..." />
         </div>
 

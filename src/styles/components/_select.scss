@@ -7,25 +7,39 @@ select {
   border: 3px solid;
   border-radius: 4px;
 
-  margin: 6px 0 10px 0;
+  margin: 0px 0 10px 0;
 
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  transition: all 0.2s ease;
+  padding-top: 0 !important;
 
   @include size(512px, 55px);
 
   &.hover:hover {
     transform: scale(1.03);
-    // -webkit-transform: scale(1.03);
+    -webkit-transform: scale(1.03);
   }
+
+  transition: all 0.2s ease-in-out;
 }
 
 .select-arrow {
   margin-left: -35px;
   margin-bottom: 3px;
   display: inline-block;
+}
+
+.left-arrow {
+  position: relative;
+  top: 20px;
+}
+
+.right-arrow {
+  float: right;
+  position: absolute;
+  right: 30px;
+  top: 35px;
 }
 
 @include house-arrows;
@@ -41,6 +55,27 @@ select {
 .select-full {
   margin: 0;
   @include size(100%, 60px);
+}
+
+.select-half-parent {
+  width: 50%;
+}
+
+.select-half {
+  width: 99%;
+}
+
+.select-left {
+  float: left;
+}
+
+.select-right {
+  float: right;
+}
+
+.select-group {
+  display: inline-block;
+  width: 100%;
 }
 
 @include house-colours('select', 20);

@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import trim from 'lodash/string/trim';
 
 class EditableText extends Component {
   static propTypes = {
@@ -33,7 +34,7 @@ class EditableText extends Component {
     // Only update the question if the user
     // has made changes and length > 0.
     if (this.state.text.length && this.state.text !== this.props.text) {
-      this.props.finishFunction(this.state.text);
+      this.props.finishFunction(trim(this.state.text));
     }
   }
 

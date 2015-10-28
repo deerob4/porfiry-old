@@ -2,6 +2,7 @@ input {
   border: none;
   background-color: rgba(0, 0, 0, 0);
   font-family: dosis;
+
 }
 
 input:focus {
@@ -11,6 +12,7 @@ input:focus {
 .question-input {
   font-size: 50px;
   width: 100%;
+  margin-top: -20px;
   margin-bottom: -20px;
   padding-left: 0;
 }

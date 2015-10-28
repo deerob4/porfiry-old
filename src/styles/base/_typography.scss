@@ -7,8 +7,13 @@ h1 {
 h2 {
   font-family: $font-stack;
   font-size: 50px;
-  margin-bottom: 25px
-;  // margin-bottom: 5px
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+h3 {
+  font-family: $font-stack;
+  margin-bottom: 30px;
 }
 
 p {
@@ -16,12 +21,21 @@ p {
   font-size: 26px;
 }
 
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
 .centre {
   text-align: center;
 }
 
-@include house-typography(h1);
+@include house-typography(h1, 3);
 @include house-typography(h2);
+@include house-typography(h3);
 
 form
 {

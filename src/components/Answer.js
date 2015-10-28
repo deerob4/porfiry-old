@@ -39,7 +39,7 @@ class Answer extends Component {
       `answer-check`;
 
     return (
-        <div className={className}>
+        <li className={className}>
           <span className="letter">
             {this.props.letter}.
           </span>
@@ -57,15 +57,9 @@ class Answer extends Component {
                          parseInt(this.props.questionId),
                          this.props.answer,
                          !this.props.correct)}>
-
                 <i className="fa fa-lightbulb-o"></i>
           </span>
-
-          <span className="answer-edit"
-                onClick={this.beginEditing}>
-                <i className="fa fa-pencil"></i>
-          </span>
-        </div>
+        </li>
     );
   }
 }

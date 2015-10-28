@@ -10,6 +10,8 @@
   border: 3px solid;
   border-radius: 4px;
 
+  transition: all 0.2s ease;
+
   @include size(100%, 80px);
 }
 
@@ -42,5 +44,5 @@
 }
 
 @include house-colours('answer', 19);
-@include house-colours('correct-answer', 23);
-@include house-answer-checks(15);
+@include house-colours('correct-answer', 25);
+@include house-answer-checks(20);

@@ -1,4 +1,4 @@
-import * as types from 'constants/MakerActions';
+import * as types from 'constants/CreatorActions';
 import nextBiggest from 'utils/nextBiggest';
 import { combineReducers } from 'redux';
 import storage from 'utils/storage';

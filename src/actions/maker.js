@@ -1,4 +1,4 @@
-import * as types from 'constants/MakerActions';
+import * as types from 'constants/CreatorActions';
 
 // Quiz metadata actions.
 export function updateTitle(title) {

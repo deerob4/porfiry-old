@@ -10,7 +10,7 @@ function house(state = 'acton', action) {
   }
 }
 
-function year(state = '', action) {
+function year(state = 7, action) {
   switch (action.type) {
     case types.CHANGE_YEAR:
       return action.year;

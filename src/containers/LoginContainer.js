@@ -11,15 +11,10 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      houseValidation: '',
-      yearValidation: ''
-    };
-
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
-    this.validateLogin = this.validateLogin.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
+    this.login = this.login.bind(this);
   }
 
   changeYear(e) {
@@ -32,25 +27,8 @@ class LoginContainer extends Component {
     this.props.dispatch(changeHouse(house));
   }
 
-  validateLogin() {
-    if (!this.props.user.house) {
-      // Set the animation class to pass to component.
-      this.setState({ houseValidation: 'animated shake' });
-      // Remove the class so the animation can be replayed.
-      setTimeout(() => this.setState({ houseValidation: '' }), 850);
-    }
-
-    if (!this.props.user.year) {
-      // Set the animation class to pass to component.
-      this.setState({ yearValidation: 'animated shake'});
-      // Remove the class so the animation can be replayed.
-      setTimeout(() => this.setState({ yearValidation: '' }), 850);
-    }
-
-    if (this.props.user.year && this.props.user.house) {
-      // Transition to the quiz create section
-      this.props.history.pushState('create', '/create');
-    }
+  login() {
+    this.props.history.pushState('create', '/create');
   }
 
   isQuizReady() {
@@ -63,11 +41,9 @@ class LoginContainer extends Component {
         <div className="container">
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}
-                     validateLogin={this.validateLogin}
-                     houseValidation={this.state.houseValidation}
-                     yearValidation={this.state.yearValidation}
                      house={this.props.user.house}
                      isQuizReady={this.isQuizReady}
+                     login={this.login}
                      houses={houses}
                      years={years} />
         </div>

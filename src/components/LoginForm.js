@@ -6,11 +6,8 @@ class LoginForm extends Component {
   static propTypes = {
     changeHouse: PropTypes.func.isRequired,
     changeYear: PropTypes.func.isRequired,
-    houseValidation: PropTypes.string.isRequired,
     houses: PropTypes.array.isRequired,
     isQuizReady: PropTypes.func.isRequired,
-    validateLogin: PropTypes.func.isRequired,
-    yearValidation: PropTypes.string.isRequired,
     years: PropTypes.array.isRequired
   }
 
@@ -34,13 +31,13 @@ class LoginForm extends Component {
 
         <form className="animated bounceInUp">
           <Select changeEvent={this.props.changeHouse}
-                  customClass={`hover ${this.props.houseValidation}`}
+                  customClass="hover"
                   house={this.props.house}
                   options={this.props.houses}
                   placeholder="I belong to..." />
 
           <Select changeEvent={this.props.changeYear}
-                  customClass={`hover ${this.props.yearValidation}`}
+                  customClass="hover"
                   house={this.props.house}
                   options={this.props.years}
                   placeholder="And I'm in year..."
@@ -55,7 +52,7 @@ class LoginForm extends Component {
             <Button customClass="login-button"
                     text="Create a quiz!"
                     house={this.props.house}
-                    clickEvent={this.props.validateLogin} />
+                    clickEvent={this.props.login} />
           }
         </form>
       </div>

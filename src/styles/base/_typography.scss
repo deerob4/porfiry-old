@@ -21,6 +21,16 @@ p {
   font-size: 26px;
 }
 
+label {
+  font-family: $font-stack;
+  font-size: 17px;
+
+  padding-bottom: 3px;
+  clear: both;
+
+  display: block;
+}
+
 ul {
   padding: 0;
 }
@@ -34,8 +44,10 @@ li {
 }
 
 @include house-typography(h1, 3);
-@include house-typography(h2);
-@include house-typography(h3);
+@include house-typography(h2, 3);
+@include house-typography(h3, 1);
+@include house-typography(p, 2);
+@include house-typography(label, 4);
 
 form
 {

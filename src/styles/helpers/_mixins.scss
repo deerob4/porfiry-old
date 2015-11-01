@@ -56,7 +56,7 @@
 
 @mixin house-input-placeholders($intensity: 3) {
   @each $houseName, $houseColour in $houses {
-    .#{'input-' + $houseName}::-webkit-input-placeholder {
+    .#{$houseName + '-input'}::-webkit-input-placeholder {
       color: lighten($houseColour, $intensity);
     }
   }

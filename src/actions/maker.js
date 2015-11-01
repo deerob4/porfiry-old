@@ -23,8 +23,8 @@ export function updateIntervalLength(intervalLength) {
 
 
 // Quiz category actions.
-export function addCategory(name) {
-  return { type: types.ADD_CATEGORY, name };
+export function addCategory(body) {
+  return { type: types.ADD_CATEGORY, body };
 }
 
 export function editCategory(id, name) {

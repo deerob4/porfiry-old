@@ -10,7 +10,7 @@ class Select extends Component {
     customClass: PropTypes.string,
     house: PropTypes.string.isRequired,
     indexes: PropTypes.bool,
-    innerClass: PropTypes.string.isRequired,
+    innerClass: PropTypes.string,
     options: PropTypes.array.isRequired,
     placeholder: PropTypes.string.isRequired,
     prefix: PropTypes.string,
@@ -29,9 +29,7 @@ class Select extends Component {
         <select className={trim(className)}
                 onChange={this.props.changeEvent}>
 
-          <option value="" selected={true} disabled={true}>
-            {this.props.placeholder}
-          </option>
+
 
           {this.props.options.map((option, index) =>
             this.props.complex ?

@@ -15,20 +15,17 @@
   transition: all 0.2s ease;
   -webkit-transition: all 0.2s ease;
 
-  @include size(200px, 60px);
+  @include size(215px, 60px);
 }
 
-@include house-colours('button', 20);
+@include house-colours('button', 23);
 
 .button:active {
   transform: scale(0.6) !important;
   -webkit-transform: scale(0.6) !important;
+  opacity: 0.8;
 }
 
-// .button:hover {
-//   transform: scale(1.1);
-//   -webkit-transform: scale(1.1);
-// }
 
 .login-button {
   margin: 6px 0 10px 140px;
@@ -36,7 +33,7 @@
 
 .button-group {
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
 }
 
 .create-quiz-button {
@@ -44,5 +41,16 @@
 }
 
 .button-icon {
-  margin-left: 8px;
+  margin-left: 10px;
+  position: relative;
+  top: 2px;
+}
+
+.settings-button {
+  margin-top: 20px;
+  height: 60px;
+  font-size: 23px;
+  padding-top: 9px;
+  margin-left: 150px;
+  // margin: 20px auto !important;
 }

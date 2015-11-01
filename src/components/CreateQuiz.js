@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import QuizSettingsPanel from 'components/QuizSettingsPanel';
 import EditableText from 'components/EditableText';
 import Button from 'components/Button';
 import Select from 'components/Select';
 import Answer from 'components/Answer';
-// import Modal from 'react-modal';
 
 class CreateQuiz extends Component {
   static propTypes = {
@@ -15,10 +15,11 @@ class CreateQuiz extends Component {
     editAnswer: PropTypes.func.isRequired,
     editCategory: PropTypes.func.isRequired,
     editQuestion: PropTypes.func.isRequired,
-    finishQuiz: PropTypes.func.finishQuiz,
+    finishQuiz: PropTypes.func.isRequired,
     house: PropTypes.string.isRequired,
     markCorrect: PropTypes.func.isRequired,
-    questions: PropTypes.array.isRequired
+    questions: PropTypes.array.isRequired,
+    quizSettings: PropTypes.object.isRequired
   }
 
   constructor(props) {
@@ -27,6 +28,7 @@ class CreateQuiz extends Component {
     this.openSettings = this.openSettings.bind(this);
     this.closeSettings = this.closeSettings.bind(this);
     this.editQuestion = this.editQuestion.bind(this);
+    this.addCategory = this.addCategory.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
 
     this.state = {
@@ -45,9 +47,13 @@ class CreateQuiz extends Component {
   }
 
   changeCategory(e) {
-    const categoryId = parseInt(e.target.value);
+    let categoryId = parseInt(e.target.value);
+
     this.setState({ currentCategory: categoryId });
-    this.props.changeQuestion(this.props.questions.filter(x => x.categoryId === categoryId)[0].id);
+
+    this.props.changeQuestion(this.props.questions.filter(x =>
+      x.categoryId === categoryId
+    )[0].id);
   }
 
   editQuestion(body) {
@@ -57,29 +63,28 @@ class CreateQuiz extends Component {
     );
   }
 
+  addCategory() {
+    let categoryName = prompt('Category name:');
+
+    // Ensure they have actually typed something in.
+    if (categoryName.length) {
+      this.props.addCategory(categoryName);
+    }
+  }
+
   render() {
-    const letters = ['A', 'B', 'C', 'D'];
+    // Used to prefix each answer.
+    let letters = ['A', 'B', 'C', 'D'];
 
-    const customStyles = {
-      overlay: {
-        backgroundColor: 'rgba(175, 226, 250, 0.65)'
-      },
-      content : {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        border: '3px solid #6eaac6',
-        backgroundColor: '#a1ddf9',
-        transform: 'translate(-50%, -50%)',
-        padding: '20px',
-        '-webkit-box-shadow': '1px 8px 41px 3px rgba(110,170,198,1)'
-      }
-    };
+    // The name of the current category.
+    let currentCategoryName = this.props.categories.filter(x =>
+      x.id === this.state.currentCategory
+    )[0].body;
 
-    const currentCategoryName = this.props.categories.filter(x => x.id === this.state.currentCategory)[0].body;
-    const currentCategoryLength = this.props.questions.filter(x => x.categoryId === this.state.currentCategory).length;
+    // The length of the current category.
+    let currentCategoryLength = this.props.questions.filter(x =>
+      x.categoryId === this.state.currentCategory
+    ).length;
 
     return (
       <div>
@@ -101,7 +106,8 @@ class CreateQuiz extends Component {
                   customClass="select-right select-half"
                   house={this.props.house}
                   innerClass="select-right select-half-parent"
-                  options={this.props.questions.filter(x => x.categoryId === this.state.currentCategory
+                  options={this.props.questions.filter(x =>
+                    x.categoryId === this.state.currentCategory
                   )}
                   placeholder="Choose a question..." />
         </div>
@@ -134,7 +140,7 @@ class CreateQuiz extends Component {
           }
         </ul>
 
-        <div className="button-group">
+        <ul className="button-group">
           <Button clickEvent={this.props.addQuestion.bind(this, this.state.currentCategory)}
                   customClass="create-quiz-button"
                   text="Add a question"
@@ -142,7 +148,17 @@ class CreateQuiz extends Component {
 
           <Button clickEvent={this.props.deleteQuestion}
                   customClass="create-quiz-button"
-                  text="Delete a question"
+                  text="Delete question"
+                  house={this.props.house} />
+
+          <Button clickEvent={this.addCategory}
+                  customClass="create-quiz-button"
+                  text="Add a category"
+                  house={this.props.house} />
+
+          <Button clickEvent={this.addCategory}
+                  customClass="create-quiz-button"
+                  text="Delete category"
                   house={this.props.house} />
 
           <Button clickEvent={this.openSettings}
@@ -156,8 +172,12 @@ class CreateQuiz extends Component {
                   text="Finish quiz"
                   icon="graduation-cap"
                   house={this.props.house} />
-        </div>
+        </ul>
 
+        <QuizSettingsPanel closeSettings={this.closeSettings}
+                           currentSettings={this.props.quizSettings}
+                           house={this.props.house}
+                           settingsAreOpen={this.state.settingsAreOpen} />
 
       </div>
     );
@@ -165,12 +185,3 @@ class CreateQuiz extends Component {
 }
 
 export default CreateQuiz;
-// <Modal isOpen={this.state.settingsAreOpen}
-//                onRequestClose={this.closeSettings}
-//                style={customStyles}>
-
-//                <h2>Quiz Settings</h2>
-//                <p>Modify the quiz's settings in this panel.</p>
-
-//                <input type="text" placeholder="Quiz title" />
-//         </Modal>

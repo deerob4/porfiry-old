@@ -1,8 +1,19 @@
-input {
+.input-editable {
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  font-family: dosis;
+}
 
+.input-settings {
+  font-family: $font-stack;
+  font-size: 22px;
+
+  border-radius: 4px;
+  border: 3px solid #000;
+  padding-left: 10px;
+
+  -webkit-appearance: none;
+
+  @include size(100%, 50px);
 }
 
 input:focus {
@@ -19,7 +30,6 @@ input:focus {
 
 .answer-input {
   font-size: 28px;
-  // margin-left: 22px;
   position: relative;
   bottom: 6px;
   padding-left: 0;
@@ -36,5 +46,12 @@ input:focus {
   font-size: 40px;
 }
 
+form {
+  .field {
+    margin-bottom: 15px;
+  }
+}
+
 @include house-typography('input');
-@include house-input-placeholders(6);
+@include house-input-placeholders(5);
+@include house-colours('input', 20);

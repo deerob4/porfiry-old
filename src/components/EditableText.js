@@ -51,8 +51,9 @@ class EditableText extends Component {
     const editView = (
       <input autoFocus={true}
              className={
-              `input-${this.props.house}
-              ${this.props.inputClass}`
+              `input-editable
+               ${this.props.house}-input
+               ${this.props.inputClass}`
              }
              onBlur={this.finishEditing}
              onChange={this.handleChange}

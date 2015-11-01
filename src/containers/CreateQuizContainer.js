@@ -27,9 +27,10 @@ class CreateQuizContainer extends Component {
     this.state = { currentQuestion: 0 };
   }
 
-  addCategory(e) {
-    const name = e.target.value;
-    this.props.dispatch(actions.addCategory(name));
+  addCategory(categoryBody) {
+    this.props.dispatch(actions.addCategory(categoryBody));
+    // Generate a first question for the category.
+    this.addQuestion(this.props.quiz.categories.length);
   }
 
   editCategory(e) {
@@ -39,9 +40,11 @@ class CreateQuizContainer extends Component {
   }
 
   addQuestion(categoryId) {
+    const categoryBody = find(this.props.quiz.categories, x => x.id === categoryId).body;
+
     this.props.dispatch(actions.addQuestion(
       categoryId,
-      `I\'m question ${this.props.quiz.questions.length + 1} - tap to edit me!`
+      `New question in the ${categoryBody} category`
     ));
 
     // The ID of the newly created question.
@@ -126,6 +129,8 @@ class CreateQuizContainer extends Component {
 
   finishQuiz() {
     console.log(constructQuiz(this.props.quiz));
+    localStorage.removeItem('quiz');
+    alert(`Quiz "${this.props.quiz.settings.title}" has been saved.`);
   }
 
   render() {
@@ -151,6 +156,7 @@ class CreateQuizContainer extends Component {
                     finishQuiz={this.finishQuiz}
                     house={this.props.user.house}
                     markCorrect={this.markCorrect}
+                    quizSettings={this.props.quiz.settings}
                     questions={this.props.quiz.questions} />
       </div>
     );

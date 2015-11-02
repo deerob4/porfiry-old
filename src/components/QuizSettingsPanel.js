@@ -19,7 +19,7 @@ class QuizSettingsPanel extends Component {
              style={settingsStyle(this.props.house)}>
 
              <h2 className={`h2-${this.props.house} centre`}>Quiz Settings</h2>
-             <p className={`p-${this.props.house} centre`}>Modify the quiz's settings in this panel.</p>
+             <p className={`p-${this.props.house} centre`}>Modify the quiz settings in this panel.</p>
 
              <form>
                <div className="row">

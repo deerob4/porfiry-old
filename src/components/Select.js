@@ -14,6 +14,7 @@ class Select extends Component {
     options: PropTypes.array.isRequired,
     placeholder: PropTypes.string.isRequired,
     prefix: PropTypes.string,
+    selectedId: PropTypes.number,
     suffix: PropTypes.string
   }
 
@@ -22,14 +23,13 @@ class Select extends Component {
   }
 
   render() {
-    const className = `${this.props.house}-select ${this.props.customClass}`;
+    let className = `${this.props.house}-select ${this.props.customClass}`;
 
     return (
       <div className={this.props.innerClass}>
         <select className={trim(className)}
-                onChange={this.props.changeEvent}>
-
-
+                onChange={this.props.changeEvent}
+                value={this.props.selectedId}>
 
           {this.props.options.map((option, index) =>
             this.props.complex ?
@@ -47,6 +47,7 @@ class Select extends Component {
               </option>
           )}
         </select>
+
         <div className={`select-arrow ${this.props.house}-select-arrow`}>
           <i className={this.props.arrowClass}></i>
         </div>

@@ -20,6 +20,8 @@ class CreateQuizContainer extends Component {
     this.editQuestion = this.editQuestion.bind(this);
     this.deleteQuestion = this.deleteQuestion.bind(this);
 
+    this.saveSettings = this.saveSettings.bind(this);
+
     this.changeQuestion = this.changeQuestion.bind(this);
     this.markCorrect = this.markCorrect.bind(this);
     this.finishQuiz = this.finishQuiz.bind(this);
@@ -27,18 +29,31 @@ class CreateQuizContainer extends Component {
     this.state = { currentQuestion: 0 };
   }
 
-  addCategory(categoryBody) {
-    this.props.dispatch(actions.addCategory(categoryBody));
-    // Generate a first question for the category.
-    this.addQuestion(this.props.quiz.categories.length);
+  addCategory() {
+    let categoryBody = prompt('Category name:');
+
+    if (categoryBody.length) {
+      this.props.dispatch(actions.addCategory(categoryBody));
+      // Generate a first question for the category.
+      this.addQuestion(this.props.quiz.categories.length);
+    }
   }
 
+  /**
+   * Edits the name of a category.
+   * @param  {Element} e Information on the category.
+   */
   editCategory(e) {
     const id = e.target.value.id;
     const name = e.target.value.name;
     this.props.dispatch(actions.editCategory(id, name));
   }
 
+  /**
+   * Adds a question to the quiz, into the currently
+   * selected category.
+   * @param {Number} categoryId The ID of the current category.
+   */
   addQuestion(categoryId) {
     const categoryBody = find(this.props.quiz.categories, x => x.id === categoryId).body;
 
@@ -61,6 +76,9 @@ class CreateQuizContainer extends Component {
     this.changeQuestion(newId);
   }
 
+  /**
+   * Deletes a question from the quiz.
+   */
   deleteQuestion() {
     // Ensure they are not deleting the only question.
     if (this.props.quiz.questions.length > 1) {
@@ -90,6 +108,13 @@ class CreateQuizContainer extends Component {
     this.props.dispatch(actions.editQuestion(id, body));
   }
 
+  /**
+   * Marks a possible quiz answer as correct.
+   * @param  {Number} answerId   ID of the answer to make correct.
+   * @param  {Number} questionId ID of the question the answer belongs to.
+   * @param  {String} body       The body of the answer.
+   * @param  {Boolean} correct   Whether the answer is correct.
+   */
   markCorrect(answerId, questionId, body, correct) {
     // Get the question that's currently marked as correct.
     const currentlyCorrect = find(this.props.quiz.answers,
@@ -120,6 +145,12 @@ class CreateQuizContainer extends Component {
     ));
   }
 
+  /**
+   * Called whenever a new question needs to be displayed.
+   * Updates the state containing the current question ID,
+   * making the other components update to show the new question.
+   * @param  {Number | String} e The ID of the new question.
+   */
   changeQuestion(e) {
     // Check if the question is being changed manually or
     // by an override, such as adding a new question.
@@ -131,6 +162,35 @@ class CreateQuizContainer extends Component {
     console.log(constructQuiz(this.props.quiz));
     localStorage.removeItem('quiz');
     alert(`Quiz "${this.props.quiz.settings.title}" has been saved.`);
+  }
+
+  /**
+   * Called whenever a quiz settings panel property is modified.
+   * @param  {String} setting The setting that has been modified.
+   * @param  {String|Numbe}r value   The new setting data.
+   */
+  saveSettings(setting, value) {
+    if (value.length) {
+      switch (setting) {
+        case 'title':
+          this.props.dispatch(actions.updateTitle(value));
+          break;
+        case 'startDate':
+          this.props.dispatch(actions.updateStartDate(value));
+          break;
+        case 'startTime':
+          this.props.dispatch(actions.updateStartTime(value));
+          break;
+        case 'questionLength':
+          this.props.dispatch(actions.updateQuestionLength(parseInt(value)));
+          break;
+        case 'breakLength':
+          this.props.dispatch(actions.updateBreakLength(parseInt(value)));
+          break;
+        default:
+          return value;
+      }
+    }
   }
 
   render() {
@@ -153,6 +213,7 @@ class CreateQuizContainer extends Component {
                     editAnswer={this.editAnswer}
                     editCategory={this.editCategory}
                     editQuestion={this.editQuestion}
+                    saveSettings={this.saveSettings}
                     finishQuiz={this.finishQuiz}
                     house={this.props.user.house}
                     markCorrect={this.markCorrect}
@@ -166,7 +227,7 @@ class CreateQuizContainer extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    quiz: state.quiz
+    quiz: state.quiz,
   };
 }
 

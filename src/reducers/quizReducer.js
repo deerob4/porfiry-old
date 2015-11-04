@@ -19,10 +19,10 @@ if (localStorage.getItem('quiz')) {
   defaultState = {
     settings: {
       title: 'Priory School Quiz',
-      startTime: new Date(),
-      questionIntervals: 10000,
-      realtimeGraphics: true,
-      intervalLength: 300000
+      startTime: '',
+      startDate: new Date(),
+      questionLength: 10000,
+      breakLength: 300000
     },
     categories: [
       { id: 0, body: 'Default' }
@@ -42,16 +42,19 @@ if (localStorage.getItem('quiz')) {
 function settings(state = defaultState.settings, action) {
   switch (action.type) {
     case types.UPDATE_TITLE:
-      return action.title;
+      return { ...state, title: action.title };
+
+    case types.UPDATE_START_DATE:
+      return { ...state, startDate: action.startDate };
 
     case types.UPDATE_START_TIME:
-      return action.startTime;
+      return { ...state, startTime: action.startTime };
 
-    case types.UPDATE_QUESTION_INTERVALS:
-      return action.questionIntervals;
+    case types.UPDATE_QUESTION_LENGTH:
+      return { ...state, questionLength: action.questionLength };
 
-    case types.UPDATE_INTERVAL_LENGTH:
-      return action.intervalLength;
+    case types.UPDATE_BREAK_LENGTH:
+      return { ...state, breakLength: action.breakLength };
 
     default:
       return state;

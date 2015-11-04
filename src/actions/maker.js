@@ -5,20 +5,20 @@ export function updateTitle(title) {
   return { type: types.UPDATE_TITLE, title };
 }
 
+export function updateStartDate(startDate) {
+  return { type: types.UPDATE_START_DATE, startDate };
+}
+
 export function updateStartTime(startTime) {
   return { type: types.UPDATE_START_TIME, startTime };
 }
 
-export function updateQuestionIntervals(questionIntervals) {
-  return { type: types.UPDATE_QUESTION_INTERVALS, questionIntervals };
+export function updateQuestionLength(questionLength) {
+  return { type: types.UPDATE_QUESTION_LENGTH, questionLength };
 }
 
-export function updateRealtimeGraphics(realtimeGraphics) {
-  return { type: types.UPDATE_REALTIME_GRAPHICS, realtimeGraphics };
-}
-
-export function updateIntervalLength(intervalLength) {
-  return { type: types.UPDATE_INTERVAL_LENGTH, intervalLength };
+export function updateBreakLength(breakLength) {
+  return { type: types.UPDATE_BREAK_LENGTH, breakLength };
 }
 
 

@@ -1,6 +1,10 @@
+input {
+  font-family: $font-stack;
+}
+
 .input-editable {
   border: none;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .input-settings {
@@ -53,5 +57,5 @@ form {
 }
 
 @include house-typography('input');
-@include house-input-placeholders(5);
-@include house-colours('input', 20);
+@include house-input-placeholders(15);
+@include house-colours('input', 30);

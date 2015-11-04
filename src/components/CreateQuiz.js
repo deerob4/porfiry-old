@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import findIndex from 'lodash/array/findIndex';
 import QuizSettingsPanel from 'components/QuizSettingsPanel';
 import EditableText from 'components/EditableText';
 import Button from 'components/Button';
@@ -27,8 +28,8 @@ class CreateQuiz extends Component {
 
     this.openSettings = this.openSettings.bind(this);
     this.closeSettings = this.closeSettings.bind(this);
+
     this.editQuestion = this.editQuestion.bind(this);
-    this.addCategory = this.addCategory.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
 
     this.state = {
@@ -63,15 +64,6 @@ class CreateQuiz extends Component {
     );
   }
 
-  addCategory() {
-    let categoryName = prompt('Category name:');
-
-    // Ensure they have actually typed something in.
-    if (categoryName.length) {
-      this.props.addCategory(categoryName);
-    }
-  }
-
   render() {
     // Used to prefix each answer.
     let letters = ['A', 'B', 'C', 'D'];
@@ -86,6 +78,12 @@ class CreateQuiz extends Component {
       x.categoryId === this.state.currentCategory
     ).length;
 
+    // The index of the current question in relation to the
+    // current category.
+    let currentQuestionIndex = findIndex(this.props.questions.filter(x =>
+      x.categoryId === this.state.currentCategory
+    ), question => question.id === this.props.currentQuestion.id) + 1;
+
     return (
       <div>
         <div className="select-group">
@@ -98,6 +96,7 @@ class CreateQuiz extends Component {
                   indexes={false}
                   options={this.props.categories}
                   placeholder="Choose a category..."
+                  selectedId={this.props.currentCategory}
                   suffix="questions" />
 
           <Select arrowClass="right-arrow"
@@ -109,7 +108,8 @@ class CreateQuiz extends Component {
                   options={this.props.questions.filter(x =>
                     x.categoryId === this.state.currentCategory
                   )}
-                  placeholder="Choose a question..." />
+                  placeholder="Choose a question..."
+                  selectedId={this.props.currentQuestion.id} />
         </div>
 
         <EditableText finishFunction={this.editQuestion}
@@ -121,7 +121,7 @@ class CreateQuiz extends Component {
                       textType="h2" />
 
         <h3 className={`h3-${this.props.house}`}>
-          {`Question 1 out of ${currentCategoryLength} in the ${currentCategoryName} category
+          {`Question ${currentQuestionIndex} out of ${currentCategoryLength} in the ${currentCategoryName} category
           • Question ${this.props.currentQuestion.id + 1} out of ${this.props.questions.length} in total`}
         </h3>
 
@@ -151,16 +151,6 @@ class CreateQuiz extends Component {
                   text="Delete question"
                   house={this.props.house} />
 
-          <Button clickEvent={this.addCategory}
-                  customClass="create-quiz-button"
-                  text="Add a category"
-                  house={this.props.house} />
-
-          <Button clickEvent={this.addCategory}
-                  customClass="create-quiz-button"
-                  text="Delete category"
-                  house={this.props.house} />
-
           <Button clickEvent={this.openSettings}
                   customClass="create-quiz-button"
                   text="Quiz settings"
@@ -176,7 +166,9 @@ class CreateQuiz extends Component {
 
         <QuizSettingsPanel closeSettings={this.closeSettings}
                            currentSettings={this.props.quizSettings}
+                           editSettings={this.props.editSettings}
                            house={this.props.house}
+                           saveSettings={this.props.saveSettings}
                            settingsAreOpen={this.state.settingsAreOpen} />
 
       </div>

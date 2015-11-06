@@ -8,7 +8,7 @@ const constructQuiz = quiz => ({
       question.categoryId === category.id
     ).map(question => ({
       id: question.id,
-      title: question.body,
+      body: question.body,
       answers: quiz.answers.filter(answer =>
         answer.questionId === question.id
       ).map(answer => ({

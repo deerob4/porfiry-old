@@ -7,7 +7,7 @@ class LoginForm extends Component {
     changeHouse: PropTypes.func.isRequired,
     changeYear: PropTypes.func.isRequired,
     houses: PropTypes.array.isRequired,
-    isQuizReady: PropTypes.func.isRequired,
+    isQuizReady: PropTypes.bool.isRequired,
     years: PropTypes.array.isRequired
   }
 
@@ -17,7 +17,7 @@ class LoginForm extends Component {
 
   render() {
     const style = { color: '#000' };
-
+    console.log(this.props.isQuizReady);
     return (
       <div className="loginForm">
         <div className="animated bounceInDown">
@@ -43,7 +43,7 @@ class LoginForm extends Component {
                   placeholder="And I'm in year..."
                   prefix="Year" />
 
-          {this.props.isQuizReady() ?
+          {this.props.isQuizReady ?
             // If there is a quiz scheduled in the next 30 minutes, display a
             // button to join the room. Otherwise show button to create a quiz.
             <Button customClass="login-button"

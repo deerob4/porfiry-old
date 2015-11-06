@@ -81,7 +81,7 @@ class QuizSettingsPanel extends Component {
                    <input onChange={this.editSetting.bind(this, 'questionLength')}
                           className={`${this.props.house}-input input-settings`}
                           ref="questionLength"
-                          placeholder={this.props.currentSettings.questionLength}
+                          value={this.props.currentSettings.questionLength}
                           type="number"
                           min="5" />
                  </div>
@@ -95,7 +95,7 @@ class QuizSettingsPanel extends Component {
                    <input onChange={this.editSetting.bind(this, 'breakLength')}
                           className={`${this.props.house}-input input-settings`}
                           ref="breakLength"
-                          placeholder={this.props.currentSettings.breakLength}
+                          value={this.props.currentSettings.breakLength}
                           type="number"
                           min="1" />
                  </div>

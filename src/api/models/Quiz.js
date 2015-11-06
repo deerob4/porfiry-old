@@ -3,10 +3,9 @@ import categorySchema from './Category';
 
 const quizSchema = new mongoose.Schema({
   title: String,
-  start: Date,
-  questionIntervals: Number,
-  realtimeGraphics: Boolean,
-  intervalLength: Number,
+  startDate: Date,
+  questionLength: Number,
+  breakLength: Number,
   categories: [categorySchema]
 });
 

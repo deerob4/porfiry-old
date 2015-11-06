@@ -9,7 +9,7 @@ let router = express.Router();
  * Returns all quizzes.
  */
 router.get('/', (req, res) => {
-  Quiz.find({}, '-__v -_id', (err, quizzes) => {
+  Quiz.find({}, '-__v', (err, quizzes) => {
     if (err) throw err;
     res.send({ quizzes });
   });
@@ -23,10 +23,9 @@ router.post('/', (req, res) => {
   let quiz = new Quiz();
 
   quiz.title = req.body.title;
-  quiz.start = req.body.start;
-  quiz.questionIntervals = req.body.questionIntervals;
-  quiz.realtimeGraphics = req.body.realtimeGraphics;
-  quiz.intervalLength = req.body.intervalLength;
+  quiz.startDate = req.body.startDate;
+  quiz.questionLength = req.body.questionLength;
+  quiz.breakLength = req.body.breakLength;
   quiz.categories = req.body.categories;
 
   quiz.save(err => {

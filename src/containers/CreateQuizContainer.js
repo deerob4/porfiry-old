@@ -7,6 +7,7 @@ import last from 'lodash/array/last';
 import backgroundStyle from 'utils/backgroundStyle';
 import constructQuiz from 'libs/constructQuiz';
 import CreateQuiz from 'components/CreateQuiz';
+import request from 'superagent';
 
 class CreateQuizContainer extends Component {
   constructor(props) {
@@ -159,8 +160,15 @@ class CreateQuizContainer extends Component {
   }
 
   finishQuiz() {
-    console.log(constructQuiz(this.props.quiz));
+    let quiz = constructQuiz(this.props.quiz);
     localStorage.removeItem('quiz');
+    request
+      .post('/api/quizzes')
+      .send(quiz)
+      .end((err, res) => {
+        if (err) console.log(err);
+        console.log(res);
+      });
     alert(`Quiz "${this.props.quiz.settings.title}" has been saved.`);
   }
 
@@ -227,7 +235,7 @@ class CreateQuizContainer extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    quiz: state.quiz,
+    quiz: state.quiz
   };
 }
 

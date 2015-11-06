@@ -1,1 +1,3 @@
-export default array => array[Math.floor(Math.random() * array.length)];
+let choice = array => array[Math.floor(Math.random() * array.length)];
+
+export default choice;

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const answerSchema = new mongoose.Schema({
-  text: String,
+  body: String,
   correct: Boolean
 });
 

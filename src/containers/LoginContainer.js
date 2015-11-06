@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import LoginForm from 'components/LoginForm';
 import backgroundStyle from 'utils/backgroundStyle';
 import { changeHouse, changeYear } from 'actions/login';
+import request from 'superagent';
+import moment from 'moment';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
 const years = [7, 8, 9, 10, 11];
@@ -15,6 +17,12 @@ class LoginContainer extends Component {
     this.changeYear = this.changeYear.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
     this.login = this.login.bind(this);
+
+    this.state = {
+      isQuizReady: false
+    };
+
+    this.isQuizReady();
   }
 
   changeYear(e) {
@@ -32,7 +40,20 @@ class LoginContainer extends Component {
   }
 
   isQuizReady() {
-    return false;
+    request
+      .get('/api/quizzes')
+      .end((err, res) => {
+        // if (err) return err;
+        // Select the first quiz.
+        let quiz = JSON.parse(res.text)['quizzes'][0];
+        // Create a moment object of the quizz's start date.
+        let startDate = moment(quiz.startDate);
+        // Work out the number of minutes till quiz is due to start.
+        let minutesToStart = startDate.diff(moment(), 'minutes');
+        console.log(minutesToStart);
+        // console.log(startDate);
+        this.setState({ isQuizReady: minutesToStart >= -5 && minutesToStart < 30 });
+      });
   }
 
   render() {
@@ -42,7 +63,7 @@ class LoginContainer extends Component {
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}
                      house={this.props.user.house}
-                     isQuizReady={this.isQuizReady}
+                     isQuizReady={this.state.isQuizReady}
                      login={this.login}
                      houses={houses}
                      years={years} />

@@ -10,17 +10,23 @@ This subsection lists the RESTful API resource models, defining exactly what a q
 \input{./tex/program_documentation/listings/server/api_models.tex}
 % subsection api_models (end)
 
-\subsection{Scoring Algorithms} % (fold)
-\label{sub:api_models}
-This subsection lists the scoring algorithms for the quiz.
-\input{./tex/program_documentation/listings/scoring.tex}
-% subsection api_models (end)
-
 \subsection{Utility Functions} % (fold)
 \label{sub:utility_functions}
 This subsection lists the utility functions used through the system. These functions, often used multiple times in different places, are used to extract out common functionality into its own module.
 \input{./tex/program_documentation/listings/utils.tex}
 % subsection utility_functions (end)
+
+\subsection{Library Functions} % (fold)
+\label{sub:library_functions}
+This subsection lists the more advanced functions that are used. Focusing on aspects like scoring, these algorithms form the backbone of the processing that takes place for the quiz.
+\input{./tex/program_documentation/listings/libs.tex}
+% subsection library_functions (end)
+
+\subsection{Action Creators} % (fold)
+\label{sub:action_creators}
+This subsection lists the action creators. These construct an object that can be consumed by the reducers.
+\input{./tex/program_documentation/listings/actions.tex}
+% subsection action_creators (end)
 
 \subsection{Reducers} % (fold)
 \label{sub:reducers}

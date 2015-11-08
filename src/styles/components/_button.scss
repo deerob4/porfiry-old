@@ -46,11 +46,17 @@
   top: 2px;
 }
 
-.settings-button {
-  margin-top: 20px;
-  height: 60px;
+.setting-buttons {
+  height: 50px;
   font-size: 23px;
-  padding-top: 9px;
-  margin-left: 150px;
-  // margin: 20px auto !important;
+  padding-top: 11px;
+}
+
+.settings-save {
+  margin-left: 15px;
+}
+
+.settings-cancel {
+  float: right;
+  margin-right: 15px;
 }

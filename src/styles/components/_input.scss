@@ -57,5 +57,5 @@ form {
 }
 
 @include house-typography('input');
-@include house-input-placeholders(15);
-@include house-colours('input', 30);
+@include house-input-placeholders(8);
+@include house-colours('input', 20);

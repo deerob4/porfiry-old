@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import quiz from './quizReducer';
-import user from './loginReducer';
+import user from './userReducer';
 
 const rootReducer = combineReducers({
   user,

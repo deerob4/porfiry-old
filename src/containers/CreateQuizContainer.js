@@ -14,17 +14,19 @@ class CreateQuizContainer extends Component {
     super(props);
 
     this.addCategory = this.addCategory.bind(this);
-
-    this.editAnswer = this.editAnswer.bind(this);
+    this.editCategory = this.editCategory.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
 
     this.addQuestion = this.addQuestion.bind(this);
     this.editQuestion = this.editQuestion.bind(this);
     this.deleteQuestion = this.deleteQuestion.bind(this);
 
+    this.markCorrect = this.markCorrect.bind(this);
+    this.editAnswer = this.editAnswer.bind(this);
+
     this.saveSettings = this.saveSettings.bind(this);
 
     this.changeQuestion = this.changeQuestion.bind(this);
-    this.markCorrect = this.markCorrect.bind(this);
     this.finishQuiz = this.finishQuiz.bind(this);
 
     this.state = { currentQuestion: 0 };
@@ -51,6 +53,19 @@ class CreateQuizContainer extends Component {
     const id = e.target.value.id;
     const name = e.target.value.name;
     this.props.dispatch(actions.editCategory(id, name));
+  }
+
+  /**
+   * Deletes a category and all it's questions.
+   * @param  {Number} id ID of category to delete.
+   */
+  deleteCategory(id) {
+    // Get all the questions in the category.
+    this.props.quiz.questions.filter(question => question.categoryId === id)
+    // Delete them all.
+    .map(question => this.deleteQuestion(question.id));
+    // Delete the actual category entry.
+    this.props.dispatch(actions.deleteCategory(id));
   }
 
   /**
@@ -236,6 +251,7 @@ class CreateQuizContainer extends Component {
                     changeQuestion={this.changeQuestion}
                     currentQuestion={currentQuestion}
                     deleteQuestion={this.deleteQuestion}
+                    deleteCategory={this.deleteCategory}
                     editAnswer={this.editAnswer}
                     editCategory={this.editCategory}
                     editQuestion={this.editQuestion}

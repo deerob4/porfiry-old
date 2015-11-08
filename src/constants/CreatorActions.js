@@ -1,3 +1,4 @@
+export const UPDATE_ID = 'UPDATE_ID';
 export const UPDATE_TITLE = 'UPDATE_TITLE';
 export const UPDATE_START_DATE = 'UPDATE_START_DATE';
 export const UPDATE_START_TIME = 'UPDATE_START_TIME';

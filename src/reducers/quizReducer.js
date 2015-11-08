@@ -17,6 +17,7 @@ if (localStorage.getItem('quiz')) {
   // sample data - acts as a tutorial of sorts.
   defaultState = {
     settings: {
+      id: '',
       title: 'Priory School Quiz',
       startTime: '',
       startDate: new Date(),
@@ -40,6 +41,9 @@ if (localStorage.getItem('quiz')) {
 
 function settings(state = defaultState.settings, action) {
   switch (action.type) {
+    case types.UPDATE_ID:
+      return { ...state, id: action.id };
+
     case types.UPDATE_TITLE:
       return { ...state, title: action.title };
 

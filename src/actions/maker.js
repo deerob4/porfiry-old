@@ -1,6 +1,10 @@
 import * as types from 'constants/CreatorActions';
 
 // Quiz metadata actions.
+export function updateId(id) {
+  return { type: types.UPDATE_ID, id };
+}
+
 export function updateTitle(title) {
   return { type: types.UPDATE_TITLE, title };
 }

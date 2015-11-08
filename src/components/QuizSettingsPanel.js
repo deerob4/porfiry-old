@@ -114,7 +114,7 @@ class QuizSettingsPanel extends Component {
                   <Button clickEvent={this.props.closeSettings}
                           customClass="create-quiz-button settings-cancel"
                           text="Cancel changes"
-                          icon="save"
+                          icon="ban"
                           house={this.props.house} />
                 </div>
                </div>

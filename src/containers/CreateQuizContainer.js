@@ -30,6 +30,9 @@ class CreateQuizContainer extends Component {
     this.state = { currentQuestion: 0 };
   }
 
+  /**
+   * Adds a new category to the quiz.
+   */
   addCategory() {
     let categoryBody = prompt('Category name:');
 
@@ -105,6 +108,11 @@ class CreateQuizContainer extends Component {
     }
   }
 
+  /**
+   * Edits a question's body.
+   * @param  {Number} id   ID of the question to edit.
+   * @param  {String} body New question body.
+   */
   editQuestion(id, body) {
     this.props.dispatch(actions.editQuestion(id, body));
   }

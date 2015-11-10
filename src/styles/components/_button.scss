@@ -1,62 +1,61 @@
-.button {
-  font-family: $font-stack;
-  font-size: 25px;
+.button
+{
+    font-family: $font-stack;
+    font-size: 25px;
 
-  display: inline-block;
+    display: inline-block;
 
-  padding: 8px;
+    padding: 8px;
 
-  cursor: pointer;
-  text-align: center;
+    cursor: pointer;
+    -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+    text-align: center;
 
-  border: 3px solid;
-  border-radius: 4px;
+    border: 3px solid;
+    border-radius: 4px;
 
-  transition: all 0.2s ease;
-  -webkit-transition: all 0.2s ease;
-
-  @include size(215px, 60px);
+    @include size(243px, 60px);
 }
 
 @include house-colours('button', 23);
 
-.button:active {
-  transform: scale(0.6) !important;
-  -webkit-transform: scale(0.6) !important;
-  opacity: 0.8;
+.button:active
+{
+    -webkit-transform: scale(.6) !important;
+            transform: scale(.6) !important;
+
+    opacity: .8;
 }
 
 
-.login-button {
-  margin: 6px 0 10px 140px;
+.login-button
+{
+    margin: 6px 0 10px 140px;
 }
 
-.button-group {
-  position: absolute;
-  bottom: 0;
+.button-group
+{
+    position: absolute;
+    bottom: 0;
 }
 
-.create-quiz-button {
-  margin-right: 10px;
+.create-quiz-button
+{
+    margin: 10px 10px 0 0;
 }
 
-.button-icon {
-  margin-left: 10px;
-  position: relative;
-  top: 2px;
+.button-icon
+{
+    position: relative;
+    top: 2px;
+
+    margin-left: 10px;
 }
 
-.setting-buttons {
-  height: 50px;
-  font-size: 23px;
-  padding-top: 11px;
-}
+.setting-buttons
+{
+    font-size: 23px;
 
-.settings-save {
-  margin-left: 15px;
-}
-
-.settings-cancel {
-  float: right;
-  margin-right: 15px;
+    height: 50px;
 }

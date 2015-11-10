@@ -28,6 +28,7 @@ class CreateQuizContainer extends Component {
 
     this.changeQuestion = this.changeQuestion.bind(this);
     this.finishQuiz = this.finishQuiz.bind(this);
+    this.leaveQuiz = this.leaveQuiz.bind(this);
 
     this.state = { currentQuestion: 0 };
   }
@@ -74,8 +75,9 @@ class CreateQuizContainer extends Component {
    * @param {Number} categoryId The ID of the current category.
    */
   addQuestion(categoryId) {
+    console.log(categoryId);
     const categoryBody = find(this.props.quiz.categories, x => x.id === categoryId).body;
-
+    console.log(categoryBody);
     this.props.dispatch(actions.addQuestion(
       categoryId,
       `New question in the ${categoryBody} category`
@@ -102,17 +104,17 @@ class CreateQuizContainer extends Component {
     // Ensure they are not deleting the only question.
     if (this.props.quiz.questions.length > 1) {
       // The id of the question to be deleted.
-      const deleteId = this.state.currentQuestion;
+      let deleteId = this.state.currentQuestion;
       // The index in the questions array of the question to be deleted.
-      const deleteIndex = findIndex(this.props.quiz.questions, x => x.id === deleteId);
+      let deleteIndex = findIndex(this.props.quiz.questions, x => x.id === deleteId);
 
       // Create an array containing all the answers associated
       // with the question to be deleted and then delete them.
       this.props.quiz.answers.filter(x => x.questionId === deleteId)
-          .map(x => this.props.dispatch(actions.deleteAnswer(x.id)));
+      .map(x => this.props.dispatch(actions.deleteAnswer(x.id)));
 
-      const nextQuestionIndex = findIndex(this.props.quiz.questions, x => x.id === deleteIndex - 1);
-      const nextQuestionId = this.props.quiz.questions[nextQuestionIndex].id;
+      let nextQuestionIndex = findIndex(this.props.quiz.questions, x => x.id === deleteIndex - 1);
+      let nextQuestionId = this.props.quiz.questions[nextQuestionIndex].id;
 
       // Update the view to the previous question.
       // this.changeQuestion(deleteIndex - 1);
@@ -185,16 +187,24 @@ class CreateQuizContainer extends Component {
   }
 
   finishQuiz() {
-    let quiz = constructQuiz(this.props.quiz);
-    localStorage.removeItem('quiz');
-    request
-      .post('/api/quizzes')
-      .send(quiz)
-      .end((err, res) => {
-        if (err) console.log(err);
-        console.log(res);
-      });
-    alert(`Quiz "${this.props.quiz.settings.title}" has been saved.`);
+    let confirm = window.confirm('Are you sure you want to finish this quiz? It will be scheduled and you can\'t change it.');
+
+    if (confirm) {
+      let quiz = constructQuiz(this.props.quiz);
+      localStorage.removeItem('quiz');
+      request
+        .post('/api/quizzes')
+        .send(quiz)
+        .end((err, res) => {
+          if (err) console.log(err);
+          console.log(res);
+        });
+      alert(`Quiz "${this.props.quiz.settings.title}" has been saved.`);
+    }
+  }
+
+  leaveQuiz() {
+    this.props.history.pushState('/', '/');
   }
 
   /**
@@ -258,6 +268,7 @@ class CreateQuizContainer extends Component {
                     saveSettings={this.saveSettings}
                     finishQuiz={this.finishQuiz}
                     house={this.props.user.house}
+                    leaveQuiz={this.leaveQuiz}
                     markCorrect={this.markCorrect}
                     quizSettings={this.props.quiz.settings}
                     questions={this.props.quiz.questions} />

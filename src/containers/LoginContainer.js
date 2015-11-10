@@ -43,20 +43,27 @@ class LoginContainer extends Component {
     request
       .get('/api/quizzes')
       .end((err, res) => {
-        // if (err) return err;
+        if (err) return err;
         // Select the first quiz.
         let quiz = JSON.parse(res.text)['quizzes'][0];
         // Create a moment object of the quizz's start date.
         let startDate = moment(quiz.startDate);
         // Work out the number of minutes till quiz is due to start.
         let minutesToStart = startDate.diff(moment(), 'minutes');
-        console.log(minutesToStart);
-        // console.log(startDate);
-        this.setState({ isQuizReady: minutesToStart >= -5 && minutesToStart < 30 });
+        // Check if quiz is within the next 35 minutes.
+        let isQuizReady = minutesToStart >= -5 && minutesToStart < 30;
+
+        this.setState({ isQuizReady });
       });
   }
 
   render() {
+    request
+      .get('/api/quizzes')
+      .end((err, res) => {
+        console.log(JSON.parse(res.text)['quizzes']);
+      });
+
     return (
       <div style={backgroundStyle(this.props.user.house)}>
         <div className="container">

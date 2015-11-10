@@ -105,14 +105,14 @@ class QuizSettingsPanel extends Component {
                <div className="row">
                 <div className="field col-md-6 setting-buttons">
                   <Button clickEvent={this.saveSettings}
-                          customClass="create-quiz-button settings-save"
+                          customClass="create-quiz-button"
                           text="Save settings"
                           icon="save"
                           house={this.props.house} />
                 </div>
                 <div className="field col-md-6 setting-buttons">
                   <Button clickEvent={this.props.closeSettings}
-                          customClass="create-quiz-button settings-cancel"
+                          customClass="create-quiz-button"
                           text="Cancel changes"
                           icon="ban"
                           house={this.props.house} />

@@ -57,7 +57,7 @@ class Answer extends Component {
                          parseInt(this.props.questionId),
                          this.props.answer,
                          !this.props.correct)}>
-                <i className="fa fa-lightbulb-o"></i>
+                <i className="fa fa-check-circle"></i>
           </span>
         </li>
     );

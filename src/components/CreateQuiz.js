@@ -13,12 +13,15 @@ class CreateQuiz extends Component {
     categories: PropTypes.array.isRequired,
     changeQuestion: PropTypes.func.isRequired,
     currentQuestion: PropTypes.object.isRequired,
+    deleteCategory: PropTypes.func.isRequired,
+    deleteQuestion: PropTypes.func.isRequired,
     editAnswer: PropTypes.func.isRequired,
     editCategory: PropTypes.func.isRequired,
     editQuestion: PropTypes.func.isRequired,
     finishQuiz: PropTypes.func.isRequired,
     house: PropTypes.string.isRequired,
     markCorrect: PropTypes.func.isRequired,
+    leaveQuiz: PropTypes.func.isRequired,
     questions: PropTypes.array.isRequired,
     quizSettings: PropTypes.object.isRequired
   }
@@ -144,11 +147,31 @@ class CreateQuiz extends Component {
           <Button clickEvent={this.props.addQuestion.bind(this, this.state.currentCategory)}
                   customClass="create-quiz-button"
                   text="Add a question"
+                  icon="plus"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.deleteQuestion}
                   customClass="create-quiz-button"
                   text="Delete question"
+                  icon="trash"
+                  house={this.props.house} />
+
+          <Button clickEvent={this.props.addCategory}
+                  customClass="create-quiz-button"
+                  text="Add a category"
+                  icon="plus"
+                  house={this.props.house} />
+
+          <Button clickEvent={this.props.deleteCategory.bind(this, this.state.currentCategory)}
+                  customClass="create-quiz-button"
+                  text="Delete category"
+                  icon="trash"
+                  house={this.props.house} />
+
+          <Button clickEvent={this.props.editCategory}
+                  customClass="create-quiz-button"
+                  text="Rename category"
+                  icon="recycle"
                   house={this.props.house} />
 
           <Button clickEvent={this.openSettings}
@@ -162,7 +185,14 @@ class CreateQuiz extends Component {
                   text="Finish quiz"
                   icon="graduation-cap"
                   house={this.props.house} />
+
+          <Button clickEvent={this.props.leaveQuiz}
+                  customClass="create-quiz-button"
+                  text="Exit quiz"
+                  icon="sign-out"
+                  house={this.props.house} />
         </ul>
+
 
         <QuizSettingsPanel closeSettings={this.closeSettings}
                            currentSettings={this.props.quizSettings}

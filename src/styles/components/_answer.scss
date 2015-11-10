@@ -1,48 +1,51 @@
 .answer
 {
-  font-family: $font-stack;
-  font-size: 28px;
+    font-family: $font-stack;
+    font-size: 28px;
 
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 16px 0 10px 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 16px 0 10px 20px;
 
-  border: 3px solid;
-  border-radius: 4px;
+    transition: all .2s ease;
 
-  transition: all 0.2s ease;
+    border: 3px solid;
+    border-radius: 4px;
 
-  @include size(100%, 80px);
+    @include size(100%, 80px);
 }
 
 .letter
 {
-  padding-right: 15px;
+    padding-right: 15px;
 }
 
 .answer-check
 {
-  font-size: 35px;
+    font-size: 35px;
 
-  position: relative;
-  bottom: 17px;
+    position: relative;
+    bottom: 17px;
 
-  float: right;
+    float: right;
 
-  height: 76px;
-  padding: 12px 25px 0 25px;
+    height: 76px;
+    padding: 12px 25px 0 25px;
 }
 
 .answer-edit
 {
-  position: absolute;
-  float: right;
-  font-size: 35px;
-  position: relative;
-  height: 76px;
-  bottom: 3px;
+    font-size: 35px;
+
+    position: absolute;
+    position: relative;
+    bottom: 3px;
+
+    float: right;
+
+    height: 76px;
 }
 
 @include house-colours('answer', 19);
 @include house-colours('correct-answer', 25);
-@include house-answer-checks(20);
+@include house-answer-checks(13);

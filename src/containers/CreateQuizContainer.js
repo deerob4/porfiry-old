@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from 'actions/maker';
 import findIndex from 'lodash/array/findIndex';
-import find from 'lodash/collection/find';
 import last from 'lodash/array/last';
 import backgroundStyle from 'utils/backgroundStyle';
 import constructQuiz from 'libs/constructQuiz';
@@ -50,10 +49,13 @@ class CreateQuizContainer extends Component {
    * Edits the name of a category.
    * @param  {Element} e Information on the category.
    */
-  editCategory(e) {
-    const id = e.target.value.id;
-    const name = e.target.value.name;
-    this.props.dispatch(actions.editCategory(id, name));
+  editCategory(id) {
+    let currentBody = this.props.quiz.categories.find(x => x.id === id).body;
+    let newBody = prompt('Enter a new category body:');
+
+    if (newBody.length && newBody !== currentBody) {
+      this.props.dispatch(actions.editCategory(id, newBody));
+    }
   }
 
   /**
@@ -75,9 +77,8 @@ class CreateQuizContainer extends Component {
    * @param {Number} categoryId The ID of the current category.
    */
   addQuestion(categoryId) {
-    console.log(categoryId);
-    const categoryBody = find(this.props.quiz.categories, x => x.id === categoryId).body;
-    console.log(categoryBody);
+    const categoryBody = this.props.quiz.categories.find(x => x.id === categoryId).body;
+
     this.props.dispatch(actions.addQuestion(
       categoryId,
       `New question in the ${categoryBody} category`
@@ -143,7 +144,7 @@ class CreateQuizContainer extends Component {
    */
   markCorrect(answerId, questionId, body, correct) {
     // Get the question that's currently marked as correct.
-    const currentlyCorrect = find(this.props.quiz.answers, x =>
+    const currentlyCorrect = this.props.quiz.answers.find(x =>
       x.correct === true && x.questionId === questionId
     );
 
@@ -187,7 +188,7 @@ class CreateQuizContainer extends Component {
   }
 
   finishQuiz() {
-    let confirm = window.confirm('Are you sure you want to finish this quiz? It will be scheduled and you can\'t change it.');
+    let confirm = window.confirm(`Are you sure you want to finish this quiz? It will be scheduled and you can\'t change it.`);
 
     if (confirm) {
       let quiz = constructQuiz(this.props.quiz);
@@ -249,7 +250,7 @@ class CreateQuizContainer extends Component {
 
     const currentQuestion = {
       id,
-      body: find(this.props.quiz.questions, x => x.id === id).body,
+      body: this.props.quiz.questions.find(x => x.id === id).body,
       answers: this.props.quiz.answers.filter(x => x.questionId === id)
     };
 

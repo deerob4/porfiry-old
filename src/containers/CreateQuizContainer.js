@@ -1,12 +1,16 @@
 import React, { Component, PropTypes } from 'react';
+import * as actions from 'actions/CreatorActions';
 import { connect } from 'react-redux';
-import * as actions from 'actions/maker';
+
 import findIndex from 'lodash/array/findIndex';
 import last from 'lodash/array/last';
+
 import backgroundStyle from 'utils/backgroundStyle';
 import constructQuiz from 'libs/constructQuiz';
 import CreateQuiz from 'components/CreateQuiz';
-import request from 'superagent';
+
+import { Notifs, actions as notifActions } from 're-notif';
+import 're-notif/lib/re-notif.css';
 
 class CreateQuizContainer extends Component {
   constructor(props) {
@@ -64,9 +68,10 @@ class CreateQuizContainer extends Component {
    */
   deleteCategory(id) {
     // Get all the questions in the category.
-    this.props.quiz.questions.filter(question => question.categoryId === id)
-    // Delete them all.
-    .map(question => this.deleteQuestion(question.id));
+    this.props.quiz.questions
+      .filter(question => question.categoryId === id)
+      .map(question => this.deleteQuestion(question.id));
+
     // Delete the actual category entry.
     this.props.dispatch(actions.deleteCategory(id));
   }
@@ -111,8 +116,9 @@ class CreateQuizContainer extends Component {
 
       // Create an array containing all the answers associated
       // with the question to be deleted and then delete them.
-      this.props.quiz.answers.filter(x => x.questionId === deleteId)
-      .map(x => this.props.dispatch(actions.deleteAnswer(x.id)));
+      this.props.quiz.answers
+        .filter(x => x.questionId === deleteId)
+        .map(x => this.props.dispatch(actions.deleteAnswer(x.id)));
 
       let nextQuestionIndex = findIndex(this.props.quiz.questions, x => x.id === deleteIndex - 1);
       let nextQuestionId = this.props.quiz.questions[nextQuestionIndex].id;
@@ -178,7 +184,7 @@ class CreateQuizContainer extends Component {
    * Called whenever a new question needs to be displayed.
    * Updates the state containing the current question ID,
    * making the other components update to show the new question.
-   * @param  {Number | String} e The ID of the new question.
+   * @param  {Number|String} e The ID of the new question.
    */
   changeQuestion(e) {
     // Check if the question is being changed manually or
@@ -188,20 +194,8 @@ class CreateQuizContainer extends Component {
   }
 
   finishQuiz() {
-    let confirm = window.confirm(`Are you sure you want to finish this quiz? It will be scheduled and you can\'t change it.`);
-
-    if (confirm) {
-      let quiz = constructQuiz(this.props.quiz);
-      localStorage.removeItem('quiz');
-      request
-        .post('/api/quizzes')
-        .send(quiz)
-        .end((err, res) => {
-          if (err) console.log(err);
-          console.log(res);
-        });
-      alert(`Quiz "${this.props.quiz.settings.title}" has been saved.`);
-    }
+    let quiz = constructQuiz(this.props.quiz);
+    this.props.dispatch(actions.saveOrUpdateQuiz(quiz));
   }
 
   leaveQuiz() {
@@ -247,6 +241,7 @@ class CreateQuizContainer extends Component {
 
   render() {
     const id = this.state.currentQuestion;
+    localStorage.clear();
 
     const currentQuestion = {
       id,
@@ -273,6 +268,7 @@ class CreateQuizContainer extends Component {
                     markCorrect={this.markCorrect}
                     quizSettings={this.props.quiz.settings}
                     questions={this.props.quiz.questions} />
+        <Notifs />
       </div>
     );
   }
@@ -286,5 +282,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
 )(CreateQuizContainer);

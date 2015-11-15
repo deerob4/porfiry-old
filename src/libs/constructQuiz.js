@@ -7,12 +7,10 @@ const constructQuiz = quiz => ({
     questions: quiz.questions.filter(question =>
       question.categoryId === category.id
     ).map(question => ({
-      id: question.id,
       body: question.body,
       answers: quiz.answers.filter(answer =>
         answer.questionId === question.id
       ).map(answer => ({
-        id: answer.id,
         body: answer.body,
         correct: answer.correct
       }))

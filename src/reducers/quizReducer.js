@@ -1,4 +1,4 @@
-import * as types from 'constants/CreatorActions';
+import * as types from 'constants/actions';
 import nextBiggest from 'utils/nextBiggest';
 import { combineReducers } from 'redux';
 
@@ -75,7 +75,7 @@ function categories(state = defaultState.categories, action) {
     case types.EDIT_CATEGORY:
       return state.map(category =>
         category.id === action.id ?
-          { ...category, name: action.name } :
+          { ...category, body: action.body } :
           category
       );
 

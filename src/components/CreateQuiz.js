@@ -20,8 +20,8 @@ class CreateQuiz extends Component {
     editQuestion: PropTypes.func.isRequired,
     finishQuiz: PropTypes.func.isRequired,
     house: PropTypes.string.isRequired,
-    markCorrect: PropTypes.func.isRequired,
     leaveQuiz: PropTypes.func.isRequired,
+    markCorrect: PropTypes.func.isRequired,
     questions: PropTypes.array.isRequired,
     quizSettings: PropTypes.object.isRequired
   }
@@ -168,7 +168,7 @@ class CreateQuiz extends Component {
                   icon="trash"
                   house={this.props.house} />
 
-          <Button clickEvent={this.props.editCategory}
+          <Button clickEvent={this.props.editCategory.bind(this, this.state.currentCategory)}
                   customClass="create-quiz-button"
                   text="Rename category"
                   icon="recycle"
@@ -182,13 +182,13 @@ class CreateQuiz extends Component {
 
           <Button clickEvent={this.props.finishQuiz}
                   customClass="create-quiz-button"
-                  text="Finish quiz"
+                  text="Save quiz"
                   icon="graduation-cap"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.leaveQuiz}
                   customClass="create-quiz-button"
-                  text="Exit quiz"
+                  text="Leave editor"
                   icon="sign-out"
                   house={this.props.house} />
         </ul>

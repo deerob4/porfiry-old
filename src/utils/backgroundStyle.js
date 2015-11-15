@@ -6,6 +6,7 @@ export default house => {
     'darwin': '#cd99f5',
     'houseman': '#f88e8c',
     'webb': '#fae07c'
+    // 'webb': '#fff03a'
   };
 
   return {

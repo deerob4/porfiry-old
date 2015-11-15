@@ -28,9 +28,10 @@ router.post('/', (req, res) => {
   quiz.breakLength = req.body.breakLength;
   quiz.categories = req.body.categories;
 
-  quiz.save(err => {
+  quiz.save((err, quiz) => {
     if (err) throw err;
-    res.send({ message: quiz.title + ' was saved!' });
+    console.log(`Quiz "${quiz.title}" was saved!`);
+    res.send({ message: quiz.title + ' was saved!', quiz });
   });
 });
 
@@ -61,6 +62,7 @@ router.put('/:quizId', (req, res) => {
 
     quiz.save(err => {
       if (err) throw err;
+      console.log(`Quiz "${quiz.title}" was updated!`);
       res.send({ message: 'Quiz updated!', quiz });
     });
   });

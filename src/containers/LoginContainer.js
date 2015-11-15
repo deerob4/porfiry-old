@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from 'components/LoginForm';
 import backgroundStyle from 'utils/backgroundStyle';
-import { changeHouse, changeYear } from 'actions/login';
+import { changeHouse, changeYear, fetchQuizzes } from 'actions/LoginActions';
 import request from 'superagent';
+import first from 'lodash/array/first';
 import moment from 'moment';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
@@ -16,10 +17,12 @@ class LoginContainer extends Component {
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
-    this.login = this.login.bind(this);
+    this.newQuiz = this.newQuiz.bind(this);
+    this.loadQuiz = this.loadQuiz.bind(this);
 
     this.state = {
-      isQuizReady: false
+      isQuizReady: false,
+      animating: ''
     };
 
     this.isQuizReady();
@@ -35,8 +38,13 @@ class LoginContainer extends Component {
     this.props.dispatch(changeHouse(house));
   }
 
-  login() {
+  newQuiz() {
     this.props.history.pushState('create', '/create');
+  }
+
+  loadQuiz() {
+    this.props.dispatch(fetchQuizzes());
+    // this.setState({ animating: 'animated bounceOutLeft' });
   }
 
   isQuizReady() {
@@ -45,7 +53,7 @@ class LoginContainer extends Component {
       .end((err, res) => {
         if (err) return err;
         // Select the first quiz.
-        let quiz = JSON.parse(res.text)['quizzes'][0];
+        let quiz = first(JSON.parse(res.text)['quizzes']);
         // Create a moment object of the quizz's start date.
         let startDate = moment(quiz.startDate);
         // Work out the number of minutes till quiz is due to start.
@@ -53,17 +61,11 @@ class LoginContainer extends Component {
         // Check if quiz is within the next 35 minutes.
         let isQuizReady = minutesToStart >= -5 && minutesToStart < 30;
 
-        this.setState({ isQuizReady });
+        this.setState({ isQuizReady: false });
       });
   }
 
   render() {
-    request
-      .get('/api/quizzes')
-      .end((err, res) => {
-        console.log(JSON.parse(res.text)['quizzes']);
-      });
-
     return (
       <div style={backgroundStyle(this.props.user.house)}>
         <div className="container">
@@ -71,8 +73,10 @@ class LoginContainer extends Component {
                      changeYear={this.changeYear}
                      house={this.props.user.house}
                      isQuizReady={this.state.isQuizReady}
-                     login={this.login}
+                     loadQuiz={this.loadQuiz}
+                     newQuiz={this.newQuiz}
                      houses={houses}
+                     quizzes={this.props.user.quizzes}
                      years={years} />
         </div>
       </div>

@@ -1,6 +1,6 @@
-import * as types from 'constants/LoginActions';
+import * as types from 'constants/actions';
 
-let defaultState = { house: 'webb', year: 9 };
+let defaultState = { house: 'webb', year: 9, quizzes: [] };
 
 function user(state = defaultState, action) {
   switch (action.type) {
@@ -9,6 +9,9 @@ function user(state = defaultState, action) {
 
     case types.CHANGE_YEAR:
       return { ...state, year: action.year };
+
+    case types.RECEIVE_QUIZZES:
+      return { ...state, quizzes: action.quizzes };
 
     default:
       return state;

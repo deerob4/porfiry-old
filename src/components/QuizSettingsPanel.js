@@ -9,7 +9,7 @@ class QuizSettingsPanel extends Component {
     currentSettings: PropTypes.object.isRequired,
     house: PropTypes.string.isRequired,
     settingsAreOpen: PropTypes.bool.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);

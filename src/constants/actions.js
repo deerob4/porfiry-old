@@ -1,3 +1,12 @@
+// Login page actions.
+export const CHANGE_HOUSE = 'CHANGE_HOUSE';
+export const CHANGE_YEAR = 'CHANGE_YEAR';
+
+export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
+export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
+
+
+// Quiz creator actions.
 export const UPDATE_ID = 'UPDATE_ID';
 export const UPDATE_TITLE = 'UPDATE_TITLE';
 export const UPDATE_START_DATE = 'UPDATE_START_DATE';
@@ -16,3 +25,8 @@ export const EDIT_QUESTION = 'EDIT_QUESTION';
 export const ADD_ANSWER = 'ADD_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 export const EDIT_ANSWER = 'EDIT_ANSWER';
+
+export const SAVE_QUIZ_SUCCESS = 'SAVE_QUIZ_SUCCESS';
+export const SAVE_QUIZ_FAILURE = 'SAVE_QUIZ_FAILURE';
+export const UPDATE_QUIZ_SUCCESS = 'UPDATE_QUIZ_SUCCESS';
+export const UPDATE_QUIZ_FAILURE = 'UPDATE_QUIZ_FAILURE';

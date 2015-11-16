@@ -2,42 +2,30 @@ import * as types from 'constants/actions';
 import nextBiggest from 'utils/nextBiggest';
 import { combineReducers } from 'redux';
 
-let defaultState;
-
 // The default data that the quiz will show upon
-// initialisation. If they have already started a quiz,
-// load it from localStorage.
-if (localStorage.getItem('quiz')) {
-  // Parse quiz into readable object.
-  const quiz = JSON.parse(localStorage.getItem('quiz'));
-  // Deconstruct it into the variable.
-  defaultState = { ...quiz.quiz };
-} else {
-  // If this is their first quiz, use the following
-  // sample data - acts as a tutorial of sorts.
-  defaultState = {
-    settings: {
-      id: '',
-      title: 'Priory School Quiz',
-      startTime: '',
-      startDate: new Date(),
-      questionLength: 10000,
-      breakLength: 300000
-    },
-    categories: [
-      { id: 0, body: 'Default' }
-    ],
-    questions: [
-      { id: 0, categoryId: 0, body: 'I\'m the question title - tap to edit me!' }
-    ],
-    answers: [
-      { id: 0, questionId: 0, body: 'I\'m the first possible answer!', correct: false },
-      { id: 1, questionId: 0, body: 'You can edit any of us by tapping on our text.', correct: false},
-      { id: 2, questionId: 0, body: 'See that bold light? It means I\'m the right answer.', correct: true },
-      { id: 3, questionId: 0, body: 'Tapping on another light will make that the correct answer.', correct: false }
-    ]
-  };
-}
+// initialisation.
+let defaultState = {
+  settings: {
+    id: '',
+    title: 'Priory School Quiz',
+    startTime: '',
+    startDate: new Date(),
+    questionLength: 10000,
+    breakLength: 300000
+  },
+  categories: [
+    { id: 0, body: 'Default' }
+  ],
+  questions: [
+    { id: 0, categoryId: 0, body: 'I\'m the question title - tap to edit me!' }
+  ],
+  answers: [
+    { id: 0, questionId: 0, body: 'I\'m the first possible answer!', correct: false },
+    { id: 1, questionId: 0, body: 'You can edit any of us by tapping on our text.', correct: false},
+    { id: 2, questionId: 0, body: 'See that bold check mark? It means I\'m the correct answer.', correct: true },
+    { id: 3, questionId: 0, body: 'Tapping on another check mark will make that the correct answer.', correct: false }
+  ]
+};
 
 function settings(state = defaultState.settings, action) {
   switch (action.type) {

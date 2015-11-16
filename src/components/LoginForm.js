@@ -33,6 +33,10 @@ class LoginForm extends Component {
     this.props.loadQuiz();
   }
 
+  deleteQuiz(id) {
+    this.props.deleteQuiz(id);
+  }
+
   render() {
     return (
       <div>
@@ -82,12 +86,12 @@ class LoginForm extends Component {
         </div>
 
         <div style={{display: `${this.state.showLoad}`}} className={`loginForm ${this.state.loadQuizAnimation}`}>
-          <h1 className={`centre h1-${this.props.house}`}>
+          <h2 className={`centre h2-${this.props.house}`}>
               Choose a quiz to edit!
-          </h1>
+          </h2>
           <ul>
             {this.props.quizzes.map((quiz, i) => (
-              <Button customClass="quiz-title" house={this.props.house} key={i} text={quiz.title} />
+              <li onClick={this.deleteQuiz(quiz.id)} className={`quiz-title p-${this.props.house}`} key={i}>{quiz.title}</li>
             ))}
           </ul>
         </div>

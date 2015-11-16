@@ -1,0 +1,40 @@
+.notification {
+  font-family: $font-stack;
+  font-size: 22px;
+
+  border: 3px solid;
+  border-radius: 4px;
+
+  padding-top: 10px;
+  padding-left: 15px;
+
+  overflow: hidden;
+
+  position: absolute;
+
+  float: right;
+  top: 20px;
+  right: 20px;
+
+  @include size(520px, 60px);
+}
+
+.notification-success {
+  border-color: #0fad1c;
+  background-color: rgb(118, 236, 127);
+  color: #0fad1c;
+
+  -webkit-box-shadow: 0px 5px 3px 0px rgba(55, 194, 0, 0.18);
+  -moz-box-shadow: 0px 5px 3px 0px rgba(55, 194, 0, 0.18);
+  box-shadow: 0px 5px 3px 0px rgba(55, 194, 0, 0.18);
+}
+
+.notification-danger {
+  border-color: #A22929;
+  background-color: #ff6f47;
+  color: #A22929;
+
+  -webkit-box-shadow: 0px 5px 3px 0px rgba(245, 107, 107, 0.18);;
+  -moz-box-shadow: 0px 5px 3px 0px rgba(245, 107, 107, 0.18);;
+  box-shadow: 0px 5px 3px 0px rgba(245, 107, 107, 0.18);;
+}

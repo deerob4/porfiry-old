@@ -37,6 +37,12 @@ ul {
 
 li {
   list-style-type: none;
+  font-family: $font-stack;
+}
+
+.quiz-title {
+  text-align: center;
+  font-size: 25px;
 }
 
 .centre {

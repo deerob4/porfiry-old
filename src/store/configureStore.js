@@ -2,13 +2,11 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import { devTools } from 'redux-devtools';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
-import persistState from 'redux-localstorage';
 
 function configureStore() {
   const store = compose(
     // To apply middleware later on, do:
     applyMiddleware(thunk),
-    persistState('quiz', { key: 'quiz' }),
     devTools()
   )(createStore)(rootReducer);
 

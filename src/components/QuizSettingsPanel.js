@@ -83,7 +83,7 @@ class QuizSettingsPanel extends Component {
 
                    <input className={`${this.props.house}-input input-settings`}
                           ref="questionLength"
-                          placeholder={this.props.currentSettings.questionLength}
+                          placeholder={this.props.currentSettings.questionLength / 1000}
                           type="number"
                           min="5" />
                  </div>
@@ -96,7 +96,7 @@ class QuizSettingsPanel extends Component {
 
                    <input className={`${this.props.house}-input input-settings`}
                           ref="breakLength"
-                          placeholder={this.props.currentSettings.breakLength}
+                          placeholder={this.props.currentSettings.breakLength / 60000}
                           type="number"
                           min="1" />
                  </div>

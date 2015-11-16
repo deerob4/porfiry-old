@@ -13,6 +13,14 @@ export function receiveQuizzes(quizzes) {
   return { type: types.RECEIVE_QUIZZES, quizzes };
 }
 
+export function deleteQuiz(id) {
+  return dispatch => {
+    return axios.delete(`/api/quizzes/${id}`)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+  };
+}
+
 export function fetchQuizzes() {
   return dispatch => {
     return axios.get('/api/quizzes')

@@ -5,6 +5,8 @@ export const CHANGE_YEAR = 'CHANGE_YEAR';
 export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
 export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
 
+export const DELETE_QUIZ = 'DELETE_QUIZ';
+
 
 // Quiz creator actions.
 export const UPDATE_ID = 'UPDATE_ID';

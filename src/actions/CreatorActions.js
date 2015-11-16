@@ -68,7 +68,7 @@ export function deleteAnswer(id) {
 
 // Quiz saving async actions.
 const { notifSend } = notifActions;
-let dismissAfter = 3000;
+let dismissAfter = 2000;
 
 /**
  * Updates a quiz that's already in the database.
@@ -78,12 +78,12 @@ function updateQuiz(quiz) {
   return dispatch =>
     axios.put(`/api/quizzes/${quiz.id}`, quiz)
       .then(response => dispatch(notifSend({
-        'message': 'Quiz successfully updated!',
+        message: 'Quiz successfully updated!',
         kind: 'success',
         dismissAfter
       })))
       .catch(error => dispatch(notifSend({
-        'message': 'Quiz failed to update.',
+        message: 'Quiz failed to update.',
         kind: 'danger',
         dismissAfter
       })));
@@ -98,12 +98,12 @@ function saveQuiz(quiz) {
     axios.post('/api/quizzes', quiz)
       .then(response => dispatch(updateId(response.data.quiz._id)))
       .then(response => dispatch(notifSend({
-        'message': 'Quiz successfully saved!',
+        message: 'Quiz successfully saved!',
         kind: 'success',
         dismissAfter
       })))
       .catch(error => dispatch(notifSend({
-        'message': 'Quiz failed to save.',
+        message: 'Quiz failed to save.',
         kind: 'danger',
         dismissAfter
       })));

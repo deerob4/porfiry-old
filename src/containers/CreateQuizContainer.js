@@ -156,8 +156,7 @@ class CreateQuizContainer extends Component {
 
     // Ensure they don't try to mark the current answer.
     if (answerId !== currentlyCorrect.id) {
-      // Update the state tree to make the currently correct answer incorrect,
-      // so only one answer at a time can be correct at a time.
+      // Update the state tree to make the currently correct answer incorrect.
       this.editAnswer(currentlyCorrect.id, currentlyCorrect.body, false);
       // Update the state tree to mark the newly selected answer as correct.
       this.editAnswer(answerId, body, correct);
@@ -208,6 +207,8 @@ class CreateQuizContainer extends Component {
    * @param  {String|Numbe}r value   The new setting data.
    */
   saveSettings(settings) {
+    const { notifSend } = notifActions;
+
     // Loop through every setting key.
     for (let setting in settings) {
       // Get the value set in the settings panel.
@@ -227,26 +228,39 @@ class CreateQuizContainer extends Component {
             this.props.dispatch(actions.updateStartTime(value));
             break;
           case 'questionLength':
-            this.props.dispatch(actions.updateQuestionLength(parseInt(value)));
+            this.props.dispatch(actions.updateQuestionLength(parseInt(value * 1000)));
             break;
           case 'breakLength':
-            this.props.dispatch(actions.updateBreakLength(parseInt(value)));
+            this.props.dispatch(actions.updateBreakLength(parseInt(value * 60000)));
             break;
           default:
             return value;
         }
       }
     }
+
+    this.props.dispatch(notifSend({
+      message: 'Settings successfully updated!',
+      kind: 'success',
+      dismissAfter: 2000
+    }));
   }
 
   render() {
     const id = this.state.currentQuestion;
+
     localStorage.clear();
 
     const currentQuestion = {
       id,
       body: this.props.quiz.questions.find(x => x.id === id).body,
       answers: this.props.quiz.answers.filter(x => x.questionId === id)
+    };
+
+    const notificationThemes = {
+      defaultClasses: 'notification',
+      successClasses: 'notification-success',
+      dangerClasses: 'notification-danger'
     };
 
     return (
@@ -268,7 +282,7 @@ class CreateQuizContainer extends Component {
                     markCorrect={this.markCorrect}
                     quizSettings={this.props.quiz.settings}
                     questions={this.props.quiz.questions} />
-        <Notifs />
+        <Notifs theme={notificationThemes} />
       </div>
     );
   }

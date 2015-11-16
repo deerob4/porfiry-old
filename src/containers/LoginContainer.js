@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LoginForm from 'components/LoginForm';
 import backgroundStyle from 'utils/backgroundStyle';
-import { changeHouse, changeYear, fetchQuizzes } from 'actions/LoginActions';
+import { changeHouse, changeYear, fetchQuizzes, deleteQuiz } from 'actions/LoginActions';
 import request from 'superagent';
 import first from 'lodash/array/first';
 import moment from 'moment';
@@ -19,6 +19,7 @@ class LoginContainer extends Component {
     this.isQuizReady = this.isQuizReady.bind(this);
     this.newQuiz = this.newQuiz.bind(this);
     this.loadQuiz = this.loadQuiz.bind(this);
+    this.deleteQuiz = this.deleteQuiz.bind(this);
 
     this.state = {
       isQuizReady: false,
@@ -40,6 +41,10 @@ class LoginContainer extends Component {
 
   newQuiz() {
     this.props.history.pushState('create', '/create');
+  }
+
+  deleteQuiz(id) {
+    this.props.dispatch(deleteQuiz(id));
   }
 
   loadQuiz() {
@@ -71,6 +76,7 @@ class LoginContainer extends Component {
         <div className="container">
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}
+                     deleteQuiz={this.deleteQuiz}
                      house={this.props.user.house}
                      isQuizReady={this.state.isQuizReady}
                      loadQuiz={this.loadQuiz}

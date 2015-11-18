@@ -53,3 +53,32 @@ This sub section outlines the data that will be used to test the functionality o
 \item Type in "Who is the Prime Minister?"
 \end{itemize}
 \textbf{Expected result}: answer body should be "Who is the Prime Minister?"
+
+\subsubsection{Save Quiz}
+\begin{itemize}
+\item Create the following quiz:
+\begin{verbatim}
+{
+  title: "Winter Term Quiz",
+  startDate: 25/12/2015,
+  startTime: 12:00,
+  questionLength: 10,
+  breakLength: 5,
+  categories: [
+    {
+      body: 'Literature',
+      questions: [
+        {
+          body: "Who is the author of 'Crime and Punishment'?",
+          answers: [
+            { body: "Fyodor Dostoevsky", correct: true },
+            { body: "Leo Tolstoy", correct: false },
+          ]
+        }
+      ]
+    }
+  ]
+}
+\end{verbatim}
+\end{itemize}
+\textbf{Expected result}: question title should be "Who is the Prime Minister?"

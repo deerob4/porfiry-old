@@ -1,33 +1,40 @@
 \subsection{Quiz Creator Test Plan}
 This sub section outlines the data that will be used to test the functionality of the quiz creator.
 
-\subsubsection{Add a Question}
+\subsubsection{Add Question}
 \begin{itemize}
 \item Press the add question button to create question 02.
 \end{itemize}
 \textbf{Expected result}: new question should be added.
 
-\subsubsection{Delete a Question}
+\subsubsection{Edit Question}
+\begin{itemize}
+\item Click question title
+\item Type in "Who is the Prime Minister?"
+\end{itemize}
+\textbf{Expected result}: question title should be "Who is the Prime Minister?"
+
+\subsubsection{Delete Question}
 \begin{itemize}
 \item Press the add question button to create question 02.
 \item Press the delete question button to delete question 02.
 \end{itemize}
 \textbf{Expected result}: question 02 should be deleted.
 
-\subsubsection{Add a Category}
+\subsubsection{Add Category}
 \begin{itemize}
 \item Press the add category button, and call it "Literature".
 \end{itemize}
 \textbf{Expected result}: new category "Literature" should be created, with a default question ready.
 
-\subsubsection{Delete a Category}
+\subsubsection{Delete Category}
 \begin{itemize}
 \item Press the add category button, and call it "Literature".
 \item Press the delete category button
 \end{itemize}
 \textbf{Expected result}: category "Literature" should be deleted along with all questions inside.
 
-\subsubsection{Rename a Category}
+\subsubsection{Rename Category}
 \begin{itemize}
 \item Press the add category button, and call it "Literature".
 \item Press the rename category button and type in "History".
@@ -39,3 +46,10 @@ This sub section outlines the data that will be used to test the functionality o
 \item Press the second check mark on Answer 2.
 \end{itemize}
 \textbf{Expected result}: answer 3 should no longer be marked as correct; answer 2 should be.
+
+\subsubsection{Edit Answer}
+\begin{itemize}
+\item Click answer 01
+\item Type in "Who is the Prime Minister?"
+\end{itemize}
+\textbf{Expected result}: answer body should be "Who is the Prime Minister?"

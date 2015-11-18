@@ -57,28 +57,85 @@ This sub section outlines the data that will be used to test the functionality o
 \subsubsection{Save Quiz}
 \begin{itemize}
 \item Create the following quiz:
-\begin{verbatim}
+\begin{Verbatim}[fontsize=\small]
 {
-  title: "Winter Term Quiz",
-  startDate: 25/12/2015,
-  startTime: 12:00,
-  questionLength: 10,
-  breakLength: 5,
+  title: 'Summer Term House Quiz',
+  start: new Date(),
+  questionIntervals: 10000,
+  realtimeGraphics: true,
+  intervalLength: 300000,
   categories: [
     {
-      body: 'Literature',
+      name: 'History',
       questions: [
         {
-          body: "Who is the author of 'Crime and Punishment'?",
+          title: 'Who killed JFK?',
           answers: [
-            { body: "Fyodor Dostoevsky", correct: true },
-            { body: "Leo Tolstoy", correct: false },
+            { text: 'Bill Osmond', correct: false },
+            { text: 'Lee Harvey Oswald', correct: true },
+            { text: 'Henry Kissinger', correct: false }
+          ]
+        },
+        {
+          title: 'Who was the British Prime Minister in 1916?',
+          answers: [
+            { text: 'David Lloyd George', correct: true },
+            { text: 'Lee Harvey Oswald', correct: false },
+            { text: 'Lord Liverpool', correct: false }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Sport',
+      questions: [
+        {
+          title: 'Who won the 1966 world cup?',
+          answers: [
+            { text: 'England', correct: true },
+            { text: 'Wales', correct: false },
+            { text: 'Scotland', correct: false },
+            { text: 'Uzbekistan', correct: false }
+          ]
+        },
+        {
+          title: 'Which city hosted the 1924 Summer Olympics?',
+          answers: [
+            { text: 'Brussels', correct: false },
+            { text: 'Orelans', correct: false },
+            { text: 'Madrid', correct: false },
+            { text: 'Paris', correct: true }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Literature',
+      questions: [
+        {
+          title: 'Who serves as the main character in "Crime and Punishment"?',
+          answers: [
+            { text: 'Raskolnikov', correct: true },
+            { text: 'Razumikhin', correct: false },
+            { text: 'Porifry Petrovich', correct: false },
+            { text: 'Svidrigailov', correct: false }
+          ]
+        },
+        {
+          title: 'Which literary genre does "Ulysses" belong to?',
+          answers: [
+            { text: 'Modernist', correct: true },
+            { text: 'Post-modernist', correct: false },
+            { text: 'Romance', correct: false },
+            { text: 'Thriller', correct: false }
           ]
         }
       ]
     }
   ]
 }
-\end{verbatim}
+\end{Verbatim}
+
+\item Press the save quiz button.
 \end{itemize}
-\textbf{Expected result}: question title should be "Who is the Prime Minister?"
+\textbf{Expected result}: quiz should be saved to database and green success notification should appear.

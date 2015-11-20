@@ -42,6 +42,7 @@
   @each $houseName, $houseColour in $houses {
     .#{$houseName + '-select-arrow i'} {
       border-top: 7px solid $houseColour;
+      border-top: 7px solid #000;
     }
   }
 }

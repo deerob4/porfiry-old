@@ -17,6 +17,7 @@ export function deleteQuiz(id) {
   return dispatch => {
     return axios.delete(`/api/quizzes/${id}`)
       .then(response => console.log(response))
+      .then(() => ({ types: 'DELETE_QUIZ', id }))
       .catch(error => console.log(error));
   };
 }

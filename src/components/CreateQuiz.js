@@ -12,6 +12,7 @@ class CreateQuiz extends Component {
     addQuestion: PropTypes.func.isRequired,
     categories: PropTypes.array.isRequired,
     changeQuestion: PropTypes.func.isRequired,
+    colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
     deleteCategory: PropTypes.func.isRequired,
     deleteQuestion: PropTypes.func.isRequired,
@@ -93,6 +94,7 @@ class CreateQuiz extends Component {
           <Select arrowClass="left-arrow"
                   changeEvent={this.changeCategory}
                   complex={true}
+                  colours={this.props.colours.select}
                   customClass="select-left select-half"
                   house={this.props.house}
                   innerClass="select-left select-half-parent"
@@ -105,6 +107,7 @@ class CreateQuiz extends Component {
           <Select arrowClass="right-arrow"
                   changeEvent={this.props.changeQuestion}
                   complex={true}
+                  colours={this.props.colours.select}
                   customClass="select-right select-half"
                   house={this.props.house}
                   innerClass="select-right select-half-parent"
@@ -115,7 +118,8 @@ class CreateQuiz extends Component {
                   selectedId={this.props.currentQuestion.id} />
         </div>
 
-        <EditableText finishFunction={this.editQuestion}
+        <EditableText colours={this.props.colours.text}
+                      finishFunction={this.editQuestion}
                       house={this.props.house}
                       icon="pencil"
                       iconClass="question-pencil"
@@ -132,6 +136,7 @@ class CreateQuiz extends Component {
           {this.props.currentQuestion.answers.map((answer, i) =>
             <Answer answer={answer.body}
                     correct={answer.correct}
+                    colours={this.props.colours.answer}
                     editAnswer={this.props.editAnswer}
                     house={this.props.house}
                     id={answer.id}
@@ -145,48 +150,56 @@ class CreateQuiz extends Component {
 
         <ul className="button-group">
           <Button clickEvent={this.props.addQuestion.bind(this, this.state.currentCategory)}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Add a question"
                   icon="plus"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.deleteQuestion}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Delete question"
                   icon="trash"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.addCategory}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Add a category"
                   icon="plus"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.deleteCategory.bind(this, this.state.currentCategory)}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Delete category"
                   icon="trash"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.editCategory.bind(this, this.state.currentCategory)}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Rename category"
                   icon="recycle"
                   house={this.props.house} />
 
           <Button clickEvent={this.openSettings}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Quiz settings"
                   icon="cog"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.finishQuiz}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Save quiz"
                   icon="graduation-cap"
                   house={this.props.house} />
 
           <Button clickEvent={this.props.leaveQuiz}
+                  colours={this.props.colours.button}
                   customClass="create-quiz-button"
                   text="Leave editor"
                   icon="sign-out"

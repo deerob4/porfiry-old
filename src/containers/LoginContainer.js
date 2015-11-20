@@ -6,6 +6,7 @@ import { changeHouse, changeYear, fetchQuizzes, deleteQuiz } from 'actions/Login
 import request from 'superagent';
 import first from 'lodash/array/first';
 import moment from 'moment';
+import QuizSelectPanel from 'components/QuizSelectPanel';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
 const years = [7, 8, 9, 10, 11];
@@ -13,43 +14,56 @@ const years = [7, 8, 9, 10, 11];
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
+    this.loadQuiz = this.loadQuiz.bind(this);
+    this.deleteQuiz = this.deleteQuiz.bind(this);
 
     this.changeHouse = this.changeHouse.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.isQuizReady = this.isQuizReady.bind(this);
     this.newQuiz = this.newQuiz.bind(this);
-    this.loadQuiz = this.loadQuiz.bind(this);
-    this.deleteQuiz = this.deleteQuiz.bind(this);
+    this.openQuizSelect = this.openQuizSelect.bind(this);
+    this.closeQuizSelect = this.closeQuizSelect.bind(this);
 
     this.state = {
       isQuizReady: false,
-      animating: ''
+      panelIsOpen: false
     };
 
     this.isQuizReady();
   }
 
   changeYear(e) {
-    const year = e.target.value;
-    this.props.dispatch(changeYear(year));
+    this.props.dispatch(changeYear(e.target.value));
   }
 
   changeHouse(e) {
-    const house = e.target.value;
-    this.props.dispatch(changeHouse(house));
+    this.props.dispatch(changeHouse(e.target.value));
   }
 
   newQuiz() {
     this.props.history.pushState('create', '/create');
   }
 
-  deleteQuiz(id) {
-    this.props.dispatch(deleteQuiz(id));
+  deleteQuiz(quizId) {
+    this.props.dispatch(deleteQuiz(quizId));
   }
 
-  loadQuiz() {
+  loadQuiz(quizId) {
+    console.log(quizId);
+  }
+
+  openQuizSelect() {
     this.props.dispatch(fetchQuizzes());
-    // this.setState({ animating: 'animated bounceOutLeft' });
+
+    this.setState({
+      panelIsOpen: true
+    });
+  }
+
+  closeQuizSelect() {
+    this.setState({
+      panelIsOpen: false
+    });
   }
 
   isQuizReady() {
@@ -76,14 +90,20 @@ class LoginContainer extends Component {
         <div className="container">
           <LoginForm changeHouse={this.changeHouse}
                      changeYear={this.changeYear}
-                     deleteQuiz={this.deleteQuiz}
+                     colours={this.props.colours}
                      house={this.props.user.house}
                      isQuizReady={this.state.isQuizReady}
-                     loadQuiz={this.loadQuiz}
                      newQuiz={this.newQuiz}
+                     openQuizSelect={this.openQuizSelect}
                      houses={houses}
-                     quizzes={this.props.user.quizzes}
                      years={years} />
+
+          <QuizSelectPanel house={this.props.user.house}
+                           panelIsOpen={this.state.panelIsOpen}
+                           loadQuiz={this.loadQuiz}
+                           deleteQuiz={this.deleteQuiz}
+                           closePanel={this.closeQuizSelect}
+                           quizzes={this.props.user.quizzes} />
         </div>
       </div>
     );
@@ -91,7 +111,10 @@ class LoginContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return {
+    user: state.user,
+    colours: state.colours
+  };
 }
 
 export default connect(

@@ -13,6 +13,9 @@ import CreateQuizContainer from 'containers/CreateQuizContainer';
 
 import '../node_modules/animate.css/animate.min.css';
 import '!style!css!sass!styles/porfiry.scss';
+import colourScheme from 'utils/colourScheme';
+
+console.log(colourScheme());
 
 const store = configureStore();
 const history = createBrowserHistory();
@@ -26,9 +29,9 @@ ReactDOM.render(
         <Route path="play" component={PlayQuizContainer} />
       </Router>
     </Provider>
+  <DebugPanel top={true} right={true} bottom={true}>
+        <DevTools store={store} monitor={LogMonitor} />
+      </DebugPanel>
   </div>,
   document.getElementById('root')
 );
-  // <DebugPanel top={true} right={true} bottom={true}>
-  //       <DevTools store={store} monitor={LogMonitor} />
-  //     </DebugPanel>

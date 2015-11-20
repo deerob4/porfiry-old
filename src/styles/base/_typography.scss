@@ -37,12 +37,12 @@ ul {
 
 li {
   list-style-type: none;
-  font-family: $font-stack;
 }
 
-.quiz-title {
-  text-align: center;
-  font-size: 25px;
+.quiz-titles {
+  p {
+    font-size: 20px;
+  }
 }
 
 .centre {
@@ -53,6 +53,7 @@ li {
 @include house-typography(h2, 3);
 @include house-typography(h3, 1);
 @include house-typography(p, 2);
+@include house-typography(li, 11);
 @include house-typography(label, 4);
 
 form

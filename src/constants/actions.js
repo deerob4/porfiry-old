@@ -1,3 +1,7 @@
+// Colour scheme actions.
+export const CHANGE_COLOURS = 'CHANGE_COLOURS';
+
+
 // Login page actions.
 export const CHANGE_HOUSE = 'CHANGE_HOUSE';
 export const CHANGE_YEAR = 'CHANGE_YEAR';

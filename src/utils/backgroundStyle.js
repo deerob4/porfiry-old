@@ -1,7 +1,7 @@
 export default house => {
   const backgroundMap = {
     'acton': '#8dd6f8',
-    'baxter': '#f8c07d',
+    'baxter': '#FFF7E9;',
     'clive': '#78ecf6',
     'darwin': '#cd99f5',
     'houseman': '#f88e8c',

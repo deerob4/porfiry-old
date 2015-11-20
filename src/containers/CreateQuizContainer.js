@@ -9,6 +9,8 @@ import backgroundStyle from 'utils/backgroundStyle';
 import constructQuiz from 'libs/constructQuiz';
 import CreateQuiz from 'components/CreateQuiz';
 
+const { notifSend } = notifActions;
+
 import { Notifs, actions as notifActions } from 're-notif';
 import 're-notif/lib/re-notif.css';
 
@@ -33,7 +35,13 @@ class CreateQuizContainer extends Component {
     this.finishQuiz = this.finishQuiz.bind(this);
     this.leaveQuiz = this.leaveQuiz.bind(this);
 
+    this.changeColours = this.changeColours.bind(this);
+
     this.state = { currentQuestion: 0 };
+  }
+
+  changeColours() {
+    this.props.dispatch(actions.changeColours());
   }
 
   /**
@@ -172,11 +180,7 @@ class CreateQuizContainer extends Component {
    * @param  {Bool} correct   New correct status of answer.
    */
   editAnswer(id, body, correct) {
-    this.props.dispatch(actions.editAnswer(
-      id,
-      body,
-      correct
-    ));
+    this.props.dispatch(actions.editAnswer(id, body, correct));
   }
 
   /**
@@ -207,8 +211,6 @@ class CreateQuizContainer extends Component {
    * @param  {String|Numbe}r value   The new setting data.
    */
   saveSettings(settings) {
-    const { notifSend } = notifActions;
-
     // Loop through every setting key.
     for (let setting in settings) {
       // Get the value set in the settings panel.
@@ -249,8 +251,6 @@ class CreateQuizContainer extends Component {
   render() {
     const id = this.state.currentQuestion;
 
-    localStorage.clear();
-
     const currentQuestion = {
       id,
       body: this.props.quiz.questions.find(x => x.id === id).body,
@@ -268,7 +268,9 @@ class CreateQuizContainer extends Component {
         <CreateQuiz addQuestion={this.addQuestion}
                     addCategory={this.addCategory}
                     categories={this.props.quiz.categories}
+                    changeColours={this.changeColours}
                     changeQuestion={this.changeQuestion}
+                    colours={this.props.colours}
                     currentQuestion={currentQuestion}
                     deleteQuestion={this.deleteQuestion}
                     deleteCategory={this.deleteCategory}
@@ -291,7 +293,8 @@ class CreateQuizContainer extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    quiz: state.quiz
+    quiz: state.quiz,
+    colours: state.colours
   };
 }
 

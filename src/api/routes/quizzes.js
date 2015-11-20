@@ -30,7 +30,6 @@ router.post('/', (req, res) => {
 
   quiz.save((err, quiz) => {
     if (err) throw err;
-    console.log(`Quiz "${quiz.title}" was saved!`);
     res.send({ message: quiz.title + ' was saved!', quiz });
   });
 });
@@ -62,7 +61,6 @@ router.put('/:quizId', (req, res) => {
 
     quiz.save(err => {
       if (err) throw err;
-      console.log(`Quiz "${quiz.title}" was updated!`);
       res.send({ message: 'Quiz updated!', quiz });
     });
   });
@@ -74,7 +72,6 @@ router.put('/:quizId', (req, res) => {
  * @param  {Object_id} id The id of the quiz to delete.
  */
 router.delete('/:quizId', (req, res) => {
-  console.log(req.params.quizId);
   Quiz.remove({ _id: req.params.quizId }, (err, quiz) => {
     if (err) throw err;
     res.send({ message: 'Quiz was deleted!' });

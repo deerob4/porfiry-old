@@ -74,7 +74,8 @@ router.put('/:quizId', (req, res) => {
  * @param  {Object_id} id The id of the quiz to delete.
  */
 router.delete('/:quizId', (req, res) => {
-  Quiz.remove(req.params.quizId, (err, quiz) => {
+  console.log(req.params.quizId);
+  Quiz.remove({ _id: req.params.quizId }, (err, quiz) => {
     if (err) throw err;
     res.send({ message: 'Quiz was deleted!' });
   });

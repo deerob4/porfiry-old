@@ -9,7 +9,7 @@ function colourScheme(hue) {
     buttonBackground,
     selectBackground,
     answerBackground
-  ] = randomColour({ hue: 'light', count: 4, luminosity: hue });
+  ] = randomColour({ luminosity: 'light', count: 4 });
 
   let buttonBorder = luminance(buttonBackground, -0.2);
   let selectBorder = luminance(selectBackground, -0.2);

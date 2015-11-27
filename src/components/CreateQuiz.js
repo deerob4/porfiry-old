@@ -30,12 +30,6 @@ class CreateQuiz extends Component {
   constructor(props) {
     super(props);
 
-    this.openSettings = this.openSettings.bind(this);
-    this.closeSettings = this.closeSettings.bind(this);
-
-    this.editQuestion = this.editQuestion.bind(this);
-    this.changeCategory = this.changeCategory.bind(this);
-
     this.state = {
       correctAnswer: undefined,
       currentCategory: 0,
@@ -43,15 +37,15 @@ class CreateQuiz extends Component {
     };
   }
 
-  openSettings() {
+  openSettings = () => {
     this.setState({ settingsAreOpen: true });
   }
 
-  closeSettings() {
+  closeSettings = () => {
     this.setState({ settingsAreOpen: false });
   }
 
-  changeCategory(e) {
+  changeCategory = e => {
     let categoryId = parseInt(e.target.value);
 
     this.setState({ currentCategory: categoryId });
@@ -61,7 +55,7 @@ class CreateQuiz extends Component {
     )[0].id);
   }
 
-  editQuestion(body) {
+  editQuestion = body => {
     this.props.editQuestion(
       this.props.currentQuestion.id,
       body
@@ -91,31 +85,25 @@ class CreateQuiz extends Component {
     return (
       <div>
         <div className="select-group">
-          <Select arrowClass="left-arrow"
-                  changeEvent={this.changeCategory}
-                  complex={true}
+          <Select changeEvent={this.changeCategory}
+                  currentlySelected={this.props.currentCategory}
                   colours={this.props.colours.select}
-                  customClass="select-left select-half"
-                  house={this.props.house}
-                  innerClass="select-left select-half-parent"
-                  indexes={false}
+                  direction="left"
                   options={this.props.categories}
                   placeholder="Choose a category..."
-                  selectedId={this.props.currentCategory}
+                  size="half"
                   suffix="questions" />
 
-          <Select arrowClass="right-arrow"
-                  changeEvent={this.props.changeQuestion}
-                  complex={true}
+          <Select changeEvent={this.props.changeQuestion}
                   colours={this.props.colours.select}
-                  customClass="select-right select-half"
-                  house={this.props.house}
-                  innerClass="select-right select-half-parent"
+                  currentlySelected={this.props.currentQuestion.id}
+                  direction="right"
+                  indexes={true}
                   options={this.props.questions.filter(x =>
                     x.categoryId === this.state.currentCategory
                   )}
                   placeholder="Choose a question..."
-                  selectedId={this.props.currentQuestion.id} />
+                  size="half"/>
         </div>
 
         <EditableText colours={this.props.colours.text}
@@ -127,7 +115,7 @@ class CreateQuiz extends Component {
                       text={this.props.currentQuestion.body}
                       textType="h2" />
 
-        <h3 className={`h3-${this.props.house}`}>
+        <h3 style={this.props.colours.text.primary}>
           {`Question ${currentQuestionIndex} out of ${currentCategoryLength} in the ${currentCategoryName} category
           • Question ${this.props.currentQuestion.id + 1} out of ${this.props.questions.length} in total`}
         </h3>

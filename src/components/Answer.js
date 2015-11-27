@@ -15,13 +15,7 @@ class Answer extends Component {
     questionId: PropTypes.number.isRequired
   }
 
-  constructor(props) {
-    super(props);
-
-    this.editAnswer = this.editAnswer.bind(this);
-  }
-
-  editAnswer(body) {
+  editAnswer = (body) => {
     this.props.editAnswer(
       this.props.id,
       body,
@@ -39,7 +33,7 @@ class Answer extends Component {
       `answer-check`;
 
     return (
-        <li className={className}>
+        <li style={this.props.colours} className={className}>
           <span className="letter">
             {this.props.letter}.
           </span>

@@ -15,21 +15,17 @@ class EditableText extends Component {
   constructor(props) {
     super(props);
 
-    this.beginEditing = this.beginEditing.bind(this);
-    this.finishEditing = this.finishEditing.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       isEditing: false,
       text: this.props.text
     };
   }
 
-  beginEditing() {
+  beginEditing = () => {
     this.setState({ isEditing: true });
   }
 
-  finishEditing() {
+  finishEditing = () => {
     this.setState({ isEditing: false });
     // Only update the question if the user
     // has made changes and length > 0.
@@ -38,7 +34,7 @@ class EditableText extends Component {
     }
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({ text: e.target.value });
   }
 
@@ -92,6 +88,7 @@ class EditableText extends Component {
       case 'h2':
         headingView = (
           <h2 className={`h2-${this.props.house}`}
+              style={this.props.colours.secondary}
               onClick={this.beginEditing}>
               {this.props.text}
               {this.props.icon ?

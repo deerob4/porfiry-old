@@ -18,36 +18,26 @@ class CreateQuizContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.addCategory = this.addCategory.bind(this);
-    this.editCategory = this.editCategory.bind(this);
-    this.deleteCategory = this.deleteCategory.bind(this);
-
-    this.addQuestion = this.addQuestion.bind(this);
-    this.editQuestion = this.editQuestion.bind(this);
-    this.deleteQuestion = this.deleteQuestion.bind(this);
-
-    this.markCorrect = this.markCorrect.bind(this);
-    this.editAnswer = this.editAnswer.bind(this);
-
-    this.saveSettings = this.saveSettings.bind(this);
-
-    this.changeQuestion = this.changeQuestion.bind(this);
-    this.finishQuiz = this.finishQuiz.bind(this);
-    this.leaveQuiz = this.leaveQuiz.bind(this);
-
-    this.changeColours = this.changeColours.bind(this);
-
     this.state = { currentQuestion: 0 };
   }
 
-  changeColours() {
-    this.props.dispatch(actions.changeColours());
+  changeColours = () => {
+    const hue = {
+      acton: 'blue',
+      baxter: 'orange',
+      clive: 'green',
+      darwin: 'purple',
+      houseman: 'red',
+      webb: 'yellow'
+    }[this.props.user.house];
+
+    this.props.dispatch(actions.changeColours(hue));
   }
 
   /**
    * Adds a new category to the quiz.
    */
-  addCategory() {
+  addCategory = () => {
     let categoryBody = prompt('Category name:');
 
     if (categoryBody.length) {
@@ -61,7 +51,7 @@ class CreateQuizContainer extends Component {
    * Edits the name of a category.
    * @param  {Element} e Information on the category.
    */
-  editCategory(id) {
+  editCategory = (id) => {
     let currentBody = this.props.quiz.categories.find(x => x.id === id).body;
     let newBody = prompt('Enter a new category body:');
 
@@ -74,7 +64,7 @@ class CreateQuizContainer extends Component {
    * Deletes a category and all it's questions.
    * @param  {Number} id ID of category to delete.
    */
-  deleteCategory(id) {
+  deleteCategory = (id) => {
     // Get all the questions in the category.
     this.props.quiz.questions
       .filter(question => question.categoryId === id)
@@ -89,7 +79,7 @@ class CreateQuizContainer extends Component {
    * selected category.
    * @param {Number} categoryId The ID of the current category.
    */
-  addQuestion(categoryId) {
+  addQuestion = (categoryId) => {
     const categoryBody = this.props.quiz.categories.find(x => x.id === categoryId).body;
 
     this.props.dispatch(actions.addQuestion(
@@ -114,7 +104,7 @@ class CreateQuizContainer extends Component {
   /**
    * Deletes a question from the quiz.
    */
-  deleteQuestion() {
+  deleteQuestion = () => {
     // Ensure they are not deleting the only question.
     if (this.props.quiz.questions.length > 1) {
       // The id of the question to be deleted.
@@ -145,7 +135,7 @@ class CreateQuizContainer extends Component {
    * @param  {Number} id   ID of the question to edit.
    * @param  {String} body New question body.
    */
-  editQuestion(id, body) {
+  editQuestion = (id, body) => {
     this.props.dispatch(actions.editQuestion(id, body));
   }
 
@@ -156,7 +146,7 @@ class CreateQuizContainer extends Component {
    * @param  {String} body       The body of the answer.
    * @param  {Boolean} correct   Whether the answer is correct.
    */
-  markCorrect(answerId, questionId, body, correct) {
+  markCorrect = (answerId, questionId, body, correct) => {
     // Get the question that's currently marked as correct.
     const currentlyCorrect = this.props.quiz.answers.find(x =>
       x.correct === true && x.questionId === questionId
@@ -179,7 +169,7 @@ class CreateQuizContainer extends Component {
    * @param  {String} body    New body of answer.
    * @param  {Bool} correct   New correct status of answer.
    */
-  editAnswer(id, body, correct) {
+  editAnswer = (id, body, correct) => {
     this.props.dispatch(actions.editAnswer(id, body, correct));
   }
 
@@ -189,19 +179,19 @@ class CreateQuizContainer extends Component {
    * making the other components update to show the new question.
    * @param  {Number|String} e The ID of the new question.
    */
-  changeQuestion(e) {
+  changeQuestion = (e) => {
     // Check if the question is being changed manually or
     // by an override, such as adding a new question.
     const id = typeof e === 'number' ? e : e.target.value;
     this.setState({ currentQuestion: parseInt(id) });
   }
 
-  finishQuiz() {
+  finishQuiz = () => {
     let quiz = constructQuiz(this.props.quiz);
     this.props.dispatch(actions.saveOrUpdateQuiz(quiz));
   }
 
-  leaveQuiz() {
+  leaveQuiz = () => {
     this.props.history.pushState('/', '/');
   }
 
@@ -210,7 +200,7 @@ class CreateQuizContainer extends Component {
    * @param  {String} setting The setting that has been modified.
    * @param  {String|Numbe}r value   The new setting data.
    */
-  saveSettings(settings) {
+  saveSettings = (settings) => {
     // Loop through every setting key.
     for (let setting in settings) {
       // Get the value set in the settings panel.
@@ -273,7 +263,7 @@ class CreateQuizContainer extends Component {
                     colours={this.props.colours}
                     currentQuestion={currentQuestion}
                     deleteQuestion={this.deleteQuestion}
-                    deleteCategory={this.deleteCategory}
+                    deleteCategory={this.changeColours}
                     editAnswer={this.editAnswer}
                     editCategory={this.editCategory}
                     editQuestion={this.editQuestion}

@@ -16,10 +16,10 @@ class LoginForm extends Component {
     return (
       <div className="loginForm">
         <div className="animated bounceInDown">
-          <h1 className={`centre h1-${this.props.house}`}>
+          <h1 style={this.props.colours.text.secondary} className={`centre h1-${this.props.house}`}>
             Priory School Quiz
           </h1>
-          <p className={`centre h1-${this.props.house}`}>
+          <p style={this.props.colours.text.primary} className={`centre h1-${this.props.house}`}>
             Hello! Choose your house and year to get started!
           </p>
         </div>
@@ -28,17 +28,17 @@ class LoginForm extends Component {
           <Select changeEvent={this.props.changeHouse}
                   customClass="hover"
                   colours={this.props.colours.select}
-                  house={this.props.house}
                   options={this.props.houses}
-                  placeholder="I belong to..." />
+                  placeholder="I belong to..."
+                  size="full" />
 
           <Select changeEvent={this.props.changeYear}
                   customClass="hover"
                   colours={this.props.colours.select}
-                  house={this.props.house}
                   options={this.props.years}
                   placeholder="And I'm in year..."
-                  prefix="Year" />
+                  prefix="Year"
+                  size="full" />
 
           {this.props.isQuizReady ?
             // If there is a quiz scheduled in the next 30 minutes, display a

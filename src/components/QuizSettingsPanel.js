@@ -11,13 +11,7 @@ class QuizSettingsPanel extends Component {
     settingsAreOpen: PropTypes.bool.isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    this.saveSettings = this.saveSettings.bind(this);
-  }
-
-  saveSettings() {
+  saveSettings = () => {
     this.props.saveSettings({
       title: this.refs.title.value,
       startDate: this.refs.startDate.value,

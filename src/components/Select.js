@@ -4,35 +4,40 @@ import trim from 'lodash/string/trim';
 
 class Select extends Component {
   static propTypes = {
-    arrowClass: PropTypes.string,
     changeEvent: PropTypes.func.isRequired,
-    complex: PropTypes.bool,
-    customClass: PropTypes.string,
-    house: PropTypes.string.isRequired,
+    colours: PropTypes.object.isRequired,
+    currentlySelected: PropTypes.number,
+    direction: PropTypes.oneOf(['left', 'right']),
     indexes: PropTypes.bool,
-    innerClass: PropTypes.string,
     options: PropTypes.array.isRequired,
     placeholder: PropTypes.string.isRequired,
     prefix: PropTypes.string,
-    selectedId: PropTypes.number,
+    size: PropTypes.oneOf(['full', 'half']),
     suffix: PropTypes.string
   }
 
-  static defaultProps = {
-    indexes: true
-  }
-
   render() {
-    let className = `${this.props.house}-select ${this.props.customClass}`;
+    let innerClass;
+    let outerClass;
+
+    if (this.props.size === 'half') {
+      outerClass = 'select-half-parent';
+      innerClass = 'select-half';
+    }
 
     return (
-      <div className={this.props.innerClass}>
-        <select className={trim(className)}
+      <div className={`select-${this.props.direction} ${outerClass}`}>
+        <select className={`select-${this.props.direction} ${innerClass}`}
                 onChange={this.props.changeEvent}
-                value={this.props.selectedId}>
+                value={this.props.currentlySelected}
+                style={this.props.colours}>
 
           {this.props.options.map((option, index) =>
-            this.props.complex ?
+            typeof this.props.options[0] !== 'object' ?
+              // Used if a simple 1D array is passed.
+              <option key={option} value={option}>
+                {this.props.prefix} {capitalise(option)}
+              </option> :
               // Used if a complex array containing objects
               // is passed through.
               <option key={option.id + 1} value={option.id}>
@@ -40,16 +45,12 @@ class Select extends Component {
                   ${option.body}
                   ${this.props.suffix ? this.props.suffix : ''}`
                 }
-              </option> :
-              // Used if a simple 1D array is passed.
-              <option key={option} value={option}>
-                {this.props.prefix} {capitalise(option)}
               </option>
           )}
         </select>
 
-        <div className={`select-arrow ${this.props.house}-select-arrow`}>
-          <i className={this.props.arrowClass}></i>
+        <div className="select-arrow">
+          <i className={`${this.props.direction}-arrow`}></i>
         </div>
       </div>
     );

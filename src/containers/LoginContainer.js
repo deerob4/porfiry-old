@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import LoginForm from 'components/LoginForm';
 import backgroundStyle from 'utils/backgroundStyle';
 import { changeHouse, changeYear, fetchQuizzes, deleteQuiz } from 'actions/LoginActions';
+import { changeColours } from 'actions/CreatorActions';
 import request from 'superagent';
 import first from 'lodash/array/first';
 import moment from 'moment';
-import QuizSelectPanel from 'components/QuizSelectPanel';
+import QuizSelectPanel from 'components/LoadQuizPanel';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
 const years = [7, 8, 9, 10, 11];
@@ -14,15 +15,6 @@ const years = [7, 8, 9, 10, 11];
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    this.loadQuiz = this.loadQuiz.bind(this);
-    this.deleteQuiz = this.deleteQuiz.bind(this);
-
-    this.changeHouse = this.changeHouse.bind(this);
-    this.changeYear = this.changeYear.bind(this);
-    this.isQuizReady = this.isQuizReady.bind(this);
-    this.newQuiz = this.newQuiz.bind(this);
-    this.openQuizSelect = this.openQuizSelect.bind(this);
-    this.closeQuizSelect = this.closeQuizSelect.bind(this);
 
     this.state = {
       isQuizReady: false,
@@ -32,27 +24,40 @@ class LoginContainer extends Component {
     this.isQuizReady();
   }
 
-  changeYear(e) {
+  changeYear = (e) => {
     this.props.dispatch(changeYear(e.target.value));
   }
 
-  changeHouse(e) {
+  changeHouse = (e) => {
     this.props.dispatch(changeHouse(e.target.value));
+
+    const hueMap = {
+      acton: 'blue',
+      baxter: 'orange',
+      clive: 'green',
+      darwin: 'purple',
+      houseman: 'red',
+      webb: 'yellow'
+    };
+
+    console.log(hueMap[this.props.user.house]);
+
+    this.props.dispatch(changeColours(hueMap[this.props.user.house]));
   }
 
-  newQuiz() {
+  newQuiz = () => {
     this.props.history.pushState('create', '/create');
   }
 
-  deleteQuiz(quizId) {
+  deleteQuiz = (quizId) => {
     this.props.dispatch(deleteQuiz(quizId));
   }
 
-  loadQuiz(quizId) {
+  loadQuiz = (quizId) => {
     console.log(quizId);
   }
 
-  openQuizSelect() {
+  openQuizSelect = () => {
     this.props.dispatch(fetchQuizzes());
 
     this.setState({
@@ -60,13 +65,13 @@ class LoginContainer extends Component {
     });
   }
 
-  closeQuizSelect() {
+  closeQuizSelect = () => {
     this.setState({
       panelIsOpen: false
     });
   }
 
-  isQuizReady() {
+  isQuizReady = () => {
     request
       .get('/api/quizzes')
       .end((err, res) => {

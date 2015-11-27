@@ -9,9 +9,9 @@ export default house => {
   };
 
   return {
-    height: window.innerHeight + 'px',
-    width: '100%',
-    backgroundColor: backgroundMap[house],
+    // height: window.innerHeight + 'px',
+    // width: '100%',
+    // backgroundColor: '#fff',
     padding: '10px'
   };
 };

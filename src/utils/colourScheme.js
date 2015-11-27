@@ -2,14 +2,14 @@ import randomColour from 'randomcolor';
 import luminance from 'utils/luminance';
 import choice from 'utils/choice';
 
-function colourScheme() {
+function colourScheme(hue) {
   // Generate mainColour background colours for elements.
   let [
     mainColour,
     buttonBackground,
     selectBackground,
     answerBackground
-  ] = randomColour({ hue: 'light', count: 4, hue: choice(['blue', 'orange', 'red', 'purple']) });
+  ] = randomColour({ hue: 'light', count: 4, luminosity: hue });
 
   let buttonBorder = luminance(buttonBackground, -0.2);
   let selectBorder = luminance(selectBackground, -0.2);
@@ -33,8 +33,8 @@ function colourScheme() {
       icon: luminance(answerBackground, -0.4)
     },
     text: {
-      primary: mainColour,
-      secondary: luminance(mainColour, -0.1)
+      primary: { color: luminance(selectBorder, 0.3) },
+      secondary: { color: luminance(selectBorder, 0.2) }
     }
   };
 }

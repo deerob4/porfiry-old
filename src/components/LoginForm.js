@@ -16,10 +16,10 @@ class LoginForm extends Component {
     return (
       <div className="loginForm">
         <div className="animated bounceInDown">
-          <h1 style={this.props.colours.text.secondary} className={`centre h1-${this.props.house}`}>
+          <h1 style={this.props.colours.text.primary} className="centre">
             Priory School Quiz
           </h1>
-          <p style={this.props.colours.text.primary} className={`centre h1-${this.props.house}`}>
+          <p style={this.props.colours.text.secondary} className="centre">
             Hello! Choose your house and year to get started!
           </p>
         </div>
@@ -50,13 +50,11 @@ class LoginForm extends Component {
               <Button customClass="login-button"
                       colours={this.props.colours.button}
                       text="Create a new quiz!"
-                      house={this.props.house}
                       clickEvent={this.props.newQuiz} />
 
               <Button customClass="login-button"
                       colours={this.props.colours.button}
                       text="Load a quiz!"
-                      house={this.props.house}
                       clickEvent={this.props.openQuizSelect} />
             </ul>
           }

@@ -49,13 +49,6 @@ li {
   text-align: center;
 }
 
-@include house-typography(h1, 3);
-@include house-typography(h2, 3);
-@include house-typography(h3, 1);
-@include house-typography(p, 2);
-@include house-typography(li, 11);
-@include house-typography(label, 4);
-
 form
 {
   width: 515px;

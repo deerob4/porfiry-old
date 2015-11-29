@@ -1,11 +1,10 @@
-import { CHANGE_COLOURS } from 'constants/actions';
 import colourScheme from 'utils/colourScheme';
+import { CHANGE_COLOURS } from 'constants/actions';
 
-function colours(state = colourScheme(), action) {
+function colours(state = colourScheme('blue'), action) {
   switch (action.type) {
     case CHANGE_COLOURS:
-      console.log(action);
-      return { ...colourScheme(action.hue) };
+      return { ...action.colours };
 
     default:
       return state;

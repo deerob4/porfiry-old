@@ -53,10 +53,6 @@ export function deleteQuestion(id) {
   return { type: types.DELETE_QUESTION, id };
 }
 
-export function changeColours(hue) {
-  return { type: types.CHANGE_COLOURS, hue };
-}
-
 // Quiz answer actions.
 export function addAnswer(questionId, body, correct) {
   return { type: types.ADD_ANSWER, questionId, body, correct };

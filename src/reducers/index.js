@@ -5,10 +5,10 @@ import user from './userReducer';
 import colours from './colourReducer';
 
 const rootReducer = combineReducers({
-  notifs: notifReducer,
   user,
   quiz,
-  colours
+  colours,
+  notifs: notifReducer
 });
 
 export default rootReducer;

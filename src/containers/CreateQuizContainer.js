@@ -21,19 +21,6 @@ class CreateQuizContainer extends Component {
     this.state = { currentQuestion: 0 };
   }
 
-  changeColours = () => {
-    const hue = {
-      acton: 'blue',
-      baxter: 'orange',
-      clive: 'green',
-      darwin: 'purple',
-      houseman: 'red',
-      webb: 'yellow'
-    }[this.props.user.house];
-
-    this.props.dispatch(actions.changeColours(hue));
-  }
-
   /**
    * Adds a new category to the quiz.
    */
@@ -258,12 +245,11 @@ class CreateQuizContainer extends Component {
         <CreateQuiz addQuestion={this.addQuestion}
                     addCategory={this.addCategory}
                     categories={this.props.quiz.categories}
-                    changeColours={this.changeColours}
                     changeQuestion={this.changeQuestion}
                     colours={this.props.colours}
                     currentQuestion={currentQuestion}
                     deleteQuestion={this.deleteQuestion}
-                    deleteCategory={this.changeColours}
+                    deleteCategory={this.deleteCategory}
                     editAnswer={this.editAnswer}
                     editCategory={this.editCategory}
                     editQuestion={this.editQuestion}

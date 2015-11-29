@@ -6,6 +6,7 @@ import webpack from 'webpack';
 import webpackConfig from './webpack.config';
 import config from './config';
 import apiRoutes from './src/api/index';
+import quizSockets from './src/quizSockets';
 
 // Begin connection to database.
 mongoose.connect(`mongodb://localhost:27017/${config.database}`);
@@ -17,10 +18,16 @@ let compiler = webpack(webpackConfig);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Begin the server; listen on the defined port.
+let server = app.listen(config.port, '0.0.0.0', err => {
+  if (err) throw err;
+  console.log('Listening on port ' + config.port);
+});
+
 // Set up development middleware.
 app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
@@ -38,9 +45,14 @@ app.get('/create', (req, res) => {
 // Set the /api endpoint to the route logic in apiRoutes.
 app.use('/api', apiRoutes);
 
-// Begin the server; listen on the defined port.
-app.listen(config.defaultPort, '0.0.0.0', err => {
-  if (err) throw err;
-  console.log('Listening on port ' + config.defaultPort);
-});
+// Start the socket processes.
+quizSockets(server);
+
+// const io = require('socket.io').listen(server);
+
+// io.on('connection', (socket) => {
+//   socket.on(types.JOIN_QUIZ, (user) =>
+//     console.log(`User in ${user.house} and Year ${user.year} has joined.`)
+//   );
+// });
 

@@ -55,7 +55,3 @@ form {
     margin-bottom: 15px;
   }
 }
-
-@include house-typography('input');
-@include house-input-placeholders(8);
-@include house-colours('input', 20);

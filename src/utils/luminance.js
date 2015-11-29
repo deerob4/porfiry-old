@@ -17,6 +17,4 @@ function luminance(hex, lum) {
   return rgb;
 }
 
-console.log(luminance('#cc9a6e', -0.2));
-
 export default luminance;

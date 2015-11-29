@@ -1,6 +1,7 @@
+import { combineReducers } from 'redux';
 import * as types from 'constants/actions';
 import nextBiggest from 'utils/nextBiggest';
-import { combineReducers } from 'redux';
+import isFinite from 'lodash/lang/isFinite';
 
 // The default data that the quiz will show upon
 // initialisation.
@@ -56,7 +57,7 @@ function categories(state = defaultState.categories, action) {
   switch (action.type) {
     case types.ADD_CATEGORY:
       return [...state, {
-        id: nextBiggest(state),
+        id: isFinite(nextBiggest(state)) ? nextBiggest(state) : 0,
         body: action.body
       }];
 
@@ -70,6 +71,9 @@ function categories(state = defaultState.categories, action) {
     case types.DELETE_CATEGORY:
       return state.filter(x => x.id !== action.id);
 
+    case types.DELETE_ALL_CATEGORIES:
+      return state.filter(x => x.id === -1);
+
     default:
       return state;
   }
@@ -80,7 +84,7 @@ function questions(state = defaultState.questions, action) {
     case types.ADD_QUESTION:
       return [...state, {
         body: action.body,
-        id: nextBiggest(state),
+        id: isFinite(nextBiggest(state)) ? nextBiggest(state) : 0,
         categoryId: action.categoryId
       }];
 
@@ -94,6 +98,9 @@ function questions(state = defaultState.questions, action) {
     case types.DELETE_QUESTION:
       return state.filter(x => x.id !== action.id);
 
+    case types.DELETE_ALL_QUESTIONS:
+      return state.filter(x => x.id === -1);
+
     default:
       return state;
   }
@@ -105,7 +112,7 @@ function answers(state = defaultState.answers, action) {
       return [...state, {
         body: action.body,
         correct: action.correct,
-        id: nextBiggest(state),
+        id: isFinite(nextBiggest(state)) ? nextBiggest(state) : 0,
         questionId: action.questionId
       }];
 
@@ -118,6 +125,9 @@ function answers(state = defaultState.answers, action) {
 
     case types.DELETE_ANSWER:
       return state.filter(x => x.id !== action.id);
+
+    case types.DELETE_ALL_ANSWERS:
+      return state.filter(x => x.id === -1);
 
     default:
       return state;

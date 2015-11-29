@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LoginForm from 'components/LoginForm';
-import backgroundStyle from 'utils/backgroundStyle';
-import { changeHouse, changeYear, fetchQuizzes, deleteQuiz } from 'actions/LoginActions';
-import { changeColours } from 'actions/CreatorActions';
-import request from 'superagent';
+import React, { Component } from 'react';
 import first from 'lodash/array/first';
-import moment from 'moment';
-import QuizSelectPanel from 'components/LoadQuizPanel';
+import backgroundStyle from 'utils/backgroundStyle';
+import LoginForm from 'components/LoginForm';
+import { joinQuiz } from 'actions/PlayQuizActions';
+import LoadQuizPanel from 'components/LoadQuizPanel';
+import {
+  changeHouse,
+  changeYear,
+  loadQuiz,
+  deleteQuiz,
+  fetchQuizzes,
+  isQuizReady
+} from 'actions/LoginActions';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
-const years = [7, 8, 9, 10, 11];
+const years = [7, 8, 9, 10, 11, 12, 13];
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -20,8 +25,11 @@ class LoginContainer extends Component {
       isQuizReady: false,
       panelIsOpen: false
     };
+  }
 
-    this.isQuizReady();
+  componentDidMount() {
+    this.props.dispatch(isQuizReady());
+    this.props.dispatch(joinQuiz(this.props.user));
   }
 
   changeYear = (e) => {
@@ -30,19 +38,6 @@ class LoginContainer extends Component {
 
   changeHouse = (e) => {
     this.props.dispatch(changeHouse(e.target.value));
-
-    const hueMap = {
-      acton: 'blue',
-      baxter: 'orange',
-      clive: 'green',
-      darwin: 'purple',
-      houseman: 'red',
-      webb: 'yellow'
-    };
-
-    console.log(hueMap[this.props.user.house]);
-
-    this.props.dispatch(changeColours(hueMap[this.props.user.house]));
   }
 
   newQuiz = () => {
@@ -54,39 +49,17 @@ class LoginContainer extends Component {
   }
 
   loadQuiz = (quizId) => {
-    console.log(quizId);
+    const quiz = this.props.user.quizzes.find(quiz => quiz._id === quizId);
+    this.props.dispatch(loadQuiz(quiz));
   }
 
   openQuizSelect = () => {
     this.props.dispatch(fetchQuizzes());
-
-    this.setState({
-      panelIsOpen: true
-    });
+    this.setState({ panelIsOpen: true });
   }
 
   closeQuizSelect = () => {
-    this.setState({
-      panelIsOpen: false
-    });
-  }
-
-  isQuizReady = () => {
-    request
-      .get('/api/quizzes')
-      .end((err, res) => {
-        if (err) return err;
-        // Select the first quiz.
-        let quiz = first(JSON.parse(res.text)['quizzes']);
-        // Create a moment object of the quizz's start date.
-        let startDate = moment(quiz.startDate);
-        // Work out the number of minutes till quiz is due to start.
-        let minutesToStart = startDate.diff(moment(), 'minutes');
-        // Check if quiz is within the next 35 minutes.
-        let isQuizReady = minutesToStart >= -5 && minutesToStart < 30;
-
-        this.setState({ isQuizReady: false });
-      });
+    this.setState({ panelIsOpen: false });
   }
 
   render() {
@@ -103,7 +76,7 @@ class LoginContainer extends Component {
                      houses={houses}
                      years={years} />
 
-          <QuizSelectPanel house={this.props.user.house}
+          <LoadQuizPanel colours={this.props.colours}
                            panelIsOpen={this.state.panelIsOpen}
                            loadQuiz={this.loadQuiz}
                            deleteQuiz={this.deleteQuiz}

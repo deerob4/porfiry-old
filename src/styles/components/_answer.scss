@@ -45,7 +45,3 @@
 
     height: 76px;
 }
-
-@include house-colours('answer', 19);
-@include house-colours('correct-answer', 25);
-@include house-answer-checks(13);

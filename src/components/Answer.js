@@ -24,16 +24,8 @@ class Answer extends Component {
   }
 
   render() {
-    const className = this.props.correct ?
-      `answer ${this.props.house}-answer ${this.props.house}-correct-answer` :
-      `answer ${this.props.house}-answer`;
-
-    const checkClass = this.props.correct ?
-      `answer-check ${this.props.house}-correct-answer-check` :
-      `answer-check`;
-
     return (
-        <li style={this.props.colours} className={className}>
+        <li style={this.props.colours.body} className="answer">
           <span className="letter">
             {this.props.letter}.
           </span>
@@ -44,7 +36,8 @@ class Answer extends Component {
                         text={this.props.answer}
                         textType="span" />
 
-          <span className={checkClass}
+          <span className="answer-check"
+                style={this.props.correct ? this.props.colours.check : null}
                 onClick={this.props.markCorrect.bind(
                          this,
                          parseInt(this.props.id),

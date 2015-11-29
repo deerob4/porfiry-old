@@ -1,42 +1,40 @@
 import randomColour from 'randomcolor';
-import luminance from 'utils/luminance';
-import choice from 'utils/choice';
+import luminance from './luminance';
+import tinyColour from 'tinycolor2';
 
 function colourScheme(hue) {
-  // Generate mainColour background colours for elements.
-  let [
-    mainColour,
-    buttonBackground,
-    selectBackground,
-    answerBackground
-  ] = randomColour({ luminosity: 'light', count: 4 });
+  let houseColour = randomColour({ luminosity: 'light', hue });
+  let complement = tinyColour(houseColour).complement().toHexString();
+  let lightComplement = luminance(houseColour, 0.2);
 
-  let buttonBorder = luminance(buttonBackground, -0.2);
-  let selectBorder = luminance(selectBackground, -0.2);
-  let answerBorder = luminance(answerBackground, -0.2);
-
-  return {
-    button: {
-      backgroundColor: buttonBackground,
-      borderColor: buttonBorder,
-      color: luminance(buttonBorder, -0.2)
+  let scheme = {
+    answer: {
+      body: {
+        backgroundColor: complement,
+        borderColor: luminance(complement, -0.2),
+        color: luminance(complement, -0.4)
+      },
+      check: {
+        color: luminance(complement, -0.6)
+      }
     },
     select: {
-      backgroundColor: selectBackground,
-      borderColor: selectBorder,
-      color: luminance(selectBorder, -0.2)
+      backgroundColor: houseColour,
+      borderColor: luminance(houseColour, -0.2),
+      color: luminance(houseColour, -0.4)
     },
-    answer: {
-      backgroundColor: answerBackground,
-      borderColor: answerBorder,
-      color: luminance(answerBorder, -0.2),
-      icon: luminance(answerBackground, -0.4)
+    button: {
+      backgroundColor: lightComplement,
+      borderColor: luminance(lightComplement, -0.2),
+      color: luminance(lightComplement, -0.4)
     },
     text: {
-      primary: { color: luminance(selectBorder, 0.3) },
-      secondary: { color: luminance(selectBorder, 0.2) }
+      primary: { color: luminance(houseColour, -0.2) },
+      secondary: { color: luminance(houseColour, -0.1) }
     }
   };
+
+  return scheme;
 }
 
 export default colourScheme;

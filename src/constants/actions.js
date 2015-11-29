@@ -1,16 +1,12 @@
 // Colour scheme actions.
 export const CHANGE_COLOURS = 'CHANGE_COLOURS';
 
-
 // Login page actions.
 export const CHANGE_HOUSE = 'CHANGE_HOUSE';
 export const CHANGE_YEAR = 'CHANGE_YEAR';
-
 export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
 export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
-
-export const DELETE_QUIZ = 'DELETE_QUIZ';
-
+export const QUIZ_IS_READY = 'QUIZ_IS_READY';
 
 // Quiz creator actions.
 export const UPDATE_ID = 'UPDATE_ID';
@@ -23,16 +19,23 @@ export const UPDATE_BREAK_LENGTH = 'UPDATE_BREAK_LENGTH';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+export const DELETE_ALL_CATEGORIES = 'DELETE_ALL_CATEGORIES';
 
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
+export const DELETE_ALL_QUESTIONS = 'DELETE_ALL_QUESTIONS';
 
 export const ADD_ANSWER = 'ADD_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 export const EDIT_ANSWER = 'EDIT_ANSWER';
+export const DELETE_ALL_ANSWERS = 'DELETE_ALL_ANSWERS';
 
 export const SAVE_QUIZ_SUCCESS = 'SAVE_QUIZ_SUCCESS';
 export const SAVE_QUIZ_FAILURE = 'SAVE_QUIZ_FAILURE';
 export const UPDATE_QUIZ_SUCCESS = 'UPDATE_QUIZ_SUCCESS';
 export const UPDATE_QUIZ_FAILURE = 'UPDATE_QUIZ_FAILURE';
+
+// Play quiz actions
+export const JOIN_QUIZ = 'JOIN_QUIZ';
+export const SELECT_ANSWER = 'SELECT_ANSWER';

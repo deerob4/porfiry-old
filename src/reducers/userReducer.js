@@ -1,6 +1,6 @@
 import * as types from 'constants/actions';
 
-let defaultState = { house: 'webb', year: 9, quizzes: [] };
+let defaultState = { house: 'acton', year: 7, quizzes: [] };
 
 function user(state = defaultState, action) {
   switch (action.type) {

@@ -1,7 +1,7 @@
 // Configuration settings that will be shared
 // between environments.
 const sharedConfig = {
-  defaultPort: process.env.PORT || 5000
+  port: process.env.PORT || 5000
 };
 
 // Configuration applied during production.

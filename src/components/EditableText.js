@@ -88,7 +88,7 @@ class EditableText extends Component {
       case 'h2':
         headingView = (
           <h2 className={`h2-${this.props.house}`}
-              style={this.props.colours.secondary}
+              style={this.props.colours.primary}
               onClick={this.beginEditing}>
               {this.props.text}
               {this.props.icon ?

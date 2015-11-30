@@ -40,10 +40,11 @@ class LoginForm extends Component {
                   prefix="Year"
                   size="full" />
 
-          {this.props.isQuizReady ?
+          {this.props.quizIsReady ?
             // If there is a quiz scheduled in the next 30 minutes, display a
             // button to join the room. Otherwise show button to create a quiz.
-            <Button customClass="login-button"
+            <Button colours={this.props.colours.button}
+                    customClass="login-button"
                     text="Join the quiz!" /> :
 
             <ul>

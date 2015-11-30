@@ -21,10 +21,7 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isQuizReady: false,
-      panelIsOpen: false
-    };
+    this.state = { panelIsOpen: false };
   }
 
   componentDidMount() {
@@ -51,6 +48,8 @@ class LoginContainer extends Component {
   loadQuiz = (quizId) => {
     const quiz = this.props.user.quizzes.find(quiz => quiz._id === quizId);
     this.props.dispatch(loadQuiz(quiz));
+    this.closeQuizSelect();
+    this.newQuiz();
   }
 
   openQuizSelect = () => {
@@ -70,18 +69,18 @@ class LoginContainer extends Component {
                      changeYear={this.changeYear}
                      colours={this.props.colours}
                      house={this.props.user.house}
-                     isQuizReady={this.state.isQuizReady}
+                     quizIsReady={this.props.user.quizIsReady}
                      newQuiz={this.newQuiz}
                      openQuizSelect={this.openQuizSelect}
                      houses={houses}
                      years={years} />
 
           <LoadQuizPanel colours={this.props.colours}
-                           panelIsOpen={this.state.panelIsOpen}
-                           loadQuiz={this.loadQuiz}
-                           deleteQuiz={this.deleteQuiz}
-                           closePanel={this.closeQuizSelect}
-                           quizzes={this.props.user.quizzes} />
+                         panelIsOpen={this.state.panelIsOpen}
+                         loadQuiz={this.loadQuiz}
+                         deleteQuiz={this.deleteQuiz}
+                         closePanel={this.closeQuizSelect}
+                         quizzes={this.props.user.quizzes} />
         </div>
       </div>
     );

@@ -4,6 +4,10 @@ import flattenQuiz from 'libs/flattenQuiz';
 import * as types from 'constants/actions';
 import colourScheme from 'utils/colourScheme';
 import * as actions from 'actions/CreatorActions';
+import { actions as notifActions } from 're-notif';
+
+const { notifSend } = notifActions;
+let dismissAfter = 2000;
 
 function changeColours(house) {
   const colourMap = {
@@ -35,9 +39,31 @@ export function receiveQuizzes(quizzes) {
 
 export function deleteQuiz(id) {
   return dispatch => {
+    dispatch({ type: types.DELETE_QUIZ });
     return axios.delete(`/api/quizzes/${id}`)
-      .catch(error => console.log(error));
+      .then(() => dispatch(deleteQuizSuccess()))
+      .catch(() => dispatch(deleteQuizFailure()));
   };
+}
+
+function deleteQuizSuccess() {
+  return dispatch => {
+    dispatch(notifSend({
+      message: 'Quiz succesfully deleted.',
+      kind: 'success',
+      dismissAfter
+    }));
+    dispatch({ type: types.DELETE_QUIZ_SUCCESS });
+  };
+}
+
+function deleteQuizFailure() {
+  return dispatch =>
+    dispatch(notifSend({
+      message: 'Quiz failed to delete.',
+      kind: 'danger',
+      dismissAfter
+    }));
 }
 
 function removeDefaultQuiz() {

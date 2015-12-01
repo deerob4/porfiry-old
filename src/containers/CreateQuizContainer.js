@@ -241,7 +241,7 @@ class CreateQuizContainer extends Component {
     };
 
     return (
-      <div style={backgroundStyle(this.props.user.house)}>
+      <div style={backgroundStyle(this.props.user.house)} className="animated fadeIn">
         <CreateQuiz addQuestion={this.addQuestion}
                     addCategory={this.addCategory}
                     categories={this.props.quiz.categories}

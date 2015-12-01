@@ -4,6 +4,11 @@ export const CHANGE_COLOURS = 'CHANGE_COLOURS';
 // Login page actions.
 export const CHANGE_HOUSE = 'CHANGE_HOUSE';
 export const CHANGE_YEAR = 'CHANGE_YEAR';
+
+export const DELETE_QUIZ = 'DELETE_QUIZ';
+export const DELETE_QUIZ_SUCCESS = 'DELETE_QUIZ_SUCCESS';
+export const DELETE_QUIZ_FAILURE = 'DELETE_QUIZ_FAILURE';
+
 export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
 export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
 export const QUIZ_IS_READY = 'QUIZ_IS_READY';

@@ -33,9 +33,6 @@ export function changeYear(year) {
   return { type: types.CHANGE_YEAR, year };
 }
 
-export function receiveQuizzes(quizzes) {
-  return { type: types.RECEIVE_QUIZZES, quizzes };
-}
 
 export function deleteQuiz(id) {
   return dispatch => {
@@ -66,7 +63,7 @@ function deleteQuizFailure() {
     }));
 }
 
-function removeDefaultQuiz() {
+function removeCurrentQuiz() {
   return dispatch => {
     dispatch({ type: types.DELETE_ALL_CATEGORIES });
     dispatch({ type: types.DELETE_ALL_QUESTIONS });
@@ -76,18 +73,25 @@ function removeDefaultQuiz() {
 
 export function loadQuiz(quiz) {
   quiz = flattenQuiz(quiz);
-  console.log(quiz);
+
   return dispatch => {
-    dispatch(removeDefaultQuiz());
-    dispatch(actions.updateId(quiz.settings.id));
-    dispatch(actions.updateTitle(quiz.settings.title));
-    dispatch(actions.updateStartDate(quiz.settings.startDate));
-    dispatch(actions.updateStartTime(quiz.settings.startTime));
-    dispatch(actions.updateQuestionLength(quiz.settings.questionLength));
-    dispatch(actions.updateBreakLength(quiz.settings.breakLength));
+    // Remove the current quiz.
+    dispatch(removeCurrentQuiz());
+    // Load the quiz's settings.
+    dispatch(actions.updateAllSettings(quiz.settings));
+    // Map through every category and add them to the quiz.
     quiz.categories.map(category => dispatch(actions.addCategory(category.body)));
-    quiz.questions.map(question => dispatch(actions.addQuestion(question.categoryId, question.body)));
-    quiz.answers.map(answer => dispatch(actions.addAnswer(answer.questionId, answer.body, answer.correct)));
+    // Map through ever question and add them to the quiz.
+    quiz.questions.map(question => dispatch(actions.addQuestion(
+      question.categoryId,
+      question.body
+    )));
+    // Map through ever answer and add them to the quiz.
+    quiz.answers.map(answer => dispatch(actions.addAnswer(
+      answer.questionId,
+      answer.body,
+      answer.correct
+    )));
   };
 }
 
@@ -108,10 +112,19 @@ export function isQuizReady() {
   };
 }
 
-export function fetchQuizzes() {
+export function requestQuizzes() {
   return dispatch => {
+    dispatch({ type: types.REQUEST_QUIZZES });
     return axios.get('/api/quizzes')
       .then(response => dispatch(receiveQuizzes(response.data.quizzes)))
-      .catch(error => console.log(error));
+      .catch(error => dispatch(requestQuizzesFailure()));
   };
+}
+
+function requestQuizzesFailure() {
+  return { type: types.REQUEST_QUIZZES_FAILURE };
+}
+
+function receiveQuizzes(quizzes) {
+  return { type: types.RECEIVE_QUIZZES, quizzes };
 }

@@ -2,7 +2,6 @@ import * as types from 'constants/actions';
 import axios from 'axios';
 import { actions as notifActions } from 're-notif';
 
-// Quiz metadata actions.
 export function updateId(id) {
   return { type: types.UPDATE_ID, id };
 }
@@ -27,7 +26,10 @@ export function updateBreakLength(breakLength) {
   return { type: types.UPDATE_BREAK_LENGTH, breakLength };
 }
 
-// Quiz category actions.
+export function updateAllSettings(settings) {
+  return { type: types.UPDATE_ALL_SETTINGS, settings };
+}
+
 export function addCategory(body) {
   return { type: types.ADD_CATEGORY, body };
 }
@@ -40,7 +42,6 @@ export function deleteCategory(id) {
   return { type: types.DELETE_CATEGORY, id };
 }
 
-// Quiz question actions.
 export function addQuestion(categoryId, body) {
   return { type: types.ADD_QUESTION, categoryId, body };
 }
@@ -53,7 +54,6 @@ export function deleteQuestion(id) {
   return { type: types.DELETE_QUESTION, id };
 }
 
-// Quiz answer actions.
 export function addAnswer(questionId, body, correct) {
   return { type: types.ADD_ANSWER, questionId, body, correct };
 }

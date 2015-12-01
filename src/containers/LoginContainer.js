@@ -10,7 +10,7 @@ import {
   changeYear,
   loadQuiz,
   deleteQuiz,
-  fetchQuizzes,
+  requestQuizzes,
   isQuizReady
 } from 'actions/LoginActions';
 
@@ -53,7 +53,7 @@ class LoginContainer extends Component {
   }
 
   openQuizSelect = () => {
-    this.props.dispatch(fetchQuizzes());
+    this.props.dispatch(requestQuizzes());
     this.setState({ panelIsOpen: true });
   }
 
@@ -80,6 +80,8 @@ class LoginContainer extends Component {
                          loadQuiz={this.loadQuiz}
                          deleteQuiz={this.deleteQuiz}
                          closePanel={this.closeQuizSelect}
+                         requestingQuizzes={this.props.user.requestingQuizzes}
+                         requestingQuizzesFailed={this.props.user.requestingQuizzesFailed}
                          quizzes={this.props.user.quizzes} />
         </div>
       </div>

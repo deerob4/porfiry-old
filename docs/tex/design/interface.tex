@@ -27,23 +27,17 @@ Each house has their own colour, and this colour will be used to theme all eleme
 
 In order to ensure that each user sees a subtedly different design, even if they are in the same house, the colours will be randomised. For example, a user in Acton might see buttons in a light blue and drop down boxes in a dark blue, whilst another user in Acton would see slightly darker or lighter shades. In order to make the system more appealing to use, the luminosity of each colour will be locked to a certain brightness.
 
-\subsection{Login Screen}
+\subsection{Input Screens}
+These are all the screens that will allow the user to input or select data of some description.
+
+\subsubsection{Login Screen}
 \begin{figure}[h!]
   \includegraphics[scale=0.24]{design/login}
 \end{figure}
 
 Due to the way the school names individual form groups, a simplified approach to the login form can be used. Two drop down boxes will be used, one for the year - containing the items 7, 8, 9, 10 and 11 - and one for the house - Acton, Baxter, Clive, Darwin, Houseman, Webb. By doing this, any combination of form group can be computed. Interviews with students revealed that they would not be likely to pose as a member of another form group, so no authentication is needed - students need simply enter their year group and house, and then press the ``Begin quiz'' button. If a senior member of staff needs to create a quiz, clicking the link will bring them to a password prompt, in order to prevent errant students making a quiz themselves. Because the user will not have chosen their house, house colours will not be available. Instead, the colours of all the houses will feature, with the interface elements changing every few seconds to the next house.
 
-\subsection{Countdown Screen}
-\begin{figure}[h!]
-  \includegraphics[scale=0.24]{design/countdown}
-\end{figure}
-
-In the event that a student logs onto the system and a quiz is yet to start, this screen will be displayed, informing them how long they have to wait. The countdown timer will display the time till the next scheduled quiz in hours, minutes and seconds, and will update accordingly.
-
-\clearpage
-
-\subsection{Quiz Creation Screen}
+\subsubsection{Quiz Creation Screen}
 \begin{figure}[h!]
   \includegraphics[scale=0.24]{design/quiz_maker}
 \end{figure}
@@ -52,9 +46,27 @@ This screen will be available to members of staff, and will allow them to create
 
 \clearpage
 
-\subsection{Play Quiz Screen}
+\subsection{Output Screens}
+These are the screens that output data of some description, often performing some sort of calculation on the data to modify the way it is output.
+
+\subsubsection{Countdown Screen}
+\begin{figure}[h!]
+  \includegraphics[scale=0.24]{design/countdown}
+\end{figure}
+
+In the event that a student logs onto the system and a quiz is yet to start, this screen will be displayed, informing them how long they have to wait. The countdown timer will display the time till the next scheduled quiz in hours, minutes and seconds, and will update accordingly.
+
+\subsubsection{Results Screen}
+This screen will display the results of the quiz after all the questions have been answered.
+
+\subsection{Input and Output Screens}
+One screen, the actual quiz playing interface, will both allow users to input data - choosing the correct answer - and output data - displaying the quiz and the current live results.
+
+\subsubsection{Play Quiz Screen}
 \begin{figure}[h!]
   \includegraphics[scale=0.24]{design/quiz_play}
 \end{figure}
 
 This is the main screen of the system, and the one that users will spend the most time on - the actual quiz interface. At the top, the current question will be displayed, enabling users to gain a clear impression of what they are meant to be answering. Below, the current position in the quiz, including the current category, will be shown, letting users see how much longer the quiz will last. Next to this wil be a progress bar acting as the question timer - it will fill up for each question, providing a visual representation of how long the user has left to answer the question. Below this will be the actual question answers; to select one, the user need simply tap on it. Just below this will be a button to activate ``peek mode''. This will activate the view so exalted by Nick Bucknall in the interviews, displaying a real time overlay on the question options of how other people in the school are voting. Pressing the button again will turn this view off, though it will be activated automatically once the user chooses an answer.
+
+\clearpage

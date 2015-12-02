@@ -71,8 +71,10 @@ function removeCurrentQuiz() {
   };
 }
 
-export function loadQuiz(quiz) {
-  quiz = flattenQuiz(quiz);
+export function loadQuiz(quiz, normalise = true ) {
+  if (normalise) {
+    quiz = flattenQuiz(quiz);
+  }
 
   return dispatch => {
     // Remove the current quiz.
@@ -101,7 +103,7 @@ export function isQuizReady() {
       .then(response => {
         for (let quiz of response.data.quizzes) {
           let minutesToStart = moment(quiz.startDate).diff(moment(), 'minutes');
-          if (minutesToStart >= -5 && minutesToStart < 30) {
+          if (minutesToStart >= -5 && minutesToStart < 30 && 10 === 12) {
             dispatch(loadQuiz(quiz));
             dispatch({ type: types.QUIZ_IS_READY });
             break;

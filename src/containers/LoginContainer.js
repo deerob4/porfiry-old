@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import first from 'lodash/array/first';
+import defaultQuiz from 'utils/defaultQuiz';
 import backgroundStyle from 'utils/backgroundStyle';
 import LoginForm from 'components/LoginForm';
 import { joinQuiz } from 'actions/PlayQuizActions';
@@ -38,6 +39,7 @@ class LoginContainer extends Component {
   }
 
   newQuiz = () => {
+    this.props.dispatch(loadQuiz(defaultQuiz, false));
     this.props.history.pushState('create', '/create');
   }
 
@@ -49,7 +51,7 @@ class LoginContainer extends Component {
     const quiz = this.props.user.quizzes.find(quiz => quiz._id === quizId);
     this.props.dispatch(loadQuiz(quiz));
     this.closeQuizSelect();
-    this.newQuiz();
+    this.props.history.pushState('create', '/create');
   }
 
   openQuizSelect = () => {

@@ -38,19 +38,19 @@ export function deleteQuiz(id) {
   return dispatch => {
     dispatch({ type: types.DELETE_QUIZ });
     return axios.delete(`/api/quizzes/${id}`)
-      .then(() => dispatch(deleteQuizSuccess()))
+      .then(() => dispatch(deleteQuizSuccess(id)))
       .catch(() => dispatch(deleteQuizFailure()));
   };
 }
 
-function deleteQuizSuccess() {
+function deleteQuizSuccess(id) {
   return dispatch => {
     dispatch(notifSend({
       message: 'Quiz succesfully deleted.',
       kind: 'success',
       dismissAfter
     }));
-    dispatch({ type: types.DELETE_QUIZ_SUCCESS });
+    dispatch({ type: types.DELETE_QUIZ_SUCCESS, id });
   };
 }
 

@@ -195,7 +195,8 @@ class CreateQuiz extends Component {
         </ul>
 
 
-        <QuizSettingsPanel closeSettings={this.closeSettings}
+        <QuizSettingsPanel colours={this.props.colours}
+                           closeSettings={this.closeSettings}
                            currentSettings={this.props.quizSettings}
                            editSettings={this.props.editSettings}
                            house={this.props.house}

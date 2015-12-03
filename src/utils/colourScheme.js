@@ -31,6 +31,12 @@ function colourScheme(hue) {
     text: {
       primary: { color: luminance(houseColour, -0.2) },
       secondary: { color: luminance(houseColour, -0.1) }
+    },
+    settings: {
+      borderColour: luminance(complement, -0.2),
+      label: {
+        color: luminance(complement, -0.2)
+      }
     }
   };
 

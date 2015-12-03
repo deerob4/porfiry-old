@@ -32,7 +32,7 @@ class LoadQuizPanel extends Component {
         <Modal isOpen={this.props.panelIsOpen}
                closeTimeoutMS={150}
                onRequestClose={this.props.closePanel}
-               style={settingsStyle(this.props.house)}>
+               style={settingsStyle(this.props.colours.settings.borderColour)}>
 
                <h2 style={textColour} className="centre">Load a Quiz</h2>
 

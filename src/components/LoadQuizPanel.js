@@ -6,12 +6,11 @@ import moment from 'moment';
 import { Notifs, actions as notifActions } from 're-notif';
 import 're-notif/lib/re-notif.css';
 
-class QuizSelectPanel extends Component {
+class LoadQuizPanel extends Component {
   static propTypes = {
     closePanel: PropTypes.func.isRequired,
     colours: PropTypes.object.isRequired,
     deleteQuiz: PropTypes.func.isRequired,
-    house: PropTypes.string.isRequired,
     loadQuiz: PropTypes.func.isRequired,
     panelIsOpen: PropTypes.bool.isRequired,
     quizzes: PropTypes.array.isRequired,
@@ -70,4 +69,4 @@ class QuizSelectPanel extends Component {
   }
 }
 
-export default QuizSelectPanel;
+export default LoadQuizPanel;

@@ -18,13 +18,33 @@ function user(state = defaultState, action) {
       return { ...state, year: action.year };
 
     case types.REQUEST_QUIZZES:
-      return { ...state, requestingQuizzes: true, requestingQuizzesFailed: false };
+      return {
+        ...state,
+        requestingQuizzes: true,
+        requestingQuizzesFailed: false
+      };
 
     case types.REQUEST_QUIZZES_FAILURE:
-      return { ...state, requestingQuizzes: false, requestingQuizzesFailed: true };
+      return {
+        ...state,
+        requestingQuizzes: false,
+        requestingQuizzesFailed: true
+      };
 
     case types.RECEIVE_QUIZZES:
-      return { ...state, quizzes: action.quizzes, requestingQuizzes: false };
+      return {
+        ...state,
+        quizzes: action.quizzes,
+        requestingQuizzes: false
+      };
+
+    case types.DELETE_QUIZ_SUCCESS:
+      return {
+        ...state,
+        quizzes: state.quizzes.filter(quiz =>
+          quiz._id !== action.id
+        )
+      };
 
     case types.QUIZ_IS_READY:
       return { ...state, quizIsReady: true };

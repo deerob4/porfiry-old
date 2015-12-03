@@ -7,8 +7,8 @@ class LoginForm extends Component {
     changeHouse: PropTypes.func.isRequired,
     changeYear: PropTypes.func.isRequired,
     houses: PropTypes.array.isRequired,
-    isQuizReady: PropTypes.bool.isRequired,
     newQuiz: PropTypes.func.isRequired,
+    quizIsReady: PropTypes.bool.isRequired,
     years: PropTypes.array.isRequired
   }
 

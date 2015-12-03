@@ -24,7 +24,7 @@ This subsection lists the more advanced functions that are used. Focusing on asp
 
 \subsection{Action Creators} % (fold)
 \label{sub:action_creators}
-This subsection lists the action creators. These construct an object that can be consumed by the reducers.
+This subsection lists the action creators. These either construct an object that can be consumed by the reducers, or dispatch actions with side-effects, such as calling the API, which in turn affects an element in state.
 \input{./tex/program_documentation/listings/actions.tex}
 % subsection action_creators (end)
 
@@ -45,3 +45,9 @@ This subsections lists the application's components. Components make up the vast
 This subsection lists the tooling and build process that is required for the application to run. Though not technically part of the source, a strong understanding is vital if one is to come to terms with the project.
 \input{./tex/program_documentation/listings/tooling.tex}
 % subsection api_models (end)
+
+\subsection{Styles} % (fold)
+\label{sub:styles}
+This subsection lists the stylesheets that control the majority of the application's visual aspects.
+\input{./tex/program_documentation/listings/styles.tex}
+% subsection styles (end)

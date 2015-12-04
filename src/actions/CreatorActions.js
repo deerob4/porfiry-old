@@ -110,6 +110,7 @@ function saveQuiz(quiz) {
 }
 
 export function saveOrUpdateQuiz(quiz) {
+  console.log(quiz);
   return dispatch => {
     if (quiz.id.length) {
       dispatch(updateQuiz(quiz));

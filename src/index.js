@@ -26,10 +26,10 @@ ReactDOM.render(
         <Route path="play" component={PlayQuizContainer} />
       </Router>
     </Provider>
+    <DebugPanel top={true} right={true} bottom={true}>
+        <DevTools store={store} monitor={LogMonitor} />
+      </DebugPanel>
   </div>,
   document.getElementById('root')
 );
 
-    // <DebugPanel top={true} right={true} bottom={true}>
-    //     <DevTools store={store} monitor={LogMonitor} />
-    //   </DebugPanel>

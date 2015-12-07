@@ -16,7 +16,7 @@ import {
 } from 'actions/LoginActions';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
-const years = [7, 8, 9, 10, 11, 12, 13];
+const years = [7, 8, 9, 10, 11];
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -27,7 +27,6 @@ class LoginContainer extends Component {
 
   componentDidMount() {
     this.props.dispatch(isQuizReady());
-    this.props.dispatch(joinQuiz(this.props.user));
   }
 
   changeYear = (e) => {
@@ -41,6 +40,11 @@ class LoginContainer extends Component {
   newQuiz = () => {
     this.props.dispatch(loadQuiz(defaultQuiz, false));
     this.props.history.pushState('create', '/create');
+  }
+
+  playQuiz = () => {
+    this.props.dispatch(joinQuiz(this.props.user));
+    this.props.history.pushState('play', '/play');
   }
 
   deleteQuiz = (quizId) => {
@@ -71,6 +75,7 @@ class LoginContainer extends Component {
                      changeYear={this.changeYear}
                      colours={this.props.colours}
                      house={this.props.user.house}
+                     playQuiz={this.playQuiz}
                      quizIsReady={this.props.user.quizIsReady}
                      newQuiz={this.newQuiz}
                      openQuizSelect={this.openQuizSelect}

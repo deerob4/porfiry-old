@@ -43,7 +43,7 @@ let config = {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css', 'autoprefixer', 'sass'] }
+        loaders: ['style', 'css', 'sass'] }
     ]
   }
 };

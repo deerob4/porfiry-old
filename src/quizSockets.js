@@ -6,17 +6,25 @@ import * as types from './constants/actions';
 function quizSockets(server) {
   const io = require('socket.io').listen(server);
   const client  = redis.createClient();
-  let users = [];
+  let players = [];
 
   client.on('err', (err) => console.log(err));
 
   io.on('connection', (socket) => {
-    // Add the user to the array of connections.
-    socket.on(types.JOIN_QUIZ, (form) => users.push({ socket, form }));
+    // Add the player to the array of connections.
+    socket.on(types.JOIN_QUIZ, (form) => {
+      players.push({ socket, form });
+
+      io.emit(types.ADD_PLAYER, players.map(player => ({
+        ...player.form,
+        socketId: player.socket.id
+      })));
+    });
 
     socket.on('disconnect', () => {
-      // Remove the user from the array of connections.
-      users = users.filter(user => user.socket.id !== socket.id);
+      // Remove the player from the array of connections.
+      players = players.filter(player => player.socket.id !== socket.id);
+      io.emit(types.REMOVE_PLAYER, socket.id );
     });
   });
 }

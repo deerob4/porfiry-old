@@ -8,6 +8,7 @@ class LoginForm extends Component {
     changeYear: PropTypes.func.isRequired,
     houses: PropTypes.array.isRequired,
     newQuiz: PropTypes.func.isRequired,
+    playQuiz: PropTypes.func.isRequired,
     quizIsReady: PropTypes.bool.isRequired,
     years: PropTypes.array.isRequired
   }
@@ -44,8 +45,9 @@ class LoginForm extends Component {
             // If there is a quiz scheduled in the next 30 minutes, display a
             // button to join the room. Otherwise show button to create a quiz.
             <Button colours={this.props.colours.button}
-                    customClass="login-button"
-                    text="Join the quiz!" /> :
+                    customClass="login-button join-quiz-button"
+                    text="Join the quiz!"
+                    clickEvent={this.props.playQuiz} /> :
 
             <ul>
               <Button customClass="login-button"

@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as types from 'constants/actions';
+import PlayQuiz from 'components/play/PlayQuiz';
 import * as actions from 'actions/PlayQuizActions';
 
 const socket = require('socket.io-client')('http://localhost:5000');
 
-class PlayQuiz extends Component {
+class PlayQuizContainer extends Component {
   componentDidMount() {
     const dispatch = this.props.dispatch;
 
@@ -19,22 +20,16 @@ class PlayQuiz extends Component {
   }
 
   render() {
-    const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
-    const years = [7, 8, 9, 10, 11];
+    const question = {
+      title: this.props.quiz.questions[this.props.currentQuiz.currentQuestion].body,
+      answers: this.props.quiz.answers.filter(x =>
+        x.questionId === this.props.quiz.questions[this.props.currentQuiz.currentQuestion].id
+      )
+    };
 
     return (
-      <div>
-        <h1>Play Quiz</h1>
-        <p>{this.props.currentQuiz.players.length} players are online!</p>
-        {houses.map(house =>
-          years.map(year =>
-            <li>{year} {house}
-                {this.props.currentQuiz.players.filter(x =>
-                  x.house === house && x.year === year).length}
-            </li>
-          )
-        )}
-      </div>
+      <PlayQuiz colours={this.props.colours}
+                currentQuestion={question} />
     );
   }
 }
@@ -50,4 +45,4 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps
-)(PlayQuiz);
+)(PlayQuizContainer);

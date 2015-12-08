@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Button from 'components/Button';
 import QuestionTimer from 'components/play/QuestionTimer';
 
 class PlayQuiz extends Component {
@@ -24,7 +25,9 @@ class PlayQuiz extends Component {
         <QuestionTimer />
 
         {this.props.currentQuestion.answers.map(answer =>
-          <div style={this.props.colours.answer.body} className="answer">{answer.body}</div>
+          <Button customClass="answer-block"
+                  colours={this.props.colours.button}
+                  text={answer.body} />
         )}
       </div>
     );

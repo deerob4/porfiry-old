@@ -30,6 +30,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-    // <DebugPanel top={true} right={true} bottom={true}>
-    //     <DevTools store={store} monitor={LogMonitor} />
-    //   </DebugPanel>
+        //<DebugPanel top={true} right={true} bottom={true}>
+//         <DevTools store={store} monitor={LogMonitor} />
+//       </DebugPanel>

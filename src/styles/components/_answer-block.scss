@@ -1,12 +1,12 @@
 .answer-block {
   font-family: $font-stack;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   margin-right: 10px;
   margin-bottom: 15px;
-  border: 4px solid;
+  border: 3px solid;
   border-radius: 4px;
   padding: 20px;
-  
+  height: 250px;
   @include size(49%, 250px);
 }

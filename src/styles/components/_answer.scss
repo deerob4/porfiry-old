@@ -6,6 +6,8 @@
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 16px 0 10px 20px;
+  
+    text-align: left;
 
     transition: all .2s ease;
 
@@ -13,6 +15,12 @@
     border-radius: 4px;
 
     @include size(100%, 80px);
+}
+
+.quiz-answer
+{
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .letter

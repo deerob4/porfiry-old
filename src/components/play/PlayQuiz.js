@@ -13,21 +13,21 @@ class PlayQuiz extends Component {
   }
 
   render() {
-
+    // Used to prefix each answer.
+    let letters = ['A', 'B', 'C', 'D'];
+    
     return (
       <div style={{ padding: '10px' }}>
-        <h1 className="question-title" style={this.props.colours.text.primary}>
+        <h1 className="question-title" style={this.props.colours.answer.check}>
           {this.props.currentQuestion.title}
         </h1>
 
-        <div>10</div>
-
-        <QuestionTimer />
-
-        {this.props.currentQuestion.answers.map(answer =>
-          <Button customClass="answer-block"
+        <QuestionTimer colours={this.props.colours.answer.body} duration="10000" />
+      
+        {this.props.currentQuestion.answers.map((answer, i) =>
+          <Button customClass="answer-block quiz-answer"
                   colours={this.props.colours.button}
-                  text={answer.body} />
+                  text={`${letters[i]}. ${answer.body}`} />
         )}
       </div>
     );

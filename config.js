@@ -6,12 +6,12 @@ const sharedConfig = {
 
 // Configuration applied during production.
 let productionConfig = {
-  ...sharedConfig,
+  port: process.env.PORT || 5000,
   database: 'porfiry'
 };
 
 let developmentConfig = {
-  ...sharedConfig,
+  port: process.env.PORT || 5000,
   database: 'porfiryTest'
 };
 

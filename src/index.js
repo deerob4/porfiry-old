@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Route, Router } from 'react-router';
 import configureStore from 'store/configureStore';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+// import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';j
 
 import LoginContainer from 'containers/LoginContainer';
 import PlayQuizContainer from 'containers/PlayQuizContainer';

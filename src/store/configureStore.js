@@ -7,7 +7,7 @@ function configureStore() {
   const store = compose(
     // To apply middleware later on, do:
     applyMiddleware(thunk),
-    devTools()
+    // devTools()
   )(createStore)(rootReducer);
 
   if (module.hot) {

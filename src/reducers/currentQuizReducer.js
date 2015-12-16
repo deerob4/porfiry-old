@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import {
   ADD_PLAYER,
   REMOVE_PLAYER,
-  UPDATE_CURRENT_QUESTION
+  SHOW_NEXT_QUESTION
 } from 'constants/actions';
 
 function players(state = [], action) {
@@ -22,8 +22,8 @@ function players(state = [], action) {
 
 function currentQuestion(state = 0, action) {
   switch (action.type) {
-    case UPDATE_CURRENT_QUESTION:
-      return action.currentQuestion;
+    case SHOW_NEXT_QUESTION:
+      return action.questionId;
 
     default:
       return state;

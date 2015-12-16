@@ -16,6 +16,10 @@ export function removePlayer(socketId) {
   return { type: types.REMOVE_PLAYER, socketId };
 }
 
+export function showNextQuestion(questionId) {
+  return { type: types.SHOW_NEXT_QUESTION, questionId };
+}
+
 export function selectAnswer({ house, year }, answer) {
   return dispatch =>
     socket.emit(types.SELECT_ANSWER, { house, year, answer });

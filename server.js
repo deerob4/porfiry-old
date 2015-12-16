@@ -42,6 +42,10 @@ app.get('/create', (req, res) => {
   res.redirect('/');
 });
 
+app.get('/play', (req, res) => {
+  res.redirect('/');
+});
+
 // Set the /api endpoint to the route logic in apiRoutes.
 app.use('/api', apiRoutes);
 

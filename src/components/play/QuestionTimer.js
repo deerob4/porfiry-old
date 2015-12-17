@@ -3,7 +3,8 @@ import React, { Component, PropTypes } from 'react';
 class QuestionTimer extends Component {
   static propTypes = {
     colours: PropTypes.object.isRequired,
-    duration: PropTypes.number.isRequired
+    duration: PropTypes.number.isRequired,
+    showNextQuestion: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -16,15 +17,11 @@ class QuestionTimer extends Component {
     setInterval(() => this.tick(), 1000);
   }
 
-  nextQuestion = () => {
-    // Move to next
-  }
-
   tick = () => {
     if (this.state.timeLeft) {
       this.setState({ timeLeft: this.state.timeLeft - 1000 });
     } else {
-      this.nextQuestion();
+      this.props.showNextQuestion();
     }
   }
 

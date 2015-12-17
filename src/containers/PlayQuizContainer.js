@@ -19,6 +19,11 @@ class PlayQuizContainer extends Component {
     );
   }
 
+  showNextQuestion = () => {
+    const nextQuestionId = this.props.currentQuiz.currentQuestion + 1;
+    this.props.dispatch(actions.showNextQuestion(nextQuestionId));
+  }
+
   render() {
     const question = {
       title: this.props.quiz.questions[this.props.currentQuiz.currentQuestion].body,
@@ -29,7 +34,8 @@ class PlayQuizContainer extends Component {
 
     return (
       <PlayQuiz colours={this.props.colours}
-                currentQuestion={question} />
+                currentQuestion={question}
+                showNextQuestion={this.showNextQuestion} />
     );
   }
 }

@@ -4,7 +4,7 @@
   "description": "A real time quiz application.",
   "scripts": {
     "start": "ENVIRONMENT=development babel-node server.js",
-    "test": "mocha --compilers js:babel/register",
+    "test": "mocha --compilers js:babel-core/register",
     "lint": "eslint src"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
+    "babel-register": "^6.3.13",
     "chai": "^3.4.1",
     "css-loader": "^0.23.0",
     "eslint": "^1.10.3",

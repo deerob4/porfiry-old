@@ -6,7 +6,7 @@ class PlayQuiz extends Component {
   static propTypes = {
     colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
-    showNextQuestion: PropTypes.func.isRequired
+    timeLeft: PropTypes.number.isRequired
   }
 
   constructor(props) {
@@ -23,12 +23,13 @@ class PlayQuiz extends Component {
           {this.props.currentQuestion.title}
         </h1>
 
-        <QuestionTimer showNextQuestion={this.props.showNextQuestion}
-                       colours={this.props.colours.answer.body}
-                       duration="10000" />
+        <QuestionTimer colours={this.props.colours.answer.body}
+                       timeLeft={this.props.timeLeft}
+                       duration={10000} />
 
         {this.props.currentQuestion.answers.map((answer, i) =>
-          <Button customClass="answer-block quiz-answer"
+          <Button key={i}
+                  customClass="answer-block quiz-answer"
                   colours={this.props.colours.button}
                   text={`${letters[i]}. ${answer.body}`} />
         )}

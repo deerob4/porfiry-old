@@ -16,8 +16,12 @@ export function removePlayer(socketId) {
   return { type: types.REMOVE_PLAYER, socketId };
 }
 
-export function showNextQuestion(questionId) {
-  return { type: types.SHOW_NEXT_QUESTION, questionId };
+export function decrementTimeLeft(timeLeft) {
+  return { type: types.DECREMENT_TIME_LEFT, timeLeft };
+}
+
+export function showNextQuestion() {
+  return { type: types.SHOW_NEXT_QUESTION };
 }
 
 export function selectAnswer({ house, year }, answer) {

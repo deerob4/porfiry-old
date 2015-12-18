@@ -19,6 +19,10 @@ function quizSockets(server) {
         ...player.form,
         socketId: player.socket.id
       })));
+
+      if (players.length >= 3) {
+        questionTimer(io);
+      }
     });
 
     socket.on('disconnect', () => {
@@ -27,6 +31,20 @@ function quizSockets(server) {
       io.emit(types.REMOVE_PLAYER, socket.id );
     });
   });
+}
+
+function questionTimer(io, questionLength = 10000) {
+  let timeLeft = questionLength;
+
+  setInterval(() => {
+    if (timeLeft) {
+      timeLeft -= 1000;
+      io.emit(types.DECREMENT_TIME_LEFT, timeLeft);
+    } else {
+      timeLeft = questionLength;
+      io.emit(types.SHOW_NEXT_QUESTION);
+    }
+  }, 1000);
 }
 
 export default quizSockets;

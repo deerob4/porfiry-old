@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   ADD_PLAYER,
   REMOVE_PLAYER,
+  DECREMENT_TIME_LEFT,
   SHOW_NEXT_QUESTION
 } from 'constants/actions';
 
@@ -23,7 +24,17 @@ function players(state = [], action) {
 function currentQuestion(state = 0, action) {
   switch (action.type) {
     case SHOW_NEXT_QUESTION:
-      return action.questionId;
+      return state + 1;
+
+    default:
+      return state;
+  }
+}
+
+function timeLeft(state = 10000, action) {
+  switch (action.type) {
+    case DECREMENT_TIME_LEFT:
+      return action.timeLeft;
 
     default:
       return state;
@@ -32,5 +43,6 @@ function currentQuestion(state = 0, action) {
 
 export default combineReducers({
   players,
+  timeLeft,
   currentQuestion
 });

@@ -17,11 +17,14 @@ class PlayQuizContainer extends Component {
     socket.on(types.REMOVE_PLAYER, (socketId) =>
       dispatch(actions.removePlayer(socketId))
     );
-  }
 
-  showNextQuestion = () => {
-    const nextQuestionId = this.props.currentQuiz.currentQuestion + 1;
-    this.props.dispatch(actions.showNextQuestion(nextQuestionId));
+    socket.on(types.DECREMENT_TIME_LEFT, (timeLeft) =>
+      dispatch(actions.decrementTimeLeft(timeLeft))
+    );
+
+    socket.on(types.SHOW_NEXT_QUESTION, () =>
+      dispatch(actions.showNextQuestion())
+    );
   }
 
   render() {
@@ -32,10 +35,12 @@ class PlayQuizContainer extends Component {
       )
     };
 
+    console.log(this.props.currentQuiz);
+
     return (
       <PlayQuiz colours={this.props.colours}
                 currentQuestion={question}
-                showNextQuestion={this.showNextQuestion} />
+                timeLeft={this.props.currentQuiz.timeLeft} />
     );
   }
 }

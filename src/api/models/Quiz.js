@@ -6,6 +6,7 @@ const quizSchema = new mongoose.Schema({
   startDate: Date,
   questionLength: Number,
   breakLength: Number,
+  isFinished: Boolean,
   categories: [categorySchema]
 });
 

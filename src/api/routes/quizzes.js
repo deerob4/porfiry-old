@@ -26,6 +26,7 @@ router.post('/', (req, res) => {
   quiz.startDate = req.body.startDate;
   quiz.questionLength = req.body.questionLength;
   quiz.breakLength = req.body.breakLength;
+  quiz.isFinished = req.body.isFinished;
   quiz.categories = req.body.categories;
 
   quiz.save((err, quiz) => {

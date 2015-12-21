@@ -1,9 +1,11 @@
+import moment from 'moment';
+
 const defaultQuiz = {
   settings: {
     id: '',
     title: 'Priory School Quiz',
-    startTime: '',
-    startDate: new Date(),
+    startTime: moment().format('hh:mm:ss'),
+    startDate: moment().format('ddd MMM D YYYY'),
     questionLength: 10000,
     breakLength: 300000
   },

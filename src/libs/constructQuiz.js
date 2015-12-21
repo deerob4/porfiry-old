@@ -3,7 +3,7 @@
 function constructQuiz(quiz) {
   return {
     ...quiz.settings,
-    startDate: `${quiz.settings.startDate}T${quiz.settings.startTime}`,
+    startDate: `${quiz.settings.startDate} ${quiz.settings.startTime}`,
     categories: quiz.categories.map(category => ({
       ...category,
       questions: quiz.questions.filter(question =>

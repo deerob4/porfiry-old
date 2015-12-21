@@ -32,6 +32,9 @@ function settings(state = defaultState.settings, action) {
     case types.UPDATE_BREAK_LENGTH:
       return { ...state, breakLength: action.breakLength };
 
+    case types.UPDATE_IS_FINISHED:
+      return { ...state, isFinished: action.isFinished };
+
     case types.UPDATE_ALL_SETTINGS:
       return { ...state, ...action.settings };
 

@@ -1,4 +1,4 @@
-import maxKey from 'utils/maxKey';
+import maxKey from '../utils/maxKey';
 import isEmpty from 'lodash/lang/isEmpty';
 
 function answerStatistics(packet, keys, prop, state = {}) {
@@ -27,7 +27,38 @@ function answerStatistics(packet, keys, prop, state = {}) {
   // Set the mostCommon property for the packet's house to freq max.
   newState[packet[prop]].mostCommon = maxKey(newState[packet[prop]].answerFreqs);
 
+  console.log(newState);
+
   return newState;
 }
 
 export default answerStatistics;
+
+/*
+{
+  acton: {
+    mostCommon: 0,
+    answerFreqs: { A: 0, B: 0, C: 0, D: 0 }
+  },
+  baxter: {
+    mostCommon: 0,
+    answerFreqs: { A: 0, B: 0, C: 0, D: 0 }
+  },
+  clive: {
+    mostCommon: 0,
+    answerFreqs: { A: 0, B: 0, C: 0, D: 0 }
+  },
+  darwin: {
+    mostCommon: 0,
+    answerFreqs: { A: 0, B: 0, C: 0, D: 0 }
+  },
+  houseman: {
+    mostCommon: 0,
+    answerFreqs: { A: 0, B: 0, C: 0, D: 0 }
+  },
+  webb: {
+    mostCommon: 0,
+    answerFreqs: { A: 0, B: 0, C: 0, D: 0 }
+  }
+}
+*/

@@ -7,7 +7,8 @@ const defaultQuiz = {
     startTime: moment().format('hh:mm:ss'),
     startDate: moment().format('ddd MMM D YYYY'),
     questionLength: 10000,
-    breakLength: 300000
+    breakLength: 300000,
+    isFinished: false
   },
   categories: [
     { id: 0, body: 'Default' }

@@ -121,7 +121,7 @@ export function isQuizReady() {
         for (let quiz of response.data.quizzes) {
           console.log(quiz);
           let minutesToStart = moment(quiz.startDate).diff(moment(), 'minutes');
-          if (minutesToStart >= -5 && minutesToStart < 30 && quiz.isFinished) {
+          if (minutesToStart >= -5 && minutesToStart < 30) {
             dispatch(loadQuiz(quiz));
             dispatch({ type: types.QUIZ_IS_READY });
             break;

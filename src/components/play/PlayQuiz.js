@@ -6,6 +6,7 @@ class PlayQuiz extends Component {
   static propTypes = {
     colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
+    selectAnswer: PropTypes.func.isRequired,
     timeLeft: PropTypes.number.isRequired
   }
 
@@ -19,16 +20,16 @@ class PlayQuiz extends Component {
 
     return (
       <div style={{ padding: '10px' }}>
-        <h1 className="question-title" style={this.props.colours.answer.check}>
+        <h1 className="question-title" style={this.props.colours.primary}>
           {this.props.currentQuestion.title}
         </h1>
 
         <QuestionTimer colours={this.props.colours.answer.body}
-                       timeLeft={this.props.timeLeft}
-                       duration={10000} />
+                       timeLeft={this.props.timeLeft} />
 
         {this.props.currentQuestion.answers.map((answer, i) =>
           <Button key={i}
+                  clickEvent={this.props.selectAnswer.bind(this, i)}
                   customClass="answer-block quiz-answer"
                   colours={this.props.colours.button}
                   text={`${letters[i]}. ${answer.body}`} />

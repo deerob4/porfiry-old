@@ -24,7 +24,11 @@ export function showNextQuestion() {
   return { type: types.SHOW_NEXT_QUESTION };
 }
 
-export function selectAnswer({ house, year }, answer) {
+export function selectAnswer(packet) {
   return dispatch =>
-    socket.emit(types.SELECT_ANSWER, { house, year, answer });
+    socket.emit(types.SELECT_ANSWER, packet);
+}
+
+export function updateAnswerStatistics(answers) {
+  return { type: types.UPDATE_ANSWER_STATISTICS, answers };
 }

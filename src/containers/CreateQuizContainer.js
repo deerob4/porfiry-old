@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import findIndex from 'lodash/array/findIndex';
 import last from 'lodash/array/last';
+import moment from 'moment';
 
 import backgroundStyle from 'utils/backgroundStyle';
 import constructQuiz from 'libs/constructQuiz';
@@ -174,6 +175,12 @@ class CreateQuizContainer extends Component {
   }
 
   finishQuiz = () => {
+    const finished = confirm(`Do you want to set this quiz to play on ${moment(this.props.quiz.startDate).format('dddd Do MMMM')}, at ${moment(this.props.quiz.startTime).format('HH:mm A')}?`);
+
+    if (finished) {
+      this.props.dispatch(actions.updateIsFinished(true));
+    }
+
     let quiz = constructQuiz(this.props.quiz);
     this.props.dispatch(actions.saveOrUpdateQuiz(quiz));
   }

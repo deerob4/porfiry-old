@@ -26,6 +26,10 @@ export function updateBreakLength(breakLength) {
   return { type: types.UPDATE_BREAK_LENGTH, breakLength };
 }
 
+export function updateIsFinished(isFinished) {
+  return { type: types.UPDATE_IS_FINISHED, isFinished };
+}
+
 export function updateAllSettings(settings) {
   return { type: types.UPDATE_ALL_SETTINGS, settings };
 }

@@ -25,6 +25,23 @@ class PlayQuizContainer extends Component {
     socket.on(types.SHOW_NEXT_QUESTION, () =>
       dispatch(actions.showNextQuestion())
     );
+
+    socket.on(types.UPDATE_ANSWER_STATISTICS, (answers) =>
+      dispatch(actions.updateAnswerStatistics(answers))
+    );
+  }
+
+  selectAnswer = (answer) => {
+    const dispatch = this.props.dispatch;
+
+    const packet = {
+      year: this.props.user.year,
+      house: this.props.user.house,
+      answer: ['A', 'B', 'C', 'D'][answer],
+      questionId: this.props.currentQuiz.currentQuestion
+    };
+
+    dispatch(actions.selectAnswer(packet));
   }
 
   render() {
@@ -35,12 +52,11 @@ class PlayQuizContainer extends Component {
       )
     };
 
-    console.log(this.props.currentQuiz);
-
     return (
       <PlayQuiz colours={this.props.colours}
                 currentQuestion={question}
-                timeLeft={this.props.currentQuiz.timeLeft} />
+                timeLeft={this.props.currentQuiz.timeLeft}
+                selectAnswer={this.selectAnswer} />
     );
   }
 }

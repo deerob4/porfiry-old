@@ -3,7 +3,8 @@ import {
   ADD_PLAYER,
   REMOVE_PLAYER,
   DECREMENT_TIME_LEFT,
-  SHOW_NEXT_QUESTION
+  SHOW_NEXT_QUESTION,
+  UPDATE_ANSWER_STATISTICS
 } from 'constants/actions';
 
 function players(state = [], action) {
@@ -41,8 +42,19 @@ function timeLeft(state = 10000, action) {
   }
 }
 
+function answerStatistics(state = {}, action) {
+  switch (action.type) {
+    case UPDATE_ANSWER_STATISTICS:
+      return action.answers;
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   players,
   timeLeft,
-  currentQuestion
+  currentQuestion,
+  answerStatistics
 });

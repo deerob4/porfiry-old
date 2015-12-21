@@ -1,5 +1,6 @@
 // import redis from 'redis';
 import * as types from './constants/actions';
+import answerStatistics from './libs/answerStatistics';
 
 // Look into getting the keys to expire at the end of each quiz.
 
@@ -7,7 +8,7 @@ function quizSockets(server) {
   const io = require('socket.io').listen(server);
   // const client  = redis.createClient();
   let players = [];
-
+  let answers = {};
   // client.on('err', (err) => consol⁄e.log(err));
 
   io.on('connection', (socket) => {
@@ -20,9 +21,16 @@ function quizSockets(server) {
         socketId: player.socket.id
       })));
 
-      if (players.length >= 3) {
+      if (players.length >= 2) {
         questionTimer(io);
       }
+    });
+
+    socket.on(types.SELECT_ANSWER, (packet) => {
+      const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
+      answers[packet.questionId] = answerStatistics(packet, houses, 'house', answers[packet.questionId]);
+      io.emit(types.UPDATE_ANSWER_STATISTICS, answers);
+      console.log(answers);
     });
 
     socket.on('disconnect', () => {

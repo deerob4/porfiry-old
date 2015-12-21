@@ -9,6 +9,11 @@ import { actions as notifActions } from 're-notif';
 const { notifSend } = notifActions;
 let dismissAfter = 2000;
 
+/**
+ * Change the colour scheme of the quiz.
+ * @param  {String} house The user's house.
+ * @return {Object}       Action dispatcher with colour.
+ */
 function changeColours(house) {
   const colourMap = {
     acton: 'blue',
@@ -22,6 +27,11 @@ function changeColours(house) {
   return { type: types.CHANGE_COLOURS, colours: colourScheme(colourMap[house]) };
 }
 
+/**
+ * Updates the user's house and calls new colours.
+ * @param  {String} house The new house.
+ * @return {Object}       Action dispatcher with house.
+ */
 export function changeHouse(house) {
   return dispatch => {
     dispatch(changeColours(house));
@@ -29,11 +39,21 @@ export function changeHouse(house) {
   };
 }
 
+/**
+ * Update the user's year.
+ * @param  {String} year The new year.
+ * @return {Object}      Action dispathcer with year.
+ */
 export function changeYear(year) {
   return { type: types.CHANGE_YEAR, year: parseInt(year) };
 }
 
-
+/**
+ * Sends a DELETE request to /api/quizzes at the
+ * current quiz, deleting it from the database.
+ * @param  {Number} id ID of quiz to delete.
+ * @return {Function}    Call success or delete.
+ */
 export function deleteQuiz(id) {
   return dispatch => {
     dispatch({ type: types.DELETE_QUIZ });
@@ -43,6 +63,11 @@ export function deleteQuiz(id) {
   };
 }
 
+/**
+ * Shows success message if quiz deleted successfully.
+ * @param  {Number} id ID of deleted quiz.
+ * @return {Object}    Action dispatcher with year.
+ */
 function deleteQuizSuccess(id) {
   return dispatch => {
     dispatch(notifSend({
@@ -54,6 +79,9 @@ function deleteQuizSuccess(id) {
   };
 }
 
+/**
+ * Shows error message if quiz failed to delete.
+ */
 function deleteQuizFailure() {
   return dispatch =>
     dispatch(notifSend({
@@ -63,6 +91,11 @@ function deleteQuizFailure() {
     }));
 }
 
+/**
+ * Removes all categories, questions and
+ * answers from the current quiz.
+ * @return {Object} Appropriate action dispatchers.
+ */
 function removeCurrentQuiz() {
   return dispatch => {
     dispatch({ type: types.DELETE_ALL_CATEGORIES });
@@ -71,6 +104,48 @@ function removeCurrentQuiz() {
   };
 }
 
+
+/**
+ * Checks if a quiz is ready.
+ *
+ * 1. Fetch an array of the quizzes.
+ * 2. Begin a loop through the array.
+ * 3. If the quiz is due to start within 35 minutes, load it.
+ *
+ * @return {Object} Action dispatcher to loadQuiz()
+ */
+export function isQuizReady() {
+  return dispatch => {
+    return axios.get('/api/quizzes')
+      .then(response => {
+        for (let quiz of response.data.quizzes) {
+          console.log(quiz);
+          let minutesToStart = moment(quiz.startDate).diff(moment(), 'minutes');
+          if (minutesToStart >= -5 && minutesToStart < 30 && quiz.isFinished) {
+            dispatch(loadQuiz(quiz));
+            dispatch({ type: types.QUIZ_IS_READY });
+            break;
+          }
+        }
+      })
+      .catch(error => console.log(error));
+  };
+}
+
+/**
+ * Loads a quiz into the store.
+ *
+ * Quizzes returned from the server have to be
+ * normalised into a form that can be loaded
+ * into the Redux store.
+ *
+ * 1. Loop through all the settings and add them to store.
+ * 2.
+ *
+ * @param  {Object}  quiz      The quiz to load.
+ * @param  {Boolean} normalise Whether the quiz should be normalised.
+ * @return {Object}            Action dispatchers to load the quiz.
+ */
 export function loadQuiz(quiz, normalise = true ) {
   if (normalise) {
     quiz = flattenQuiz(quiz);
@@ -97,23 +172,12 @@ export function loadQuiz(quiz, normalise = true ) {
   };
 }
 
-export function isQuizReady() {
-  return dispatch => {
-    return axios.get('/api/quizzes')
-      .then(response => {
-        for (let quiz of response.data.quizzes) {
-          let minutesToStart = moment(quiz.startDate).diff(moment(), 'minutes');
-          if (minutesToStart >= -5 && minutesToStart < 30) {
-            dispatch(loadQuiz(quiz));
-            dispatch({ type: types.QUIZ_IS_READY });
-            break;
-          }
-        }
-      })
-      .catch(error => console.log(error));
-  };
-}
-
+/**
+ * Request the saved quizzes.
+ *
+ * If they are received, call receiveQuizzes.
+ * Otherwise call requestQuizzesFailure().
+ */
 export function requestQuizzes() {
   return dispatch => {
     dispatch({ type: types.REQUEST_QUIZZES });
@@ -123,10 +187,16 @@ export function requestQuizzes() {
   };
 }
 
+/**
+ * Dispatch request failure action.
+ */
 function requestQuizzesFailure() {
   return { type: types.REQUEST_QUIZZES_FAILURE };
 }
 
+/**
+ * Dispatch request success action.
+ */
 function receiveQuizzes(quizzes) {
   return { type: types.RECEIVE_QUIZZES, quizzes };
 }

@@ -12,7 +12,7 @@ class Button extends Component {
   render() {
     return (
       <li style={this.props.colours}
-          className={`button ${this.props.house}-button ${this.props.customClass}`}
+          className={`button ${this.props.customClass}`}
           onClick={this.props.clickEvent}>
           {this.props.text}
           {this.props.icon ? <i className={`fa fa-${this.props.icon} button-icon`}></i> : null}

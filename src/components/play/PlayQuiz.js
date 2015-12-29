@@ -4,6 +4,7 @@ import QuestionTimer from 'components/play/QuestionTimer';
 
 class PlayQuiz extends Component {
   static propTypes = {
+    answerStatistics: PropTypes.object.isRequired,
     colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
     selectAnswer: PropTypes.func.isRequired,
@@ -20,7 +21,7 @@ class PlayQuiz extends Component {
 
     return (
       <div style={{ padding: '10px' }}>
-        <h1 className="question-title" style={this.props.colours.primary}>
+        <h1 className="question-title" style={this.props.colours.text.primary}>
           {this.props.currentQuestion.title}
         </h1>
 
@@ -34,6 +35,8 @@ class PlayQuiz extends Component {
                   colours={this.props.colours.button}
                   text={`${letters[i]}. ${answer.body}`} />
         )}
+
+        <pre>{JSON.stringify(this.props.answerStatistics)}</pre>
       </div>
     );
   }

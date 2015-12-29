@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/lang/isEmpty';
 
-function housePoints(packet, correct, keys, prop, state = {}) {
+function housePoints({ packet, correct, keys, prop }, state = {}) {
   // If an empty object is passed in, initialise the state by
   // creating an object where each key is a prop, set to 0.
   isEmpty(state) ? keys.forEach(key => state[key] = 0) : null;

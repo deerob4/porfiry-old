@@ -2,6 +2,8 @@ import * as types from 'constants/actions';
 import axios from 'axios';
 import { actions as notifActions } from 're-notif';
 
+const socket = require('socket.io-client')('http://localhost:5000');
+
 export function updateId(id) {
   return { type: types.UPDATE_ID, id };
 }
@@ -86,6 +88,7 @@ function updateQuiz(quiz) {
         kind: 'success',
         dismissAfter
       })))
+      .then(() => socket.emit(types.UPLOAD_QUIZ))
       .catch(error => dispatch(notifSend({
         message: 'Quiz failed to update.',
         kind: 'danger',
@@ -106,6 +109,7 @@ function saveQuiz(quiz) {
         kind: 'success',
         dismissAfter
       })))
+      .then(() => socket.emit(types.UPLOAD_QUIZ))
       .catch(error => dispatch(notifSend({
         message: 'Quiz failed to save.',
         kind: 'danger',
@@ -113,8 +117,12 @@ function saveQuiz(quiz) {
       })));
 }
 
+/**
+ * Checks if a new quiz should be created,
+ * or an existing one updated.
+ * @param  {Object} quiz The quiz to check.
+ */
 export function saveOrUpdateQuiz(quiz) {
-  console.log(quiz);
   return dispatch => {
     if (quiz.id.length) {
       dispatch(updateQuiz(quiz));

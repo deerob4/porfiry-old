@@ -29,7 +29,7 @@ function colourScheme(hue) {
       color: luminance(lightComplement, -0.4)
     },
     text: {
-      primary: { color: luminance(houseColour, -0.2) },
+      primary: { color: luminance(houseColour, -0.15) },
       secondary: { color: luminance(houseColour, -0.1) }
     },
     settings: {

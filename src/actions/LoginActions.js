@@ -1,8 +1,8 @@
 import axios from 'axios';
-import moment from 'moment';
 import flattenQuiz from 'libs/flattenQuiz';
 import * as types from 'constants/actions';
 import colourScheme from 'utils/colourScheme';
+import quizIsReady from 'utils/quizIsReady';
 import * as actions from 'actions/CreatorActions';
 import { actions as notifActions } from 're-notif';
 
@@ -119,9 +119,7 @@ export function isQuizReady() {
     return axios.get('/api/quizzes')
       .then(response => {
         for (let quiz of response.data.quizzes) {
-          console.log(quiz);
-          let minutesToStart = moment(quiz.startDate).diff(moment(), 'minutes');
-          if (minutesToStart >= -5 && minutesToStart < 30) {
+          if (quizIsReady(quiz)) {
             dispatch(loadQuiz(quiz));
             dispatch({ type: types.QUIZ_IS_READY });
             break;

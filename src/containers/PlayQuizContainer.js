@@ -2,38 +2,18 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as types from 'constants/actions';
 import PlayQuiz from 'components/play/PlayQuiz';
+import Countdown from 'components/play/Countdown';
 import * as actions from 'actions/PlayQuizActions';
+import quizEvents from '../sockets/quizEvents';
 
 const socket = require('socket.io-client')('http://localhost:5000');
 
 class PlayQuizContainer extends Component {
   componentDidMount() {
-    const dispatch = this.props.dispatch;
-
-    socket.on(types.ADD_PLAYER, (players) =>
-      dispatch(actions.addPlayer(players))
-    );
-
-    socket.on(types.REMOVE_PLAYER, (socketId) =>
-      dispatch(actions.removePlayer(socketId))
-    );
-
-    socket.on(types.DECREMENT_TIME_LEFT, (timeLeft) =>
-      dispatch(actions.decrementTimeLeft(timeLeft))
-    );
-
-    socket.on(types.SHOW_NEXT_QUESTION, () =>
-      dispatch(actions.showNextQuestion())
-    );
-
-    socket.on(types.UPDATE_ANSWER_STATISTICS, (answers) =>
-      dispatch(actions.updateAnswerStatistics(answers))
-    );
+    quizEvents(this.props.dispatch);
   }
 
   selectAnswer = (answer) => {
-    const dispatch = this.props.dispatch;
-
     const packet = {
       year: this.props.user.year,
       house: this.props.user.house,
@@ -41,7 +21,7 @@ class PlayQuizContainer extends Component {
       questionId: this.props.currentQuiz.currentQuestion
     };
 
-    dispatch(actions.selectAnswer(packet));
+    this.props.dispatch(actions.selectAnswer(packet));
   }
 
   render() {
@@ -53,10 +33,15 @@ class PlayQuizContainer extends Component {
     };
 
     return (
+      this.props.currentQuiz.inProgress ?
+
       <PlayQuiz colours={this.props.colours}
                 currentQuestion={question}
+                answerStatistics={this.props.currentQuiz.answerStatistics}
                 timeLeft={this.props.currentQuiz.timeLeft}
-                selectAnswer={this.selectAnswer} />
+                selectAnswer={this.selectAnswer} /> :
+
+      <Countdown startTime={this.props.quiz.settings.startTime} colours={this.props.colours.text} />
     );
   }
 }

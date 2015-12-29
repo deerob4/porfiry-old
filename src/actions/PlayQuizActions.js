@@ -8,6 +8,10 @@ export function joinQuiz({ house, year }) {
     socket.emit(types.JOIN_QUIZ, { house, year });
 }
 
+export function beginQuiz() {
+  return { type: types.BEGIN_QUIZ };
+}
+
 export function addPlayer(players) {
   return { type: types.ADD_PLAYER, players };
 }
@@ -29,6 +33,7 @@ export function selectAnswer(packet) {
     socket.emit(types.SELECT_ANSWER, packet);
 }
 
-export function updateAnswerStatistics(answers) {
-  return { type: types.UPDATE_ANSWER_STATISTICS, answers };
+export function receiveAnswer(answer) {
+  console.log(answer);
+  return { type: types.RECEIVE_ANSWER, answer };
 }

@@ -6,7 +6,9 @@ import webpack from 'webpack';
 import webpackConfig from './webpack.config';
 import config from './config';
 import apiRoutes from './src/api/index';
-import quizSockets from './src/quizSockets';
+import quizSockets from './src/sockets/quizSockets';
+import axios from 'axios';
+
 
 // Begin connection to database.
 mongoose.connect(`mongodb://localhost:27017/${config.database}`);
@@ -33,30 +35,14 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 // Set root route (pun!) to serve static index.html file.
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 // Fix the bloody annoying error message when refreshing.
-app.get('/create', (req, res) => {
-  res.redirect('/');
-});
-
-app.get('/play', (req, res) => {
-  res.redirect('/');
-});
+app.get('/create', (req, res) => res.redirect('/'));
+app.get('/play', (req, res) => res.redirect('/'));
 
 // Set the /api endpoint to the route logic in apiRoutes.
 app.use('/api', apiRoutes);
-
 // Start the socket processes.
 quizSockets(server);
-
-// const io = require('socket.io').listen(server);
-
-// io.on('connection', (socket) => {
-//   socket.on(types.JOIN_QUIZ, (user) =>
-//     console.log(`User in ${user.house} and Year ${user.year} has joined.`)
-//   );
-// });
-
+// quizSockets(server);

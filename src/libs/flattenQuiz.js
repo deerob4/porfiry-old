@@ -11,8 +11,6 @@ function flattenQuiz(quiz) {
     )
   ).reduce((a, b) => a.concat(b), []).reduce((a, b) => a.concat(b), []);
 
-  console.log(quiz);
-
   return {
     settings: {
       id: quiz._id,

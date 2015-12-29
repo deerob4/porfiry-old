@@ -4,7 +4,8 @@ import {
   REMOVE_PLAYER,
   DECREMENT_TIME_LEFT,
   SHOW_NEXT_QUESTION,
-  UPDATE_ANSWER_STATISTICS
+  RECEIVE_ANSWER,
+  BEGIN_QUIZ
 } from 'constants/actions';
 
 function players(state = [], action) {
@@ -42,10 +43,27 @@ function timeLeft(state = 10000, action) {
   }
 }
 
-function answerStatistics(state = {}, action) {
+function inProgress(state = false, action) {
   switch (action.type) {
-    case UPDATE_ANSWER_STATISTICS:
-      return action.answers;
+    case BEGIN_QUIZ:
+      return true;
+
+    default:
+      return state;
+  }
+}
+
+function answerStatistics(state = {
+  acton: 0,
+  baxter: 0,
+  clive: 0,
+  darwin: 0,
+  houseman: 0,
+  webb: 0
+}, action) {
+  switch (action.type) {
+    case RECEIVE_ANSWER:
+      return { ...state, [action.house]: state[action.house] + 1  };
 
     default:
       return state;
@@ -55,6 +73,7 @@ function answerStatistics(state = {}, action) {
 export default combineReducers({
   players,
   timeLeft,
+  inProgress,
   currentQuestion,
   answerStatistics
 });

@@ -1,13 +1,10 @@
 // import redis from 'redis';
 import * as types from '../constants/actions';
-import flattenQuiz from '../libs/flattenQuiz';
+
+import questionTimer from './questionTimer';
+import searchForQuizzes from './searchForQuizzes';
 import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
-import config from '../../config';
-
-import axios from 'axios';
-import moment from 'moment';
-import quizIsReady from '../utils/quizIsReady';
 
 // Look into getting the keys to expire at the end of each quiz.
 
@@ -43,10 +40,6 @@ function quizSockets(server) {
       // }
     });
 
-    socket.on(types.BEGIN_QUIZ, () => {
-      console.log('begun!');
-    });
-
     socket.on(types.SELECT_ANSWER, (packet) => {
       const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
 
@@ -74,57 +67,6 @@ function quizSockets(server) {
       io.emit(types.REMOVE_PLAYER, socket.id );
     });
   });
-
-  /**
-   * Begins the countdown timer for questions.
-   *
-   * The system works on the basis that every
-   * client is at the same point at any given
-   * moment. Therefore, things must work
-   * 'on-rails', and be fully automated.
-   *
-   * This function emits a socket ever second,
-   * telling all clients the amount of time till
-   * the question will move on, ensuring that the
-   * same time is displayed on every screen, and
-   * the question is changed at the precise moment.
-   *
-   * @param  {Number} questionLength The time between each question.
-   * @return {Socket}                Whether to countdown, or change question.
-   */
-  function questionTimer(questionLength = 10000) {
-    let timeLeft = questionLength;
-
-    setInterval(() => {
-      if (timeLeft) {
-        timeLeft -= 1000;
-        io.emit(types.DECREMENT_TIME_LEFT, timeLeft);
-      } else {
-        timeLeft = questionLength;
-        io.emit(types.SHOW_NEXT_QUESTION);
-      }
-    }, 1000);
-  }
-
-  function searchForQuizzes() {
-    axios.get(`http://localhost:${config.port}/api/quizzes`)
-      .then(response => {
-        for (let receivedQuiz of response.data.quizzes) {
-          if (quizIsReady(receivedQuiz)) {
-            const quiz = flattenQuiz(receivedQuiz);
-            setQuiz(io, quiz);
-            io.emit('new quiz', quiz);
-            break;
-          }
-        }
-      })
-      .catch(err => console.log(err));
-  }
-
-  function setQuiz(quiz) {
-    const wait = moment(quiz.settings.startDate).diff(moment());
-    setTimeout(() => io.emit(types.BEGIN_QUIZ), wait);
-  }
 }
 
 export default quizSockets;

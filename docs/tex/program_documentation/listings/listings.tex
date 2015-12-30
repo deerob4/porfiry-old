@@ -34,6 +34,12 @@ This subsections lists the application's state reducers.
 \input{./tex/program_documentation/listings/reducers.tex}
 % subsection reducers (end)
 
+\subsection{Sockets} % (fold)
+\label{sub:sockets}
+This subsection lists the socket controllers used in the application. In order to allow the different clients (players) to communicate with one another, a concept known as web sockets is utilised. Web sockets allow a continual, bi-directional connection to be set up between each client and the server, facilitating the broadcasting and receiving of messages. In this manner, all of the multiplayer components to the quiz are controlled through these files.
+\input{./tex/program_documentation/listings/sockets.tex}
+% subsection sockets (end)
+
 \subsection{Components} % (fold)
 \label{sub:reducers}
 This subsections lists the application's components. Components make up the vast majority of the codebase, as they combine both markup - a description of what should be shown - and logic. The first three components are more advanced, as they interact directly with the applications's state. Other components are less intelligent, and rely on properties passed down from the more advanced components to perform actions and read data.

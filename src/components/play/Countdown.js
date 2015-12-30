@@ -13,13 +13,15 @@ class Countdown extends Component {
   }
 
   componentDidMount() {
-    this.tick();
+    this.timer = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
   tick = () => {
-    setInterval(() => this.setState({
-      timeLeft: moment().to(this.props.startTime)
-    }), 1000);
+    this.setState({ timeLeft: moment().to(this.props.startTime) });
   }
 
   render() {

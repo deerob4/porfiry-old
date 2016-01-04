@@ -2,9 +2,11 @@ import axios from 'axios';
 import flattenQuiz from 'libs/flattenQuiz';
 import * as types from 'constants/actions';
 import colourScheme from 'utils/colourScheme';
-import quizIsReady from 'utils/quizIsReady';
+import isQuizReady from 'utils/isQuizReady';
 import * as actions from 'actions/CreatorActions';
 import { actions as notifActions } from 're-notif';
+
+const socket = require('socket.io-client')('http://localhost:5000');
 
 const { notifSend } = notifActions;
 let dismissAfter = 2000;
@@ -114,19 +116,13 @@ function removeCurrentQuiz() {
  *
  * @return {Object} Action dispatcher to loadQuiz()
  */
-export function isQuizReady() {
+export function checkIfQuizReady() {
   return dispatch => {
-    return axios.get('/api/quizzes')
-      .then(response => {
-        for (let quiz of response.data.quizzes) {
-          if (quizIsReady(quiz)) {
-            dispatch(loadQuiz(quiz));
-            dispatch({ type: types.QUIZ_IS_READY });
-            break;
-          }
-        }
-      })
-      .catch(error => console.log(error));
+    socket.emit(types.CHECK_IF_QUIZ_READY);
+    socket.on(types.QUIZ_IN_PROGRESS, () => {
+      // dispatch(loadQuiz(quiz));
+      // dispatch({ type: types.QUIZ_IS_READY });
+    });
   };
 }
 

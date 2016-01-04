@@ -1,100 +1,77 @@
-h1 {
-  font-family: $font-stack;
-  font-size: 70px;
-  margin-bottom: 5px
+h1
+{
+    font-family: $font-stack;
+    font-size: 70px;
+
+    margin-bottom: 5px;
 }
 
-h2 {
-  font-family: $font-stack;
-  font-size: 50px;
-  margin-bottom: 15px;
-  margin-top: 0;
+h2
+{
+    font-family: $font-stack;
+    font-size: 50px;
+
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 
-h3 {
-  font-family: $font-stack;
-  margin-bottom: 0px;
+h3
+{
+    font-family: $font-stack;
+
+    margin-bottom: 0;
 }
 
-p {
-  font-family: $font-stack;
-  font-size: 26px;
+p
+{
+    font-family: $font-stack;
+    font-size: 26px;
 }
 
-.question-title {
-  font-size: 4em;
-  // text-align: center;
-  margin-bottom: 5px;
-  margin-top: 5px;
+.question-title
+{
+    font-size: 4em;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
-.ReactModal__Content label {
-  font-family: $font-stack;
-  font-size: 17px;
+.ReactModal__Content label
+{
+    font-family: $font-stack;
+    font-size: 17px;
 
-  padding-bottom: 3px;
-  clear: both;
+    display: block;
+    clear: both;
 
-  display: block;
+    padding-bottom: 3px;
 }
 
-ul {
-  padding: 0;
+ul
+{
+    padding: 0;
 }
 
-li {
-  list-style-type: none;
+li
+{
+    list-style-type: none;
 }
 
-.quiz-titles {
-  p {
-    font-size: 20px;
-  }
+.quiz-titles
+{
+    p
+    {
+        font-size: 20px;
+    }
 }
 
-.centre {
-  text-align: center;
+.centre
+{
+    text-align: center;
 }
 
 form
 {
-  width: 515px;
-  margin: 0 auto;
-}
-
-.ReactModal__Overlay {
-  -webkit-perspective: 600;
-  perspective: 600;
-  opacity: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.ReactModal__Overlay--after-open {
-  opacity: 1;
-  transition: opacity 150ms ease-out;
-}
-
-.ReactModal__Content {
-  -webkit-transform: scale(0.5) rotateX(-30deg);
-}
-
-.ReactModal__Content--after-open {
-  -webkit-transform: scale(1) rotateX(0deg);
-  transition: all 150ms ease-in;
-}
-
-.ReactModal__Overlay--before-close {
-  opacity: 0;
-}
-
-.ReactModal__Content--before-close {
-  -webkit-transform: scale(0.5) rotateX(30deg);
-  transition: all 150ms ease-in;
-}
-
-.ReactModal__Content.modal-dialog {
-  border: none;
-  background-color: transparent;
+    width: 515px;
+    margin: 0 auto;
 }

@@ -12,7 +12,7 @@ import {
   loadQuiz,
   deleteQuiz,
   requestQuizzes,
-  isQuizReady
+  checkIfQuizReady
 } from 'actions/LoginActions';
 
 const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
@@ -26,7 +26,7 @@ class LoginContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(isQuizReady());
+    this.props.dispatch(checkIfQuizReady());
   }
 
   changeYear = (e) => {

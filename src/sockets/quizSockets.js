@@ -1,30 +1,49 @@
 // import redis from 'redis';
 import * as types from '../constants/actions';
-
+import axios from 'axios';
+import moment from 'moment';
+import config from '../../config';
+import schedule from 'node-schedule';
 import questionTimer from './questionTimer';
-import searchForQuizzes from './searchForQuizzes';
+import flattenQuiz from '../libs/flattenQuiz';
+import isQuizReady from '../utils/isQuizReady';
+// import scheduleQuiz from './scheduleQuiz';
 import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
 
-// Look into getting the keys to expire at the end of each quiz.
 
-function quizSockets(server) {
+async function quizSockets(server) {
   const io = require('socket.io').listen(server);
+  const quizAddress = `http://localhost:${config.port}/api/quizzes`;
 
-  let started = false;
+  // Get initial set of quizzes on server start and schedule them.
+  let quizzes = (await axios.get(quizAddress)).data.quizzes.map(x => flattenQuiz(x));
+  quizzes.forEach(quiz => scheduleQuiz(quiz));
 
-  let quiz;
+  let currentQuiz = [];
+  let quizStatus = types.NO_QUIZ_READY;
   let players = [];
   let answers = {};
   let housePoints = {};
 
-  searchForQuizzes(io);
+  io.on(types.BEGIN_QUIZ, (id) => {
+    console.log('it works!');
+    currentQuiz = quizzes.find(quiz => quiz.settings.id === id);
+    quizStatus = types.QUIZ_IN_PROGRESS;
+  });
 
   io.on('connection', (socket) => {
     // If they upload a new quiz, ensure the server finds
     // and schedules it automatically.
-    socket.on(types.UPLOAD_QUIZ, () => searchForQuizzes(io));
-    socket.on('new quiz', (receivedQuiz) => quiz = receivedQuiz);
+    socket.on(types.UPLOAD_QUIZ, (receivedQuiz) => {
+      receivedQuiz = flattenQuiz(receivedQuiz);
+      scheduleQuiz(receivedQuiz);
+      quizzes = [...quizzes, receivedQuiz];
+    });
+
+
+    // Inform the client about the current status of the quiz.
+    socket.on(types.CHECK_IF_QUIZ_READY, () => socket.emit(quizStatus));
 
     // Add the player to the array of connections.
     socket.on(types.JOIN_QUIZ, (form) => {
@@ -34,10 +53,6 @@ function quizSockets(server) {
         ...player.form,
         socketId: player.socket.id
       })));
-
-      // if (players.length >= 2) {
-      //   questionTimer(io);
-      // }
     });
 
     socket.on(types.SELECT_ANSWER, (packet) => {
@@ -67,6 +82,33 @@ function quizSockets(server) {
       io.emit(types.REMOVE_PLAYER, socket.id );
     });
   });
+
+  function scheduleQuiz(quiz) {
+    const quizStart = new Date(quiz.settings.startDate);
+    let wow = schedule.scheduleJob(quizStart, () => console.log('wowowowowowow'));
+    console.log(wow.job());
+    if (moment(quizStart).isAfter(moment())) {
+      let countdownStart = moment(quizStart).subtract(20, 'minutes');
+      console.log(countdownStart);
+      let x = schedule.scheduleJob(countdownStart, () => io.emit(types.BEGIN_QUIZ_COUNTDOWN));
+      let y = schedule.scheduleJob(quizStart, () => {
+        console.log('it begins!');
+        io.emit(types.BEGIN_QUIZ);
+      });
+    }
+  }
+
+  // function scheduleQuiz(quiz) {
+  //   console.log(quiz);
+  //   const wait = moment(quiz.settings.startDate).diff(moment());
+
+  //   if (wait > 0) {
+  //     setTimeout(() => {
+  //       io.emit(types.BEGIN_QUIZ, quiz.settings.id);
+  //       quizStatus = types.QUIZ_IN_PROGRESS;
+  //     }, wait);
+  //   }
+  // }
 }
 
 export default quizSockets;

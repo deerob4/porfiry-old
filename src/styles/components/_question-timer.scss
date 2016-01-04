@@ -1,9 +1,13 @@
-.question-timer {
-  font-family: $font-stack;
-  font-size: 20px;
-  text-align: center;
-  margin: 20px 0 20px 0;
-  border: 3px solid;
-  border-radius: 3px;
-  @include size(100%, 30px);
+.question-timer
+{
+    font-family: $font-stack;
+    font-size: 20px;
+
+    height: 30px;
+    margin: 20px 0 20px 0;
+
+    text-align: center;
+
+    border: 3px solid;
+    border-radius: 3px;
 }

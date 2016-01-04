@@ -88,7 +88,7 @@ function updateQuiz(quiz) {
         kind: 'success',
         dismissAfter
       })))
-      .then(() => socket.emit(types.UPLOAD_QUIZ))
+      .then(() => socket.emit(types.UPLOAD_QUIZ, quiz))
       .catch(error => dispatch(notifSend({
         message: 'Quiz failed to update.',
         kind: 'danger',
@@ -109,7 +109,7 @@ function saveQuiz(quiz) {
         kind: 'success',
         dismissAfter
       })))
-      .then(() => socket.emit(types.UPLOAD_QUIZ))
+      .then(() => socket.emit(types.UPLOAD_QUIZ, quiz))
       .catch(error => dispatch(notifSend({
         message: 'Quiz failed to save.',
         kind: 'danger',

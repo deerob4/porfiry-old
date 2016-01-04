@@ -25,8 +25,8 @@ class PlayQuizContainer extends Component {
   }
 
   render() {
-    const question = {
-      title: this.props.quiz.questions[this.props.currentQuiz.currentQuestion].body,
+    const currentQuestion = {
+      ...this.props.quiz.questions[this.props.currentQuiz.currentQuestion],
       answers: this.props.quiz.answers.filter(x =>
         x.questionId === this.props.quiz.questions[this.props.currentQuiz.currentQuestion].id
       )
@@ -36,7 +36,8 @@ class PlayQuizContainer extends Component {
       this.props.currentQuiz.inProgress ?
 
       <PlayQuiz colours={this.props.colours}
-                currentQuestion={question}
+                currentQuestion={currentQuestion}
+                players={this.props.currentQuiz.players}
                 answerStatistics={this.props.currentQuiz.answerStatistics}
                 timeLeft={this.props.currentQuiz.timeLeft}
                 selectAnswer={this.selectAnswer} /> :

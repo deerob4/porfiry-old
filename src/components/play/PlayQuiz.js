@@ -7,6 +7,7 @@ class PlayQuiz extends Component {
     answerStatistics: PropTypes.object.isRequired,
     colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
+    players: PropTypes.array.isRequired,
     selectAnswer: PropTypes.func.isRequired,
     timeLeft: PropTypes.number.isRequired
   }
@@ -22,22 +23,32 @@ class PlayQuiz extends Component {
     return (
       <div style={{ padding: '10px' }}>
         <h1 className="question-title" style={this.props.colours.text.primary}>
-          {this.props.currentQuestion.title}
+          {this.props.currentQuestion.body}
         </h1>
+
+        <h3 style={this.props.colours.text.secondary}>Question 4 out of 5 in the History category</h3>
 
         <QuestionTimer colours={this.props.colours.answer.body}
                        timeLeft={this.props.timeLeft} />
 
-        {this.props.currentQuestion.answers.map((answer, i) =>
-          <Button key={i}
-                  clickEvent={this.props.selectAnswer.bind(this, i)}
-                  customClass="answer-block quiz-answer"
-                  colours={this.props.colours.button}
-                  text={`${letters[i]}. ${answer.body}`} />
-        )}
+        <ul>
+          {this.props.currentQuestion.answers.map((answer, i) =>
+            <Button key={i}
+                    clickEvent={this.props.selectAnswer.bind(this, i)}
+                    customClass="answer quiz-answer"
+                    colours={this.props.colours.button}
+                    text={`${letters[i]}. ${answer.body}`} />
+          )}
+        </ul>
 
-        <pre>{JSON.stringify(this.props.answerStatistics)}</pre>
+        <ul style={{width: '100%'}}>
+          {this.props.players.map((player, i) =>
+            <li key={i} style={{display: 'inline-block'}}>{i}&nbsp;</li>
+          )}
+        </ul>
+
       </div>
+        // <pre>{JSON.stringify(this.props.answerStatistics)}</pre>
     );
   }
 }

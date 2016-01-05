@@ -47,7 +47,7 @@ function user(state = defaultState, action) {
       };
 
     case types.QUIZ_IS_READY:
-      return { ...state, quizIsReady: true };
+      return { ...state, quizIsReady: action.quizIsReady };
 
     default:
       return state;

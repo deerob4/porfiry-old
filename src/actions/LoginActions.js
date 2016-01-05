@@ -119,10 +119,21 @@ function removeCurrentQuiz() {
 export function checkIfQuizReady() {
   return dispatch => {
     socket.emit(types.CHECK_IF_QUIZ_READY);
-    socket.on(types.QUIZ_IN_PROGRESS, () => {
+
+    socket.on(types.QUIZ_IN_PROGRESS, (quiz) => {
       // dispatch(loadQuiz(quiz));
-      // dispatch({ type: types.QUIZ_IS_READY });
+      console.log(quiz);
+      console.log('quiz in progres');
+      dispatch({ type: types.QUIZ_IS_READY, quizIsReady: true });
     });
+
+    socket.on(types.NO_QUIZ_READY, () =>
+      dispatch({ type: types.QUIZ_IS_READY, quizIsReady: false })
+    );
+
+    socket.on(types.BEGIN_QUIZ_COUNTDOWN, () =>
+      console.log('counting down!')
+    );
   };
 }
 

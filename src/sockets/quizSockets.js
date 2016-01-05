@@ -41,9 +41,8 @@ async function quizSockets(server) {
       quizzes = [...quizzes, receivedQuiz];
     });
 
-
     // Inform the client about the current status of the quiz.
-    socket.on(types.CHECK_IF_QUIZ_READY, () => socket.emit(quizStatus));
+    socket.on(types.CHECK_IF_QUIZ_READY, () => socket.emit(quizStatus, currentQuiz));
 
     // Add the player to the array of connections.
     socket.on(types.JOIN_QUIZ, (form) => {
@@ -85,14 +84,13 @@ async function quizSockets(server) {
 
   function scheduleQuiz(quiz) {
     const quizStart = new Date(quiz.settings.startDate);
-    let wow = schedule.scheduleJob(quizStart, () => console.log('wowowowowowow'));
-    console.log(wow.job());
+    console.log(quiz.settings.startDate);
     if (moment(quizStart).isAfter(moment())) {
-      let countdownStart = moment(quizStart).subtract(20, 'minutes');
-      console.log(countdownStart);
-      let x = schedule.scheduleJob(countdownStart, () => io.emit(types.BEGIN_QUIZ_COUNTDOWN));
-      let y = schedule.scheduleJob(quizStart, () => {
+      let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
+      schedule.scheduleJob(countdownStart, () => quizStatus = types.BEGIN_QUIZ_COUNTDOWN);
+      schedule.scheduleJob(quizStart, () => {
         console.log('it begins!');
+        quizStatus = types.QUIZ_IN_PROGRESS;
         io.emit(types.BEGIN_QUIZ);
       });
     }

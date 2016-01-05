@@ -11,7 +11,6 @@ import isQuizReady from '../utils/isQuizReady';
 import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
 
-
 async function quizSockets(server) {
   const io = require('socket.io').listen(server);
   const quizAddress = `http://localhost:${config.port}/api/quizzes`;
@@ -89,9 +88,10 @@ async function quizSockets(server) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
       schedule.scheduleJob(countdownStart, () => quizStatus = types.BEGIN_QUIZ_COUNTDOWN);
       schedule.scheduleJob(quizStart, () => {
-        console.log('it begins!');
+        console.log('it begins...');
         quizStatus = types.QUIZ_IN_PROGRESS;
         io.emit(types.BEGIN_QUIZ);
+        currentQuiz = quiz;
       });
     }
   }

@@ -4,6 +4,7 @@ import * as types from 'constants/actions';
 import colourScheme from 'utils/colourScheme';
 import isQuizReady from 'utils/isQuizReady';
 import * as actions from 'actions/CreatorActions';
+import { beginQuiz } from 'actions/PlayQuizActions';
 import { actions as notifActions } from 're-notif';
 
 const socket = require('socket.io-client')('http://localhost:5000');
@@ -121,9 +122,11 @@ export function checkIfQuizReady() {
     socket.emit(types.CHECK_IF_QUIZ_READY);
 
     socket.on(types.QUIZ_IN_PROGRESS, (quiz) => {
-      // dispatch(loadQuiz(quiz));
+      dispatch(loadQuiz(quiz, false));
+      dispatch(beginQuiz())
       console.log(quiz);
       console.log('quiz in progres');
+
       dispatch({ type: types.QUIZ_IS_READY, quizIsReady: true });
     });
 

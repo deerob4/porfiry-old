@@ -86,6 +86,11 @@ async function quizSockets(server) {
 
     if (moment(quizStart).isAfter(moment())) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
+      let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength + 500;
+      let quizFinish = moment(quizStart).add(totalQuizDuration, 'milliseconds')._d;
+
+      console.log(quizFinish);
+      console.log(totalQuizDuration);
 
       schedule.scheduleJob(countdownStart, () => {
         currentQuiz = quiz;
@@ -93,10 +98,13 @@ async function quizSockets(server) {
       });
 
       schedule.scheduleJob(quizStart, () => {
-        console.log('it begins...');
         quizStatus = types.QUIZ_IN_PROGRESS;
         io.emit(types.BEGIN_QUIZ);
-        console.log(quizStatus);
+      });
+
+      schedule.scheduleJob(quizFinish, () => {
+        quizStatus = types.NO_QUIZ_READY;
+        io.emit(types.LEAVE_QUIZ);
       });
     }
   }

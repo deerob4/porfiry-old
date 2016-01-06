@@ -1,12 +1,15 @@
 import * as types from 'constants/actions';
 import * as actions from 'actions/PlayQuizActions';
 
-function quizEvents(dispatch) {
+function quizEvents(dispatch, historyProp) {
   const socket = require('socket.io-client')('http://localhost:5000');
 
   socket.on(types.BEGIN_QUIZ, () => {
-    console.log('hey from annoying land');
     dispatch(actions.beginQuiz());
+  });
+
+  socket.on(types.LEAVE_QUIZ, () => {
+    dispatch(actions.leaveQuiz(historyProp));
   });
 
   socket.on(types.ADD_PLAYER, (players) =>

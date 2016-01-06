@@ -5,7 +5,8 @@ import {
   DECREMENT_TIME_LEFT,
   SHOW_NEXT_QUESTION,
   RECEIVE_ANSWER,
-  BEGIN_QUIZ
+  BEGIN_QUIZ,
+  LEAVE_QUIZ
 } from 'constants/actions';
 
 function players(state = [], action) {
@@ -47,6 +48,9 @@ function inProgress(state = false, action) {
   switch (action.type) {
     case BEGIN_QUIZ:
       return true;
+
+    case LEAVE_QUIZ:
+      return false;
 
     default:
       return state;

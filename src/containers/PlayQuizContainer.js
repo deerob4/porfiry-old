@@ -10,7 +10,7 @@ const socket = require('socket.io-client')('http://localhost:5000');
 
 class PlayQuizContainer extends Component {
   componentDidMount() {
-    quizEvents(this.props.dispatch);
+    quizEvents(this.props.dispatch, this.props.history);
   }
 
   selectAnswer = (answer) => {

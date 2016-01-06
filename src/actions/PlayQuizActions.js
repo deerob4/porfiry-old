@@ -9,8 +9,12 @@ export function joinQuiz({ house, year }) {
 }
 
 export function beginQuiz() {
-  console.log('where is my pie!');
   return { type: types.BEGIN_QUIZ };
+}
+
+export function leaveQuiz(historyProp) {
+  historyProp.pushState('/');
+  return { type: types.LEAVE_QUIZ };
 }
 
 export function addPlayer(players) {

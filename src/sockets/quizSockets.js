@@ -1,4 +1,3 @@
-// import redis from 'redis';
 import * as types from '../constants/actions';
 import axios from 'axios';
 import moment from 'moment';
@@ -7,7 +6,6 @@ import schedule from 'node-schedule';
 import questionTimer from './questionTimer';
 import flattenQuiz from '../libs/flattenQuiz';
 import isQuizReady from '../utils/isQuizReady';
-// import scheduleQuiz from './scheduleQuiz';
 import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
 
@@ -24,12 +22,6 @@ async function quizSockets(server) {
   let players = [];
   let answers = {};
   let housePoints = {};
-
-  io.on(types.BEGIN_QUIZ, (id) => {
-    console.log('it works!');
-    currentQuiz = quizzes.find(quiz => quiz.settings.id === id);
-    quizStatus = types.QUIZ_IS_READY;
-  });
 
   io.on('connection', (socket) => {
     // If they upload a new quiz, ensure the server finds
@@ -86,11 +78,8 @@ async function quizSockets(server) {
 
     if (moment(quizStart).isAfter(moment())) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
-      let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength + 500;
+      let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength + 5000;
       let quizFinish = moment(quizStart).add(totalQuizDuration, 'milliseconds')._d;
-
-      console.log(quizFinish);
-      console.log(totalQuizDuration);
 
       schedule.scheduleJob(countdownStart, () => {
         currentQuiz = quiz;

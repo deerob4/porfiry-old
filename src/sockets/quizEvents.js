@@ -5,7 +5,7 @@ function quizEvents(dispatch) {
   const socket = require('socket.io-client')('http://localhost:5000');
 
   socket.on(types.BEGIN_QUIZ, () => {
-    console.log('hey from annoying land')
+    console.log('hey from annoying land');
     dispatch(actions.beginQuiz());
   });
 

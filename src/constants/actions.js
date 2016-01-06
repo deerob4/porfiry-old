@@ -7,7 +7,7 @@ export const CHANGE_YEAR = 'CHANGE_YEAR';
 
 export const CHECK_IF_QUIZ_READY = 'CHECK_IF_QUIZ_READY';
 export const QUIZ_IN_PROGRESS = 'QUIZ_IN_PROGRESS';
-export const BEGIN_QUIZ_COUNTDOWN = 'BEGIN_QUIZ_COUNTDOWN';
+export const QUIZ_IS_SCHEDULED = 'QUIZ_IS_SCHEDULED';
 export const NO_QUIZ_READY = 'NO_QUIZ_READY';
 
 export const DELETE_QUIZ = 'DELETE_QUIZ';
@@ -17,9 +17,9 @@ export const DELETE_QUIZ_FAILURE = 'DELETE_QUIZ_FAILURE';
 export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
 export const REQUEST_QUIZZES_FAILURE = 'REQUEST_QUIZZES_FAILURE';
 export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
-export const QUIZ_IS_READY = 'QUIZ_IS_READY';
 
 export const LOAD_DEFAULT_QUIZ = 'LOAD_DEFAULT_QUIZ';
+export const QUIZ_IS_READY = 'QUIZ_IS_READY';
 
 // Quiz creator actions.
 export const UPDATE_ID = 'UPDATE_ID';

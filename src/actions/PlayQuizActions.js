@@ -9,6 +9,7 @@ export function joinQuiz({ house, year }) {
 }
 
 export function beginQuiz() {
+  console.log('where is my pie!');
   return { type: types.BEGIN_QUIZ };
 }
 

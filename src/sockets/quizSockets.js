@@ -28,7 +28,7 @@ async function quizSockets(server) {
   io.on(types.BEGIN_QUIZ, (id) => {
     console.log('it works!');
     currentQuiz = quizzes.find(quiz => quiz.settings.id === id);
-    quizStatus = types.QUIZ_IN_PROGRESS;
+    quizStatus = types.QUIZ_IS_READY;
   });
 
   io.on('connection', (socket) => {
@@ -83,30 +83,23 @@ async function quizSockets(server) {
 
   function scheduleQuiz(quiz) {
     const quizStart = new Date(quiz.settings.startDate);
-    console.log(quiz.settings.startDate);
+
     if (moment(quizStart).isAfter(moment())) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
-      schedule.scheduleJob(countdownStart, () => quizStatus = types.BEGIN_QUIZ_COUNTDOWN);
+
+      schedule.scheduleJob(countdownStart, () => {
+        currentQuiz = quiz;
+        quizStatus = types.QUIZ_IS_SCHEDULED;
+      });
+
       schedule.scheduleJob(quizStart, () => {
         console.log('it begins...');
         quizStatus = types.QUIZ_IN_PROGRESS;
         io.emit(types.BEGIN_QUIZ);
-        currentQuiz = quiz;
+        console.log(quizStatus);
       });
     }
   }
-
-  // function scheduleQuiz(quiz) {
-  //   console.log(quiz);
-  //   const wait = moment(quiz.settings.startDate).diff(moment());
-
-  //   if (wait > 0) {
-  //     setTimeout(() => {
-  //       io.emit(types.BEGIN_QUIZ, quiz.settings.id);
-  //       quizStatus = types.QUIZ_IN_PROGRESS;
-  //     }, wait);
-  //   }
-  // }
 }
 
 export default quizSockets;

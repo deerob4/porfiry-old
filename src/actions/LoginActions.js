@@ -121,22 +121,17 @@ export function checkIfQuizReady() {
   return dispatch => {
     socket.emit(types.CHECK_IF_QUIZ_READY);
 
-    socket.on(types.QUIZ_IN_PROGRESS, (quiz) => {
-      dispatch(loadQuiz(quiz, false));
-      dispatch(beginQuiz())
-      console.log(quiz);
-      console.log('quiz in progres');
-
+    socket.on(types.QUIZ_IS_SCHEDULED, (quiz) => {
       dispatch({ type: types.QUIZ_IS_READY, quizIsReady: true });
+      dispatch(loadQuiz(quiz, false));
     });
 
-    socket.on(types.NO_QUIZ_READY, () =>
-      dispatch({ type: types.QUIZ_IS_READY, quizIsReady: false })
-    );
-
-    socket.on(types.BEGIN_QUIZ_COUNTDOWN, () =>
-      console.log('counting down!')
-    );
+    socket.on(types.QUIZ_IN_PROGRESS, (quiz) => {
+      console.log('hey');
+      dispatch({ type: types.QUIZ_IS_READY, quizIsReady: true });
+      dispatch(loadQuiz(quiz, false));
+      dispatch(beginQuiz());
+    });
   };
 }
 

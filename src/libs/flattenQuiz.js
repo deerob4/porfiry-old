@@ -1,5 +1,4 @@
 function flattenQuiz(quiz) {
-  console.log(quiz);
   let categories = quiz.categories.map((category, id) => ({ body: category.body, id })).reduce((a, b) => a.concat(b), []);
 
   let questions = quiz.categories.map((category, categoryId) =>

@@ -24,8 +24,8 @@ function quizEvents(dispatch, historyProp) {
     dispatch(actions.decrementTimeLeft(timeLeft))
   );
 
-  socket.on(types.SHOW_NEXT_QUESTION, () =>
-    dispatch(actions.showNextQuestion())
+  socket.on(types.SHOW_NEXT_QUESTION, (questionId) =>
+    dispatch(actions.showNextQuestion(questionId))
   );
 
   socket.on(types.RECEIVE_ANSWER, (answer) =>

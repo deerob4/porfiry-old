@@ -61,6 +61,7 @@ export function deleteQuiz(id) {
   return dispatch => {
     dispatch({ type: types.DELETE_QUIZ });
     return axios.delete(`/api/quizzes/${id}`)
+      .then(() => socket.emit(types.DELETE_QUIZ, id))
       .then(() => dispatch(deleteQuizSuccess(id)))
       .catch(() => dispatch(deleteQuizFailure()));
   };
@@ -122,17 +123,20 @@ export function checkIfQuizReady() {
     socket.emit(types.CHECK_IF_QUIZ_READY);
 
     socket.on(types.QUIZ_IS_SCHEDULED, (quiz) => {
-      dispatch({ type: types.QUIZ_IS_READY, quizIsReady: true });
       dispatch(loadQuiz(quiz, false));
+      dispatch(quizIsReady(true));
     });
 
     socket.on(types.QUIZ_IN_PROGRESS, (quiz) => {
-      console.log('hey');
-      dispatch({ type: types.QUIZ_IS_READY, quizIsReady: true });
+      dispatch(quizIsReady(true));
       dispatch(loadQuiz(quiz, false));
       dispatch(beginQuiz());
     });
   };
+}
+
+export function quizIsReady(quizIsReady) {
+  return { type: types.QUIZ_IS_READY, quizIsReady };
 }
 
 /**

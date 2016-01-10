@@ -3,7 +3,6 @@ import axios from 'axios';
 import moment from 'moment';
 import config from '../../config';
 import schedule from 'node-schedule';
-import questionTimer from './questionTimer';
 import flattenQuiz from '../libs/flattenQuiz';
 import isQuizReady from '../utils/isQuizReady';
 import calculateHousePoints from '../libs/housePoints';
@@ -14,10 +13,12 @@ async function quizSockets(server) {
   const quizAddress = `http://localhost:${config.port}/api/quizzes`;
 
   // Get initial set of quizzes on server start and schedule them.
-  let quizzes = (await axios.get(quizAddress)).data.quizzes.map(x => flattenQuiz(x));
-  quizzes.forEach(quiz => scheduleQuiz(quiz));
+  (await axios.get(quizAddress)).data.quizzes
+              .map(x => flattenQuiz(x))
+              .forEach(quiz => scheduleQuiz(quiz));
 
-  let currentQuiz = [];
+  let currentQuiz = {};
+  let jobs = {};
   let quizStatus = types.NO_QUIZ_READY;
   let players = [];
   let answers = {};
@@ -26,10 +27,17 @@ async function quizSockets(server) {
   io.on('connection', (socket) => {
     // If they upload a new quiz, ensure the server finds
     // and schedules it automatically.
-    socket.on(types.UPLOAD_QUIZ, (receivedQuiz) => {
-      receivedQuiz = flattenQuiz(receivedQuiz);
-      scheduleQuiz(receivedQuiz);
-      quizzes = [...quizzes, receivedQuiz];
+    socket.on(types.UPLOAD_QUIZ, (quiz) => {
+      quiz = flattenQuiz(quiz);
+      scheduleQuiz(quiz);
+    });
+
+    socket.on(types.DELETE_QUIZ, (id) => {
+      // Cancel all the jobs related to that quiz.
+      jobs[id].forEach(job => job.cancel());
+      // Delete the quiz entry.
+      delete jobs[id];
+      quizStatus = types.NO_QUIZ_READY;
     });
 
     // Inform the client about the current status of the quiz.
@@ -81,21 +89,42 @@ async function quizSockets(server) {
       let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength + 5000;
       let quizFinish = moment(quizStart).add(totalQuizDuration, 'milliseconds')._d;
 
-      schedule.scheduleJob(countdownStart, () => {
-        currentQuiz = quiz;
-        quizStatus = types.QUIZ_IS_SCHEDULED;
-      });
+      jobs[quiz.settings.id] = [
+        schedule.scheduleJob(countdownStart, () => {
+          currentQuiz = quiz;
+          quizStatus = types.QUIZ_IS_SCHEDULED;
+        }),
 
-      schedule.scheduleJob(quizStart, () => {
-        quizStatus = types.QUIZ_IN_PROGRESS;
-        io.emit(types.BEGIN_QUIZ);
-      });
+        schedule.scheduleJob(quizStart, () => {
+          quizStatus = types.QUIZ_IN_PROGRESS;
+          io.emit(types.BEGIN_QUIZ);
+        }),
 
-      schedule.scheduleJob(quizFinish, () => {
-        quizStatus = types.NO_QUIZ_READY;
-        io.emit(types.LEAVE_QUIZ);
-      });
+        schedule.scheduleJob(quizFinish, () => {
+          quizStatus = types.NO_QUIZ_READY;
+          io.emit(types.LEAVE_QUIZ);
+        })
+      ];
+
+      questionTimer(quiz);
     }
+  }
+
+  function questionTimer(quiz) {
+    const questionLength = quiz.settings.questionLength;
+    const quizStart = new Date(quiz.settings.startDate);
+
+    quiz.questions.forEach((question, i) => {
+      const changeQuestion = moment(quizStart).add(questionLength * i, 'milliseconds')._d;
+
+      jobs[quiz.settings.id].push(
+        schedule.scheduleJob(changeQuestion, () =>
+          io.emit(types.SHOW_NEXT_QUESTION, i)
+        )
+      );
+    });
+
+    console.log(jobs);
   }
 }
 

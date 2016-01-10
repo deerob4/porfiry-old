@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as types from 'constants/actions';
+import { quizIsReady } from 'actions/LoginActions';
 
 const socket = require('socket.io-client')('http://localhost:5000');
 
@@ -13,8 +14,11 @@ export function beginQuiz() {
 }
 
 export function leaveQuiz(historyProp) {
-  historyProp.pushState('/');
-  return { type: types.LEAVE_QUIZ };
+  return dispatch => {
+    historyProp.pushState('/');
+    dispatch({ type: types.LEAVE_QUIZ });
+    dispatch(quizIsReady(false));
+  };
 }
 
 export function addPlayer(players) {
@@ -29,8 +33,8 @@ export function decrementTimeLeft(timeLeft) {
   return { type: types.DECREMENT_TIME_LEFT, timeLeft };
 }
 
-export function showNextQuestion() {
-  return { type: types.SHOW_NEXT_QUESTION };
+export function showNextQuestion(questionId) {
+  return { type: types.SHOW_NEXT_QUESTION, questionId };
 }
 
 export function selectAnswer(packet) {

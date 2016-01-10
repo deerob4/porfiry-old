@@ -27,7 +27,7 @@ function players(state = [], action) {
 function currentQuestion(state = 0, action) {
   switch (action.type) {
     case SHOW_NEXT_QUESTION:
-      return state + 1;
+      return action.questionId;
 
     default:
       return state;

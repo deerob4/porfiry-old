@@ -123,8 +123,6 @@ async function quizSockets(server) {
         )
       );
     });
-
-    console.log(jobs);
   }
 }
 

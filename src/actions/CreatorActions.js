@@ -104,10 +104,7 @@ function saveQuiz(quiz) {
   return dispatch =>
     axios.post('/api/quizzes', quiz)
       .then(response => dispatch(updateId(response.data.quiz._id)))
-      .then(response => {
-        console.log({ ...quiz, id: response.id });
-        socket.emit(types.UPLOAD_QUIZ, { ...quiz, _id: response.id });
-      })
+      .then(response => socket.emit(types.UPLOAD_QUIZ, { ...quiz, _id: response.id }))
       .then(response => dispatch(notifSend({
         message: 'Quiz successfully saved!',
         kind: 'success',

@@ -43,6 +43,5 @@ export function selectAnswer(packet) {
 }
 
 export function receiveAnswer(answer) {
-  console.log(answer);
   return { type: types.RECEIVE_ANSWER, answer };
 }

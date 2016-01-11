@@ -1,60 +1,58 @@
 \subsection{Quiz Creator Test Plan}
-This sub section outlines the data that will be used to test the functionality of the quiz creator.
+This subsection outlines the data that will be used to test the functionality of the quiz creator.
 
 \subsubsection{Add Question}
 \begin{enumerate}[leftmargin=*]
-\item Press the add question button to create question 02.
+\item Press the add question button to create question 02.\\\\
+\textit{Expected result}: New question should be added.
 \end{enumerate}
-
-\textbf{Expected result}: New question should be added.
 
 \subsubsection{Edit Question}
 \begin{enumerate}[leftmargin=*]
 \item Click question title
-\item Type in ``Who is the Prime Minister?''
+\item Type in ``Who is the Prime Minister?''\\\\
+\textit{Expected result}: Question title should now be ``Who is the Prime Minister?''
 \end{enumerate}
-\textbf{Expected result}: Question title should be ``Who is the Prime Minister?''
 
 \subsubsection{Delete Question}
 \begin{enumerate}[leftmargin=*]
 \item Press the add question button to create question 02.
-\item Press the delete question button to delete question 02.
+\item Press the delete question button to delete question 02.\\\\
+\textit{Expected result}: Question 02 should be deleted.
 \end{enumerate}
-\textbf{Expected result}: Question 02 should be deleted.
 
 \subsubsection{Add Category}
 \begin{enumerate}[leftmargin=*]
-\item Press the add category button, and call it ``Literature''.
+\item Press the add category button, and enter it ``Literature''.\\\\
+\textit{Expected result}: New category ``Literature'' should be created, with a default question ready.
 \end{enumerate}
-\textbf{Expected result}: New category ``Literature'' should be created, with a default question ready.
 
 \subsubsection{Delete Category}
 \begin{enumerate}[leftmargin=*]
 \item Press the add category button, and call it ``Literature''.
-\item Press the delete category button
+\item Press the delete category button.\\\\
+\textit{Expected result}: Category ``Literature'' should be deleted along with all questions inside.
 \end{enumerate}
-
-\textbf{Expected result}: Category ``Literature'' should be deleted along with all questions inside.
 
 \subsubsection{Rename Category}
 \begin{enumerate}[leftmargin=*]
 \item Press the add category button, and call it ``Literature''.
-\item Press the rename category button and type in ``History''.
+\item Press the rename category button and type in ``History''.\\\\
+\textit{Expected result}: Category ``Literature'' should be renamed to ``History''.
 \end{enumerate}
-\textbf{Expected result}: Category ``Literature'' should be renamed to ``History''.
 
 \subsubsection{Mark Answer as Correct}
 \begin{enumerate}[leftmargin=*]
-\item Press the second check mark on Answer 2.
+\item Press the second check mark on Answer 2.\\\\
+\textit{Expected result}: Answer 3 should no longer be marked as correct; answer 2 should be.
 \end{enumerate}
-\textbf{Expected result}: Answer 3 should no longer be marked as correct; answer 2 should be.
 
 \subsubsection{Edit Answer}
 \begin{enumerate}[leftmargin=*]
 \item Click answer 01
-\item Type in ``Who is the Prime Minister?''
+\item Type in ``Who is the Prime Minister?''\\\\
+\textit{Expected result}: Answer body should be ``Who is the Prime Minister?`''
 \end{enumerate}
-\textbf{Expected result}: Answer body should be ``Who is the Prime Minister?`''
 
 \subsubsection{Save Quiz}
 \begin{enumerate}[leftmargin=*]
@@ -138,6 +136,6 @@ This sub section outlines the data that will be used to test the functionality o
 }
 \end{Verbatim}
 
-\item Press the save quiz button.
+\item Press the save quiz button.\\\\
+\textit{Expected result}: quiz should be saved to database and green success notification should appear.
 \end{enumerate}
-\textbf{Expected result}: quiz should be saved to database and green success notification should appear.

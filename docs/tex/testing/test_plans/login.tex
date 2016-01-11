@@ -1,0 +1,41 @@
+\subsection{Login Screen Testing} % (fold)
+\label{sub:login_screen_testing}
+This subsection shows the test data that will be used to test the login screen. It should be noted that the login screen serves as a ``portal'' to other aspects of the system, displaying a number of different options based on context. The test data below will include full details of how such contextual situations should be replicated.
+% subsection login_screen_testing (end)
+
+\subsubsection{Load Quizzes} % (fold)
+\label{ssub:load_quizzes}
+\begin{enumerate}[leftmargin=*]
+\item Create and save a quiz with the title ``Testing Quiz''. (\textit{Typical})\\\\
+\textit{Expected result}: Quiz should be shown in box.\\
+\item Create and save five quizzes with the title ``Testing Quiz''. (\textit{Extreme})\\\\
+\textit{Expected result}: Quizzes should be shown in box.\\
+\item Turn off the internet and press the load quiz button. (\textit{Erroneous})\\\\
+\textit{Expected result}: Box should contain message ``Quizzes couldn't be loaded''.\\
+\item Do not save any quizzes. (\textit{Null})\\\\
+\textit{Expected result}: Box should contain message ``No quizzes available''.
+\end{enumerate}
+% subsubsection load_quizzes (end)
+
+\subsubsection{Delete Quizzes} % (fold)
+\label{ssub:delete_quizzes}
+\begin{enumerate}[leftmargin=*]
+\item Create and save a quiz with the title ``Testing Quiz''. (\textit{Typical})
+\item Press the delete quiz button.\\\\
+\textit{Expected result}: Quiz should be removed from list, and should no longer be in database.
+\end{enumerate}
+% subsubsection delete_quizzes (end)
+
+\subsubsection{Show Correct Menu Buttons} % (fold)
+\label{ssub:give_appropriate_access_to_quiz}
+\begin{enumerate}[leftmargin=*]
+\item Schedule a quiz for 20 minutes time. (\textit{Typical})\\\\
+\textit{Expected result}: Join quiz button should be shown.\\
+\item Schedule a quiz for 2 minutes time. (\textit{Typical})\\\\
+\textit{Expected result}: Join quiz button should be shown.\\
+\item Schedule a quiz for 1 months time. (\textit{Typical})\\\\
+\textit{Expected result}: Create and load quiz buttons should be shown.\\
+\item Do not schedule any quizzes. (\textit{Null})\\\\
+\textit{Expected result}: Create and load quiz buttons should be shown.
+\end{enumerate}
+% subsubsection give_appropriate_access_to_quiz (end)

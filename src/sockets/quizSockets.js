@@ -19,7 +19,7 @@ async function quizSockets(server) {
 
   let currentQuiz = {};
   let jobs = {};
-  let quizStatus = types.NO_QUIZ_READY;
+  let quizStatus = types.QUIZ_IN_PROGRESSS;
   let players = [];
   let answers = {};
   let housePoints = {};
@@ -118,14 +118,15 @@ async function quizSockets(server) {
       const changeQuestion = moment(quizStart).add(questionLength * i, 'milliseconds')._d;
 
       jobs[quiz.settings.id].push(
-        schedule.scheduleJob(changeQuestion, () =>
-          io.emit(types.SHOW_NEXT_QUESTION, i)
-        )
+        schedule.scheduleJob(changeQuestion, () => {
+          io.emit(types.SHOW_NEXT_QUESTION, i);
+        })
       );
     });
   }
 
-  function countdown() {
+  while (quizStatus === types.QUIZ_IN_PROGRESS) {
+    console.log('yay');
     setInterval(() => io.emit(types.DECREMENT_TIME_LEFT), 1000);
   }
 }

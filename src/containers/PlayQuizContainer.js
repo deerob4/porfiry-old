@@ -39,7 +39,7 @@ class PlayQuizContainer extends Component {
                 currentQuestion={currentQuestion}
                 players={this.props.currentQuiz.players}
                 answerStatistics={this.props.currentQuiz.answerStatistics}
-                questionLength={this.props.quiz.settings.questionLength}
+                timeLeft={this.props.currentQuiz.timeLeft}
                 selectAnswer={this.selectAnswer} /> :
 
       <Countdown startTime={this.props.quiz.settings.startTime} colours={this.props.colours.text} />

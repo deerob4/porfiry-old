@@ -124,6 +124,10 @@ async function quizSockets(server) {
       );
     });
   }
+
+  function countdown() {
+    setInterval(() => io.emit(types.DECREMENT_TIME_LEFT), 1000);
+  }
 }
 
 export default quizSockets;

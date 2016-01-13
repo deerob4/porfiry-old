@@ -1,0 +1,31 @@
+\subsection{Play Quiz Testing} % (fold)
+\label{sub:play_quiz_testing}
+This subsection demonstrates the test data that should be used to test the main quiz playing interface, as well as the steps that should be performed.
+
+\subsubsection{Move Questions on Time} % (fold)
+\label{ssub:move_questions_on_time}
+\begin{enumerate}[leftmargin=*]
+\item Create and save a quiz with the title ``Testing Quiz'', and the following questions:
+\begin{enumerate}
+\item Who is the French Premier?
+\item Who won the 1960 World Cup?
+\item What is the capital of Iceland?
+\end{enumerate}
+Set it for two minutes time, and join the quiz.
+\item When the quiz is in progress, the questions should navigate automatically in this order:
+\begin{enumerate}
+\item 0-10 seconds - \textit{Who is the French Premier?}
+\item 10-20 seconds - \textit{Who won the 1960 World Cup?}
+\item 20-30 seconds - \textit{What is the capital of Iceland?}
+\end{enumerate}
+\end{enumerate}
+% subsubsection move_questions_on_time (end)
+% subsection play_quiz_testing (end)
+
+\subsubsection{End Quiz at Correct Time} % (fold)
+\label{ssub:end_quiz_at_correct_time}
+\begin{enumerate}[leftmargin=*]
+\item Create and save a quiz with the title ``Testing Quiz'', and the single default question. Set it for two minutes time, and join the quiz.
+\item After 15 seconds, the quiz should end, and the login page should be shown, displaying the create and load quiz buttons should be shown.
+\end{enumerate}
+% subsubsection end_quiz_at_correct_time (end)

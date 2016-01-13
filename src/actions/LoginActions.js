@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { socketHost } from 'config';
 import flattenQuiz from 'libs/flattenQuiz';
 import * as types from 'constants/actions';
 import colourScheme from 'utils/colourScheme';

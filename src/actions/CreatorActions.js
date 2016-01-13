@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { socketHost } from 'config';
 import * as types from 'constants/actions';
 import { actions as notifActions } from 're-notif';
 

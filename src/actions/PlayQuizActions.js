@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { socketHost } from 'config';
 import * as types from 'constants/actions';
 import { quizIsReady } from 'actions/LoginActions';
 
-const socket = require('socket.io-client')('http://localhost:5000');
+const socket = require('socket.io-client')(`http://localhost:5000`);
 
 export function joinQuiz({ house, year }) {
   return dispatch =>

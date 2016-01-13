@@ -1,7 +1,7 @@
 import * as types from '../constants/actions';
 import axios from 'axios';
 import moment from 'moment';
-import config from '../../config';
+import config from '../config';
 import schedule from 'node-schedule';
 import flattenQuiz from '../libs/flattenQuiz';
 import isQuizReady from '../utils/isQuizReady';
@@ -19,7 +19,7 @@ async function quizSockets(server) {
 
   let currentQuiz = {};
   let jobs = {};
-  let quizStatus = types.QUIZ_IN_PROGRESSS;
+  let quizStatus = types.NO_QUIZ_READY;
   let players = [];
   let answers = {};
   let housePoints = {};
@@ -28,6 +28,7 @@ async function quizSockets(server) {
     // If they upload a new quiz, ensure the server finds
     // and schedules it automatically.
     socket.on(types.UPLOAD_QUIZ, (quiz) => {
+      console.log(quiz);
       quiz = flattenQuiz(quiz);
       scheduleQuiz(quiz);
     });
@@ -41,7 +42,10 @@ async function quizSockets(server) {
     });
 
     // Inform the client about the current status of the quiz.
-    socket.on(types.CHECK_IF_QUIZ_READY, () => socket.emit(quizStatus, currentQuiz));
+    socket.on(types.CHECK_IF_QUIZ_READY, () => {
+      socket.emit(quizStatus, currentQuiz);
+      console.log(quizStatus);
+    });
 
     // Add the player to the array of connections.
     socket.on(types.JOIN_QUIZ, (form) => {
@@ -106,6 +110,8 @@ async function quizSockets(server) {
         })
       ];
 
+      console.log(jobs);
+
       questionTimer(quiz);
     }
   }
@@ -120,13 +126,13 @@ async function quizSockets(server) {
       jobs[quiz.settings.id].push(
         schedule.scheduleJob(changeQuestion, () => {
           io.emit(types.SHOW_NEXT_QUESTION, i);
+          countdown();
         })
       );
     });
   }
 
-  while (quizStatus === types.QUIZ_IN_PROGRESS) {
-    console.log('yay');
+  function countdown() {
     setInterval(() => io.emit(types.DECREMENT_TIME_LEFT), 1000);
   }
 }

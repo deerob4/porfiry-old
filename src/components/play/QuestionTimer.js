@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { SHOW_NEXT_QUESTION } from 'constants/actions';
 
-const socket = require('socket.io-client')('http://localhost:5000');
-
 class QuestionTimer extends Component {
   static propTypes = {
     colours: PropTypes.object.isRequired,

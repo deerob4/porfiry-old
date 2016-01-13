@@ -1,12 +1,13 @@
+import { socketHost } from 'config';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as types from 'constants/actions';
+import quizEvents from '../sockets/quizEvents';
 import PlayQuiz from 'components/play/PlayQuiz';
 import Countdown from 'components/play/Countdown';
 import * as actions from 'actions/PlayQuizActions';
-import quizEvents from '../sockets/quizEvents';
 
-const socket = require('socket.io-client')('http://localhost:5000');
+const socket = require('socket.io-client')(`http://localhost:5000`);
 
 class PlayQuizContainer extends Component {
   componentDidMount() {

@@ -1,8 +1,9 @@
-import * as types from 'constants/actions';
 import axios from 'axios';
+import { socketHost } from 'config';
+import * as types from 'constants/actions';
 import { actions as notifActions } from 're-notif';
 
-const socket = require('socket.io-client')('http://localhost:5000');
+const socket = require('socket.io-client')(`http://localhost:5000`);
 
 export function updateId(id) {
   return { type: types.UPDATE_ID, id };

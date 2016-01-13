@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { socketHost } from 'config';
 import flattenQuiz from 'libs/flattenQuiz';
 import * as types from 'constants/actions';
 import colourScheme from 'utils/colourScheme';
@@ -7,7 +8,7 @@ import * as actions from 'actions/CreatorActions';
 import { beginQuiz } from 'actions/PlayQuizActions';
 import { actions as notifActions } from 're-notif';
 
-const socket = require('socket.io-client')('http://localhost:5000');
+const socket = require('socket.io-client')(`http://localhost:5000`);
 
 const { notifSend } = notifActions;
 let dismissAfter = 2000;

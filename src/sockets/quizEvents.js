@@ -1,8 +1,9 @@
 import * as types from 'constants/actions';
 import * as actions from 'actions/PlayQuizActions';
+import { socketHost } from 'config';
 
 function quizEvents(dispatch, historyProp) {
-  const socket = require('socket.io-client')('http://localhost:5000');
+  const socket = require('socket.io-client')(`http://localhost:5000`);
 
   socket.on(types.BEGIN_QUIZ, () => {
     dispatch(actions.beginQuiz());

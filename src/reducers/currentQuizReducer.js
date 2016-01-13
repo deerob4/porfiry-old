@@ -37,7 +37,7 @@ function currentQuestion(state = 0, action) {
 function timeLeft(state = 10000, action) {
   switch (action.type) {
     case DECREMENT_TIME_LEFT:
-      return action.timeLeft;
+      return state - 1000;
 
     default:
       return state;

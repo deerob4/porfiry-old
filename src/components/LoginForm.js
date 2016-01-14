@@ -11,7 +11,7 @@ class LoginForm extends Component {
     playQuiz: PropTypes.func.isRequired,
     quizIsReady: PropTypes.bool.isRequired,
     years: PropTypes.array.isRequired
-  }
+  };
 
   render() {
     return (

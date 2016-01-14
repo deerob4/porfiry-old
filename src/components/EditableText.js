@@ -10,7 +10,7 @@ class EditableText extends Component {
     inputClass: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     textType: PropTypes.string.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -23,7 +23,7 @@ class EditableText extends Component {
 
   beginEditing = () => {
     this.setState({ isEditing: true });
-  }
+  };
 
   finishEditing = () => {
     this.setState({ isEditing: false });
@@ -32,11 +32,11 @@ class EditableText extends Component {
     if (this.state.text.length && this.state.text !== this.props.text) {
       this.props.finishFunction(trim(this.state.text));
     }
-  }
+  };
 
   handleChange = (e) => {
     this.setState({ text: e.target.value });
-  }
+  };
 
   render() {
     let headingView;

@@ -22,7 +22,7 @@ class PlayQuizContainer extends Component {
     };
 
     this.props.dispatch(actions.selectAnswer(packet));
-  }
+  };
 
   render() {
     const currentQuestion = {

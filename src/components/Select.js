@@ -14,7 +14,7 @@ class Select extends Component {
     prefix: PropTypes.string,
     size: PropTypes.oneOf(['full', 'half']),
     suffix: PropTypes.string
-  }
+  };
 
   render() {
     let innerClass;

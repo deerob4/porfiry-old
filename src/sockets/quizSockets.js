@@ -9,8 +9,8 @@ import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
 
 async function quizSockets(server) {
-  const io = require('socket.io').listen(server);
-  const quizAddress = `http://localhost:${config.port}/api/quizzes`;
+  let io = require('socket.io').listen(server);
+  let quizAddress = `http://localhost:${config.port}/api/quizzes`;
 
   // Get initial set of quizzes on server start and schedule them.
   (await axios.get(quizAddress)).data.quizzes

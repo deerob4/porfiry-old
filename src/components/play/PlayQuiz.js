@@ -8,9 +8,9 @@ class PlayQuiz extends Component {
     colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
     players: PropTypes.array.isRequired,
-    timeLeft: PropTypes.number.isRequired,
-    selectAnswer: PropTypes.func.isRequired
-  }
+    selectAnswer: PropTypes.func.isRequired,
+    timeLeft: PropTypes.number.isRequired
+  };
 
   constructor(props) {
     super(props);

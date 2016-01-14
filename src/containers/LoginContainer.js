@@ -31,41 +31,41 @@ class LoginContainer extends Component {
 
   changeYear = (e) => {
     this.props.dispatch(changeYear(e.target.value));
-  }
+  };
 
   changeHouse = (e) => {
     this.props.dispatch(changeHouse(e.target.value));
-  }
+  };
 
   newQuiz = () => {
     this.props.dispatch(loadQuiz(defaultQuiz, false));
     this.props.history.pushState('create', '/create');
-  }
+  };
 
   playQuiz = () => {
     this.props.dispatch(joinQuiz(this.props.user));
     this.props.history.pushState('play', '/play');
-  }
+  };
 
   deleteQuiz = (quizId) => {
     this.props.dispatch(deleteQuiz(quizId));
-  }
+  };
 
   loadQuiz = (quizId) => {
     const quiz = this.props.user.quizzes.find(quiz => quiz._id === quizId);
     this.props.dispatch(loadQuiz(quiz));
     this.closeQuizSelect();
     this.props.history.pushState('create', '/create');
-  }
+  };
 
   openQuizSelect = () => {
     this.props.dispatch(requestQuizzes());
     this.setState({ panelIsOpen: true });
-  }
+  };
 
   closeQuizSelect = () => {
     this.setState({ panelIsOpen: false });
-  }
+  };
 
   render() {
     return (

@@ -4,7 +4,7 @@ import moment from 'moment';
 class Countdown extends Component {
   static propTypes = {
     startTime: PropTypes.string.isRequired
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ class Countdown extends Component {
 
   tick = () => {
     this.setState({ timeLeft: moment().to(this.props.startTime) });
-  }
+  };
 
   render() {
     return (

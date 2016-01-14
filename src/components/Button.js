@@ -7,7 +7,7 @@ class Button extends Component {
     customClass: PropTypes.string,
     icon: PropTypes.string,
     text: PropTypes.string.isRequired
-  }
+  };
 
   render() {
     return (

@@ -13,7 +13,7 @@ class Answer extends Component {
     ).isRequired,
     markCorrect: PropTypes.func.isRequired,
     questionId: PropTypes.number.isRequired
-  }
+  };
 
   editAnswer = (body) => {
     this.props.editAnswer(
@@ -21,7 +21,7 @@ class Answer extends Component {
       body,
       this.props.correct
     );
-  }
+  };
 
   render() {
     return (

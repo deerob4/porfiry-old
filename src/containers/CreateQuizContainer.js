@@ -33,7 +33,7 @@ class CreateQuizContainer extends Component {
       // Generate a first question for the category.
       this.addQuestion(this.props.quiz.categories.length);
     }
-  }
+  };
 
   /**
    * Edits the name of a category.
@@ -46,7 +46,7 @@ class CreateQuizContainer extends Component {
     if (newBody.length && newBody !== currentBody) {
       this.props.dispatch(actions.editCategory(id, newBody));
     }
-  }
+  };
 
   /**
    * Deletes a category and all it's questions.
@@ -60,7 +60,7 @@ class CreateQuizContainer extends Component {
 
     // Delete the actual category entry.
     this.props.dispatch(actions.deleteCategory(id));
-  }
+  };
 
   /**
    * Adds a question to the quiz, into the currently
@@ -87,7 +87,7 @@ class CreateQuizContainer extends Component {
     }
     // Switch the interface over to the new question.
     this.changeQuestion(newId);
-  }
+  };
 
   /**
    * Deletes a question from the quiz.
@@ -116,7 +116,7 @@ class CreateQuizContainer extends Component {
       // Delete the actual question entry.
       this.props.dispatch(actions.deleteQuestion(deleteId));
     }
-  }
+  };
 
   /**
    * Edits a question's body.
@@ -125,7 +125,7 @@ class CreateQuizContainer extends Component {
    */
   editQuestion = (id, body) => {
     this.props.dispatch(actions.editQuestion(id, body));
-  }
+  };
 
   /**
    * Marks a possible quiz answer as correct.
@@ -149,7 +149,7 @@ class CreateQuizContainer extends Component {
       // Update the container to state to cause a re-render of the interface.
       this.setState({ currentQuestion: questionId });
     }
-  }
+  };
 
   /**
    * Edits a question answer with new properties.
@@ -159,7 +159,7 @@ class CreateQuizContainer extends Component {
    */
   editAnswer = (id, body, correct) => {
     this.props.dispatch(actions.editAnswer(id, body, correct));
-  }
+  };
 
   /**
    * Called whenever a new question needs to be displayed.
@@ -172,7 +172,7 @@ class CreateQuizContainer extends Component {
     // by an override, such as adding a new question.
     const id = typeof e === 'number' ? e : e.target.value;
     this.setState({ currentQuestion: parseInt(id) });
-  }
+  };
 
   finishQuiz = () => {
     const finished = confirm(`Do you want to set this quiz to play on ${moment(this.props.quiz.startDate).format('dddd Do MMMM')}, at ${moment(this.props.quiz.startTime).format('HH:mm A')}?`);
@@ -183,11 +183,11 @@ class CreateQuizContainer extends Component {
 
     let quiz = constructQuiz(this.props.quiz);
     this.props.dispatch(actions.saveOrUpdateQuiz(quiz));
-  }
+  };
 
   leaveQuiz = () => {
     this.props.history.pushState('/', '/');
-  }
+  };
 
   /**
    * Called whenever a quiz settings panel property is modified.
@@ -230,7 +230,7 @@ class CreateQuizContainer extends Component {
       kind: 'success',
       dismissAfter: 2000
     }));
-  }
+  };
 
   render() {
     const id = this.state.currentQuestion;

@@ -22,7 +22,7 @@ class QuizSettingsPanel extends Component {
     });
 
     this.props.closeSettings();
-  }
+  };
 
   render() {
     return (

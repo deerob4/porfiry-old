@@ -25,7 +25,7 @@ class CreateQuiz extends Component {
     markCorrect: PropTypes.func.isRequired,
     questions: PropTypes.array.isRequired,
     quizSettings: PropTypes.object.isRequired
-  }
+  };;
 
   constructor(props) {
     super(props);
@@ -39,11 +39,11 @@ class CreateQuiz extends Component {
 
   openSettings = () => {
     this.setState({ settingsAreOpen: true });
-  }
+  };
 
   closeSettings = () => {
     this.setState({ settingsAreOpen: false });
-  }
+  };
 
   changeCategory = e => {
     let categoryId = parseInt(e.target.value);
@@ -53,14 +53,14 @@ class CreateQuiz extends Component {
     this.props.changeQuestion(this.props.questions.filter(x =>
       x.categoryId === categoryId
     )[0].id);
-  }
+  };
 
   editQuestion = body => {
     this.props.editQuestion(
       this.props.currentQuestion.id,
       body
     );
-  }
+  };
 
   render() {
     // Used to prefix each answer.

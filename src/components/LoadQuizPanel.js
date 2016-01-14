@@ -16,7 +16,7 @@ class LoadQuizPanel extends Component {
     quizzes: PropTypes.array.isRequired,
     requestingQuizzes: PropTypes.bool.isRequired,
     requestingQuizzesFailed: PropTypes.bool.isRequired
-  }
+  };
 
   render() {
     let textColour = this.props.colours.text.primary;

@@ -5,7 +5,7 @@ class QuestionTimer extends Component {
   static propTypes = {
     colours: PropTypes.object.isRequired,
     timeLeft: PropTypes.number.isRequired
-  }
+  };
 
   render() {
     return (

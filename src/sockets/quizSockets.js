@@ -134,8 +134,10 @@ async function quizSockets(server) {
   function countdown(questionLength) {
     let timeLeft = questionLength;
 
+    io.emit(types.DECREMENT_TIME_LEFT, timeLeft);
+    
     let countdown = setInterval(() => {
-      if (timeLeft <= 0) clearInterval(countdown);
+      if (timeLeft <= 1000) clearInterval(countdown);
       console.log(timeLeft);
       timeLeft -= 1000;
       io.emit(types.DECREMENT_TIME_LEFT, timeLeft);

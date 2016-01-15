@@ -9,6 +9,7 @@ class PlayQuiz extends Component {
     currentQuestion: PropTypes.object.isRequired,
     players: PropTypes.array.isRequired,
     selectAnswer: PropTypes.func.isRequired,
+    questionLength: PropTypes.number.isRequired,
     timeLeft: PropTypes.number.isRequired
   };
 
@@ -29,6 +30,7 @@ class PlayQuiz extends Component {
         <h3 style={this.props.colours.text.secondary}>Question 4 out of 5 in the History category</h3>
 
         <QuestionTimer colours={this.props.colours.answer.body}
+                       questionLength={this.props.questionLength}
                        timeLeft={this.props.timeLeft} />
 
         <ul>

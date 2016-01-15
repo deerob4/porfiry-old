@@ -34,11 +34,13 @@ async function quizSockets(server) {
     });
 
     socket.on(types.DELETE_QUIZ, (id) => {
-      // Cancel all the jobs related to that quiz.
-      jobs[id].forEach(job => job.cancel());
-      // Delete the quiz entry.
-      delete jobs[id];
-      quizStatus = types.NO_QUIZ_READY;
+      if (jobs[id]) {
+        // Cancel all the jobs related to that quiz.
+        jobs[id].forEach(job => job.cancel());
+        // Delete the quiz entry.
+        delete jobs[id];
+        quizStatus = types.NO_QUIZ_READY;
+      }
     });
 
     // Inform the client about the current status of the quiz.
@@ -59,7 +61,6 @@ async function quizSockets(server) {
 
     socket.on(types.SELECT_ANSWER, (packet) => {
       const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
-
       // Calculate the answer for each house.
       answers[packet.questionId] = calculateAnswerStatistics({
         packet,
@@ -110,8 +111,6 @@ async function quizSockets(server) {
         })
       ];
 
-      console.log(jobs);
-
       questionTimer(quiz);
     }
   }
@@ -126,14 +125,21 @@ async function quizSockets(server) {
       jobs[quiz.settings.id].push(
         schedule.scheduleJob(changeQuestion, () => {
           io.emit(types.SHOW_NEXT_QUESTION, i);
-          countdown();
+          countdown(questionLength);
         })
       );
     });
   }
 
-  function countdown() {
-    setInterval(() => io.emit(types.DECREMENT_TIME_LEFT), 1000);
+  function countdown(questionLength) {
+    let timeLeft = questionLength;
+
+    let countdown = setInterval(() => {
+      if (timeLeft <= 0) clearInterval(countdown);
+      console.log(timeLeft);
+      timeLeft -= 1000;
+      io.emit(types.DECREMENT_TIME_LEFT, timeLeft);
+    }, 1000);
   }
 }
 

@@ -37,7 +37,6 @@ class PlayQuizContainer extends Component {
 
       <PlayQuiz colours={this.props.colours}
                 currentQuestion={currentQuestion}
-                players={this.props.currentQuiz.players}
                 answerStatistics={this.props.currentQuiz.answerStatistics}
                 questionLength={this.props.quiz.settings.questionLength}
                 timeLeft={this.props.currentQuiz.timeLeft}

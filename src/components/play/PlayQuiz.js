@@ -8,8 +8,8 @@ class PlayQuiz extends Component {
     colours: PropTypes.object.isRequired,
     currentQuestion: PropTypes.object.isRequired,
     players: PropTypes.array.isRequired,
-    selectAnswer: PropTypes.func.isRequired,
     questionLength: PropTypes.number.isRequired,
+    selectAnswer: PropTypes.func.isRequired,
     timeLeft: PropTypes.number.isRequired
   };
 
@@ -42,13 +42,6 @@ class PlayQuiz extends Component {
                     text={`${letters[i]}. ${answer.body}`} />
           )}
         </ul>
-
-        <ul style={{width: '100%'}}>
-          {this.props.players.map((player, i) =>
-            <li key={i} style={{display: 'inline-block'}}>{i}&nbsp;</li>
-          )}
-        </ul>
-
       </div>
         // <pre>{JSON.stringify(this.props.answerStatistics)}</pre>
     );

@@ -18,16 +18,7 @@ let dismissAfter = 2000;
  * @return {Object}       Action dispatcher with colour.
  */
 function changeColours(house) {
-  const colourMap = {
-    acton: 'blue',
-    baxter: 'orange',
-    clive: 'green',
-    darwin: 'purple',
-    houseman: 'red',
-    webb: 'yellow'
-  };
-
-  return { type: types.CHANGE_COLOURS, colours: colourScheme(colourMap[house]) };
+  return { type: types.CHANGE_COLOURS, colours: colourScheme(house) };
 }
 
 /**

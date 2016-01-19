@@ -21,14 +21,6 @@ export function leaveQuiz(historyProp) {
   };
 }
 
-export function addPlayer(players) {
-  return { type: types.ADD_PLAYER, players };
-}
-
-export function removePlayer(socketId) {
-  return { type: types.REMOVE_PLAYER, socketId };
-}
-
 export function decrementTimeLeft(timeLeft) {
   return { type: types.DECREMENT_TIME_LEFT, timeLeft };
 }

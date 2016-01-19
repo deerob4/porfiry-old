@@ -30,10 +30,10 @@ class QuestionTimer extends Component {
     let width = (this.state.timeLeft / this.props.questionLength) * 100 + '%';
 
     return (
-      <div style={{ ...this.props.colours, width }}
-           className="question-timer"></div>
+      <div className="question-timer"
+           style={{ ...this.props.colours, width }}>
+      </div>
     );
-        // {this.state.timeLeft}
   }
 }
 

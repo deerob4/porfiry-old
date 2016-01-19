@@ -8,6 +8,8 @@ import isQuizReady from '../utils/isQuizReady';
 import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
 
+let util = require('util');
+
 async function quizSockets(server) {
   let io = require('socket.io').listen(server);
   let quizAddress = `http://localhost:${config.port}/api/quizzes`;
@@ -17,8 +19,8 @@ async function quizSockets(server) {
               .map(x => flattenQuiz(x))
               .forEach(quiz => scheduleQuiz(quiz));
 
-  let currentQuiz = {};
   let jobs = {};
+  let currentQuiz = {};
   let quizStatus = types.NO_QUIZ_READY;
   let players = [];
   let answers = {};
@@ -28,7 +30,6 @@ async function quizSockets(server) {
     // If they upload a new quiz, ensure the server finds
     // and schedules it automatically.
     socket.on(types.UPLOAD_QUIZ, (quiz) => {
-      console.log(quiz);
       quiz = flattenQuiz(quiz);
       scheduleQuiz(quiz);
     });
@@ -44,23 +45,14 @@ async function quizSockets(server) {
     });
 
     // Inform the client about the current status of the quiz.
-    socket.on(types.CHECK_IF_QUIZ_READY, () => {
-      socket.emit(quizStatus, currentQuiz);
-      console.log(quizStatus);
-    });
+    socket.on(types.CHECK_IF_QUIZ_READY, () => socket.emit(quizStatus, currentQuiz));
 
     // Add the player to the array of connections.
-    socket.on(types.JOIN_QUIZ, (form) => {
-      players.push({ socket, form });
-
-      io.emit(types.ADD_PLAYER, players.map(player => ({
-        ...player.form,
-        socketId: player.socket.id
-      })));
-    });
+    socket.on(types.JOIN_QUIZ, (form) => players.push({ socket, form }));
 
     socket.on(types.SELECT_ANSWER, (packet) => {
       const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
+      console.log(packet);
       // Calculate the answer for each house.
       answers[packet.questionId] = calculateAnswerStatistics({
         packet,
@@ -76,7 +68,7 @@ async function quizSockets(server) {
         prop: 'house'
       }, housePoints);
 
-      io.emit(types.RECEIVE_ANSWER, { house: packet.house, answer: packet.answer });
+      io.emit(types.RECEIVE_ANSWER, housePoints);
     });
 
     socket.on('disconnect', () => {
@@ -106,6 +98,8 @@ async function quizSockets(server) {
         }),
 
         schedule.scheduleJob(quizFinish, () => {
+          console.log(util.inspect(answers, false, null));
+          answers = {};
           quizStatus = types.NO_QUIZ_READY;
           io.emit(types.LEAVE_QUIZ);
         })
@@ -135,7 +129,7 @@ async function quizSockets(server) {
     let timeLeft = questionLength;
 
     io.emit(types.DECREMENT_TIME_LEFT, timeLeft);
-    
+
     let countdown = setInterval(() => {
       if (timeLeft <= 1000) clearInterval(countdown);
       console.log(timeLeft);

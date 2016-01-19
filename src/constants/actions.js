@@ -51,10 +51,7 @@ export const UPLOAD_QUIZ = 'UPLOAD_QUIZ';
 
 // Play quiz actions
 export const BEGIN_QUIZ = 'BEGIN_QUIZ';
-
 export const JOIN_QUIZ = 'JOIN_QUIZ';
-export const ADD_PLAYER = 'ADD_PLAYER';
-export const REMOVE_PLAYER = 'REMOVE_PLAYER';
 
 export const DECREMENT_TIME_LEFT = 'DECREMENT_TIME_LEFT';
 export const SHOW_NEXT_QUESTION = 'SHOW_NEXT_QUESTION';

@@ -1,28 +1,11 @@
 import { combineReducers } from 'redux';
 import {
-  ADD_PLAYER,
-  REMOVE_PLAYER,
   DECREMENT_TIME_LEFT,
   SHOW_NEXT_QUESTION,
   RECEIVE_ANSWER,
   BEGIN_QUIZ,
   LEAVE_QUIZ
 } from 'constants/actions';
-
-function players(state = [], action) {
-  switch (action.type) {
-    case ADD_PLAYER:
-      return [...action.players];
-
-    case REMOVE_PLAYER:
-      return state.filter(player =>
-        player.socketId !== action.socketId
-      );
-
-    default:
-      return state;
-  }
-}
 
 function currentQuestion(state = 0, action) {
   switch (action.type) {
@@ -67,7 +50,7 @@ function answerStatistics(state = {
 }, action) {
   switch (action.type) {
     case RECEIVE_ANSWER:
-      return { ...state, [action.house]: state[action.house] + 1  };
+      return { ...state, ...action.answer  };
 
     default:
       return state;
@@ -75,7 +58,6 @@ function answerStatistics(state = {
 }
 
 export default combineReducers({
-  players,
   timeLeft,
   inProgress,
   currentQuestion,

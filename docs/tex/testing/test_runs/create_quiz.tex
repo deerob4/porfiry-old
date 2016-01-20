@@ -52,7 +52,8 @@ This ensures that the user is able to succesfully edit a question in the current
 
 \subsubsection{Delete Question} % (fold)
 \label{ssub:delete_question}
-This ensures that the user is able to succesfully delete a question in the current quiz.
+This ensures that the user is able to succesfully delete a question in the current quiz.\\
+\textit{\textbf{Note:} In order to prove that the question has actually been deleted, the screenshot captures the developer tools used in the creation of the application; an action showing that the question has been deleted is clearly visible.}
 \begin{figure}[!htbp]
 \centering
 \begin{subfigure}{0.5\textwidth}
@@ -96,3 +97,50 @@ This ensures that the user is able to succesfully add a custom category to the c
 As expected, a dialog to enter a category name is shown when the add category button is pressed, and the new category is added successfully. \textit{Success.}
 % subsubsection add_category (end)
 
+
+\subsubsection{Delete Category} % (fold)
+\label{ssub:add_category}
+This ensures that the user is able to succesfully add their custom categories in the current quiz.
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/delete_category/before}
+  \caption{before}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/delete_category/after}
+  \caption{After}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Deleting a category from the quiz.}
+\label{fig:test}
+\end{figure}
+As expected, a dialog to enter a category name is shown when the add category button is pressed, and the new category is added successfully. \textit{Success.}
+% subsubsection add_category (end)
+
+
+\subsubsection{Rename Category} % (fold)
+\label{ssub:add_category}
+This ensures that the user is able to succesfully rename their custom categories in the current quiz.
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/rename_category/during}
+  \caption{During}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/rename_category/after}
+  \caption{After}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Renaming a category in the quiz.}
+\label{fig:test}
+\end{figure}
+As expected, a dialog to enter the new category name is shown when the rename category button is pressed, and category is renamed successfully. \textit{Success.}
+% subsubsection add_category (end)

@@ -62,3 +62,20 @@ This test ensures that the user is able to delete a quiz from the database, usin
 \caption{The load quiz dialog.}
 \label{fig:test}
 \end{figure}
+
+
+\subsubsection{Show Correct Menu Buttons}
+This test ensures that the correct buttons are shown on the login screen depending on the whether or not a quiz has been scheduled. Due to the time based nature of this test, it is impractical to take screenshots; therefore, a table has been included for a trusted individual to sign.
+\begin{table}[]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Test}}                                            & \multicolumn{1}{c|}{\textbf{Expected Result}}                                            & \multicolumn{1}{c|}{\textbf{Works?}} & \multicolumn{1}{c|}{\textbf{Teacher Signature}} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Schedule a quiz for\\ 20 minutes time.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Join quiz button\\ should be shown.\end{tabular}              & Yes.                                 &                                                 \\ \hline
+\begin{tabular}[c]{@{}l@{}}Schedule a quiz for\\ 2 minutes time.\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Join quiz button\\ should be shown.\end{tabular}              & Yes.                                 &                                                 \\ \hline
+\begin{tabular}[c]{@{}l@{}}Schedule a quiz for\\ 1 months time.\end{tabular}   & \begin{tabular}[c]{@{}l@{}}Create and load quiz \\ buttons should be shown.\end{tabular} & Yes.                                 &                                                 \\ \hline
+\begin{tabular}[c]{@{}l@{}}Do not schedule any\\ quizzes.\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Create and load quiz\\ buttons should be shown.\end{tabular}  & Yes.                                 &                                                 \\ \hline
+\end{tabular}
+\caption{My caption}
+\label{my-label}
+\end{table}

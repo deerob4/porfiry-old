@@ -48,11 +48,13 @@ process isCorrect(packet, correctAnswer) {
 
 \subsubsection{Maximum Keys}
 This function will take an object where every key is a number. It will return the key of the highest number.
+\begin{verbatim}
 process maxKey(object) {
   perform reduce on object ->
   if obj[a] > obj[b] then return a
   else return b
 }
+\end{verbatim}
 
 \subsubsection{Most Common Answer}
 Using the answere packet, this function will work out the most common answers for each question at any one point in the quiz. It works in much the same way as the function for calculating house points, but the appending operations differ so a new function is needed.

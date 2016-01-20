@@ -1,31 +1,88 @@
 \subsection{Reducers}
 These processes will be used to manage the internal state of the application, storing information that the individual components need to function properly.
 
-\subsubsection{Login Reducer}
-This reducer will control the functions on the login screen, managing common state like the house and year of the user and the themed colours for the application.
+\subsubsection{Colour Reducer} % (fold)
+\label{ssub:colour_reducer}
+This reducer will control the colour theme, storing all the different sections in an object that can be passed down to all the application's sub-components.
+
 \begin{verbatim}
-process house(state = blank, action) {
-  if (action = change house) {
-    return the action's house
-  }
-}
-
-process year(state = blank, action) {
-  if (action = change year) {
-    return the action's year
-  }
-}
-
-process colours(state = empty object, action) {
+process colours(state = call colourScheme(acton), action) {
   if (action = change colours) {
-    return the state combined with the
-    action's colours - should overwrite
+    replace colours with colours returned from colourScheme(action.house)
   }
 }
 \end{verbatim}
+% subsubsection colour_reducer (end)
 
-\subsubsection{Quiz Reducer}
+\subsubsection{User Reducer} % (fold)
+\label{ssub:login_reducer}
+This reducer will control the functions on the login screen, managing common state like the house and year of the user and the themed colours for the application.
+
 \begin{verbatim}
+process user(state = blank, action) {
+  if (action = change house) {
+    return the action's house
+  }
+  if (action = change year) {
+    return the action's year
+  }
+  if (action = request quizzes) {
+    return current state
+    set requestingQuizzes to true
+    set requestingQuizzesFailed to false
+  }
+  if (action = request quizzes failure) {
+    return current state
+    set requestingQuizzes to false
+    set requestingQuizzesFailed to true
+  }
+  if (action = receive quizzes) {
+    return current state
+    set quizzes to action.quizzes
+    set requestingQuizze to false
+  }
+  if (action = delete quiz success) {
+    return current state
+    filter out quizzes where quiz.id != action.id
+  }
+  if (action = quiz is ready) {
+    return current state
+    set quizIsReady to action.quizIsReady
+  }
+}
+\end{verbatim}
+% subsubsection login_reducer (end)
+
+\subsubsection{Quiz Reducer} % (fold)
+\label{ssub:quiz_reducer}
+\begin{verbatim}
+process settings(state = empty array, action) {
+  if (action = update ID) {
+    replace current ID with action ID
+  }
+  if (action = update title) {
+    replace current title with action title
+  }
+  if (action = update start date) {
+    replace current start date with action start date
+  }
+  if (action = update start time) {
+    replace current start time with action start time
+  }
+  if (action = update question length) {
+    replace current question length with action question length
+  }
+  if (action = update break length) {
+    replace current break length with action break length
+  }
+  if (action = update is finished) {
+    replace current is finished with action is finished
+  }
+  if (action = update all settings) {
+    replace current all settings with action all settings
+  }
+}
+
 process categories(state = empty array, action) {
   if (action = add category) {
     return new object combining current
@@ -39,6 +96,9 @@ process categories(state = empty array, action) {
   }
   if (action = delete category) {
     filter out categories where category id = action id
+  }
+  if (action = delete all categories) {
+    filter out categories where category id != -1 (all)
   }
 }
 
@@ -56,6 +116,9 @@ process questions(state = empty array, action) {
   if (action = delete question) {
     filter out questions where question id = action id
   }
+  if (action = delete all questions) {
+    filter out questions where question id != -1 (all)
+  }
 }
 
 process answers(state = empty object, action) {
@@ -72,5 +135,50 @@ process answers(state = empty object, action) {
   if (action = delete answer) {
     filter out answers where answer id = action id
   }
+  if (action = delete all answers) {
+    filter out answers where answer id != -1 (all)
+  }
 }
 \end{verbatim}
+% subsubsection quiz_reducer (end)
+
+\subsubsection{Current Quiz Reducer} % (fold)
+\label{ssub:current_quiz_reducer}
+This reducer controls all the data needed for the running quiz, and allows it to be accessed by all the necessary sub-components.
+
+\begin{verbatim}
+process currentQuestion(state = 0, action) {
+  if (action = show next answer) {
+    set state.questionId to action.questionId
+  }
+}
+
+process timeLeft(state = 10000, action) {
+  if (action = decrement tine keft) {
+    set state.timeLeft to action.timeLeft
+  }
+}
+
+process inProgress(state = false, action) {
+  if (action = begin quiz) {
+    set quizInProgress to true
+  }
+  if (action = leave quiz) {
+    set quizInProgress to false
+  }
+}
+
+process answerStatistics(state = {
+  acton: 0,
+  baxter: 0,
+  clive: 0,
+  darwin: 0,
+  houseman: 0,
+  webb: 0
+  }, action) {
+    if (action = receive answer) {
+      set state[answer.house] to answer.stats
+    }
+  }
+\end{verbatim}
+% subsubsection current_quiz_reducer (end)

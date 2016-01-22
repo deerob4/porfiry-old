@@ -1,53 +1,61 @@
-\subsection{Colour Tests} % (fold)
-\label{sub:colour_tests}
-Depending on which house the user belongs to, the system should theme itself in that house's colours. The colour mappings are as follows:
-
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{|l|l|}
-\hline
-\multicolumn{1}{|c|}{\textbf{House}} & \multicolumn{1}{c|}{\textbf{Colour}} \\ \hline
-Acton                                & Blue                                  \\ \hline
-Baxter                               & Orange                               \\ \hline
-Clive                                & Turquoise                            \\ \hline
-Darwin                               & Purple                               \\ \hline
-Houseman                             & Red                                  \\ \hline
-Webb                                 & Yellow                               \\ \hline
-\end{tabular}
-\caption{House colours}
-\end{table}
-
-Screenshots showing that each house does produce the correct colours are below.
 \clearpage
+\subsection{Colour Test Runs} % (fold)
+\label{sub:colour_tests}
+Depending on which house the user belongs to, the system should theme itself in that house's colours.
 
 \begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[scale=0.35]{testing/colours/acton}
-  \caption{Test outcome for Acton's colours.}
+  \includegraphics[width=0.95\linewidth]{testing/colours/acton}
+  \caption{Acton}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/colours/baxter}
+  \caption{Baxter}
+  \label{fig:sub2}
+\end{subfigure}
+\label{fig:test}
 \end{figure}
 
 \begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[scale=0.35]{testing/colours/baxter}
-  \caption{Test outcome for Baxter's colours.}
+  \includegraphics[width=0.95\linewidth]{testing/colours/clive}
+  \setcounter{subfigure}{2}%
+  \caption{Clive}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/colours/darwin}
+  \setcounter{subfigure}{3}%
+  \caption{Darwin}
+  \label{fig:sub2}
+\end{subfigure}
+\label{fig:test}
 \end{figure}
 
 \begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[scale=0.35]{testing/colours/darwin}
-  \caption{Test outcome for Darwin's colours.}
-\end{figure}
-
-\begin{figure}[!htbp]
+  \includegraphics[width=0.95\linewidth]{testing/colours/houseman}
+  \setcounter{subfigure}{4}%
+  \caption{Houseman}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[scale=0.35]{testing/colours/houseman}
-  \caption{Test outcome for Houseman's colours.}
+  \includegraphics[width=0.95\linewidth]{testing/colours/webb}
+  \setcounter{subfigure}{5}%
+  \caption{Webb}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{The different house themes.}
+\label{fig:test}
 \end{figure}
-
-\begin{figure}[!htbp]
-  \centering
-  \includegraphics[scale=0.35]{testing/colours/webb}
-  \caption{Test outcome for Webb's colours.}
-\end{figure}
-
-% subsection colour_tests (end)
+\\As the above images demonstrate, the system correctly themed itself in different colours depending on which houses were chosen. Acton was blue, Baxter orange, Clive a shade of turquiouse, Darwin was purple, Houseman red, and Webb was yellow; all according to the test plan. \textit{Success.}

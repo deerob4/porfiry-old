@@ -1,2 +1,42 @@
 \section{Test Strategy}
-This test strategy details the overall strategy that will be used to test the application.
+This test strategy details the overall strategy that will be used to test the application. In order to ensure that the system has been tested fully, and in a manner that encompasses and guarantees all aspects of its existance, purpose, and fuctionality, a number of testing methods will be adopted. These will include:
+
+\begin{itemize}
+  \item Unit testing - the testing of each individual ``part'' of the system, such as this algorithm, or the functionality of this button, in order to detect the extent to which they meet the objectives previously laid out.
+
+  \item Full system testing - the testing of the entire application at once, from the creation of a quiz through to its completion. This will ensure that the system is fully functional, and can be used in the correct manner.
+
+  \item Acceptance testing - in this section of the testing, a user will be given access to the application, and be asked to create a quiz and play through it. They will then give their opinion on all aspects of the system, from its design and usability to the degree to which it facilitates the completion of its goals. Through this form of testing, it is possible to discover how well designed and usable the system is.
+\end{itemize}
+
+The most extensive section of testing will be the unit testing, as the system is made up of a variety of different components. The following things will have to be tested to ensure that the system is properly functional:
+
+\begin{itemize}
+  \item When the house is Acton, the interface should be blue.
+  \item When the house is Baxter, the interface should be orange.
+  \item When the house is Clive, the interface should be turquoise.
+  \item When the house is Darwin, the interface should be purple.
+  \item When the house is Houseman, the interface should be red.
+  \item When the house is Webb, the interface should be yellow.
+  \item In the quiz creation section of the program, the ability to do the following will be tested:
+  \begin{itemize}
+    \item Add a question to the quiz.
+    \item Delete a question from the quiz.
+    \item Edit a question's title.
+    \item Add a new category to the quiz.
+    \item Rename a category in the quiz.
+    \item Edit an answer's body.
+    \item Set one of the answer's as correct.
+    \item Save the quiz to the server.
+  \end{itemize}
+  \item In the quiz playing section of the quiz, the ability to do the following will be tested:
+  \begin{itemize}
+    \item Move to the correct question on time, according to when the quiz started and the length of each question.
+    \item End the quiz at the correct time, after all the questions have been finished.
+  \end{itemize}
+  \item Ensure that it is possible to edit a quiz that has already been saved.
+  \item Ensure that quizzes can be deleted.
+  \item Ensure that the correct buttons are shown on the login screen depending on whether a quiz has been scheduled in the next 20 minutes or is in progress.
+\end{itemize}
+
+Certain tests - specifically, testing the API and the scoring algorithms - are less suited to the screenshot based approach that will be taken with the majority of the application's components. Because of their nature, it makes little sense to provide a series of screenshots demonstrating a connection to the server. These would be easy to fake, difficult to capture, and would provide very little information of actual use. Additionally, the screenshots above regarding the saving and loading of quizzes demonstrates this perfectly well. Instead, automated unit tests, of the kind that would be used in industry, have been written. These provide a guarantee that the code functions properly on an algorithmic level, and, as such, act as perfect proof.

@@ -1,12 +1,11 @@
-\subsection{Create Quiz Test} % (fold)
+\subsection{Create Quiz Test Runs} % (fold)
 \label{sub:create_quiz_test}
 This section contains the test runs performed on the quiz creator.
 
-\clearpage
 
 \subsubsection{Add Question} % (fold)
 \label{ssub:add_question}
-This ensures that the user is able to succesfully add a question to the current quiz.
+This ensures that the user is able to succesfully add a new question to the current quiz when the add question button is pressed.
 \begin{figure}[!htbp]
 \centering
 \begin{subfigure}{0.5\textwidth}
@@ -24,20 +23,15 @@ This ensures that the user is able to succesfully add a question to the current 
 \caption{Adding a question to the quiz.}
 \label{fig:test}
 \end{figure}
+\\As the two pictures indicate, after pressing the add question button, a new question was added to the system, and this was reflectd in the label unde the question title. \textit{Success.}
 % subsubsection add_question (end)
 
+\clearpage
 
 \subsubsection{Edit Question} % (fold)
 \label{ssub:edit_question}
 This ensures that the user is able to succesfully edit a question in the current quiz.
 \begin{figure}[!htbp]
-\centering
-\begin{subfigure}{0.5\textwidth}
-  \centering
-  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_question/before}
-  \caption{Before}
-  \label{fig:sub1}
-\end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
   \centering
   \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_question/during}
@@ -46,7 +40,7 @@ This ensures that the user is able to succesfully edit a question in the current
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_question/during}
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_question/after}
   \caption{After}
   \label{fig:sub3}
 \end{subfigure}
@@ -58,8 +52,8 @@ This ensures that the user is able to succesfully edit a question in the current
 
 \subsubsection{Delete Question} % (fold)
 \label{ssub:delete_question}
-This ensures that the user is able to succesfully delete a question in the current quiz.\\
-\textit{\textbf{Note:} In order to prove that the question has actually been deleted, the screenshot captures the developer tools used in the creation of the application; an action showing that the question has been deleted is clearly visible.}
+This ensures that the user is able to succesfully delete their questions from the current quiz.
+\\\\\textit{\textbf{Note:} In order to prove that the question has actually been deleted, the screenshot captures the developer tools used in the creation of the application; an action showing that the question has been deleted is clearly visible.}
 \begin{figure}[!htbp]
 \centering
 \begin{subfigure}{0.5\textwidth}
@@ -77,6 +71,7 @@ This ensures that the user is able to succesfully delete a question in the curre
 \caption{Delete a question in the quiz.}
 \label{fig:test}
 \end{figure}
+\\The second screenshot shows that a delete question action was passed to the quiz reducer, resulting in the question being successfully deleted; this is also reflected in the labels. \textit{Success.}
 % subsubsection delete_question (end)
 
 
@@ -112,7 +107,7 @@ This ensures that the user is able to succesfully delete their custom categories
 \begin{subfigure}{0.5\textwidth}
   \centering
   \includegraphics[width=0.95\linewidth]{testing/create_quiz/delete_category/before}
-  \caption{before}
+  \caption{Before}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
@@ -151,6 +146,29 @@ This ensures that the user is able to succesfully rename their custom categories
 As expected, a dialog to enter the new category name is shown when the rename category button is pressed, and category is renamed successfully. \textit{Success.}
 % subsubsection add_category (end)
 
+\subsubsection{Edit Answer} % (fold)
+\label{ssub:add_category}
+This test ensures that the user is able to edit the body of an answer in the current quiz.
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_answer/during}
+  \caption{During}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_answer/after}
+  \caption{After}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Marking an answer in as correct.}
+\label{fig:test}
+\end{figure}
+\\As expected, the application allowed for the answer body to be edited, and then persisted this change after leaving the edit mode. \textit{Success.}
+% subsubsection add_category (end)
+
 
 \subsubsection{Mark Answer as Correct} % (fold)
 \label{ssub:add_category}
@@ -172,31 +190,7 @@ This ensures that the user is able to succesfully mark an answer as correct in t
 \caption{Marking an answer in as correct.}
 \label{fig:test}
 \end{figure}
-As expected, the correct mark moved from the third to the first question, meaning that it was marked as correct. \textit{Success.}
-% subsubsection add_category (end)
-
-
-\subsubsection{Edit Answer} % (fold)
-\label{ssub:add_category}
-This test ensures that the user is able to edit the body of an answer in the current quiz.
-\begin{figure}[!htbp]
-\centering
-\begin{subfigure}{0.5\textwidth}
-  \centering
-  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_answer/before}
-  \caption{During}
-  \label{fig:sub1}
-\end{subfigure}%
-\begin{subfigure}{0.5\textwidth}
-  \centering
-  \includegraphics[width=0.95\linewidth]{testing/create_quiz/edit_answer/after}
-  \caption{After}
-  \label{fig:sub2}
-\end{subfigure}
-\caption{Marking an answer in as correct.}
-\label{fig:test}
-\end{figure}
-As expected, the correct mark moved from the third to the first question, meaning that it was marked as correct. \textit{Success.}
+\\As expected, the correct mark moved from the third to the first question, meaning that it was marked as correct. \textit{Success.}
 % subsubsection add_category (end)
 
 
@@ -220,5 +214,5 @@ This test ensures that the user is able to save their quizzes to the database.
 \caption{Saving a quiz to the database.}
 \label{fig:test}
 \end{figure}
-As expected, the correct mark moved from the third to the first question, meaning that it was marked as correct. \textit{Success.}
+\\As expected, the correct mark moved from the third to the first question, meaning that it was marked as correct. \textit{Success.}
 % subsubsection add_category (end)

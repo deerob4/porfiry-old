@@ -14,25 +14,33 @@ This test ensures that a list of all available quizzes can be searched for and f
 \end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[width=0.95\linewidth]{testing/load_quiz/multiple_quizzes}
+  \includegraphics[width=0.35\linewidth]{testing/load_quiz/multiple_quizzes}
   \caption{Five quizzes (extreme)}
   \label{fig:sub2}
 \end{subfigure}
+\label{fig:test}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
 \begin{subfigure}{0.5\textwidth}
   \centering
   \includegraphics[width=0.95\linewidth]{testing/load_quiz/offline}
+  \setcounter{subfigure}{2}%
   \caption{No connection (erroneous)}
-  \label{fig:sub2}
-\end{subfigure}
+  \label{fig:sub1}
+\end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
   \centering
   \includegraphics[width=0.95\linewidth]{testing/load_quiz/no_quizzes}
+  \setcounter{subfigure}{3}%
   \caption{No quizzes (null)}
   \label{fig:sub2}
 \end{subfigure}
 \caption{The load quiz dialog.}
 \label{fig:test}
 \end{figure}
+
 As can be seen, all the tests have worked successfully: when there is only a single quiz in the database, only a single quiz is shown; when there are five, all of these are listed; when there is no connection, and the system is unable to perform an API call, the correct error message is shown; and when there are simply no quizzes available, this too is properly relayed to the user. \textit{Success.}
 
 
@@ -43,39 +51,53 @@ This test ensures that the user is able to delete a quiz from the database, usin
 \centering
 \begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/during}
-  \caption{During}
+  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/before_panel}
+  \caption{Before (panel)}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{0.5\textwidth}
   \centering
-  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/after}
-  \caption{Five quizzes (extreme)}
+  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/before_database}
+  \caption{Before (database)}
   \label{fig:sub2}
 \end{subfigure}
-\begin{subfigure}{0.5\textwidth}
-  \centering
-  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/database}
-  \caption{Database view}
-  \label{fig:sub2}
-\end{subfigure}
-\caption{The load quiz dialog.}
 \label{fig:test}
 \end{figure}
 
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/after_panel}
+  \setcounter{subfigure}{2}%
+  \caption{After (panel)}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\linewidth]{testing/delete_quiz/after_database}
+  \setcounter{subfigure}{3}%
+  \caption{After (database)}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Deleting a quiz.}
+\label{fig:test}
+\end{figure}
+
+As indicated by the \textit{after} images, the quiz is correctly deleted from the database after the delete button is pressed. When the panel is loaded, it calls the API, which in turn calls the database, so the two will always reflect each other. As the quiz is no longer listed in either, the test has passed. \textit{Success.}
 
 \subsubsection{Show Correct Menu Buttons}
 This test ensures that the correct buttons are shown on the login screen depending on the whether or not a quiz has been scheduled. Due to the time based nature of this test, it is impractical to take screenshots; therefore, a table has been included for a trusted individual to sign.
-\begin{table}[]
+\begin{table}[!htbp]
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Test}}                                            & \multicolumn{1}{c|}{\textbf{Expected Result}}                                            & \multicolumn{1}{c|}{\textbf{Works?}} & \multicolumn{1}{c|}{\textbf{Teacher Signature}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Test}}                                            & \multicolumn{1}{c|}{\textbf{Expected Result}}                                            & \multicolumn{1}{c|}{\textbf{Works?}} & \multicolumn{1}{c|}{\textbf{Signature}} \\ \hline
 \begin{tabular}[c]{@{}l@{}}Schedule a quiz for\\ 20 minutes time.\end{tabular} & \begin{tabular}[c]{@{}l@{}}Join quiz button\\ should be shown.\end{tabular}              & Yes.                                 &                                                 \\ \hline
 \begin{tabular}[c]{@{}l@{}}Schedule a quiz for\\ 2 minutes time.\end{tabular}  & \begin{tabular}[c]{@{}l@{}}Join quiz button\\ should be shown.\end{tabular}              & Yes.                                 &                                                 \\ \hline
 \begin{tabular}[c]{@{}l@{}}Schedule a quiz for\\ 1 months time.\end{tabular}   & \begin{tabular}[c]{@{}l@{}}Create and load quiz \\ buttons should be shown.\end{tabular} & Yes.                                 &                                                 \\ \hline
 \begin{tabular}[c]{@{}l@{}}Do not schedule any\\ quizzes.\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Create and load quiz\\ buttons should be shown.\end{tabular}  & Yes.                                 &                                                 \\ \hline
 \end{tabular}
-\caption{My caption}
+\caption{Menu button combinations.}
 \label{my-label}
 \end{table}

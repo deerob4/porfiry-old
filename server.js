@@ -7,8 +7,6 @@ import webpackConfig from './webpack.config';
 import config from './config';
 import apiRoutes from './src/api/index';
 import quizSockets from './src/sockets/quizSockets';
-import axios from 'axios';
-
 
 // Begin connection to database.
 mongoose.connect(`mongodb://localhost:27017/${config.database}`);
@@ -43,6 +41,6 @@ app.get('/play', (req, res) => res.redirect('/'));
 
 // Set the /api endpoint to the route logic in apiRoutes.
 app.use('/api', apiRoutes);
+
 // Start the socket processes.
 quizSockets(server);
-// quizSockets(server);

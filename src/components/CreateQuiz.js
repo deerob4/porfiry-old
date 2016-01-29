@@ -117,7 +117,7 @@ class CreateQuiz extends Component {
 
         <h3 style={this.props.colours.text.secondary}>
           {`Question ${currentQuestionIndex} out of ${currentCategoryLength} in the ${currentCategoryName} category
-          • Question ${this.props.currentQuestion.id + 1} out of ${this.props.questions.length} in total`}
+          • Question ${this.props.currentQuestion.id + 1} out of ${this.props.questions.length} overall`}
         </h3>
 
         <ul>

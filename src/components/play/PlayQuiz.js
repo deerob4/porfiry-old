@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import Button from 'components/Button';
+import QuizAnswer from 'components/play/QuizAnswer';
 import QuestionTimer from 'components/play/QuestionTimer';
 
 class PlayQuiz extends Component {
   static propTypes = {
-    answerStatistics: PropTypes.object.isRequired,
+    answers: PropTypes.array.isRequired,
     colours: PropTypes.object.isRequired,
-    currentQuestion: PropTypes.object.isRequired,
-    players: PropTypes.array.isRequired,
-    questionLength: PropTypes.number.isRequired,
+    question: PropTypes.object.isRequired,
+    quizInfo: PropTypes.object.isRequired,
     selectAnswer: PropTypes.func.isRequired,
     timeLeft: PropTypes.number.isRequired
   };
@@ -20,30 +20,35 @@ class PlayQuiz extends Component {
   render() {
     // Used to prefix each answer.
     let letters = ['A', 'B', 'C', 'D'];
+    let quizInfo = this.props.quizInfo;
 
     return (
       <div style={{ padding: '10px' }}>
         <h1 className="question-title" style={this.props.colours.text.primary}>
-          {this.props.currentQuestion.body}
+          {this.props.question.body}
         </h1>
 
-        <h3 style={this.props.colours.text.secondary}>Question 4 out of 5 in the History category</h3>
+        <h3 style={this.props.colours.text.secondary}>
+        {`Question ${quizInfo.category.currentPosition}
+          out of ${quizInfo.category.length}
+          in the ${quizInfo.category.body} category •
+          Question ${quizInfo.question.id + 1} out of ${quizInfo.totalQuestions} overall`}
+        </h3>
 
         <QuestionTimer colours={this.props.colours.answer.body}
-                       questionLength={this.props.questionLength}
+                       questionLength={quizInfo.questionLength}
                        timeLeft={this.props.timeLeft} />
 
         <ul>
-          {this.props.currentQuestion.answers.map((answer, i) =>
-            <Button key={i}
-                    clickEvent={this.props.selectAnswer.bind(this, i)}
-                    customClass="answer quiz-answer"
-                    colours={this.props.colours.button}
-                    text={`${letters[i]}. ${answer.body}`} />
+          {this.props.answers.map((answer, i) =>
+            <QuizAnswer key={i}
+                        body={`${letters[i]}. ${answer.body}`}
+                        colours={this.props.colours.select}
+                        correct={answer.correct}
+                        selectAnswer={this.props.selectAnswer.bind(this, i)} />
           )}
         </ul>
       </div>
-        // <pre>{JSON.stringify(this.props.answerStatistics)}</pre>
     );
   }
 }

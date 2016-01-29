@@ -29,9 +29,15 @@ export function showNextQuestion(questionId) {
   return { type: types.SHOW_NEXT_QUESTION, questionId };
 }
 
+export function moveToCategory(categoryId) {
+  return { type: types.MOVE_TO_CATEGORY, categoryId };
+}
+
 export function selectAnswer(packet) {
-  return dispatch =>
+  return dispatch => {
+    dispatch({ type: types.SELECT_ANSWER, answer: packet.answer });
     socket.emit(types.SELECT_ANSWER, packet);
+  };
 }
 
 export function receiveAnswer(answer) {

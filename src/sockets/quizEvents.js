@@ -28,9 +28,9 @@ function quizEvents(dispatch, historyProp) {
     dispatch(actions.showNextQuestion(questionId))
   );
 
-  socket.on(types.RECEIVE_ANSWER, (answer) =>
-    dispatch(actions.receiveAnswer(answer))
-  );
+  // socket.on(types.RECEIVE_ANSWER, (answer) =>
+  //   dispatch(actions.receiveAnswer(answer))
+  // );
 }
 
 export default quizEvents;

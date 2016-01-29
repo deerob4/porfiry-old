@@ -1,17 +1,27 @@
 .answer-block
 {
     font-family: $font-stack;
-    font-size: 30px;
+    font-size: 35px;
 
     margin-right: 10px;
-    margin-bottom: 15px;
-    padding: 20px;
+    margin-bottom: 10px;
+    // padding: 90px;
 
     text-align: center;
 
+    display: inline-block;
+
     border: 3px solid;
     border-radius: 4px;
-    height: 250px;
-    width: 50% !important;
-    // @include size(49%, 250px);
+    height: 240px;
+    width: 49%;
+    transition: all 0.2s ease;
+}
+
+.answer-block:active
+{
+    -webkit-transform: scale(.6) !important;
+            transform: scale(.6) !important;
+
+    opacity: .8;
 }

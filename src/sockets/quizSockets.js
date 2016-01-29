@@ -30,6 +30,7 @@ async function quizSockets(server) {
     // If they upload a new quiz, ensure the server finds
     // and schedules it automatically.
     socket.on(types.UPLOAD_QUIZ, (quiz) => {
+      console.log(quiz);
       quiz = flattenQuiz(quiz);
       scheduleQuiz(quiz);
     });

@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import {
   DECREMENT_TIME_LEFT,
   SHOW_NEXT_QUESTION,
+  MOVE_TO_CATEGORY,
+  SELECT_ANSWER,
   RECEIVE_ANSWER,
   BEGIN_QUIZ,
   LEAVE_QUIZ
@@ -11,6 +13,29 @@ function currentQuestion(state = 0, action) {
   switch (action.type) {
     case SHOW_NEXT_QUESTION:
       return action.questionId;
+
+    default:
+      return state;
+  }
+}
+
+function currentCategory(state = 0, action) {
+  switch (action.type) {
+    case MOVE_TO_CATEGORY:
+      return action.categoryId;
+
+    default:
+      return state;
+  }
+}
+
+function selectedAnswer(state = null, action) {
+  switch (action.type) {
+    case SELECT_ANSWER:
+      return action.answer;
+
+    case SHOW_NEXT_QUESTION:
+      return null;
 
     default:
       return state;
@@ -60,6 +85,8 @@ function answerStatistics(state = {
 export default combineReducers({
   timeLeft,
   inProgress,
+  selectedAnswer,
   currentQuestion,
+  currentCategory,
   answerStatistics
 });

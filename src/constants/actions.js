@@ -18,7 +18,6 @@ export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
 export const REQUEST_QUIZZES_FAILURE = 'REQUEST_QUIZZES_FAILURE';
 export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
 
-export const LEAVE_QUIZ = 'LEAVE_QUIZ';
 export const LOAD_DEFAULT_QUIZ = 'LOAD_DEFAULT_QUIZ';
 export const QUIZ_IS_READY = 'QUIZ_IS_READY';
 
@@ -50,8 +49,10 @@ export const DELETE_ALL_ANSWERS = 'DELETE_ALL_ANSWERS';
 export const UPLOAD_QUIZ = 'UPLOAD_QUIZ';
 
 // Play quiz actions
-export const BEGIN_QUIZ = 'BEGIN_QUIZ';
 export const JOIN_QUIZ = 'JOIN_QUIZ';
+export const BEGIN_QUIZ = 'BEGIN_QUIZ';
+export const SHOW_RESULTS = 'SHOW_RESULTS';
+export const LEAVE_QUIZ = 'LEAVE_QUIZ';
 
 export const DECREMENT_TIME_LEFT = 'DECREMENT_TIME_LEFT';
 export const SHOW_NEXT_QUESTION = 'SHOW_NEXT_QUESTION';
@@ -59,3 +60,4 @@ export const MOVE_TO_CATEGORY = 'MOVE_TO_CATEGORY';
 
 export const SELECT_ANSWER = 'SELECT_ANSWER';
 export const RECEIVE_ANSWER = 'RECEIVE_ANSWER';
+export const RECEIVE_HOUSE_POINTS = 'RECEIVE_HOUSE_POINTS';

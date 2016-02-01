@@ -5,6 +5,7 @@ import {
   MOVE_TO_CATEGORY,
   SELECT_ANSWER,
   RECEIVE_ANSWER,
+  RECEIVE_HOUSE_POINTS,
   BEGIN_QUIZ,
   LEAVE_QUIZ
 } from 'constants/actions';
@@ -76,6 +77,9 @@ function answerStatistics(state = {
   switch (action.type) {
     case RECEIVE_ANSWER:
       return { ...state, ...action.answer  };
+
+    case RECEIVE_HOUSE_POINTS:
+      return action.housePoints;
 
     default:
       return state;

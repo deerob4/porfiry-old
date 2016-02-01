@@ -53,7 +53,7 @@ async function quizSockets(server) {
 
     socket.on(types.SELECT_ANSWER, (packet) => {
       const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
-      console.log(packet);
+      // console.log(packet);
       // Calculate the answer for each house.
       answers[packet.questionId] = calculateAnswerStatistics({
         packet,
@@ -84,8 +84,9 @@ async function quizSockets(server) {
 
     if (moment(quizStart).isAfter(moment())) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
-      let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength + 5000;
-      let quizFinish = moment(quizStart).add(totalQuizDuration, 'milliseconds')._d;
+      let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength;
+      let showResults = moment(quizStart).add(totalQuizDuration + 1000, 'milliseconds')._d;
+      let quizFinish = moment(quizStart).add(totalQuizDuration + 9000, 'milliseconds')._d;
 
       jobs[quiz.settings.id] = [
         schedule.scheduleJob(countdownStart, () => {
@@ -98,11 +99,15 @@ async function quizSockets(server) {
           io.emit(types.BEGIN_QUIZ);
         }),
 
+        schedule.scheduleJob(showResults, () => {
+          quizStatus = types.NO_QUIZ_READY;
+          io.emit(types.SHOW_RESULTS, housePoints);
+        }),
+
         schedule.scheduleJob(quizFinish, () => {
           console.log(util.inspect(answers, false, null));
           answers = {};
-          quizStatus = types.NO_QUIZ_READY;
-          io.emit(types.LEAVE_QUIZ);
+          // io.emit(types.LEAVE_QUIZ);
         })
       ];
 

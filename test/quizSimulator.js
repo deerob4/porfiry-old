@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const choice = require('../src/utils/choice');
 const socket = require('socket.io-client')('http://localhost:5000');

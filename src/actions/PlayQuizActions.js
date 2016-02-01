@@ -13,6 +13,18 @@ export function beginQuiz() {
   return { type: types.BEGIN_QUIZ };
 }
 
+function receiveHousePoints(housePoints) {
+  return { type: types.RECEIVE_HOUSE_POINTS, housePoints };
+}
+
+export function showResults(historyProp, housePoints) {
+  return dispatch => {
+    historyProp.pushState('results', '/results');
+    dispatch(receiveHousePoints(housePoints));
+    dispatch({ type: types.SHOW_RESULTS });
+  };
+}
+
 export function leaveQuiz(historyProp) {
   return dispatch => {
     historyProp.pushState('/');

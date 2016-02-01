@@ -38,6 +38,7 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 // Fix the bloody annoying error message when refreshing.
 app.get('/create', (req, res) => res.redirect('/'));
 app.get('/play', (req, res) => res.redirect('/'));
+app.get('/results', (req, res) => res.redirect('/'));
 
 // Set the /api endpoint to the route logic in apiRoutes.
 app.use('/api', apiRoutes);

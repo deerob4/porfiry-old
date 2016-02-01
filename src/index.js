@@ -10,6 +10,7 @@ import DevTools from 'containers/DevTools';
 import LoginContainer from 'containers/LoginContainer';
 import PlayQuizContainer from 'containers/PlayQuizContainer';
 import CreateQuizContainer from 'containers/CreateQuizContainer';
+import ResultsContainer from 'containers/ResultsContainer';
 
 import '../node_modules/animate.css/animate.min.css';
 import '!style!css!sass!styles/porfiry.scss';
@@ -24,9 +25,10 @@ ReactDOM.render(
         <Route path="/" component={LoginContainer} />
         <Route path="create" component={CreateQuizContainer} />
         <Route path="play" component={PlayQuizContainer} />
+        <Route path="results" component={ResultsContainer} />
       </Router>
+      <DevTools />
     </div>
   </Provider>,
   document.getElementById('root')
 );
-      // <DevTools />

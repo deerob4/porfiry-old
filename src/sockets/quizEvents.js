@@ -4,13 +4,17 @@ import * as actions from 'actions/PlayQuizActions';
 function quizEvents(dispatch, historyProp) {
   const socket = require('socket.io-client')(`http://localhost:5000`);
 
-  socket.on(types.BEGIN_QUIZ, () => {
-    dispatch(actions.beginQuiz());
-  });
+  socket.on(types.BEGIN_QUIZ, () =>
+    dispatch(actions.beginQuiz())
+  );
 
-  socket.on(types.LEAVE_QUIZ, () => {
-    dispatch(actions.leaveQuiz(historyProp));
-  });
+  socket.on(types.SHOW_RESULTS, (housePoints) =>
+    dispatch(actions.showResults(historyProp, housePoints))
+  );
+
+  socket.on(types.LEAVE_QUIZ, () =>
+    dispatch(actions.leaveQuiz(historyProp))
+  );
 
   socket.on(types.ADD_PLAYER, (players) =>
     dispatch(actions.addPlayer(players))

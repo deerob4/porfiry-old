@@ -1,3 +1,4 @@
+\clearpage
 \section{Program Variables}
 This section displays the variables used in throughout the program. Due to the functional nature of the language used, variables are used freely, so their usage is rather extensive. There are two types of variables used:
 
@@ -8,9 +9,10 @@ This section displays the variables used in throughout the program. Due to the f
 
 Each variable listed below is accompanied by its name, its purpose, the data type it holds one of \textit{String}, \textit{Number}, \textit{Object}, \textit{Date}, \textit{Boolean}, \textit{Function}, or \textit{Array}; the module or function it is used in, and whether it was defined using \textit{let} or \textit{const}.
 
-\begin{table}[]
-\centering
-\begin{tabular}{|l|l|l|l|l|}
+\subsection{Main Variables} % (fold)
+\label{sub:main_variables}
+These variables make up the majority used in the system, and are used for a variety of purposes, the extent to which is described for each one.
+\begin{longtable}{|l|l|l|l|l|}
 \hline
 \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Module}} & \multicolumn{1}{c|}{\textbf{Type}} & \multicolumn{1}{c|}{\textbf{Stores}} & \multicolumn{1}{c|}{\textbf{Purpose}} \\ \hline
 packet                              & PlayQuizContainer                    & const                              & Object                               & Stores the answer packet.             \\ \hline
@@ -102,56 +104,63 @@ socket                              & PlayQuizActions                      & con
 socket                              & LoginActions                         & const                              & Object                               & Connects module to socket server.     \\ \hline
 dismissAfter                        & LoginActions                         & let                                & Number                               & Time in ms until notifications go.    \\ \hline
 socket                              & CreatorActions                       & const                              & Object                               & Connects module to socket server.     \\ \hline
-CHANGE\_COLOURS                     & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-CHANGE\_HOUSE                       & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-CHANGE\_YEAR                        & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-CHECK\_IF\_QUIZ\_READY              & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-QUIZ\_IN\_PROGRESS                  & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-QUIZ\_IS\_SCHEDULED                 & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-NO\_QUIZ\_READY                     & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_QUIZ                        & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_QUIZ\_SUCCESS               & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_QUIZ\_FAILURE               & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-REQUEST\_QUIZZES                    & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-REQUEST\_QUIZZES\_FAILURE           & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-RECEIVE\_QUIZZES                    & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-LOAD\_DEFAULT\_QUIZ                 & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-QUIZ\_IS\_READY                     & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_ID                          & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_TITLE                       & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_START\_DATE                 & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_START\_TIME                 & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_QUESTION\_LENGTH            & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_BREAK\_LENGTH               & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_IS\_FINISHED                & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPDATE\_ALL\_SETTINGS               & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-ADD\_CATEGORY                       & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_CATEGORY                    & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-EDIT\_CATEGORY                      & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_ALL\_CATEGORIES             & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-ADD\_QUESTION                       & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_QUESTION                    & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-EDIT\_QUESTION                      & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_ALL\_QUESTIONS              & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-ADD\_ANSWER                         & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_ANSWER                      & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-EDIT\_ANSWER                        & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DELETE\_ALL\_ANSWERS                & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-UPLOAD\_QUIZ                        & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-JOIN\_QUIZ                          & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-BEGIN\_QUIZ                         & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-SHOW\_RESULTS                       & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-LEAVE\_QUIZ                         & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-DECREMENT\_TIME\_LEFT               & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-SHOW\_NEXT\_QUESTION                & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-MOVE\_TO\_CATEGORY                  & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-SELECT\_ANSWER                      & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-RECEIVE\_ANSWER                     & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-RECEIVE\_HOUSE\_POINTS              & constants/actions                    & const                              & String                               & String constant for action.           \\ \hline
-\end{tabular}
-\caption{Variables used in the application.}
-\label{my-label}
-\end{table}
+\caption{Main variables.}
+\end{longtable}
+% subsection main_variables (end)
 
 
-
+\subsection{String Constants} % (fold)
+\label{sub:string_constants}
+Unlike the previous collection, these variables merely describe the \textit{actions} that are used in the system - every one defines a ``thing'' that will happen, be that requesting a quiz to load, or deleting an answer. They are all stored in a single file, and referred to throughout the system.
+% subsection string_constants (end)
+\begin{longtable}{|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Module}} & \multicolumn{1}{c|}{\textbf{Type}} & \multicolumn{1}{c|}{\textbf{Stores}} & \multicolumn{1}{c|}{\textbf{Purpose}} \\ \hline
+CHANGE\_COLOURS                     & actions                    & const                              & String                               & String constant for action.           \\ \hline
+CHANGE\_HOUSE                       & actions                    & const                              & String                               & String constant for action.           \\ \hline
+CHANGE\_YEAR                        & actions                    & const                              & String                               & String constant for action.           \\ \hline
+CHECK\_IF\_QUIZ\_READY              & actions                    & const                              & String                               & String constant for action.           \\ \hline
+QUIZ\_IN\_PROGRESS                  & actions                    & const                              & String                               & String constant for action.           \\ \hline
+QUIZ\_IS\_SCHEDULED                 & actions                    & const                              & String                               & String constant for action.           \\ \hline
+NO\_QUIZ\_READY                     & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_QUIZ                        & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_QUIZ\_SUCCESS               & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_QUIZ\_FAILURE               & actions                    & const                              & String                               & String constant for action.           \\ \hline
+REQUEST\_QUIZZES                    & actions                    & const                              & String                               & String constant for action.           \\ \hline
+REQUEST\_QUIZZES\_FAILURE           & actions                    & const                              & String                               & String constant for action.           \\ \hline
+RECEIVE\_QUIZZES                    & actions                    & const                              & String                               & String constant for action.           \\ \hline
+LOAD\_DEFAULT\_QUIZ                 & actions                    & const                              & String                               & String constant for action.           \\ \hline
+QUIZ\_IS\_READY                     & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_ID                          & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_TITLE                       & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_START\_DATE                 & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_START\_TIME                 & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_QUESTION\_LENGTH            & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_BREAK\_LENGTH               & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_IS\_FINISHED                & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPDATE\_ALL\_SETTINGS               & actions                    & const                              & String                               & String constant for action.           \\ \hline
+ADD\_CATEGORY                       & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_CATEGORY                    & actions                    & const                              & String                               & String constant for action.           \\ \hline
+EDIT\_CATEGORY                      & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_ALL\_CATEGORIES             & actions                    & const                              & String                               & String constant for action.           \\ \hline
+ADD\_QUESTION                       & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_QUESTION                    & actions                    & const                              & String                               & String constant for action.           \\ \hline
+EDIT\_QUESTION                      & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_ALL\_QUESTIONS              & actions                    & const                              & String                               & String constant for action.           \\ \hline
+ADD\_ANSWER                         & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_ANSWER                      & actions                    & const                              & String                               & String constant for action.           \\ \hline
+EDIT\_ANSWER                        & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DELETE\_ALL\_ANSWERS                & actions                    & const                              & String                               & String constant for action.           \\ \hline
+UPLOAD\_QUIZ                        & actions                    & const                              & String                               & String constant for action.           \\ \hline
+JOIN\_QUIZ                          & actions                    & const                              & String                               & String constant for action.           \\ \hline
+BEGIN\_QUIZ                         & actions                    & const                              & String                               & String constant for action.           \\ \hline
+SHOW\_RESULTS                       & actions                    & const                              & String                               & String constant for action.           \\ \hline
+LEAVE\_QUIZ                         & actions                    & const                              & String                               & String constant for action.           \\ \hline
+DECREMENT\_TIME\_LEFT               & actions                    & const                              & String                               & String constant for action.           \\ \hline
+SHOW\_NEXT\_QUESTION                & actions                    & const                              & String                               & String constant for action.           \\ \hline
+MOVE\_TO\_CATEGORY                  & actions                    & const                              & String                               & String constant for action.           \\ \hline
+SELECT\_ANSWER                      & actions                    & const                              & String                               & String constant for action.           \\ \hline
+RECEIVE\_ANSWER                     & actions                    & const                              & String                               & String constant for action.           \\ \hline
+RECEIVE\_HOUSE\_POINTS              & actions                    & const                              & String                               & String constant for action.           \\ \hline
+\caption{String constant variables.}
+\end{longtable}

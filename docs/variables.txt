@@ -1,0 +1,184 @@
+containers/PlayQuizContainer.js:3:import * as types from 'constants/actions';
+containers/PlayQuizContainer.js:16:      const packet = {
+containers/PlayQuizContainer.js:28:    const questionId = this.props.currentQuiz.currentQuestion;
+containers/PlayQuizContainer.js:29:    const categoryId = this.props.currentQuiz.currentCategory;
+containers/PlayQuizContainer.js:31:    let quizInfo = {
+containers/DevTools.js:7:const DevTools = createDevTools(
+containers/ResultsContainer.js:9:    const housePoints = this.props.currentQuiz.answerStatistics;
+containers/ResultsContainer.js:12:    const highestScore = Math.max(...Object.keys(housePoints).map(x => housePoints[x]));
+containers/ResultsContainer.js:14:    const winningHouse = capitalize(invert(housePoints)[highestScore]);
+containers/CreateQuizContainer.js:10:import constructQuiz from 'libs/constructQuiz';
+containers/CreateQuizContainer.js:13:const { notifSend } = notifActions;
+containers/CreateQuizContainer.js:19:  constructor(props) {
+containers/CreateQuizContainer.js:29:    let categoryBody = prompt('Category name:');
+containers/CreateQuizContainer.js:43:    let currentBody = this.props.quiz.categories.find(x => x.id === id).body;
+containers/CreateQuizContainer.js:44:    let newBody = prompt('Enter a new category body:');
+containers/CreateQuizContainer.js:71:    const categoryBody = this.props.quiz.categories.find(x => x.id === categoryId).body;
+containers/CreateQuizContainer.js:79:    let newId = last(this.props.quiz.questions).id + 1;
+containers/CreateQuizContainer.js:81:    for (let i = 0; i <= 3; i++) {
+containers/CreateQuizContainer.js:99:      let deleteId = this.state.currentQuestion;
+containers/CreateQuizContainer.js:101:      let deleteIndex = findIndex(this.props.quiz.questions, x => x.id === deleteId);
+containers/CreateQuizContainer.js:109:      let nextQuestionIndex = findIndex(this.props.quiz.questions, x => x.id === deleteIndex - 1);
+containers/CreateQuizContainer.js:110:      let nextQuestionId = this.props.quiz.questions[nextQuestionIndex].id;
+containers/CreateQuizContainer.js:139:    const currentlyCorrect = this.props.quiz.answers.find(x =>
+containers/CreateQuizContainer.js:173:    const id = typeof e === 'number' ? e : e.target.value;
+containers/CreateQuizContainer.js:178:    const finished = confirm(`Do you want to set this quiz to play on ${moment(this.props.quiz.startDate).format('dddd Do MMMM')}, at ${moment(this.props.quiz.startTime).format('HH:mm A')}?`);
+containers/CreateQuizContainer.js:184:    let quiz = constructQuiz(this.props.quiz);
+containers/CreateQuizContainer.js:199:    for (let setting in settings) {
+containers/CreateQuizContainer.js:201:      let value = settings[setting];
+containers/CreateQuizContainer.js:236:    const id = this.state.currentQuestion;
+containers/CreateQuizContainer.js:238:    const currentQuestion = {
+containers/CreateQuizContainer.js:244:    const notificationThemes = {
+containers/LoginContainer.js:18:const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
+containers/LoginContainer.js:19:const years = [7, 8, 9, 10, 11];
+containers/LoginContainer.js:22:  constructor(props) {
+containers/LoginContainer.js:55:    const quiz = this.props.user.quizzes.find(quiz => quiz._id === quizId);
+api/models/Question.js:4:const questionSchema = new mongoose.Schema({
+api/models/Quiz.js:4:const quizSchema = new mongoose.Schema({
+api/index.js:5:let router = express.Router();
+api/routes/quizzes.js:5:let router = express.Router();
+api/routes/quizzes.js:23:  let quiz = new Quiz();
+api/routes/quizzes.js:59:    for (let property in req.body) {
+index.js:18:const store = configureStore();
+index.js:19:const history = createBrowserHistory();
+sockets/quizEvents.js:1:import * as types from 'constants/actions';
+sockets/quizEvents.js:5:  const socket = require('socket.io-client')(`http://localhost:5000`);
+sockets/quizSockets.js:1:import * as types from '../constants/actions';
+sockets/quizSockets.js:11:let util = require('util');
+sockets/quizSockets.js:14:  let io = require('socket.io').listen(server);
+sockets/quizSockets.js:15:  let quizAddress = `http://localhost:${config.port}/api/quizzes`;
+sockets/quizSockets.js:22:  let jobs = {};
+sockets/quizSockets.js:23:  let currentQuiz = {};
+sockets/quizSockets.js:24:  let quizStatus = types.NO_QUIZ_READY;
+sockets/quizSockets.js:25:  let players = [];
+sockets/quizSockets.js:26:  let answers = {};
+sockets/quizSockets.js:27:  let housePoints = {};
+sockets/quizSockets.js:55:      const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
+sockets/quizSockets.js:83:    const quizStart = new Date(quiz.settings.startDate);
+sockets/quizSockets.js:86:      let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
+sockets/quizSockets.js:87:      let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength;
+sockets/quizSockets.js:88:      let showResults = moment(quizStart).add(totalQuizDuration + 1000, 'milliseconds')._d;
+sockets/quizSockets.js:89:      let quizFinish = moment(quizStart).add(totalQuizDuration + 9000, 'milliseconds')._d;
+sockets/quizSockets.js:119:    const questionLength = quiz.settings.questionLength;
+sockets/quizSockets.js:120:    const quizStart = new Date(quiz.settings.startDate);
+sockets/quizSockets.js:123:      const changeQuestion = moment(quizStart).add(questionLength * i, 'milliseconds')._d;
+sockets/quizSockets.js:135:    let timeLeft = questionLength;
+sockets/quizSockets.js:139:    let countdown = setInterval(() => {
+utils/isQuizReady.js:4:  let minutesToStart = moment(quiz.startDate).diff(moment(), 'minutes');
+utils/luminance.js:10:  let rgb = '#', c, i;
+utils/defaultQuiz.js:3:const defaultQuiz = {
+utils/choice.js:2:let choice = array => array[Math.floor(Math.random() * array.length)];
+utils/colourScheme.js:2:  const colours = {
+utils/nextBiggest.js:3:  const ids = array.reduce((arr, obj) => [...arr, obj[key]], []);
+config.js:3:const sharedConfig = {
+config.js:9:let productionConfig = {
+config.js:15:let developmentConfig = {
+utils/backgroundStyle.js:2:  const backgroundMap = {
+node:1:date construct_variable.js
+reducers/index.js:8:const rootReducer = combineReducers({
+api/models/Category.js:4:const categorySchema = new mongoose.Schema({
+reducers/colourReducer.js:2:import { CHANGE_COLOURS } from 'constants/actions';
+reducers/currentQuizReducer.js:11:} from 'constants/actions';
+store/configureStore.js:7:  const store = compose(
+store/configureStore.js:14:      const nextRootReducer = require('../reducers');
+reducers/userReducer.js:1:import * as types from 'constants/actions';
+reducers/userReducer.js:3:let defaultState = {
+libs/mostCommon.js:9:  let frequency = {};
+libs/mostCommon.js:10:  let max = 0;
+libs/mostCommon.js:11:  let result = undefined;
+libs/mostCommon.js:13:  for (let v in array) {
+reducers/quizReducer.js:2:import * as types from 'constants/actions';
+reducers/quizReducer.js:8:let defaultState = {
+libs/flattenQuiz.js:2:  let categories = quiz.categories.map((category, id) => ({ body: category.body, id })).reduce((a, b) => a.concat(b), []);
+libs/flattenQuiz.js:4:  let questions = quiz.categories.map((category, categoryId) =>
+libs/flattenQuiz.js:8:  let answers = quiz.categories.map(category =>
+libs/constructQuiz.js:3:function constructQuiz(quiz) {
+libs/constructQuiz.js:24:export default constructQuiz;
+libs/answerStatistics.js:5:  const initialState = {
+libs/answerStatistics.js:16:  const newState = {
+components/results/ResultsChart.js:3:const BarChart = require('react-chartjs').Bar;
+components/results/ResultsChart.js:11:    const housePoints = this.props.housePoints;
+components/results/ResultsChart.js:13:    let data = {
+components/EditableText.js:15:  constructor(props) {
+components/EditableText.js:42:    let headingView;
+components/EditableText.js:47:    const editView = (
+components/Select.js:20:    let innerClass;
+components/Select.js:21:    let outerClass;
+components/CreateQuiz.js:30:  constructor(props) {
+components/CreateQuiz.js:49:    let categoryId = parseInt(e.target.value);
+components/CreateQuiz.js:67:    let letters = ['A', 'B', 'C', 'D'];
+components/CreateQuiz.js:70:    let currentCategoryName = this.props.categories.filter(x =>
+components/CreateQuiz.js:75:    let currentCategoryLength = this.props.questions.filter(x =>
+components/CreateQuiz.js:81:    let currentQuestionIndex = findIndex(this.props.questions.filter(x =>
+components/LoadQuizPanel.js:22:    let textColour = this.props.colours.text.primary;
+components/LoadQuizPanel.js:24:    const notificationThemes = {
+components/play/QuizAnswer.js:13:  constructor(props) {
+components/play/QuizAnswer.js:25:    let x;
+components/play/QuestionTimer.js:2:import { SHOW_NEXT_QUESTION } from 'constants/actions';
+components/play/QuestionTimer.js:11:  constructor(props) {
+components/play/QuestionTimer.js:18:    const receivedTime = props.timeLeft;
+components/play/QuestionTimer.js:20:    let count = receivedTime;
+components/play/QuestionTimer.js:22:    let countdown = setInterval(() => {
+components/play/QuestionTimer.js:30:    let width = (this.state.timeLeft / this.props.questionLength) * 100 + '%';
+components/play/Countdown.js:9:  constructor(props) {
+components/play/PlayQuiz.js:16:  constructor(props) {
+components/play/PlayQuiz.js:22:    let letters = ['A', 'B', 'C', 'D'];
+components/play/PlayQuiz.js:23:    let quizInfo = this.props.quizInfo;
+actions/PlayQuizActions.js:2:import * as types from 'constants/actions';
+actions/PlayQuizActions.js:5:const socket = require('socket.io-client')(`http://localhost:5000`);
+actions/LoginActions.js:3:import * as types from 'constants/actions';
+actions/LoginActions.js:10:const socket = require('socket.io-client')(`http://localhost:5000`);
+actions/LoginActions.js:12:const { notifSend } = notifActions;
+actions/LoginActions.js:13:let dismissAfter = 2000;
+constants/index.js:1:export const HOUSES = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
+actions/CreatorActions.js:2:import * as types from 'constants/actions';
+actions/CreatorActions.js:5:const socket = require('socket.io-client')(`http://localhost:5000`);
+actions/CreatorActions.js:76:const { notifSend } = notifActions;
+actions/CreatorActions.js:77:let dismissAfter = 2000;
+constants/actions.js:2:export const CHANGE_COLOURS = 'CHANGE_COLOURS';
+constants/actions.js:5:export const CHANGE_HOUSE = 'CHANGE_HOUSE';
+constants/actions.js:6:export const CHANGE_YEAR = 'CHANGE_YEAR';
+constants/actions.js:8:export const CHECK_IF_QUIZ_READY = 'CHECK_IF_QUIZ_READY';
+constants/actions.js:9:export const QUIZ_IN_PROGRESS = 'QUIZ_IN_PROGRESS';
+constants/actions.js:10:export const QUIZ_IS_SCHEDULED = 'QUIZ_IS_SCHEDULED';
+constants/actions.js:11:export const NO_QUIZ_READY = 'NO_QUIZ_READY';
+constants/actions.js:13:export const DELETE_QUIZ = 'DELETE_QUIZ';
+constants/actions.js:14:export const DELETE_QUIZ_SUCCESS = 'DELETE_QUIZ_SUCCESS';
+constants/actions.js:15:export const DELETE_QUIZ_FAILURE = 'DELETE_QUIZ_FAILURE';
+constants/actions.js:17:export const REQUEST_QUIZZES = 'REQUEST_QUIZZES';
+constants/actions.js:18:export const REQUEST_QUIZZES_FAILURE = 'REQUEST_QUIZZES_FAILURE';
+constants/actions.js:19:export const RECEIVE_QUIZZES = 'RECEIVE_QUIZZES';
+constants/actions.js:21:export const LOAD_DEFAULT_QUIZ = 'LOAD_DEFAULT_QUIZ';
+constants/actions.js:22:export const QUIZ_IS_READY = 'QUIZ_IS_READY';
+constants/actions.js:25:export const UPDATE_ID = 'UPDATE_ID';
+constants/actions.js:26:export const UPDATE_TITLE = 'UPDATE_TITLE';
+constants/actions.js:27:export const UPDATE_START_DATE = 'UPDATE_START_DATE';
+constants/actions.js:28:export const UPDATE_START_TIME = 'UPDATE_START_TIME';
+constants/actions.js:29:export const UPDATE_QUESTION_LENGTH = 'UPDATE_QUESTION_LENGTH';
+constants/actions.js:30:export const UPDATE_BREAK_LENGTH = 'UPDATE_BREAK_LENGTH';
+constants/actions.js:31:export const UPDATE_IS_FINISHED = 'UPDATE_IS_FINISHED';
+constants/actions.js:32:export const UPDATE_ALL_SETTINGS = 'UPDATE_ALL_SETTINGS';
+constants/actions.js:34:export const ADD_CATEGORY = 'ADD_CATEGORY';
+constants/actions.js:35:export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+constants/actions.js:36:export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+constants/actions.js:37:export const DELETE_ALL_CATEGORIES = 'DELETE_ALL_CATEGORIES';
+constants/actions.js:39:export const ADD_QUESTION = 'ADD_QUESTION';
+constants/actions.js:40:export const DELETE_QUESTION = 'DELETE_QUESTION';
+constants/actions.js:41:export const EDIT_QUESTION = 'EDIT_QUESTION';
+constants/actions.js:42:export const DELETE_ALL_QUESTIONS = 'DELETE_ALL_QUESTIONS';
+constants/actions.js:44:export const ADD_ANSWER = 'ADD_ANSWER';
+constants/actions.js:45:export const DELETE_ANSWER = 'DELETE_ANSWER';
+constants/actions.js:46:export const EDIT_ANSWER = 'EDIT_ANSWER';
+constants/actions.js:47:export const DELETE_ALL_ANSWERS = 'DELETE_ALL_ANSWERS';
+constants/actions.js:49:export const UPLOAD_QUIZ = 'UPLOAD_QUIZ';
+constants/actions.js:52:export const JOIN_QUIZ = 'JOIN_QUIZ';
+constants/actions.js:53:export const BEGIN_QUIZ = 'BEGIN_QUIZ';
+constants/actions.js:54:export const SHOW_RESULTS = 'SHOW_RESULTS';
+constants/actions.js:55:export const LEAVE_QUIZ = 'LEAVE_QUIZ';
+constants/actions.js:57:export const DECREMENT_TIME_LEFT = 'DECREMENT_TIME_LEFT';
+constants/actions.js:58:export const SHOW_NEXT_QUESTION = 'SHOW_NEXT_QUESTION';
+constants/actions.js:59:export const MOVE_TO_CATEGORY = 'MOVE_TO_CATEGORY';
+constants/actions.js:61:export const SELECT_ANSWER = 'SELECT_ANSWER';
+constants/actions.js:62:export const RECEIVE_ANSWER = 'RECEIVE_ANSWER';
+constants/actions.js:63:export const RECEIVE_HOUSE_POINTS = 'RECEIVE_HOUSE_POINTS';
+api/models/Answer.js:3:const answerSchema = new mongoose.Schema({

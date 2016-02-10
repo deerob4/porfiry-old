@@ -3,7 +3,7 @@
 const choice = require('../src/utils/choice');
 const socket = require('socket.io-client')('http://localhost:5000');
 
-for (let i = 0; i <= 900; i++) {
+for (let i = 0; i <= 10000; i++) {
   let form = {
     house: choice(['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb']),
     year: choice([7, 8, 9, 10, 11])

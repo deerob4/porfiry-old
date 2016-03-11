@@ -6,7 +6,28 @@ This section outlines how to install and make use of the application.
 
 \section{Installation} % (fold)
 \label{sec:installation}
-This section details how to install the application. The process is rather specialised, and te precise details vary depending on which cloud provider is being used to host the system, but by and large there is a process that can be followed.
+This section details how to install the application. The process is rather specialised, and the precise details vary depending on which cloud provider is being used to host the system, but by and large there is a process that can be followed.
+
+\textit{\textbf{Note:} Installation of the system is only possible on Unix based operating systems, such as a Linux distribution or OSX.}
+
+\subsection{Cloning the Repository} % (fold)
+\label{sub:cloning_the_repository}
+In order to get the system on your server, the git repository needs to be cloned. This process is simple: navigate to the folder in which the system will reside (the home directory is recommended), and run the following command:
+
+\begin{verbatim} git clone http://github.com/deerob4/porfiry \end{verbatim}
+
+You will be asked for credentials; these will be supplied with the system.
+% subsection cloning_the_repository (end)
+
+\subsection{Installing Dependencies} % (fold)
+\label{sub:installing_dependencies}
+The next stage is to install the application's external dependencies. Without these, the system will not be able to run. Ensure that Node is installed on the server; if not, install it using the appropriate package manager. The minimum version of Node required is 4.2.3. To install the dependencies, run the following command:
+
+\begin{verbatim}npm install\end{verbatim}
+
+This will create an \textit{npm_modules} directory in the root of the system's folder, which will contain all of the dependencies. The system will pull from this directory.
+% subsection installing_dependencies (end)
+
 % section installation (end)
 
 \section{Usage} % (fold)
@@ -46,7 +67,16 @@ To add a new question, simply press the ``Add Question'' button.
 
 \subsection{Scheduling a Quiz} % (fold)
 \label{sub:scheduling_a_quiz}
+To schedule a quiz, perform the following steps:
 
+\begin{enumerate}
+\item Tap the ``Quiz settings'' button.
+\item Enter the date and time you wish the quiz to begin.
+\item Tap the ``Save settings'' button to exit the settings panel.
+\item Tap the ``Save quiz'' button.
+\end{enumerate}
+
+Your quiz has now been scheduled, and will take place at the set time.
 % subsection scheduling_a_quiz (end)
 
 \subsection{Loading a Quiz} % (fold)
@@ -56,7 +86,9 @@ If you wish to load a quiz that has been created earlier, for further editing, p
 
 \subsection{Deleting a Quiz} % (fold)
 \label{sub:deleting_a_quiz}
-Deleting a quiz is also very simple. Press the ``Load quiz'' button on the main menu, and locate the quiz you wish to edit by its title and schedule date. From there, press the ``Delete quiz'' button, and the quiz will be deleted. \textit{\textbf{Note:} if the quiz has been scheduled to play, deleting the quiz will cancel this schedule, and the quiz will no longer take place.}
+Deleting a quiz is also very simple. Press the ``Load quiz'' button on the main menu, and locate the quiz you wish to edit by its title and schedule date. From there, press the ``Delete quiz'' button, and the quiz will be deleted.
+
+\textit{\textbf{Note:} If the quiz has been scheduled to play, deleting the quiz will cancel the schedule, and the quiz will no longer take place.}
 % subsection deleting_a_quiz (end)
 % section usage (end)
 % part user_ _documentation_ (end)

@@ -47,13 +47,11 @@ async function quizSockets(server) {
 
     // Inform the client about the current status of the quiz.
     socket.on(types.CHECK_IF_QUIZ_READY, () => socket.emit(quizStatus, currentQuiz));
-
     // Add the player to the array of connections.
     socket.on(types.JOIN_QUIZ, (form) => players.push({ socket, form }));
 
     socket.on(types.SELECT_ANSWER, (packet) => {
       const houses = ['acton', 'baxter', 'clive', 'darwin', 'houseman', 'webb'];
-      // console.log(packet);
       // Calculate the answer for each house.
       answers[packet.questionId] = calculateAnswerStatistics({
         packet,
@@ -88,7 +86,7 @@ async function quizSockets(server) {
       let showResults = moment(quizStart).add(totalQuizDuration + 1000, 'milliseconds')._d;
       let quizFinish = moment(quizStart).add(totalQuizDuration + 9000, 'milliseconds')._d;
 
-      jobs[quiz.settings.id] = [
+      jobs[quiz.settings._id] = [
         schedule.scheduleJob(countdownStart, () => {
           currentQuiz = quiz;
           quizStatus = types.QUIZ_IS_SCHEDULED;
@@ -105,9 +103,7 @@ async function quizSockets(server) {
         }),
 
         schedule.scheduleJob(quizFinish, () => {
-          console.log(util.inspect(answers, false, null));
           answers = {};
-          // io.emit(types.LEAVE_QUIZ);
         })
       ];
 

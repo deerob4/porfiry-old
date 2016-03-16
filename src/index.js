@@ -27,8 +27,8 @@ ReactDOM.render(
         <Route path="play" component={PlayQuizContainer} />
         <Route path="results" component={ResultsContainer} />
       </Router>
+      <DevTools />
     </div>
   </Provider>,
   document.getElementById('root')
 );
-      // <DevTools />

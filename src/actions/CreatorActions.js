@@ -83,12 +83,15 @@ let dismissAfter = 2000;
 function updateQuiz(quiz) {
   return dispatch =>
     axios.put(`/api/quizzes/${quiz.id}`, quiz)
+      .then(() => {
+        console.log(quiz);
+        socket.emit(types.UPLOAD_QUIZ, quiz);
+      })
       .then(response => dispatch(notifSend({
         message: 'Quiz successfully updated!',
         kind: 'success',
         dismissAfter
       })))
-      .then(() => socket.emit(types.UPLOAD_QUIZ, quiz))
       .catch(error => dispatch(notifSend({
         message: 'Quiz failed to update.',
         kind: 'danger',

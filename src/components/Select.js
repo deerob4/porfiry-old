@@ -36,7 +36,7 @@ class Select extends Component {
             typeof this.props.options[0] !== 'object' ?
               // Used if a simple 1D array is passed.
               <option key={option} value={option}>
-                {this.props.prefix} {capitalise(option)}
+                {`${this.props.prefix ? this.props.prefix : ''} ${capitalise(option)}`}
               </option> :
               // Used if a complex array containing objects
               // is passed through.

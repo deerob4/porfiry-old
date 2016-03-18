@@ -3,6 +3,33 @@
 This subsection shows the test data that will be used to test the login screen. It should be noted that the login screen serves as a ``portal'' to other aspects of the system, displaying a number of different options based on context. The test data below will include full details of how such contextual situations should be replicated.
 % subsection login_screen_testing (end)
 
+\subsubsection{Connect to State Store} % (fold)
+\label{ssub:connect_to_state_store}
+\begin{enumerate}[leftmargin=*]
+\item Open the developer tools, navigate to LoginContainer, and check that the store has been passed in the props list.\\\\
+\textit{Expected result}: Connection to state store should be open.
+\end{enumerate}
+% subsubsection connect_to_state_store (end)
+
+\subsubsection{Colours} % (fold)
+\label{ssub:colours}
+This section demonstrates how to test that the system is properly able to theme itself depending on the colour's selected.
+\begin{enumerate}
+\item Select ``Acton'' in the house box.\\\\
+\textit{Expected result}: Interface should turn blue.\\
+\item Select ``Baxter'' in the house box.\\\\
+\textit{Expected result}: Interface should turn orange.\\
+\item Select ``Clive'' in the house box.\\\\
+\textit{Expected result}: Interface should turn green.\\
+\item Select ``Darwin'' in the house box.\\\\
+\textit{Expected result}: Interface should turn purple.\\
+\item Select ``Houseman'' in the house box.\\\\
+\textit{Expected result}: Interface should turn red.\\
+\item Select ``Webb'' in the house box.\\\\
+\textit{Expected result}: Interface should turn yellow.
+\end{enumerate}
+% subsubsection colours (end)
+
 \subsubsection{Load Quizzes} % (fold)
 \label{ssub:load_quizzes}
 \begin{enumerate}[leftmargin=*]

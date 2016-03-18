@@ -30,7 +30,7 @@ async function quizSockets(server) {
     // If they upload a new quiz, ensure the server finds
     // and schedules it automatically.
     socket.on(types.UPLOAD_QUIZ, (quiz) => {
-      console.log(quiz);
+      // console.log(quiz);
       quiz = flattenQuiz(quiz);
       scheduleQuiz(quiz);
     });
@@ -79,7 +79,7 @@ async function quizSockets(server) {
 
   function scheduleQuiz(quiz) {
     const quizStart = new Date(quiz.settings.startDate);
-
+    console.log(quiz);
     if (moment(quizStart).isAfter(moment())) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
       let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength;
@@ -114,11 +114,12 @@ async function quizSockets(server) {
   function questionTimer(quiz) {
     const questionLength = quiz.settings.questionLength;
     const quizStart = new Date(quiz.settings.startDate);
-
+    console.log(quiz.settings.id);
+    console.log(jobs);
     quiz.questions.forEach((question, i) => {
       const changeQuestion = moment(quizStart).add(questionLength * i, 'milliseconds')._d;
 
-      jobs[quiz.settings.id].push(
+      jobs[quiz.settings._id].push(
         schedule.scheduleJob(changeQuestion, () => {
           io.emit(types.SHOW_NEXT_QUESTION, i);
           countdown(questionLength);

@@ -1,0 +1,19 @@
+\subsection{Validation Test Plan} % (fold)
+\label{sub:validation_testing}
+This subsection displays the test data that will be used to test the validation used throughout the system, and the responses that should occur when the data is entered.
+
+\subsubsection{Only Numbers in Question and Break Fields} % (fold)
+\label{ssub:only_numbers_in_question_and_break_fields}
+\begin{enumerate}
+  \item Enter ``10'' into the question and break fields. (\textit{Typical})\\\\
+  \textit{Expected result}: Nothing should happen, as the data is as expected.\\
+
+  \item Attempt to enter ``abc'' into the question and break fields. (\textit{Extreme})\\\\
+  \textit{Expected result}: The fields should prevent such characters being inserted.\\
+
+  \item Do not enter anything into the fields. (\textit{Null})
+  \item Press the save button.\\\\
+  \textit{Expected result}: Nothing should change, as the previous values will not have been updated.\\
+\end{enumerate}
+% subsubsection only_numbers_in_question_and_break_fields (end)
+% subsection validation_testing (end)

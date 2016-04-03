@@ -28,7 +28,7 @@ Students should be given a minimum of five seconds to answer a question. This va
   \textit{Expected result}: A message should appear, stating that questions must be at least 5 seconds.\\
 
   \item Enter ``-8238'' into the question length field. (\textit{Erroneous})\\\\
-  \textit{Expected result}: A message should appear, stating that questions must be at least 5 seconds.\\
+  \textit{Expected result}: A message should appear, stating that questions must be at least 5 seconds.
 \end{enumerate}
 % subsubsection minimum_question_length (end)
 
@@ -43,6 +43,17 @@ Students should be given a minimum of one minute in a break. This validation ens
   \textit{Expected result}: A message should appear, stating that breaks must be at least 1 minute.\\
 
   \item Enter ``-8238'' into the break length field. (\textit{Erroneous})\\\\
-  \textit{Expected result}: A message should appear, stating that breaks must be at least 1 minute.\\
+  \textit{Expected result}: A message should appear, stating that breaks must be at least 1 minute.
 \end{enumerate}
+
+\subsubsection{One Correct Answer Per Question} % (fold)
+\label{ssub:one_correct_answer_}
+Each question can only have one correct answer. This aspect of the validation will ensure that only one answer per question can be marked as correct in the quiz editor.
+
+\begin{enumerate}
+  \item Create a new quiz.
+  \item Mark the first answer as correct by clicking on the tick icon.\\\\
+  \textit{Expected result}: The tick in the first answer should now be highlighted, and the previous tick should be pale.
+\end{enumerate}
+% subsubsection one_correct_answer_ (end)
 % subsection validation_testing (end)

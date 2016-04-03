@@ -18,6 +18,7 @@ The most extensive section of testing will be the unit testing, as the system is
   \item When the house is Darwin, the interface should be purple.
   \item When the house is Houseman, the interface should be red.
   \item When the house is Webb, the interface should be yellow.
+
   \item In the quiz creation section of the program, the ability to do the following will be tested:
   \begin{itemize}
     \item Add a question to the quiz.
@@ -29,11 +30,26 @@ The most extensive section of testing will be the unit testing, as the system is
     \item Set one of the answer's as correct.
     \item Save the quiz to the server.
   \end{itemize}
+
+  \item The following validation will be tested:
+  \begin{itemize}
+    \item Ensure only numbers can be typed into the question and break length fields
+    \item Ensure questions can be set to a minimum of 5 seconds
+    \item Ensure breaks can be set to a minimum of 1 minute
+    \item Ensure that only one answer per question can be marked as correct at once
+    \item Ensure that question and answer bodies cannot be left blank
+  \end{itemize}
+
+  \item The countdown screen will be tested to ensure that it displays the correct time remaining before the next quiz will begin.
+
   \item In the quiz playing section of the quiz, the ability to do the following will be tested:
   \begin{itemize}
     \item Move to the correct question on time, according to when the quiz started and the length of each question.
     \item End the quiz at the correct time, after all the questions have been finished.
   \end{itemize}
+
+  \item The results section will be tested to ensure that it shows the correct results depending on the answer packets that have passed through the system.
+
   \item Ensure that it is possible to edit a quiz that has already been saved.
   \item Ensure that quizzes can be deleted.
   \item Ensure that the correct buttons are shown on the login screen depending on whether a quiz has been scheduled in the next 20 minutes or is in progress.

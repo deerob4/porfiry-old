@@ -2,18 +2,47 @@
 \label{sub:validation_testing}
 This subsection displays the test data that will be used to test the validation used throughout the system, and the responses that should occur when the data is entered.
 
-\subsubsection{Only Numbers in Question and Break Fields} % (fold)
+\subsubsection{Only Integers in Question and Break Fields} % (fold)
 \label{ssub:only_numbers_in_question_and_break_fields}
+This validation will ensure that the question and break fields only accept integers, as they are used in the scheduling of the quiz and so must be validated.
 \begin{enumerate}
-  \item Enter ``10'' into the question and break fields. (\textit{Typical})\\\\
+  \item Enter ``10'' into the question length and break fields. (\textit{Typical})\\\\
   \textit{Expected result}: Nothing should happen, as the data is as expected.\\
 
-  \item Attempt to enter ``abc'' into the question and break fields. (\textit{Extreme})\\\\
+  \item Attempt to enter ``abc'' into the question length and break fields. (\textit{Extreme})\\\\
   \textit{Expected result}: The fields should prevent such characters being inserted.\\
 
-  \item Do not enter anything into the fields. (\textit{Null})
-  \item Press the save button.\\\\
+  \item Do not enter anything into the fields and save. (\textit{Null})\\\\
   \textit{Expected result}: Nothing should change, as the previous values will not have been updated.\\
 \end{enumerate}
 % subsubsection only_numbers_in_question_and_break_fields (end)
+
+\subsubsection{Minimum Question Length} % (fold)
+\label{ssub:minimum_question_length}
+Students should be given a minimum of five seconds to answer a question. This validation ensures that this value is enforced when setting a custom question length.
+\begin{enumerate}
+  \item Enter ``10'' into the question length field. (\textit{Typical})\\\\
+  \textit{Expected result}: Nothing should happen, as the data is as expected.\\
+
+  \item Enter ``3'' into the question length field. (\textit{Extreme})\\\\
+  \textit{Expected result}: A message should appear, stating that questions must be at least 5 seconds.\\
+
+  \item Enter ``-8238'' into the question length field. (\textit{Erroneous})\\\\
+  \textit{Expected result}: A message should appear, stating that questions must be at least 5 seconds.\\
+\end{enumerate}
+% subsubsection minimum_question_length (end)
+
+\subsubsection{Minimum Break Length} % (fold)
+\label{ssub:minimum_question_length}
+Students should be given a minimum of one minute in a break. This validation ensures that this value is enforced when setting a custom break length.
+\begin{enumerate}
+  \item Enter ``5'' into the break length field. (\textit{Typical})\\\\
+  \textit{Expected result}: Nothing should happen, as the data is as expected.\\
+
+  \item Enter ``0.5'' into the break length field. (\textit{Extreme})\\\\
+  \textit{Expected result}: A message should appear, stating that breaks must be at least 1 minute.\\
+
+  \item Enter ``-8238'' into the break length field. (\textit{Erroneous})\\\\
+  \textit{Expected result}: A message should appear, stating that breaks must be at least 1 minute.\\
+\end{enumerate}
 % subsection validation_testing (end)

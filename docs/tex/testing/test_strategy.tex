@@ -1,5 +1,5 @@
 \section{Test Strategy}
-This test strategy details the overall strategy that will be used to test the application. In order to ensure that the system has been tested fully, and in a manner that encompasses and guarantees all aspects of its existance, purpose, and fuctionality, a number of testing methods will be adopted. These will include:
+This test strategy details the overall strategy that will be used to test the application. The application will be frequently compiled, upon every change or added feature, to ensure that its functionality meets this test strategy. In order to ensure that the system has been tested fully, and in a manner that encompasses and guarantees all aspects of its existance, purpose, and fuctionality, a number of testing methods will be adopted. These will include:
 
 \begin{itemize}
   \item Unit testing - the testing of each individual ``part'' of the system, such as this algorithm, or the functionality of this button, in order to detect the extent to which they meet the objectives previously laid out.
@@ -12,6 +12,17 @@ This test strategy details the overall strategy that will be used to test the ap
 The most extensive section of testing will be the unit testing, as the system is made up of a variety of different components. The following things will have to be tested to ensure that the system is properly functional:
 
 \begin{itemize}
+  \item The navigation flow of the system will be tested, such that:
+  \begin{itemize}
+    \item Link to quiz creator should take them to the quiz creator.
+    \item Countdown screen should move to the quiz player at the correct time.
+    \item Link out of quiz creator to login screen should take them to the login screen.
+    \item Button to settings dialog should load the settings dialog.
+    \item Select boxes in quiz creator takes users to the correct question / category.
+    \item Button to load quiz dialog should load the load quiz dialog.
+    \item Edit button on load quiz dialog should load the correct quiz.
+  \end{itemize}
+
   \item When the house is Acton, the interface should be blue.
   \item When the house is Baxter, the interface should be orange.
   \item When the house is Clive, the interface should be turquoise.
@@ -21,6 +32,7 @@ The most extensive section of testing will be the unit testing, as the system is
 
   \item In the quiz creation section of the program, the ability to do the following will be tested:
   \begin{itemize}
+    \item Connect to the state store.
     \item Add a question to the quiz.
     \item Delete a question from the quiz.
     \item Edit a question's title.
@@ -33,22 +45,23 @@ The most extensive section of testing will be the unit testing, as the system is
 
   \item The following validation will be tested:
   \begin{itemize}
-    \item Ensure only numbers can be typed into the question and break length fields
+    \item Ensure only integers can be typed into the question and break length fields
     \item Ensure questions can be set to a minimum of 5 seconds
     \item Ensure breaks can be set to a minimum of 1 minute
     \item Ensure that only one answer per question can be marked as correct at once
     \item Ensure that question and answer bodies cannot be left blank
   \end{itemize}
 
-  \item The countdown screen will be tested to ensure that it displays the correct time remaining before the next quiz will begin.
+  \item The countdown screen will be tested to ensure that it displays the correct time remaining before the next quiz will begin, and that it begins the quiz on time.
 
   \item In the quiz playing section of the quiz, the ability to do the following will be tested:
   \begin{itemize}
+    \item Connect to the state store.
     \item Move to the correct question on time, according to when the quiz started and the length of each question.
     \item End the quiz at the correct time, after all the questions have been finished.
   \end{itemize}
 
-  \item The results section will be tested to ensure that it shows the correct results depending on the answer packets that have passed through the system.
+  \item The results section will be tested to ensure that it shows the correct results depending on the answer packets that have passed through the system and that it can connect to the state store.
 
   \item Ensure that it is possible to edit a quiz that has already been saved.
   \item Ensure that quizzes can be deleted.

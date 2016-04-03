@@ -5,7 +5,7 @@ This subsection displays the test data that will be used to test the validation 
 \subsubsection{Only Integers in Question and Break Fields} % (fold)
 \label{ssub:only_numbers_in_question_and_break_fields}
 This validation will ensure that the question and break fields only accept integers, as they are used in the scheduling of the quiz and so must be validated.
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
   \item Enter ``10'' into the question length and break fields. (\textit{Typical})\\\\
   \textit{Expected result}: Nothing should happen, as the data is as expected.\\
 
@@ -20,7 +20,7 @@ This validation will ensure that the question and break fields only accept integ
 \subsubsection{Minimum Question Length} % (fold)
 \label{ssub:minimum_question_length}
 Students should be given a minimum of five seconds to answer a question. This validation ensures that this value is enforced when setting a custom question length.
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
   \item Enter ``10'' into the question length field. (\textit{Typical})\\\\
   \textit{Expected result}: Nothing should happen, as the data is as expected.\\
 
@@ -35,7 +35,7 @@ Students should be given a minimum of five seconds to answer a question. This va
 \subsubsection{Minimum Break Length} % (fold)
 \label{ssub:minimum_question_length}
 Students should be given a minimum of one minute in a break. This validation ensures that this value is enforced when setting a custom break length.
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
   \item Enter ``5'' into the break length field. (\textit{Typical})\\\\
   \textit{Expected result}: Nothing should happen, as the data is as expected.\\
 
@@ -49,11 +49,26 @@ Students should be given a minimum of one minute in a break. This validation ens
 \subsubsection{One Correct Answer Per Question} % (fold)
 \label{ssub:one_correct_answer_}
 Each question can only have one correct answer. This aspect of the validation will ensure that only one answer per question can be marked as correct in the quiz editor.
-
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
   \item Create a new quiz.
   \item Mark the first answer as correct by clicking on the tick icon.\\\\
   \textit{Expected result}: The tick in the first answer should now be highlighted, and the previous tick should be pale.
 \end{enumerate}
 % subsubsection one_correct_answer_ (end)
+
+\subsubsection{Question and Answer Fields Not Blank} % (fold)
+\label{ssub:quiz_fields_not_blank}
+The question and answer fields must always have a value in them so that they can be displayed in the quiz player. This validation ensures that they can never be left blank.
+
+\textit{\textbf{Note:} Both the question and answer fields make use of the same custom input component (see EditableText in the listings), so it is only necessary to test one of them.}
+
+\begin{enumerate}[leftmargin=*]
+  \item Create a new quiz.
+  \item Click the question title, which by default should be ``I'm the question title - tap to edit me!''.
+  \item Type in ``Who is the current Queen of England?''
+  \item Use the backspace key to remove the text.
+  \item Click out of the question title.\\\\
+  \textit{Expected result}: The question title should have returned to ``I'm the question title - tap to edit me!''.
+\end{enumerate}
+% subsubsection quiz_fields_not_blank (end)
 % subsection validation_testing (end)

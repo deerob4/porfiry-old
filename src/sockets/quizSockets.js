@@ -8,8 +8,6 @@ import isQuizReady from '../utils/isQuizReady';
 import calculateHousePoints from '../libs/housePoints';
 import calculateAnswerStatistics from '../libs/answerStatistics';
 
-let util = require('util');
-
 async function quizSockets(server) {
   let io = require('socket.io').listen(server);
   let quizAddress = `http://localhost:${config.port}/api/quizzes`;
@@ -79,7 +77,6 @@ async function quizSockets(server) {
 
   function scheduleQuiz(quiz) {
     const quizStart = new Date(quiz.settings.startDate);
-    console.log(quiz);
     if (moment(quizStart).isAfter(moment())) {
       let countdownStart = moment(quizStart).subtract(20, 'minutes')._d;
       let totalQuizDuration = quiz.questions.length * quiz.settings.questionLength;
@@ -114,8 +111,7 @@ async function quizSockets(server) {
   function questionTimer(quiz) {
     const questionLength = quiz.settings.questionLength;
     const quizStart = new Date(quiz.settings.startDate);
-    console.log(quiz.settings.id);
-    console.log(jobs);
+
     quiz.questions.forEach((question, i) => {
       const changeQuestion = moment(quizStart).add(questionLength * i, 'milliseconds')._d;
 

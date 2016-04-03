@@ -1,0 +1,22 @@
+\subsection{Countdown Screen Testing} % (fold)
+\label{sub:countdown_screen_testing}
+The countdown screen will display the time remaining until the next quiz is scheduled to begin, as long as it is within the next 20 minutes.
+
+\subsubsection{Displays Remaining Time} % (fold)
+\label{ssub:displays_correct_time}
+\begin{enumerate}
+  \item Create a quiz, and schedule it to begin 10 minutes from the current time.
+  \item Exit the editor, and press the ``Join the Quiz!'' button.\\\\
+  \textit{Expected result}: The countdown should display ``You're a bit early!'' and the time remaining until the quiz begins. This should be 10 minutes at first, but every minute it should change to reflect the correct time.
+\end{enumerate}
+% subsubsection displays_correct_time (end)
+
+\subsubsection{Begins Quiz at Correct Time} % (fold)
+\label{ssub:begins_quiz_at_correct_time}
+\begin{enumerate}
+  \item Create a quiz, and schedule it to begin 1 minute from the current time.
+  \item Exit the editor, and press the ``Join the Quiz!'' button.\\\\
+  \textit{Expected result}: The countdown should display ``The quiz will begin in a few seconds.'', and then after a minute it should begin.
+\end{enumerate}
+% subsubsection begins_quiz_at_correct_time (end)
+% subsection countdown_screen_testing (end)

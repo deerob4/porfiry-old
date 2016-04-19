@@ -66,82 +66,80 @@ This subsection outlines the data that will be used to test the functionality of
 \begin{enumerate}[leftmargin=*]
 \item Create the following quiz:
 \begin{Verbatim}[fontsize=\small]
+title: 'Summer Term House Quiz',
+start: new Date(),
+questionIntervals: 10000,
+realtimeGraphics: true,
+intervalLength: 300000,
+categories: [
 {
-  title: 'Summer Term House Quiz',
-  start: new Date(),
-  questionIntervals: 10000,
-  realtimeGraphics: true,
-  intervalLength: 300000,
-  categories: [
+  name: 'History',
+  questions: [
     {
-      name: 'History',
-      questions: [
-        {
-          title: 'Who killed JFK?',
-          answers: [
-            { text: 'Bill Osmond', correct: false },
-            { text: 'Lee Harvey Oswald', correct: true },
-            { text: 'Henry Kissinger', correct: false }
-          ]
-        },
-        {
-          title: 'Who was the British Prime Minister in 1916?',
-          answers: [
-            { text: 'David Lloyd George', correct: true },
-            { text: 'Lee Harvey Oswald', correct: false },
-            { text: 'Lord Liverpool', correct: false }
-          ]
-        }
+      title: 'Who killed JFK?',
+      answers: [
+        { text: 'Bill Osmond', correct: false },
+        { text: 'Lee Harvey Oswald', correct: true },
+        { text: 'Henry Kissinger', correct: false }
       ]
     },
     {
-      name: 'Sport',
-      questions: [
-        {
-          title: 'Who won the 1966 world cup?',
-          answers: [
-            { text: 'England', correct: true },
-            { text: 'Wales', correct: false },
-            { text: 'Scotland', correct: false },
-            { text: 'Uzbekistan', correct: false }
-          ]
-        },
-        {
-          title: 'Which city hosted the 1924 Summer Olympics?',
-          answers: [
-            { text: 'Brussels', correct: false },
-            { text: 'Orelans', correct: false },
-            { text: 'Madrid', correct: false },
-            { text: 'Paris', correct: true }
-          ]
-        }
+      title: 'Who was the British Prime Minister in 1916?',
+      answers: [
+        { text: 'David Lloyd George', correct: true },
+        { text: 'Lee Harvey Oswald', correct: false },
+        { text: 'Lord Liverpool', correct: false }
+      ]
+    }
+  ]
+},
+{
+  name: 'Sport',
+  questions: [
+    {
+      title: 'Who won the 1966 world cup?',
+      answers: [
+        { text: 'England', correct: true },
+        { text: 'Wales', correct: false },
+        { text: 'Scotland', correct: false },
+        { text: 'Uzbekistan', correct: false }
       ]
     },
     {
-      name: 'Literature',
-      questions: [
-        {
-          title: 'Who serves as the main character in "Crime and Punishment"?',
-          answers: [
-            { text: 'Raskolnikov', correct: true },
-            { text: 'Razumikhin', correct: false },
-            { text: 'Porifry Petrovich', correct: false },
-            { text: 'Svidrigailov', correct: false }
-          ]
-        },
-        {
-          title: 'Which literary genre does "Ulysses" belong to?',
-          answers: [
-            { text: 'Modernist', correct: true },
-            { text: 'Post-modernist', correct: false },
-            { text: 'Romance', correct: false },
-            { text: 'Thriller', correct: false }
-          ]
-        }
+      title: 'Which city hosted the 1924 Summer Olympics?',
+      answers: [
+        { text: 'Brussels', correct: false },
+        { text: 'Orelans', correct: false },
+        { text: 'Madrid', correct: false },
+        { text: 'Paris', correct: true }
+      ]
+    }
+  ]
+},
+{
+  name: 'Literature',
+  questions: [
+    {
+      title: 'Who serves as the main character in "Crime and Punishment"?',
+      answers: [
+        { text: 'Raskolnikov', correct: true },
+        { text: 'Razumikhin', correct: false },
+        { text: 'Porifry Petrovich', correct: false },
+        { text: 'Svidrigailov', correct: false }
+      ]
+    },
+    {
+      title: 'Which literary genre does "Ulysses" belong to?',
+      answers: [
+        { text: 'Modernist', correct: true },
+        { text: 'Post-modernist', correct: false },
+        { text: 'Romance', correct: false },
+        { text: 'Thriller', correct: false }
       ]
     }
   ]
 }
+]
 \end{Verbatim}
 
 \item Press the save quiz button.\\\\

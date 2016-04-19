@@ -17,56 +17,56 @@ This section displays how the system should be tested to ensure that the correct
 \begin{enumerate}
   \item In the quiz simulator, insert the following answer packets into the ``packets'' array:
   \begin{Verbatim}[fontsize=\small]
-  { house: 'acton',      year: 11,      answer: 'D',      peek: true }
-  { house: 'houseman',   year: 7,       answer: 'C',      peek: true }
+  { house: 'acton',      year: 11,      answer: 'D',      peek: true  }
+  { house: 'houseman',   year: 7,       answer: 'C',      peek: true  }
   { house: 'baxter',     year: 11,      answer: 'C',      peek: false }
   { house: 'webb',       year: 11,      answer: 'C',      peek: false }
   { house: 'acton',      year: 9,       answer: 'A',      peek: false }
-  { house: 'houseman',   year: 10,      answer: 'A',      peek: true }
+  { house: 'houseman',   year: 10,      answer: 'A',      peek: true  }
   { house: 'webb',       year: 7,       answer: 'B',      peek: false }
-  { house: 'baxter',     year: 9,       answer: 'B',      peek: true }
-  { house: 'clive',      year: 10,      answer: 'A',      peek: true }
+  { house: 'baxter',     year: 9,       answer: 'B',      peek: true  }
+  { house: 'clive',      year: 10,      answer: 'A',      peek: true  }
   { house: 'darwin',     year: 7,       answer: 'C',      peek: false }
   { house: 'clive',      year: 10,      answer: 'C',      peek: false }
-  { house: 'clive',      year: 7,       answer: 'B',      peek: true }
+  { house: 'clive',      year: 7,       answer: 'B',      peek: true  }
   { house: 'baxter',     year: 10,      answer: 'A',      peek: false }
   { house: 'darwin',     year: 11,      answer: 'A',      peek: false }
-  { house: 'acton',      year: 11,      answer: 'C',      peek: true }
+  { house: 'acton',      year: 11,      answer: 'C',      peek: true  }
   { house: 'acton',      year: 8,       answer: 'C',      peek: false }
-  { house: 'baxter',     year: 10,      answer: 'A',      peek: true }
+  { house: 'baxter',     year: 10,      answer: 'A',      peek: true  }
   { house: 'webb',       year: 11,      answer: 'B',      peek: false }
   { house: 'acton',      year: 9,       answer: 'C',      peek: false }
-  { house: 'webb',       year: 7,       answer: 'D',      peek: true }
+  { house: 'webb',       year: 7,       answer: 'D',      peek: true  }
   { house: 'darwin',     year: 7,       answer: 'B',      peek: false }
   { house: 'webb',       year: 10,      answer: 'C',      peek: false }
-  { house: 'clive',      year: 8,       answer: 'C',      peek: true }
+  { house: 'clive',      year: 8,       answer: 'C',      peek: true  }
   { house: 'darwin',     year: 7,       answer: 'A',      peek: false }
   { house: 'acton',      year: 8,       answer: 'A',      peek: false }
-  { house: 'webb',       year: 10,      answer: 'C',      peek: true }
+  { house: 'webb',       year: 10,      answer: 'C',      peek: true  }
   { house: 'webb',       year: 10,      answer: 'C',      peek: false }
-  { house: 'houseman',   year: 10,      answer: 'D',      peek: true }
-  { house: 'clive',      year: 7,       answer: 'A',      peek: true }
+  { house: 'houseman',   year: 10,      answer: 'D',      peek: true  }
+  { house: 'clive',      year: 7,       answer: 'A',      peek: true  }
   { house: 'darwin',     year: 7,       answer: 'B',      peek: false }
   { house: 'baxter',     year: 7,       answer: 'B',      peek: false }
   { house: 'acton',      year: 9,       answer: 'C',      peek: false }
-  { house: 'webb',       year: 9,       answer: 'C',      peek: true }
+  { house: 'webb',       year: 9,       answer: 'C',      peek: true  }
   { house: 'webb',       year: 8,       answer: 'B',      peek: false }
   { house: 'darwin',     year: 9,       answer: 'A',      peek: false }
   { house: 'baxter',     year: 8,       answer: 'B',      peek: false }
   { house: 'clive',      year: 7,       answer: 'B',      peek: false }
-  { house: 'darwin',     year: 9,       answer: 'C',      peek: true }
+  { house: 'darwin',     year: 9,       answer: 'C',      peek: true  }
   { house: 'baxter',     year: 7,       answer: 'A',      peek: false }
-  { house: 'acton',      year: 9,       answer: 'D',      peek: true }
-  { house: 'houseman',   year: 9,       answer: 'A',      peek: true }
-  { house: 'webb',       year: 11,      answer: 'D',      peek: true }
+  { house: 'acton',      year: 9,       answer: 'D',      peek: true  }
+  { house: 'houseman',   year: 9,       answer: 'A',      peek: true  }
+  { house: 'webb',       year: 11,      answer: 'D',      peek: true  }
   { house: 'clive',      year: 8,       answer: 'B',      peek: false }
   { house: 'baxter',     year: 10,      answer: 'C',      peek: false }
   { house: 'houseman',   year: 8,       answer: 'C',      peek: false }
   { house: 'clive',      year: 10,      answer: 'D',      peek: false }
-  { house: 'darwin',     year: 7,       answer: 'B',      peek: true }
+  { house: 'darwin',     year: 7,       answer: 'B',      peek: true  }
   { house: 'baxter',     year: 7,       answer: 'D',      peek: false }
-  { house: 'webb',       year: 9,       answer: 'B',      peek: true }
-  { house: 'houseman',   year: 8,       answer: 'B',      peek: true }
+  { house: 'webb',       year: 9,       answer: 'B',      peek: true  }
+  { house: 'houseman',   year: 8,       answer: 'B',      peek: true  }
   { house: 'webb',       year: 9,       answer: 'A',      peek: false }
   \end{Verbatim}
   \item Schedule and begin a quiz.
